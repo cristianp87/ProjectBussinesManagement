@@ -1,0 +1,67 @@
+﻿@model Project_BusinessManagement.Models.MSupplier
+
+@{
+    ViewBag.Title = "Información Proveedor";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>MSupplier</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.LIdSupplier)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LIdSupplier)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LTypeIdentification.LTypeIdentification)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LTypeIdentification.LTypeIdentification)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LNameSupplier)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LNameSupplier)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LNoIdentification)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LNoIdentification)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LCreationDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LCreationDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LStatus.LDsEstado)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LStatus.LDsEstado)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Editar", "Edit", new {  id = Model.LIdSupplier}) |
+    @Html.ActionLink("Ir a Proveedores", "Index")
+</p>

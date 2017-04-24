@@ -1,0 +1,8 @@
+C:\Users\CristianPc\Documents\Visual Studio 2015\Projects\Project_BusinessManagement\Dao_BussinessManagement\bin\Debug\Dao_BussinessManagement.dll.config
+C:\Users\CristianPc\Documents\Visual Studio 2015\Projects\Project_BusinessManagement\Dao_BussinessManagement\bin\Debug\Dao_BussinessManagement.dll
+C:\Users\CristianPc\Documents\Visual Studio 2015\Projects\Project_BusinessManagement\Dao_BussinessManagement\bin\Debug\Dao_BussinessManagement.pdb
+C:\Users\CristianPc\Documents\Visual Studio 2015\Projects\Project_BusinessManagement\Dao_BussinessManagement\bin\Debug\BO_BusinessManagement.dll
+C:\Users\CristianPc\Documents\Visual Studio 2015\Projects\Project_BusinessManagement\Dao_BussinessManagement\bin\Debug\BO_BusinessManagement.pdb
+C:\Users\CristianPc\Documents\Visual Studio 2015\Projects\Project_BusinessManagement\Dao_BussinessManagement\obj\Debug\Dao_BussinessManagement.csprojResolveAssemblyReference.cache
+C:\Users\CristianPc\Documents\Visual Studio 2015\Projects\Project_BusinessManagement\Dao_BussinessManagement\obj\Debug\Dao_BussinessManagement.dll
+C:\Users\CristianPc\Documents\Visual Studio 2015\Projects\Project_BusinessManagement\Dao_BussinessManagement\obj\Debug\Dao_BussinessManagement.pdb
