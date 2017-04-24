@@ -21,7 +21,7 @@ namespace Project_BusinessManagement.Models
         private MStatus lStatus;
         private List<SelectListItem> lListStatus;
         private MObject lObject;
-        private string lException;
+        private DateTime lModificationDate;
 
         [UIHint("LIdSupplier")]
         [DisplayName("IDProveedores")]
@@ -149,6 +149,19 @@ namespace Project_BusinessManagement.Models
             }
         }
 
+        public DateTime LModificationDate
+        {
+            get
+            {
+                return lModificationDate;
+            }
+
+            set
+            {
+                lModificationDate = value;
+            }
+        }
+
         public static List<MSupplier> MListSupplier(List<Bo_Supplier> oBListSupplier)
         {
             List<MSupplier> oMListSupplier = new List<MSupplier>();        
@@ -182,6 +195,7 @@ namespace Project_BusinessManagement.Models
             oMSupplier.LObject.LNameObject = oBSupplier.LObject.LNameObject;
             oMSupplier.LStatus.LDsEstado = oBSupplier.LStatus.LDsEstado;
             oMSupplier.LStatus.LIdStatus = oBSupplier.LStatus.LIdStatus;
+            oMSupplier.lModificationDate = oBSupplier.LModificationDate;
             oMSupplier.LListStatus = MStatus.MListAllStatus(Bll_Business.Bll_Status.Bll_getListStatusByIdObject(oBSupplier.LObject.LIdObject));
 
             return oMSupplier;
@@ -190,6 +204,8 @@ namespace Project_BusinessManagement.Models
         public static MSupplier MSupplierEmpty(Bo_Supplier oBSupplier)
         {
             MSupplier oMSupplier = new MSupplier();
+            Bo_Object oObject = new Bo_Object();
+            oObject = Bll_Business.Bll_UtilsLib.bll_GetObjectByName(MGlobalVariables.LNameObjectSupplier);
             oMSupplier.LObject = new MObject();
             oMSupplier.LStatus = new MStatus();
             oMSupplier.LTypeIdentification = new MTypeIdentification();
@@ -202,11 +218,12 @@ namespace Project_BusinessManagement.Models
             oMSupplier.LCreationDate = new DateTime();
             oMSupplier.LTypeIdentification.LIdTypeIdentification = 0;
             oMSupplier.lTypeIdentification.LTypeIdentification = null;
-            oMSupplier.lObject.LIdObject = 0;
-            oMSupplier.LObject.LNameObject = MGlobalVariables.LObjectSupplier.LNameObject;
+            oMSupplier.lObject.LIdObject = oObject.LIdObject;
+            oMSupplier.lObject.LNameObject = oObject.LNameObject;
             oMSupplier.LStatus.LDsEstado = null;
             oMSupplier.LStatus.LIdStatus = null;
-            oMSupplier.LListStatus = MStatus.MListAllStatusWithSelect(Bll_Business.Bll_Status.Bll_getListStatusByIdObject(oBSupplier.LObject.LIdObject));
+            oMSupplier.lModificationDate = new DateTime();
+            oMSupplier.LListStatus = MStatus.MListAllStatusWithSelect(Bll_Business.Bll_Status.Bll_getListStatusByIdObject(oMSupplier.LObject.LIdObject));
 
             return oMSupplier;
         }

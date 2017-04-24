@@ -102,7 +102,7 @@ namespace Dao_BussinessManagement
                         while (lReader.Read())
                         {   
                             oObject.LIdObject = Convert.ToInt32(lReader["IdObject"].ToString());
-                            oObject.LNameObject = lReader["DsEstado"].ToString();
+                            oObject.LNameObject = lReader["NameObject"].ToString();
                             oObject.LActive = Convert.ToBoolean(lReader["flActive"].ToString());
                         }
 

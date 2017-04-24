@@ -15,6 +15,7 @@ namespace BO_BusinessManagement
         private DateTime lCreationDate;
         private Bo_Status lStatus;
         private Bo_Object lObject;
+        private DateTime lModificationDate;
 
         public int LIdSupplier
         {
@@ -105,6 +106,19 @@ namespace BO_BusinessManagement
             set
             {
                 lObject = value;
+            }
+        }
+
+        public DateTime LModificationDate
+        {
+            get
+            {
+                return lModificationDate;
+            }
+
+            set
+            {
+                lModificationDate = value;
             }
         }
     }

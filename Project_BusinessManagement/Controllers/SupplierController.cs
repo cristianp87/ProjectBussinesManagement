@@ -31,10 +31,6 @@ namespace Project_BusinessManagement.Views.Supplier
         public ActionResult Create()
         {
             Bo_Supplier oBSupplier = new Bo_Supplier();
-            oBSupplier.LObject = new Bo_Object();
-            oBSupplier.LObject.LIdObject = 2;
-            oBSupplier.LObject.LNameObject = "SUPP";
-
             return View(Models.MSupplier.MSupplierEmpty(oBSupplier));
         }
 
@@ -50,12 +46,14 @@ namespace Project_BusinessManagement.Views.Supplier
                     oBSupplier.LTypeIdentification = new Bo_TypeIdentification();
                     oBSupplier.LStatus = new Bo_Status();
                     oBSupplier.LObject = new Bo_Object();
+                    oBSupplier.LObject = Bll_UtilsLib.bll_GetObjectByName(Request.Form["LNameSupplier"].ToString());
                     oBSupplier.LNameSupplier = Request.Form["LNameSupplier"].ToString();
                     oBSupplier.LNoIdentification = Request.Form["LNoIdentification"].ToString();
                     oBSupplier.LTypeIdentification.LIdTypeIdentification = Convert.ToInt32(Request.Form["LTypeIdentification.LIdTypeIdentification"].ToString());
                     oBSupplier.LCreationDate = Convert.ToDateTime(Request.Form["LCreationDate"].ToString());
                     oBSupplier.LStatus.LIdStatus = Request.Form["LStatus.LIdStatus"].ToString();
                     oBSupplier.LObject.LIdObject = Convert.ToInt32(Request.Form["LObject.LIdObject"].ToString());
+                    oBSupplier.LModificationDate = pMsupplier.LModificationDate;
                     Bll_Supplier.bll_InsertSupplier(oBSupplier.LNameSupplier, oBSupplier.LNoIdentification, oBSupplier.LTypeIdentification.LIdTypeIdentification, oBSupplier.LObject.LIdObject, oBSupplier.LStatus.LIdStatus);
                     return RedirectToAction("Index");
                 }
@@ -105,6 +103,7 @@ namespace Project_BusinessManagement.Views.Supplier
                     oBSupplier.LCreationDate = Convert.ToDateTime(Request.Form["LCreationDate"].ToString());
                     oBSupplier.LStatus.LIdStatus = Request.Form["LStatus.LIdStatus"].ToString();
                     oBSupplier.LObject.LIdObject = Convert.ToInt32(Request.Form["LObject.LIdObject"].ToString());
+                    oBSupplier.LModificationDate = pMsupplier.LModificationDate;
                     Bll_Supplier.bll_UpdateSupplier(oBSupplier.LIdSupplier, oBSupplier.LNameSupplier, oBSupplier.LNoIdentification, oBSupplier.LTypeIdentification.LIdTypeIdentification, oBSupplier.LObject.LIdObject, oBSupplier.LStatus.LIdStatus);
                     return RedirectToAction("Index");
                 }

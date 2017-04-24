@@ -2,19 +2,20 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Configuration;
 
 namespace Project_BusinessManagement.Models
 {
     public static class MGlobalVariables
     {
-        private static MObject lObjectSupplier;
+        private static string lNameObjectSupplier;
 
-        public static MObject LObjectSupplier
+        public static string LNameObjectSupplier
         {
             get
             {
-                lObjectSupplier.LNameObject = HttpContext.Current.Application["objectSupplier"].ToString();
-                return lObjectSupplier;
+                lNameObjectSupplier = ConfigurationManager.AppSettings["objectSupplier"].ToString() ;
+                return lNameObjectSupplier;
             }
         }
     }
