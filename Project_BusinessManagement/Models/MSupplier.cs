@@ -22,6 +22,7 @@ namespace Project_BusinessManagement.Models
         private List<SelectListItem> lListStatus;
         private MObject lObject;
         private DateTime lModificationDate;
+        private string lMessageException;
 
         [UIHint("LIdSupplier")]
         [DisplayName("IDProveedores")]
@@ -159,6 +160,19 @@ namespace Project_BusinessManagement.Models
             set
             {
                 lModificationDate = value;
+            }
+        }
+
+        public string LMessageException
+        {
+            get
+            {
+                return lMessageException;
+            }
+
+            set
+            {
+                lMessageException = value;
             }
         }
 

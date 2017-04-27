@@ -123,8 +123,7 @@ namespace Dao_BussinessManagement
             Dao_UtilsLib.dao_Addparameters(lListParam, SqlDbType.Int, "@IdTypeIdentification", pSupplier.LTypeIdentification.LIdTypeIdentification.ToString());
             Dao_UtilsLib.dao_Addparameters(lListParam, SqlDbType.VarChar, "@NoIdentification", pSupplier.LNoIdentification.ToString());
             Dao_UtilsLib.dao_Addparameters(lListParam, SqlDbType.VarChar, "@IdStatus", pSupplier.LStatus.LIdStatus.ToString());
-            Dao_UtilsLib.dao_Addparameters(lListParam, SqlDbType.Int, "@IdObject", pSupplier.LObject.LIdObject.ToString());
-            Dao_UtilsLib.dao_Addparameters(lListParam, SqlDbType.DateTime, "@ModificationDate", pSupplier.LObject.LIdObject.ToString());
+            Dao_UtilsLib.dao_Addparameters(lListParam, SqlDbType.Int, "@IdObjec", pSupplier.LObject.LIdObject.ToString());
             return Dao_UtilsLib.Dao_executeSqlTransactionWithProcedement(lListParam, "LTranInsertSupplier", "spr_CreateSupplier");
         }
 
@@ -136,7 +135,6 @@ namespace Dao_BussinessManagement
             Dao_UtilsLib.dao_Addparameters(lListParam, SqlDbType.VarChar, "@NoIdentification", pSupplier.LNoIdentification.ToString());
             Dao_UtilsLib.dao_Addparameters(lListParam, SqlDbType.VarChar, "@IdStatus", pSupplier.LStatus.LIdStatus.ToString());
             Dao_UtilsLib.dao_Addparameters(lListParam, SqlDbType.Int, "@IdObject", pSupplier.LObject.LIdObject.ToString());
-            Dao_UtilsLib.dao_Addparameters(lListParam, SqlDbType.DateTime, "@ModificationDate", pSupplier.LObject.LIdObject.ToString());
             return Dao_UtilsLib.Dao_executeSqlTransactionWithProcedement(lListParam, "LTranUpdateSupplier", "spr_UpdateSupplier");
         }
 

@@ -3,10 +3,12 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - My ASP.NET Application</title>
+    <title>@ViewBag.Title - Gestion De Negocio</title>
     @Styles.Render("~/Content/bootstrap.min.css")
     @Styles.Render("~/Content/StyleMaster.css")
-    @Scripts.Render("~/Scripts/jquery-2.2.3.min.js")
+    @Styles.Render("~/Content/jquery-ui.css")
+    @Scripts.Render("~/Scripts/jquery-2.2.3.min.js")    
+    @Scripts.Render("~/Scripts/jquery-ui.js")
     @Scripts.Render("~/Scripts/jquery.tablesorter.min.js");
     @Scripts.Render("~/Scripts/jquery.tablesorter.pager.js");
     @Scripts.Render("~/Scripts/jquery.validate.min.js");
@@ -15,6 +17,12 @@
         $(function () {
             $("table.tablesorter").tablesorter({ widthFixed: true, sortList: [[0, 0]] })
             .tablesorterPager({ container: $("#pager"), size: $(".pagesize option:selected").val() });
+            $('.date').datepicker({
+                showOn: "button",
+                buttonImage: "images/calendar.gif",
+                buttonImageOnly: true,
+                buttonText: "Select date"
+            });
         });
     </script>
 </head>

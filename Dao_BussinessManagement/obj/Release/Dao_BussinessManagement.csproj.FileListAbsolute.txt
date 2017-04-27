@@ -1,0 +1,8 @@
+C:\Users\CristianPc\Documents\Projects\ProjectBussinesManagement\Dao_BussinessManagement\bin\Release\Dao_BussinessManagement.dll.config
+C:\Users\CristianPc\Documents\Projects\ProjectBussinesManagement\Dao_BussinessManagement\bin\Release\Dao_BussinessManagement.dll
+C:\Users\CristianPc\Documents\Projects\ProjectBussinesManagement\Dao_BussinessManagement\bin\Release\Dao_BussinessManagement.pdb
+C:\Users\CristianPc\Documents\Projects\ProjectBussinesManagement\Dao_BussinessManagement\bin\Release\BO_BusinessManagement.dll
+C:\Users\CristianPc\Documents\Projects\ProjectBussinesManagement\Dao_BussinessManagement\bin\Release\BO_BusinessManagement.pdb
+C:\Users\CristianPc\Documents\Projects\ProjectBussinesManagement\Dao_BussinessManagement\obj\Release\Dao_BussinessManagement.csprojResolveAssemblyReference.cache
+C:\Users\CristianPc\Documents\Projects\ProjectBussinesManagement\Dao_BussinessManagement\obj\Release\Dao_BussinessManagement.dll
+C:\Users\CristianPc\Documents\Projects\ProjectBussinesManagement\Dao_BussinessManagement\obj\Release\Dao_BussinessManagement.pdb

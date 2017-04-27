@@ -1,0 +1,4 @@
+C:\Users\CristianPc\Documents\Projects\ProjectBussinesManagement\BO_BusinessManagement\bin\Release\BO_BusinessManagement.dll
+C:\Users\CristianPc\Documents\Projects\ProjectBussinesManagement\BO_BusinessManagement\bin\Release\BO_BusinessManagement.pdb
+C:\Users\CristianPc\Documents\Projects\ProjectBussinesManagement\BO_BusinessManagement\obj\Release\BO_BusinessManagement.dll
+C:\Users\CristianPc\Documents\Projects\ProjectBussinesManagement\BO_BusinessManagement\obj\Release\BO_BusinessManagement.pdb

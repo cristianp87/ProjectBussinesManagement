@@ -5,6 +5,5 @@ C:\Users\CristianPc\Documents\Visual Studio 2015\Projects\Project_BusinessManage
 C:\Users\CristianPc\Documents\Visual Studio 2015\Projects\Project_BusinessManagement\BO_BusinessManagement\obj\Debug\BO_BusinessManagement.csprojResolveAssemblyReference.cache
 C:\Users\CristianPc\Documents\Projects\ProjectBussinesManagement\BO_BusinessManagement\bin\Debug\BO_BusinessManagement.dll
 C:\Users\CristianPc\Documents\Projects\ProjectBussinesManagement\BO_BusinessManagement\bin\Debug\BO_BusinessManagement.pdb
-C:\Users\CristianPc\Documents\Projects\ProjectBussinesManagement\BO_BusinessManagement\obj\Debug\BO_BusinessManagement.csprojResolveAssemblyReference.cache
 C:\Users\CristianPc\Documents\Projects\ProjectBussinesManagement\BO_BusinessManagement\obj\Debug\BO_BusinessManagement.dll
 C:\Users\CristianPc\Documents\Projects\ProjectBussinesManagement\BO_BusinessManagement\obj\Debug\BO_BusinessManagement.pdb
