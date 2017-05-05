@@ -5,11 +5,14 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
     
 }
+@if (Model.LMessageException != null)
+{
+    <div class="alert alert-danger">
+        <strong>Error!</strong> @Model.LMessageException
+    </div>
+}
 
-<div class="alert alert-danger">
-    <strong>Danger!</strong> You should <a href="#" class="alert-link">read this message</a>.
-</div>
-<h2>Edit</h2>
+<h2>Actualizar Proveedor</h2>
 
 @using (Html.BeginForm())
 {

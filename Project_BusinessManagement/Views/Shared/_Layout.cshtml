@@ -9,14 +9,15 @@
     @Styles.Render("~/Content/jquery-ui.css")
     @Scripts.Render("~/Scripts/jquery-2.2.3.min.js")    
     @Scripts.Render("~/Scripts/jquery-ui.js")
-    @Scripts.Render("~/Scripts/jquery.tablesorter.min.js");
-    @Scripts.Render("~/Scripts/jquery.tablesorter.pager.js");
-    @Scripts.Render("~/Scripts/jquery.validate.min.js");
-    @Scripts.Render("~/Scripts/jquery.validate.unobtrusive.min.js");
+    @Scripts.Render("~/Scripts/jquery.tablesorter.min.js")
+    @Scripts.Render("~/Scripts/jquery.tablesorter.pager.js")
+    @Scripts.Render("~/Scripts/jquery.validate.min.js")
+    @Scripts.Render("~/Scripts/jquery.validate.unobtrusive.min.js")
     <script type="text/javascript">
         $(function () {
-            $("table.tablesorter").tablesorter({ widthFixed: true, sortList: [[0, 0]] })
+            $("table.tablesorter").tablesorter({ widthFixed: true, sortList: [[2, 2]] })
             .tablesorterPager({ container: $("#pager"), size: $(".pagesize option:selected").val() });
+
             $('.date').datepicker({
                 showOn: "button",
                 buttonImage: "images/calendar.gif",

@@ -74,6 +74,7 @@ namespace Project_BusinessManagement.Views.Supplier
                 pMsupplier.LListTypeIdentification = Models.MTypeIdentification.MListAllTypeIdentification(Bll_TypeIdentification.bll_getListTypeIdentification());
                 pMsupplier.LListStatus = new List<SelectListItem>();
                 pMsupplier.LListStatus = Models.MStatus.MListAllStatus(Bll_Status.Bll_getListStatusByIdObject(pMsupplier.LObject.LIdObject));
+                pMsupplier.LMessageException = e.Message;
                 return View(pMsupplier);
             }
         }
@@ -93,8 +94,21 @@ namespace Project_BusinessManagement.Views.Supplier
             try
             {               
                 if (ModelState.IsValid) { 
-                    Bll_Supplier.bll_UpdateSupplier(id, Request.Form["LNameSupplier"].ToString(), Request.Form["LNoIdentification"].ToString(), Convert.ToInt32(Request.Form["LTypeIdentification.LIdTypeIdentification"].ToString()), Convert.ToInt32(Request.Form["LObject.LIdObject"].ToString()), Request.Form["LStatus.LIdStatus"].ToString());
-                    return RedirectToAction("Index");                  
+                    var lMessage = Bll_Supplier.bll_UpdateSupplier(id, Request.Form["LNameSupplier"].ToString(), Request.Form["LNoIdentification"].ToString(), Convert.ToInt32(Request.Form["LTypeIdentification.LIdTypeIdentification"].ToString()), Convert.ToInt32(Request.Form["LObject.LIdObject"].ToString()), Request.Form["LStatus.LIdStatus"].ToString());
+                    if (lMessage.Equals(null))
+                    {
+                        return RedirectToAction("Index");
+                    }
+                    else
+                    {
+                        pMsupplier.LListTypeIdentification = new List<SelectListItem>();
+                        pMsupplier.LListTypeIdentification = Models.MTypeIdentification.MListAllTypeIdentification(Bll_TypeIdentification.bll_getListTypeIdentification());
+                        pMsupplier.LListStatus = new List<SelectListItem>();
+                        pMsupplier.LListStatus = Models.MStatus.MListAllStatus(Bll_Status.Bll_getListStatusByIdObject(pMsupplier.LObject.LIdObject));
+                        pMsupplier.LMessageException = lMessage;
+                        return View(pMsupplier);
+                    }
+                                  
                 }
                 else
                 {
@@ -112,6 +126,7 @@ namespace Project_BusinessManagement.Views.Supplier
                 pMsupplier.LListTypeIdentification = Models.MTypeIdentification.MListAllTypeIdentification(Bll_TypeIdentification.bll_getListTypeIdentification());
                 pMsupplier.LListStatus = new List<SelectListItem>();
                 pMsupplier.LListStatus = Models.MStatus.MListAllStatus(Bll_Status.Bll_getListStatusByIdObject(pMsupplier.LObject.LIdObject));
+                pMsupplier.LMessageException = e.Message;
                 return View(pMsupplier);
             }
         }
@@ -130,12 +145,21 @@ namespace Project_BusinessManagement.Views.Supplier
         {
             try
             {
-                    Bll_Supplier.bll_DeleteSupplier(id);
+                var lMessage = Bll_Supplier.bll_DeleteSupplier(id);
+                if (lMessage.Equals(null))
+                {
+                    pMsupplier.LMessageException = lMessage;
                     return RedirectToAction("Index");
+                }else
+                {
+                    return View();
+                }
+                    
 
             }
             catch (Exception e)
             {
+                pMsupplier.LMessageException = e.Message;
                 return View();
             }
         }

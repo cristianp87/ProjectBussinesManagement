@@ -4,8 +4,13 @@
     ViewBag.Title = "Información Proveedor";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
-<h2>Details</h2>
+@if (Model.LMessageException != null)
+{
+    <div class="alert alert-danger">
+        <strong>Error!</strong> @Model.LMessageException
+    </div>
+}
+<h2>Detalle Proveedor</h2>
 
 <div>
     <h4>MSupplier</h4>
