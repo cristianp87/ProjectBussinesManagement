@@ -163,6 +163,10 @@
     <Content Include="Views\Supplier\Edit.cshtml" />
     <Content Include="Views\Supplier\Delete.cshtml" />
     <Content Include="Views\Supplier\Create.cshtml" />
+    <Content Include="Views\Customer\Index.cshtml" />
+    <Content Include="Views\Customer\Create.cshtml" />
+    <Content Include="Views\Customer\Edit.cshtml" />
+    <Content Include="Views\Customer\Delete.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -173,11 +177,13 @@
   <ItemGroup>
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\CustomerController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Infrastructure\HandleErrorAttribute.cs" />
+    <Compile Include="Models\MCustomer.cs" />
     <Compile Include="Models\MGlobalVariables.cs" />
     <Compile Include="Models\MObject.cs" />
     <Compile Include="Models\MStatus.cs" />
