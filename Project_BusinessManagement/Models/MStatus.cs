@@ -14,7 +14,6 @@ namespace Project_BusinessManagement.Models
         private string lDsEstado;
         private DateTime lCreationDate;
         private bool lFlActive;
-        private List<SelectListItem> lListStatus;
 
         public string LIdStatus
         {
@@ -68,6 +67,9 @@ namespace Project_BusinessManagement.Models
                 lFlActive = value;
             }
         }
+
+
+
         public static List<SelectListItem> MListAllStatus(List<Bo_Status> oListStatus)
         {
             List<SelectListItem> oMListStatus = new List<SelectListItem>();

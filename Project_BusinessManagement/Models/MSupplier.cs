@@ -81,7 +81,7 @@ namespace Project_BusinessManagement.Models
             }
         }
 
-        [DisplayName("Fecha")]
+        [DisplayName("Fecha De Creacion")]
         [DataType(DataType.DateTime,ErrorMessage = "Formato de fecha invalido")]
         public DateTime LCreationDate
         {
@@ -149,7 +149,7 @@ namespace Project_BusinessManagement.Models
                 lListStatus = value;
             }
         }
-
+        [DisplayName("Fecha De Modificacion")]
         public DateTime LModificationDate
         {
             get

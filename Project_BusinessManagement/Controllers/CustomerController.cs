@@ -22,7 +22,9 @@ namespace Project_BusinessManagement.Controllers
         // GET: Customer/Details/5
         public ActionResult Details(int id)
         {
-            return View();
+            Bo_Customer oBCustomer = new Bo_Customer();
+            oBCustomer = Bll_Customer.bll_GetCustomerById(id);
+            return View(Models.MCustomer.MCustomerById(oBCustomer));
         }
 
         // GET: Customer/Create
@@ -50,22 +52,52 @@ namespace Project_BusinessManagement.Controllers
         // GET: Customer/Edit/5
         public ActionResult Edit(int id)
         {
-            return View();
+            Bo_Customer oBCustomer = new Bo_Customer();
+            oBCustomer = Bll_Customer.bll_GetCustomerById(id);
+            return View(Models.MCustomer.MCustomerById(oBCustomer));
         }
 
         // POST: Customer/Edit/5
         [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        public ActionResult Edit(int id, Models.MCustomer pMCustomer)
         {
             try
             {
-                // TODO: Add update logic here
+                if (ModelState.IsValid)
+                {
+                    var lMessage = Bll_Customer.bll_UpdateCustomer(id, Request.Form["LNameCustomer"].ToString(), Request.Form["LLastNameCustomer"].ToString(), Request.Form["LNoIdentification"].ToString(), Convert.ToInt32(Request.Form["LTypeIdentification.LIdTypeIdentification"].ToString()), Convert.ToInt32(Request.Form["LObject.LIdObject"].ToString()), Request.Form["LStatus.LIdStatus"].ToString());
+                    if (lMessage == null)
+                    {
+                        return RedirectToAction("Index");
+                    }
+                    else
+                    {
+                        pMCustomer.LListTypeIdentification = new List<SelectListItem>();
+                        pMCustomer.LListTypeIdentification = Models.MTypeIdentification.MListAllTypeIdentification(Bll_TypeIdentification.bll_getListTypeIdentification());
+                        pMCustomer.LListStatus = new List<SelectListItem>();
+                        pMCustomer.LListStatus = Models.MStatus.MListAllStatus(Bll_Status.Bll_getListStatusByIdObject(pMCustomer.LObject.LIdObject));
+                        pMCustomer.LMessageException = lMessage;
+                        return View(pMCustomer);
+                    }
+                }
+                else
+                {
+                    pMCustomer.LListTypeIdentification = new List<SelectListItem>();
+                    pMCustomer.LListTypeIdentification = Models.MTypeIdentification.MListAllTypeIdentification(Bll_TypeIdentification.bll_getListTypeIdentification());
+                    pMCustomer.LListStatus = new List<SelectListItem>();
+                    pMCustomer.LListStatus = Models.MStatus.MListAllStatus(Bll_Status.Bll_getListStatusByIdObject(pMCustomer.LObject.LIdObject));
+                    return View(pMCustomer);
+                }
 
-                return RedirectToAction("Index");
             }
-            catch
+            catch (Exception e)
             {
-                return View();
+                pMCustomer.LListTypeIdentification = new List<SelectListItem>();
+                pMCustomer.LListTypeIdentification = Models.MTypeIdentification.MListAllTypeIdentification(Bll_TypeIdentification.bll_getListTypeIdentification());
+                pMCustomer.LListStatus = new List<SelectListItem>();
+                pMCustomer.LListStatus = Models.MStatus.MListAllStatus(Bll_Status.Bll_getListStatusByIdObject(pMCustomer.LObject.LIdObject));
+                pMCustomer.LMessageException = e.Message;
+                return View(pMCustomer);
             }
         }
 

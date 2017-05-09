@@ -16,6 +16,7 @@ namespace BO_BusinessManagement
         private string lNoIdentification;
         private Bo_Status lStatus;
         private Bo_Object lObject;
+        private DateTime lModificationDate;
 
         public int LIdCustomer
         {
@@ -118,6 +119,19 @@ namespace BO_BusinessManagement
             set
             {
                 lLastNameCustomer = value;
+            }
+        }
+
+        public DateTime LModificationDate
+        {
+            get
+            {
+                return lModificationDate;
+            }
+
+            set
+            {
+                lModificationDate = value;
             }
         }
     }

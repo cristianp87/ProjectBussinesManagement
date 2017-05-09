@@ -141,7 +141,6 @@ namespace Dao_BussinessManagement
             Dao_UtilsLib.dao_Addparameters(lListParam, SqlDbType.Int, "@IdTypeIdentification", pCustomer.LTypeIdentification.LIdTypeIdentification.ToString());
             Dao_UtilsLib.dao_Addparameters(lListParam, SqlDbType.VarChar, "@NoIdentification", pCustomer.LNoIdentification);
             Dao_UtilsLib.dao_Addparameters(lListParam, SqlDbType.VarChar, "@IdStatus", pCustomer.LStatus.LIdStatus.ToString());
-            Dao_UtilsLib.dao_Addparameters(lListParam, SqlDbType.Int, "@IdObject", pCustomer.LObject.LIdObject.ToString());
             return Dao_UtilsLib.Dao_executeSqlTransactionWithProcedement(lListParam, "LTranUpdateCustomer", "spr_UpdateCustomer");
         }
 

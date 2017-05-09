@@ -1,0 +1,71 @@
+﻿@model Project_BusinessManagement.Models.MCustomer
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>MCustomer</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.LIdCustomer)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LIdCustomer)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LNameCustomer)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LNameCustomer)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LLastNameCustomer)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LLastNameCustomer)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LCreationDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LCreationDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LNoIdentification)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LNoIdentification)
+        </dd>
+
+        <dd>
+            @Html.DisplayFor(model => model.LMessageException)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LModificationDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LModificationDate)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Editar", "Edit", new {  id = Model.LIdCustomer }) |
+    @Html.ActionLink("Ir a Clientes", "Index")
+</p>
