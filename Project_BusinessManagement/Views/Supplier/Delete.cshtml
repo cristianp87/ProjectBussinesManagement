@@ -5,6 +5,12 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 <div class="bg-warning">
+    @if (Model.LMessageException != null)
+    {
+        <div class="alert alert-danger">
+            <strong>Error!</strong> @Model.LMessageException
+        </div>
+    }
 
 </div>
 <h2>Eliminar Proveedor</h2>

@@ -42,6 +42,8 @@ namespace Dao_BussinessManagement
                             oCustomer.LNoIdentification = lReader["NoIdentification"].ToString();
                             oCustomer.LNameCustomer = lReader["NameCustomer"].ToString();
                             oCustomer.LLastNameCustomer = lReader["LastNameCustomer"].ToString();
+                            oCustomer.LCreationDate = Convert.ToDateTime(lReader["CreationDate"].ToString());
+                            oCustomer.LModificationDate = Convert.ToDateTime(lReader["ModificationDate"].ToString());
                             oCustomer.LStatus.LIdStatus = lReader["IdStatus"].ToString();
                             oCustomer.LObject.LIdObject = Convert.ToInt32(lReader["IdObject"].ToString());
 
@@ -94,6 +96,8 @@ namespace Dao_BussinessManagement
                             oCustomer.LNoIdentification = lReader["NoIdentification"].ToString();
                             oCustomer.LNameCustomer = lReader["NameCustomer"].ToString();
                             oCustomer.LLastNameCustomer = lReader["LastNameCustomer"].ToString();
+                            oCustomer.LCreationDate = Convert.ToDateTime(lReader["CreationDate"].ToString() == "" ? new DateTime().ToString(): lReader["CreationDate"].ToString());
+                            oCustomer.LModificationDate = Convert.ToDateTime(lReader["ModificationDate"].ToString() == "" ? new DateTime().ToString() : lReader["ModificationDate"].ToString());
                             oCustomer.LStatus.LIdStatus = lReader["IdStatus"].ToString();
                             oCustomer.LStatus.LDsEstado = lReader["DsEstado"].ToString();
                             oCustomer.LObject.LIdObject = Convert.ToInt32(lReader["IdObject"].ToString());

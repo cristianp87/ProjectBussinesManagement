@@ -228,5 +228,33 @@ namespace Project_BusinessManagement.Models
 
             return oMCustomer;
         }
+
+        public static MCustomer MCustomerEmpty(Bo_Customer oBCustomer)
+        {
+            MCustomer oMCustomer = new MCustomer();
+            Bo_Object oObject = new Bo_Object();
+            oObject = Bll_Business.Bll_UtilsLib.bll_GetObjectByName(MGlobalVariables.LNameObjectCustomer);
+            oMCustomer.LObject = new MObject();
+            oMCustomer.LStatus = new MStatus();
+            oMCustomer.LTypeIdentification = new MTypeIdentification();
+            oMCustomer.LListTypeIdentification = new List<SelectListItem>();
+            oMCustomer.LListStatus = new List<SelectListItem>();
+            oMCustomer.LListTypeIdentification = MTypeIdentification.MListAllTypeIdentificationWithSelect(Bll_Business.Bll_TypeIdentification.bll_getListTypeIdentification());
+            oMCustomer.lNameCustomer = null;
+            oMCustomer.LLastNameCustomer = null;
+            oMCustomer.LNoIdentification = null;
+            oMCustomer.lIdCustomer = 0;
+            oMCustomer.LCreationDate = new DateTime();
+            oMCustomer.LTypeIdentification.LIdTypeIdentification = 0;
+            oMCustomer.lTypeIdentification.LTypeIdentification = null;
+            oMCustomer.lObject.LIdObject = oObject.LIdObject;
+            oMCustomer.lObject.LNameObject = oObject.LNameObject;
+            oMCustomer.LStatus.LDsEstado = null;
+            oMCustomer.LStatus.LIdStatus = null;
+            oMCustomer.lModificationDate = new DateTime();
+            oMCustomer.LListStatus = MStatus.MListAllStatusWithSelect(Bll_Business.Bll_Status.Bll_getListStatusByIdObject(oMCustomer.LObject.LIdObject));
+
+            return oMCustomer;
+        }
     }
 }

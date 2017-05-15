@@ -43,7 +43,7 @@ namespace Project_BusinessManagement.Views.Supplier
                 if (ModelState.IsValid)
                 {
                     string lMessage = Bll_Supplier.bll_InsertSupplier(Request.Form["LNameSupplier"].ToString(), Request.Form["LNoIdentification"].ToString(), Convert.ToInt32(Request.Form["LTypeIdentification.LIdTypeIdentification"].ToString()), Convert.ToInt32(Request.Form["LObject.LIdObject"].ToString()), Request.Form["LStatus.LIdStatus"].ToString());
-                    if (lMessage.Equals(null))
+                    if (lMessage == null)
                     {
                         return RedirectToAction("Index");
                     }

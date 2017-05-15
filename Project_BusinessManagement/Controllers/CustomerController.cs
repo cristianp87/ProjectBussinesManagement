@@ -30,22 +30,43 @@ namespace Project_BusinessManagement.Controllers
         // GET: Customer/Create
         public ActionResult Create()
         {
-            return View();
+            Bo_Customer oBCustomer= new Bo_Customer();
+            return View(Models.MCustomer.MCustomerEmpty(oBCustomer));
         }
 
         // POST: Customer/Create
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        public ActionResult Create(Models.MCustomer pMCustomer)
         {
             try
             {
-                // TODO: Add insert logic here
+                if (ModelState.IsValid)
+                {
+                    string lMessage = Bll_Customer.bll_InsertCustomer(Request.Form["LNameCustomer"].ToString(), Request.Form["LLastNameCustomer"].ToString(), Request.Form["LNoIdentification"].ToString(), Convert.ToInt32(Request.Form["LTypeIdentification.LIdTypeIdentification"].ToString()), Convert.ToInt32(Request.Form["LObject.LIdObject"].ToString()), Request.Form["LStatus.LIdStatus"].ToString());
+                    if (lMessage == null)
+                    {
+                        return RedirectToAction("Index");
+                    }
+                    else
+                    {
+                        pMCustomer.LMessageException = lMessage;
+                        ListEmptyCustomer(pMCustomer);
+                        return View(pMCustomer);
+                    }
 
-                return RedirectToAction("Index");
+                }
+                else
+                {
+                    ListEmptyCustomer(pMCustomer);
+                    return View(pMCustomer);
+                }
+
             }
-            catch
+            catch (Exception e)
             {
-                return View();
+                pMCustomer.LMessageException = e.Message;
+                ListEmptyCustomer(pMCustomer);
+                return View(pMCustomer);
             }
         }
 
@@ -72,54 +93,64 @@ namespace Project_BusinessManagement.Controllers
                     }
                     else
                     {
-                        pMCustomer.LListTypeIdentification = new List<SelectListItem>();
-                        pMCustomer.LListTypeIdentification = Models.MTypeIdentification.MListAllTypeIdentification(Bll_TypeIdentification.bll_getListTypeIdentification());
-                        pMCustomer.LListStatus = new List<SelectListItem>();
-                        pMCustomer.LListStatus = Models.MStatus.MListAllStatus(Bll_Status.Bll_getListStatusByIdObject(pMCustomer.LObject.LIdObject));
                         pMCustomer.LMessageException = lMessage;
+                        ListEmptyCustomer(pMCustomer);
                         return View(pMCustomer);
                     }
                 }
                 else
                 {
-                    pMCustomer.LListTypeIdentification = new List<SelectListItem>();
-                    pMCustomer.LListTypeIdentification = Models.MTypeIdentification.MListAllTypeIdentification(Bll_TypeIdentification.bll_getListTypeIdentification());
-                    pMCustomer.LListStatus = new List<SelectListItem>();
-                    pMCustomer.LListStatus = Models.MStatus.MListAllStatus(Bll_Status.Bll_getListStatusByIdObject(pMCustomer.LObject.LIdObject));
+                    ListEmptyCustomer(pMCustomer);
                     return View(pMCustomer);
                 }
 
             }
             catch (Exception e)
             {
-                pMCustomer.LListTypeIdentification = new List<SelectListItem>();
-                pMCustomer.LListTypeIdentification = Models.MTypeIdentification.MListAllTypeIdentification(Bll_TypeIdentification.bll_getListTypeIdentification());
-                pMCustomer.LListStatus = new List<SelectListItem>();
-                pMCustomer.LListStatus = Models.MStatus.MListAllStatus(Bll_Status.Bll_getListStatusByIdObject(pMCustomer.LObject.LIdObject));
                 pMCustomer.LMessageException = e.Message;
+                ListEmptyCustomer(pMCustomer);
                 return View(pMCustomer);
             }
+        }
+
+        private static void ListEmptyCustomer(Models.MCustomer pMCustomer)
+        {
+            pMCustomer.LListTypeIdentification = new List<SelectListItem>();
+            pMCustomer.LListTypeIdentification = Models.MTypeIdentification.MListAllTypeIdentification(Bll_TypeIdentification.bll_getListTypeIdentification());
+            pMCustomer.LListStatus = new List<SelectListItem>();
+            pMCustomer.LListStatus = Models.MStatus.MListAllStatus(Bll_Status.Bll_getListStatusByIdObject(pMCustomer.LObject.LIdObject));
         }
 
         // GET: Customer/Delete/5
         public ActionResult Delete(int id)
         {
-            return View();
+            Bo_Customer oBCustomer = new Bo_Customer();
+            oBCustomer = Bll_Customer.bll_GetCustomerById(id);
+            return View(Models.MCustomer.MCustomerById(oBCustomer));
         }
 
         // POST: Customer/Delete/5
         [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
+        public ActionResult Delete(int id, Models.MCustomer pMCustomer)
         {
             try
             {
-                // TODO: Add delete logic here
+                var lMessage = Bll_Customer.bll_DeleteCustomer(id);
+                if (lMessage == null)
+                {                   
+                    return RedirectToAction("Index");
+                }
+                else
+                {
+                    pMCustomer.LMessageException = lMessage;
+                    return View(pMCustomer);
+                }
 
-                return RedirectToAction("Index");
             }
-            catch
+            catch (Exception e)
             {
-                return View();
+                pMCustomer.LMessageException = e.Message;
+                return View(pMCustomer);
             }
         }
     }

@@ -5,20 +5,20 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+@if (Model.LMessageException != null)
+{
+    <div class="alert alert-danger">
+        <strong>Error!</strong> @Model.LMessageException
+    </div>
+}
+
 <h2>Delete</h2>
 
-<h3>Are you sure you want to delete this?</h3>
+<h3>Esta seguro de eliminar este cliente?</h3>
 <div>
     <h4>MCustomer</h4>
     <hr />
     <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.LIdCustomer)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.LIdCustomer)
-        </dd>
 
         <dt>
             @Html.DisplayNameFor(model => model.LNameCustomer)
@@ -45,6 +45,14 @@
         </dd>
 
         <dt>
+            @Html.DisplayNameFor(model => model.LTypeIdentification)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LTypeIdentification.LTypeIdentification)
+        </dd>
+
+        <dt>
             @Html.DisplayNameFor(model => model.LNoIdentification)
         </dt>
 
@@ -58,8 +66,8 @@
         @Html.AntiForgeryToken()
 
         <div class="form-actions no-color">
-            <input type="submit" value="Delete" class="btn btn-default" /> |
-            @Html.ActionLink("Back to List", "Index")
+            <input type="submit" value="Delete" class="btn btn-danger" /> |
+            @Html.ActionLink("Ir a Clientes", "Index")
         </div>
     }
 </div>

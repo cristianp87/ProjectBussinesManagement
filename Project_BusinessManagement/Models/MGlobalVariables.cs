@@ -9,6 +9,7 @@ namespace Project_BusinessManagement.Models
     public static class MGlobalVariables
     {
         private static string lNameObjectSupplier;
+        private static string lNameObjectCustomer;
 
         public static string LNameObjectSupplier
         {
@@ -16,6 +17,15 @@ namespace Project_BusinessManagement.Models
             {
                 lNameObjectSupplier = ConfigurationManager.AppSettings["objectSupplier"].ToString() ;
                 return lNameObjectSupplier;
+            }
+        }
+
+        public static string LNameObjectCustomer
+        {
+            get
+            {
+                lNameObjectCustomer = ConfigurationManager.AppSettings["objectCustomer"].ToString();
+                return lNameObjectCustomer;
             }
         }
     }
