@@ -14,5 +14,10 @@ namespace Bll_Business
         {
             return Dao_UtilsLib.DaoUtilsLib_getObject(pNameObject);
         }
+
+        public static List<Bo_Unit> bll_GetAllUnit()
+        {
+            return Dao_UtilsLib.DaoUtilsLib_getAllUnit();
+        }
     }
 }

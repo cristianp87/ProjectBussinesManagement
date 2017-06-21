@@ -56,7 +56,7 @@ namespace Bll_Business
             oProduct.LObject.LIdObject = pIdObject;
             oProduct.LStatus.LIdStatus = pIdStatus;
             Dao_Product oDaoProduct = new Dao_Product();
-            return oDaoProduct.Dao_InsertProduct(oProduct);
+            return oDaoProduct.Dao_UpdateProduct(oProduct);
         }
 
         public static string bll_DeleteProduct(int pIdProduct)

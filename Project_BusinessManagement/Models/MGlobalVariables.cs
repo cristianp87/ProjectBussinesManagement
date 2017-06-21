@@ -28,5 +28,14 @@ namespace Project_BusinessManagement.Models
                 return lNameObjectCustomer;
             }
         }
+
+        public static string LNameObjectProduct
+        {
+            get
+            {
+                lNameObjectCustomer = ConfigurationManager.AppSettings["objectProduct"].ToString();
+                return lNameObjectCustomer;
+            }
+        }
     }
 }

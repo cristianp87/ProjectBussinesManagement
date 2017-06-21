@@ -86,6 +86,7 @@ namespace Dao_BussinessManagement
                             oProduct.LStatus = new Bo_Status();
                             oProduct.LObject = new Bo_Object();
                             oProduct.LUnit = new Bo_Unit();
+                            oProduct.LSupplier = new Bo_Supplier();
                             oProduct.LIdProduct = Convert.ToInt32(lReader["IdProduct"].ToString());
                             oProduct.LNameProduct = lReader["NameProduct"].ToString();
                             oProduct.LCreationDate = Convert.ToDateTime(lReader["CreationDate"].ToString());
@@ -130,14 +131,14 @@ namespace Dao_BussinessManagement
             return Dao_UtilsLib.Dao_executeSqlTransactionWithProcedement(lListParam, "LTranInsertProduct", "spr_CreateProduct");
         }
 
-        public string Dao_UpdateInvoice(Bo_Product pProduct)
+        public string Dao_UpdateProduct(Bo_Product pProduct)
         {
             Dao_UtilsLib.dao_Addparameters(lListParam, SqlDbType.Int, "@IdProduct", pProduct.LIdProduct.ToString());
             Dao_UtilsLib.dao_Addparameters(lListParam, SqlDbType.VarChar, "@NameProduct", pProduct.LNameProduct);
             Dao_UtilsLib.dao_Addparameters(lListParam, SqlDbType.Int, "@IdUnit", pProduct.LUnit.LIdUnit.ToString());
             Dao_UtilsLib.dao_Addparameters(lListParam, SqlDbType.Decimal, "@Price", pProduct.LValue.ToString());
             Dao_UtilsLib.dao_Addparameters(lListParam, SqlDbType.Int, "@IdSupplier", pProduct.LSupplier.LIdSupplier.ToString());
-            Dao_UtilsLib.dao_Addparameters(lListParam, SqlDbType.Decimal, "@PriceSupplier", pProduct.LValue.ToString());
+            Dao_UtilsLib.dao_Addparameters(lListParam, SqlDbType.Decimal, "@PriceSupplier", pProduct.LValueSupplier.ToString());
             Dao_UtilsLib.dao_Addparameters(lListParam, SqlDbType.VarChar, "@IdStatus", pProduct.LStatus.LIdStatus.ToString());
             Dao_UtilsLib.dao_Addparameters(lListParam, SqlDbType.Int, "@IdObject", pProduct.LObject.LIdObject.ToString());
             return Dao_UtilsLib.Dao_executeSqlTransactionWithProcedement(lListParam, "LTranUpdateProduct", "spr_UpdateProduct");

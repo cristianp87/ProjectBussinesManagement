@@ -1,0 +1,59 @@
+﻿@model Project_BusinessManagement.Models.MProduct
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>MProduct</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.LIdProduct)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LIdProduct)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LNameProduct)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LNameProduct)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LCreationDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LCreationDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LValue)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LValue)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LValueSupplier)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LValueSupplier)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

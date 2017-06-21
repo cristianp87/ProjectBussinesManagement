@@ -49,34 +49,33 @@ namespace Project_BusinessManagement.Views.Supplier
                     }
                     else
                     {
-                        pMsupplier.LListTypeIdentification = new List<SelectListItem>();
-                        pMsupplier.LListTypeIdentification = Models.MTypeIdentification.MListAllTypeIdentification(Bll_TypeIdentification.bll_getListTypeIdentification());
-                        pMsupplier.LListStatus = new List<SelectListItem>();
-                        pMsupplier.LListStatus = Models.MStatus.MListAllStatus(Bll_Status.Bll_getListStatusByIdObject(pMsupplier.LObject.LIdObject));
+                        ListEmptySupplier(pMsupplier);
                         pMsupplier.LMessageException = lMessage;
                         return View(pMsupplier);
                     }
-                    
+
                 }
                 else
                 {
-                    pMsupplier.LListTypeIdentification = new List<SelectListItem>();
-                    pMsupplier.LListTypeIdentification = Models.MTypeIdentification.MListAllTypeIdentification(Bll_TypeIdentification.bll_getListTypeIdentification());
-                    pMsupplier.LListStatus = new List<SelectListItem>();
-                    pMsupplier.LListStatus = Models.MStatus.MListAllStatus(Bll_Status.Bll_getListStatusByIdObject(pMsupplier.LObject.LIdObject));
+                    ListEmptySupplier(pMsupplier);
                     return View(pMsupplier);
                 }
 
             }
             catch (Exception e)
             {
-                pMsupplier.LListTypeIdentification = new List<SelectListItem>();
-                pMsupplier.LListTypeIdentification = Models.MTypeIdentification.MListAllTypeIdentification(Bll_TypeIdentification.bll_getListTypeIdentification());
-                pMsupplier.LListStatus = new List<SelectListItem>();
-                pMsupplier.LListStatus = Models.MStatus.MListAllStatus(Bll_Status.Bll_getListStatusByIdObject(pMsupplier.LObject.LIdObject));
+                ListEmptySupplier(pMsupplier);
                 pMsupplier.LMessageException = e.Message;
                 return View(pMsupplier);
             }
+        }
+
+        private static void ListEmptySupplier(Models.MSupplier pMsupplier)
+        {
+            pMsupplier.LListTypeIdentification = new List<SelectListItem>();
+            pMsupplier.LListTypeIdentification = Models.MTypeIdentification.MListAllTypeIdentification(Bll_TypeIdentification.bll_getListTypeIdentification());
+            pMsupplier.LListStatus = new List<SelectListItem>();
+            pMsupplier.LListStatus = Models.MStatus.MListAllStatus(Bll_Status.Bll_getListStatusByIdObject(pMsupplier.LObject.LIdObject));
         }
 
         // GET: Supplier/Edit/5
@@ -101,10 +100,7 @@ namespace Project_BusinessManagement.Views.Supplier
                     }
                     else
                     {
-                        pMsupplier.LListTypeIdentification = new List<SelectListItem>();
-                        pMsupplier.LListTypeIdentification = Models.MTypeIdentification.MListAllTypeIdentification(Bll_TypeIdentification.bll_getListTypeIdentification());
-                        pMsupplier.LListStatus = new List<SelectListItem>();
-                        pMsupplier.LListStatus = Models.MStatus.MListAllStatus(Bll_Status.Bll_getListStatusByIdObject(pMsupplier.LObject.LIdObject));
+                        ListEmptySupplier(pMsupplier);
                         pMsupplier.LMessageException = lMessage;
                         return View(pMsupplier);
                     }
@@ -112,20 +108,14 @@ namespace Project_BusinessManagement.Views.Supplier
                 }
                 else
                 {
-                    pMsupplier.LListTypeIdentification = new List<SelectListItem>();
-                    pMsupplier.LListTypeIdentification = Models.MTypeIdentification.MListAllTypeIdentification(Bll_TypeIdentification.bll_getListTypeIdentification());
-                    pMsupplier.LListStatus = new List<SelectListItem>();
-                    pMsupplier.LListStatus = Models.MStatus.MListAllStatus(Bll_Status.Bll_getListStatusByIdObject(pMsupplier.LObject.LIdObject));
+                    ListEmptySupplier(pMsupplier);
                     return View(pMsupplier);
                 }
 
             }
             catch(Exception e)
             {
-                pMsupplier.LListTypeIdentification = new List<SelectListItem>();
-                pMsupplier.LListTypeIdentification = Models.MTypeIdentification.MListAllTypeIdentification(Bll_TypeIdentification.bll_getListTypeIdentification());
-                pMsupplier.LListStatus = new List<SelectListItem>();
-                pMsupplier.LListStatus = Models.MStatus.MListAllStatus(Bll_Status.Bll_getListStatusByIdObject(pMsupplier.LObject.LIdObject));
+                ListEmptySupplier(pMsupplier);
                 pMsupplier.LMessageException = e.Message;
                 return View(pMsupplier);
             }

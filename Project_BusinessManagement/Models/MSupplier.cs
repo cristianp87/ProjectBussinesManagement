@@ -26,6 +26,7 @@ namespace Project_BusinessManagement.Models
 
         [UIHint("LIdSupplier")]
         [DisplayName("IDProveedores")]
+        [RegularExpression("^([1-9][0-9]{0,11})$", ErrorMessage = "No es valido la selección")]
         public int LIdSupplier
         {
             get
@@ -39,7 +40,7 @@ namespace Project_BusinessManagement.Models
             }
         }
         [DisplayName("Nombre Proveedor")]
-        [Required(ErrorMessage = "El nombre proveedor es requerido")]
+        [Required(AllowEmptyStrings = true, ErrorMessage = "El nombre proveedor es requerido")]
         public string LNameSupplier
         {
             get
@@ -67,7 +68,7 @@ namespace Project_BusinessManagement.Models
         }
 
         [DisplayName("Numero Identificacion")]
-        [Required(AllowEmptyStrings = false, ErrorMessage = "El Numero de Identificación es requerido")]
+        [Required(AllowEmptyStrings = true, ErrorMessage = "El Numero de Identificación es requerido")]
         public string LNoIdentification
         {
             get
@@ -240,6 +241,34 @@ namespace Project_BusinessManagement.Models
             oMSupplier.LListStatus = MStatus.MListAllStatusWithSelect(Bll_Business.Bll_Status.Bll_getListStatusByIdObject(oMSupplier.LObject.LIdObject));
 
             return oMSupplier;
+        }
+
+        public static List<SelectListItem> MListAllSupplierWithSelect(List<Bo_Supplier> oListSupplier)
+        {
+            List<SelectListItem> oMListSupplier = new List<SelectListItem>();
+            SelectListItem oListItemSelect = new SelectListItem();
+            oListItemSelect.Text = "Seleccione...";
+            oListItemSelect.Value = "0";
+            oMListSupplier.Add(oListItemSelect);
+            oListSupplier.ForEach(x => {
+                SelectListItem oListItem = new SelectListItem();
+                oListItem.Value = x.LIdSupplier.ToString();
+                oListItem.Text = x.LNameSupplier;
+                oMListSupplier.Add(oListItem);
+            });
+            return oMListSupplier;
+        }
+
+        public static List<SelectListItem> MListAllSupplier(List<Bo_Supplier> oListSupplier)
+        {
+            List<SelectListItem> oMListSupplier = new List<SelectListItem>();
+            oListSupplier.ForEach(x => {
+                SelectListItem oListItem = new SelectListItem();
+                oListItem.Value = x.LIdSupplier.ToString();
+                oListItem.Text = x.LNameSupplier;
+                oMListSupplier.Add(oListItem);
+            });
+            return oMListSupplier;
         }
     }
 }

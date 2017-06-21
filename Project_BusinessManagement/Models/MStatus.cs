@@ -81,6 +81,7 @@ namespace Project_BusinessManagement.Models
             });
             return oMListStatus;
         }
+
         public static List<SelectListItem> MListAllStatusWithSelect(List<Bo_Status> oListStatus)
         {
             List<SelectListItem> oMListStatus = new List<SelectListItem>();

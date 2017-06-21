@@ -125,5 +125,50 @@ namespace Dao_BussinessManagement
             }
         }
 
+        public static List<Bo_Unit> DaoUtilsLib_getAllUnit()
+        {
+            using (SqlConnection lConex = Dao_SqlConnection(lConex))
+            {
+
+                try
+                {
+                    SqlCommand lCommand = new SqlCommand();
+                    lCommand.CommandText = "spr_GetListAllUnit";
+                    lCommand.CommandTimeout = 30;
+                    lCommand.CommandType = CommandType.StoredProcedure;
+                    lCommand.Connection = lConex;
+                    var lReader = lCommand.ExecuteReader();
+                    List<Bo_Unit> oListUnit= new List<Bo_Unit>();
+                    if (lReader.HasRows)
+                    {
+                        while (lReader.Read())
+                        {
+                            Bo_Unit oUnit = new Bo_Unit();
+                            oUnit.LIdUnit = Convert.ToInt32(lReader["IdUnit"].ToString());
+                            oUnit.LNameUnit = lReader["NameUnit"].ToString();
+                            oUnit.LCdUnit = lReader["CdUnit"].ToString();
+                            oUnit.LFlActive = Convert.ToBoolean(lReader["flActive"].ToString());
+                            oListUnit.Add(oUnit);
+                        }
+                    }
+                    Dao_CloseSqlconnection(lConex);
+                    return oListUnit;
+                }
+                catch (Exception e)
+                {
+                    List<Bo_Unit> oListUnit = new List<Bo_Unit>();
+                    Bo_Unit oUnit = new Bo_Unit();
+                    oUnit.LException = e.Message;
+                    if (e.InnerException != null)
+                        oUnit.LInnerException = e.InnerException.ToString();
+                    oUnit.LMessageDao = "Hubo un problema en la consulta, contacte al administrador.";
+                    Dao_CloseSqlconnection(lConex);
+                    oListUnit.Add(oUnit);
+                    return oListUnit;
+                }
+
+            }
+        }
+
     }
 }
