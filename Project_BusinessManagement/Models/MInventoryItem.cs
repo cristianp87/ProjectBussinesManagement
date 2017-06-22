@@ -1,21 +1,20 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Web;
 
-namespace BO_BusinessManagement
+namespace Project_BusinessManagement.Models
 {
-    public class Bo_InventoryItem : Bo_Exception
+    public class MInventoryItem
     {
         private int lIdInventoryItem;
-        private Bo_Product lProduct = null;
+        private MProduct lProduct = null;
         private DateTime lCreationDate;
-        private Bo_Status lStatus;
-        private Bo_Object lObject;
-        private int lIdInventory;
+        private MStatus lStatus;
+        private MObject lObject;
         private decimal lQtySellable;
         private decimal lQtyNonSellable;
+        private int lIdInventory;
 
         public int LIdInventoryItem
         {
@@ -30,7 +29,7 @@ namespace BO_BusinessManagement
             }
         }
 
-        public Bo_Product LProduct
+        public MProduct LProduct
         {
             get
             {
@@ -57,7 +56,7 @@ namespace BO_BusinessManagement
             }
         }
 
-        public Bo_Status LStatus
+        public MStatus LStatus
         {
             get
             {
@@ -70,7 +69,7 @@ namespace BO_BusinessManagement
             }
         }
 
-        public Bo_Object LObject
+        public MObject LObject
         {
             get
             {

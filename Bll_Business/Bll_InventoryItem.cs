@@ -18,7 +18,7 @@ namespace Bll_Business
 
 
 
-        public static string bll_InsertInventoryItem(int pIdInventory, int pIdProduct, int pIdObject, string pIdStatus)
+        public static string bll_InsertInventoryItem(int pIdInventory, int pIdProduct, int pIdObject, string pIdStatus, decimal pQtySellable, decimal pQtyNonSellable)
         {
             Bo_InventoryItem oInventoryItem = new Bo_InventoryItem();
             oInventoryItem.LObject = new Bo_Object();
@@ -28,6 +28,8 @@ namespace Bll_Business
             oInventoryItem.LProduct.LIdProduct = pIdProduct;
             oInventoryItem.LObject.LIdObject = pIdObject;
             oInventoryItem.LStatus.LIdStatus = pIdStatus;
+            oInventoryItem.LQtyNonSellable = pQtyNonSellable;
+            oInventoryItem.LQtySellable = pQtySellable;
             Dao_InventoryItem oDaoInventoryItem = new Dao_InventoryItem();
             return oDaoInventoryItem.Dao_InsertInventoryItem(oInventoryItem);
         }

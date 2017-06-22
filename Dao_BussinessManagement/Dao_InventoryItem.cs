@@ -72,6 +72,8 @@ namespace Dao_BussinessManagement
             Dao_UtilsLib.dao_Addparameters(lListParam, SqlDbType.Int, "@IdInventory", pInventoryItem.LIdInventory.ToString());
             Dao_UtilsLib.dao_Addparameters(lListParam, SqlDbType.VarChar, "@IdStatus", pInventoryItem.LStatus.LIdStatus.ToString());
             Dao_UtilsLib.dao_Addparameters(lListParam, SqlDbType.Int, "@IdObject", pInventoryItem.LObject.LIdObject.ToString());
+            Dao_UtilsLib.dao_Addparameters(lListParam, SqlDbType.Decimal, "@QtySellable", pInventoryItem.LQtySellable.ToString());
+            Dao_UtilsLib.dao_Addparameters(lListParam, SqlDbType.Decimal, "@QtyNonSellable", pInventoryItem.LQtyNonSellable.ToString());
             return Dao_UtilsLib.Dao_executeSqlTransactionWithProcedement(lListParam, "LTranInsertInventoryItem", "spr_CreateInventoryItem");
         }
 
@@ -82,6 +84,8 @@ namespace Dao_BussinessManagement
             Dao_UtilsLib.dao_Addparameters(lListParam, SqlDbType.Int, "@IdInventory", pInventoryItem.LIdInventory.ToString());
             Dao_UtilsLib.dao_Addparameters(lListParam, SqlDbType.VarChar, "@IdStatus", pInventoryItem.LStatus.LIdStatus.ToString());
             Dao_UtilsLib.dao_Addparameters(lListParam, SqlDbType.Int, "@IdObject", pInventoryItem.LObject.LIdObject.ToString());
+            Dao_UtilsLib.dao_Addparameters(lListParam, SqlDbType.Decimal, "@QtySellable", pInventoryItem.LQtySellable.ToString());
+            Dao_UtilsLib.dao_Addparameters(lListParam, SqlDbType.Decimal, "@QtyNonSellable", pInventoryItem.LQtyNonSellable.ToString());
             return Dao_UtilsLib.Dao_executeSqlTransactionWithProcedement(lListParam, "LTranUpdateInventoryItem", "spr_UpdateInventoryItem");
         }
 

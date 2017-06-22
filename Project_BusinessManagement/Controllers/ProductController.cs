@@ -85,8 +85,7 @@ namespace Project_BusinessManagement.Controllers
         {
             try
             {
-                Bo_Product oBProduct = new Bo_Product();
-                oBProduct = Bll_Product.bll_GetProductById(id);
+                Models.MProduct lMProduct = new Models.MProduct();
                 ModelState.Remove("LSupplier.LNameSupplier");
                 ModelState.Remove("LSupplier.LNoIdentification");
                 if (ModelState.IsValid)
@@ -98,27 +97,23 @@ namespace Project_BusinessManagement.Controllers
                     }
                     else
                     {
-                        pMProduct.LMessageException = lMessage;
-                        return View(Models.MProduct.MProductById(oBProduct));
+                        
+                        CurrentProduct(lMProduct, pMProduct, id, lMessage);
+                        return View(lMProduct);
                     }
 
                 }
                 else
                 {
-                    return View(Models.MProduct.MProductById(oBProduct));
+                    CurrentProduct(lMProduct, pMProduct, id, "Hay Campos que deben ser llenados.");
+                    return View(lMProduct);
                 }
             }
             catch(Exception e)
             {
-                Bo_Product oBProduct = new Bo_Product();
-                oBProduct = Bll_Product.bll_GetProductById(id);
+                
                 Models.MProduct lMProduct = new Models.MProduct();
-                lMProduct = Models.MProduct.MProductById(oBProduct);
-                lMProduct.LNameProduct = pMProduct.LNameProduct;
-                lMProduct.LValue = pMProduct.LValue;
-                lMProduct.LValueSupplier = pMProduct.LValueSupplier;
-                lMProduct.LSupplier.LIdSupplier = pMProduct.LSupplier.LIdSupplier;
-                lMProduct.LMessageException = e.Message;
+                CurrentProduct(lMProduct, pMProduct, id, e.Message);
                 return View(lMProduct);
             }
         }
@@ -164,6 +159,18 @@ namespace Project_BusinessManagement.Controllers
             pMProduct.LListUnit = Models.MUnit.MListAllUnitWithSelect(Bll_UtilsLib.bll_GetAllUnit());
             pMProduct.LListStatus = new List<SelectListItem>();
             pMProduct.LListStatus = Models.MStatus.MListAllStatus(Bll_Status.Bll_getListStatusByIdObject(pMProduct.LObject.LIdObject));
+        }
+
+        private static void CurrentProduct(Models.MProduct pMProduct, Models.MProduct pMProductOld, int id, string pMessageException)
+        {
+            Bo_Product oBProduct = new Bo_Product();
+            oBProduct = Bll_Product.bll_GetProductById(id);
+            pMProduct = Models.MProduct.MProductById(oBProduct);
+            pMProduct.LNameProduct = pMProductOld.LNameProduct;
+            pMProduct.LValue = pMProductOld.LValue;
+            pMProduct.LValueSupplier = pMProductOld.LValueSupplier;
+            pMProduct.LSupplier.LIdSupplier = pMProductOld.LSupplier.LIdSupplier;
+            pMProduct.LMessageException = pMessageException;
         }
     }
 }
