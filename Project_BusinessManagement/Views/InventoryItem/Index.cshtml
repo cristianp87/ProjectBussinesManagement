@@ -1,0 +1,58 @@
+﻿@model IEnumerable<Project_BusinessManagement.Models.MInventoryItem>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.LIdInventoryItem)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.LCreationDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.LIdInventory)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.LQtySellable)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.LQtyNonSellable)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.LIdInventoryItem)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.LCreationDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.LIdInventory)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.LQtySellable)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.LQtyNonSellable)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+        </td>
+    </tr>
+}
+
+</table>

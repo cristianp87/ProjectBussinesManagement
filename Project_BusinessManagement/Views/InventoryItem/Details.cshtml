@@ -1,0 +1,59 @@
+﻿@model Project_BusinessManagement.Models.MInventoryItem
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>MInventoryItem</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.LIdInventoryItem)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LIdInventoryItem)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LCreationDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LCreationDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LIdInventory)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LIdInventory)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LQtySellable)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LQtySellable)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LQtyNonSellable)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LQtyNonSellable)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

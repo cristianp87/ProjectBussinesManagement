@@ -42,6 +42,8 @@ namespace Dao_BussinessManagement
                             oInventoryItem.LProduct.LNameProduct = lReader["NameProduct"].ToString();
                             oInventoryItem.LCreationDate = Convert.ToDateTime(lReader["CreationDate"].ToString());
                             oInventoryItem.LStatus.LIdStatus = lReader["IdStatus"].ToString();
+                            oInventoryItem.LQtySellable = Convert.ToInt32(lReader["QtySellable"].ToString());
+                            oInventoryItem.LQtyNonSellable = Convert.ToInt32(lReader["QtyNonSellable"].ToString());
                             oInventoryItem.LObject.LIdObject = Convert.ToInt32(lReader["IdObject"].ToString());
                             oListInventoryItem.Add(oInventoryItem);
                         }

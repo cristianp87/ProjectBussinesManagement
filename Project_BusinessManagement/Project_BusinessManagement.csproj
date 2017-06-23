@@ -175,6 +175,15 @@
     <Content Include="Views\Product\Edit.cshtml" />
     <Content Include="Views\Product\Delete.cshtml" />
     <Content Include="Views\Product\Details.cshtml" />
+    <Content Include="Views\Inventory\Index.cshtml" />
+    <Content Include="Views\Inventory\Edit.cshtml" />
+    <Content Include="Views\Inventory\Create.cshtml" />
+    <Content Include="Views\Inventory\View.cshtml" />
+    <Content Include="Views\InventoryItem\Index.cshtml" />
+    <Content Include="Views\InventoryItem\Edit.cshtml" />
+    <Content Include="Views\InventoryItem\Create.cshtml" />
+    <Content Include="Views\InventoryItem\Delete.cshtml" />
+    <Content Include="Views\InventoryItem\Details.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -187,6 +196,8 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\CustomerController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\InventoryController.cs" />
+    <Compile Include="Controllers\InventoryItemController.cs" />
     <Compile Include="Controllers\ProductController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -205,9 +216,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Controllers\SupplierController.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Views\Inventory\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <ProjectReference Include="..\Bll_Business\Bll_Business.csproj">
       <Project>{e270b63e-1209-4094-a270-40d6f59fc1ea}</Project>

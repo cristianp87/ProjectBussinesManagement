@@ -1,0 +1,49 @@
+﻿@model Project_BusinessManagement.Models.MInventory
+
+@{
+    ViewBag.Title = "View";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>View</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>MInventory</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.LIdInventory)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LIdInventory)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LNameInventory)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LNameInventory)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LCreationDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LCreationDate)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>
