@@ -75,7 +75,7 @@ namespace Project_BusinessManagement.Views.Supplier
             pMsupplier.LListTypeIdentification = new List<SelectListItem>();
             pMsupplier.LListTypeIdentification = Models.MTypeIdentification.MListAllTypeIdentification(Bll_TypeIdentification.bll_getListTypeIdentification());
             pMsupplier.LListStatus = new List<SelectListItem>();
-            pMsupplier.LListStatus = Models.MStatus.MListAllStatus(Bll_Status.Bll_getListStatusByIdObject(pMsupplier.LObject.LIdObject));
+            //pMsupplier.LListStatus = Models.MStatus.MListAllStatus(Bll_Status.Bll_getListStatusByIdObject(pMsupplier.LObject.LIdObject));
         }
 
         // GET: Supplier/Edit/5

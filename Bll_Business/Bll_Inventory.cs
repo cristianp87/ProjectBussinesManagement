@@ -10,6 +10,12 @@ namespace Bll_Business
 {
     public static class Bll_Inventory
     {
+        public static List<Bo_Inventory> bll_GetAllInventory()
+        {
+            Dao_Inventory oDao = new Dao_Inventory();
+            return oDao.Dao_getAllInventory();
+        }
+
         public static Bo_Inventory bll_GetInventoryById(int pIdInventory)
         {
             Dao_Inventory oDao = new Dao_Inventory();

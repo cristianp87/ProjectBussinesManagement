@@ -4,6 +4,12 @@
     ViewBag.Title = "Edit";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+@if (Model.LMessageException != null)
+{
+    <div class="alert alert-danger">
+        <strong>Error!</strong> @Model.LMessageException
+    </div>
+}
 
 <h2>Edit</h2>
 
@@ -15,13 +21,6 @@
         <h4>MInventory</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        <div class="form-group">
-            @Html.LabelFor(model => model.LIdInventory, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.LIdInventory, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.LIdInventory, "", new { @class = "text-danger" })
-            </div>
-        </div>
 
         <div class="form-group">
             @Html.LabelFor(model => model.LNameInventory, htmlAttributes: new { @class = "control-label col-md-2" })
@@ -32,11 +31,15 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.LCreationDate, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.LStatus, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.LCreationDate, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.LCreationDate, "", new { @class = "text-danger" })
+                @Html.DropDownListFor(model => model.LStatus.LIdStatus, Model.LListStatus, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.LStatus.LIdStatus, "", new { @class = "text-danger" })
             </div>
+        </div>
+
+        <div>
+            @Html.HiddenFor(model => model.LObject.LIdObject, new { htmlAttributes = new { @class = "form-control" } })
         </div>
 
         <div class="form-group">

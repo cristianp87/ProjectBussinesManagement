@@ -13,10 +13,14 @@ namespace Bll_Business
         public static List<Bo_InventoryItem> bll_GetInventoryItemsByIdInventory(int pIdInventory)
         {
             Dao_InventoryItem oDaoInventoryITem = new Dao_InventoryItem();
-            return oDaoInventoryITem.Dao_getInventoryItemByIdInventory(pIdInventory);
+            return oDaoInventoryITem.Dao_getListInventoryItemByIdInventory(pIdInventory);
         }
 
-
+        public static Bo_InventoryItem bll_GetInventoryItemById(int pIdInventory)
+        {
+            Dao_InventoryItem oDaoInventoryITem = new Dao_InventoryItem();
+            return oDaoInventoryITem.Dao_getInventoryItemById(pIdInventory);
+        }
 
         public static string bll_InsertInventoryItem(int pIdInventory, int pIdProduct, int pIdObject, string pIdStatus, decimal pQtySellable, decimal pQtyNonSellable)
         {

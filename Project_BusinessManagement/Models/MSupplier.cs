@@ -238,7 +238,7 @@ namespace Project_BusinessManagement.Models
             oMSupplier.LStatus.LDsEstado = null;
             oMSupplier.LStatus.LIdStatus = null;
             oMSupplier.lModificationDate = new DateTime();
-            oMSupplier.LListStatus = MStatus.MListAllStatusWithSelect(Bll_Business.Bll_Status.Bll_getListStatusByIdObject(oMSupplier.LObject.LIdObject));
+            oMSupplier.LListStatus = MStatus.MListStatusWithSelect(Bll_Business.Bll_Status.Bll_getListStatusByIdObject(oMSupplier.LObject.LIdObject));
 
             return oMSupplier;
         }

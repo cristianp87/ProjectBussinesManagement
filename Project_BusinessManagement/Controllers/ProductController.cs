@@ -15,7 +15,7 @@ namespace Project_BusinessManagement.Controllers
         {
             List<Bo_Product> oBListProduct = new List<Bo_Product>();
             oBListProduct = Bll_Product.bll_GetAllProduct();
-            return View(Models.MProduct.MListSupplier(oBListProduct));
+            return View(Models.MProduct.MListProduct(oBListProduct));
         }
 
         // GET: Product/Details/5
@@ -97,9 +97,7 @@ namespace Project_BusinessManagement.Controllers
                     }
                     else
                     {
-                        
-                        CurrentProduct(lMProduct, pMProduct, id, lMessage);
-                        return View(lMProduct);
+                        return View(CurrentProduct(lMProduct, pMProduct, id, lMessage));
                     }
 
                 }
@@ -161,7 +159,7 @@ namespace Project_BusinessManagement.Controllers
             pMProduct.LListStatus = Models.MStatus.MListAllStatus(Bll_Status.Bll_getListStatusByIdObject(pMProduct.LObject.LIdObject));
         }
 
-        private static void CurrentProduct(Models.MProduct pMProduct, Models.MProduct pMProductOld, int id, string pMessageException)
+        private static Models.MProduct CurrentProduct(Models.MProduct pMProduct, Models.MProduct pMProductOld, int id, string pMessageException)
         {
             Bo_Product oBProduct = new Bo_Product();
             oBProduct = Bll_Product.bll_GetProductById(id);
@@ -171,6 +169,7 @@ namespace Project_BusinessManagement.Controllers
             pMProduct.LValueSupplier = pMProductOld.LValueSupplier;
             pMProduct.LSupplier.LIdSupplier = pMProductOld.LSupplier.LIdSupplier;
             pMProduct.LMessageException = pMessageException;
+            return pMProduct;
         }
     }
 }

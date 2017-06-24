@@ -13,7 +13,7 @@ namespace Dao_BussinessManagement
     {
         List<SqlParameter> lListParam = new List<SqlParameter>();
 
-        public List<Bo_InventoryItem> Dao_getInventoryItemByIdInventory(int pIdInventory)
+        public List<Bo_InventoryItem> Dao_getListInventoryItemByIdInventory(int pIdInventory)
         {
             using (SqlConnection lConex = Dao_UtilsLib.Dao_SqlConnection(lConex))
             {
@@ -38,6 +38,7 @@ namespace Dao_BussinessManagement
                             oInventoryItem.LObject = new Bo_Object();
                             oInventoryItem.LProduct = new Bo_Product();
                             oInventoryItem.LIdInventoryItem = Convert.ToInt32(lReader["IdInventoryItem"].ToString());
+                            oInventoryItem.LIdInventory = pIdInventory;
                             oInventoryItem.LProduct.LIdProduct = Convert.ToInt32(lReader["IdProduct"].ToString());
                             oInventoryItem.LProduct.LNameProduct = lReader["NameProduct"].ToString();
                             oInventoryItem.LCreationDate = Convert.ToDateTime(lReader["CreationDate"].ToString());
@@ -64,6 +65,57 @@ namespace Dao_BussinessManagement
                     Dao_UtilsLib.Dao_CloseSqlconnection(lConex);
                     oListInventoryItem.Add(oInventoryItem);
                     return oListInventoryItem;
+                }
+            }
+        }
+
+        public Bo_InventoryItem Dao_getInventoryItemById(int pIdInventoryItem)
+        {
+            using (SqlConnection lConex = Dao_UtilsLib.Dao_SqlConnection(lConex))
+            {
+
+                try
+                {
+                    SqlCommand lCommand = new SqlCommand();
+                    lCommand.CommandText = "spr_GetInventoryItem";
+                    lCommand.CommandTimeout = 30;
+                    lCommand.CommandType = CommandType.StoredProcedure;
+                    lCommand.Connection = lConex;
+                    lCommand.Parameters.Add(new SqlParameter("IdInventoryItem", pIdInventoryItem));
+
+                    var lReader = lCommand.ExecuteReader();
+                    Bo_InventoryItem oInventoryItem = new Bo_InventoryItem();
+                    if (lReader.HasRows)
+                    {
+                        while (lReader.Read())
+                        {                           
+                            oInventoryItem.LStatus = new Bo_Status();
+                            oInventoryItem.LObject = new Bo_Object();
+                            oInventoryItem.LProduct = new Bo_Product();
+                            oInventoryItem.LIdInventoryItem = Convert.ToInt32(lReader["IdInventoryItem"].ToString());
+                            oInventoryItem.LProduct.LIdProduct = Convert.ToInt32(lReader["IdProduct"].ToString());
+                            oInventoryItem.LProduct.LNameProduct = lReader["NameProduct"].ToString();
+                            oInventoryItem.LCreationDate = Convert.ToDateTime(lReader["CreationDate"].ToString());
+                            oInventoryItem.LStatus.LIdStatus = lReader["IdStatus"].ToString();
+                            oInventoryItem.LQtySellable = Convert.ToInt32(lReader["QtySellable"].ToString());
+                            oInventoryItem.LQtyNonSellable = Convert.ToInt32(lReader["QtyNonSellable"].ToString());
+                            oInventoryItem.LObject.LIdObject = Convert.ToInt32(lReader["IdObject"].ToString());
+                        }
+
+
+                    }
+                    Dao_UtilsLib.Dao_CloseSqlconnection(lConex);
+                    return  oInventoryItem;
+                }
+                catch (Exception e)
+                {
+                    Bo_InventoryItem oInventoryItem = new Bo_InventoryItem();
+                    oInventoryItem.LException = e.Message;
+                    if (e.InnerException != null)
+                        oInventoryItem.LInnerException = e.InnerException.ToString();
+                    oInventoryItem.LMessageDao = "Hubo un problema en la consulta, contacte al administrador.";
+                    Dao_UtilsLib.Dao_CloseSqlconnection(lConex);
+                    return oInventoryItem;
                 }
             }
         }

@@ -252,7 +252,7 @@ namespace Project_BusinessManagement.Models
             oMCustomer.LStatus.LDsEstado = null;
             oMCustomer.LStatus.LIdStatus = null;
             oMCustomer.lModificationDate = new DateTime();
-            oMCustomer.LListStatus = MStatus.MListAllStatusWithSelect(Bll_Business.Bll_Status.Bll_getListStatusByIdObject(oMCustomer.LObject.LIdObject));
+            oMCustomer.LListStatus = MStatus.MListStatusWithSelect(Bll_Business.Bll_Status.Bll_getListStatusByIdObject(oMCustomer.LObject.LIdObject));
 
             return oMCustomer;
         }

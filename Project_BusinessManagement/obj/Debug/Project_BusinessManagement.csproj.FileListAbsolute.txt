@@ -58,6 +58,7 @@ C:\Users\CristianPc\Documents\Visual Studio 2015\Projects\Project_BusinessManage
 C:\Users\CristianPc\Documents\Visual Studio 2015\Projects\Project_BusinessManagement\Project_BusinessManagement\obj\Debug\Project_BusinessManagement.csprojResolveAssemblyReference.cache
 C:\Users\CristianPc\Documents\Visual Studio 2015\Projects\Project_BusinessManagement\Project_BusinessManagement\obj\Debug\Project_BusinessManagement.dll
 C:\Users\CristianPc\Documents\Visual Studio 2015\Projects\Project_BusinessManagement\Project_BusinessManagement\obj\Debug\Project_BusinessManagement.pdb
+C:\Users\CristianPc\Documents\Projects\ProjectBussinesManagement\Project_BusinessManagement\obj\Debug\Project_BusinessManagement.csprojResolveAssemblyReference.cache
 C:\Users\CristianPc\Documents\Projects\ProjectBussinesManagement\Project_BusinessManagement\bin\roslyn\csc.exe
 C:\Users\CristianPc\Documents\Projects\ProjectBussinesManagement\Project_BusinessManagement\bin\roslyn\csc.exe.config
 C:\Users\CristianPc\Documents\Projects\ProjectBussinesManagement\Project_BusinessManagement\bin\roslyn\csc.rsp
@@ -115,6 +116,5 @@ C:\Users\CristianPc\Documents\Projects\ProjectBussinesManagement\Project_Busines
 C:\Users\CristianPc\Documents\Projects\ProjectBussinesManagement\Project_BusinessManagement\bin\System.Web.WebPages.Deployment.xml
 C:\Users\CristianPc\Documents\Projects\ProjectBussinesManagement\Project_BusinessManagement\bin\System.Web.WebPages.Razor.xml
 C:\Users\CristianPc\Documents\Projects\ProjectBussinesManagement\Project_BusinessManagement\bin\Dao_BussinessManagement.pdb
-C:\Users\CristianPc\Documents\Projects\ProjectBussinesManagement\Project_BusinessManagement\obj\Debug\Project_BusinessManagement.csprojResolveAssemblyReference.cache
 C:\Users\CristianPc\Documents\Projects\ProjectBussinesManagement\Project_BusinessManagement\obj\Debug\Project_BusinessManagement.dll
 C:\Users\CristianPc\Documents\Projects\ProjectBussinesManagement\Project_BusinessManagement\obj\Debug\Project_BusinessManagement.pdb

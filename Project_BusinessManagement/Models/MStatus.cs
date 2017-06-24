@@ -10,9 +10,11 @@ namespace Project_BusinessManagement.Models
 {
     public class MStatus
     {
+
         private string lIdStatus;
         private string lDsEstado;
         private DateTime lCreationDate;
+
         private bool lFlActive;
 
         public string LIdStatus
@@ -69,7 +71,6 @@ namespace Project_BusinessManagement.Models
         }
 
 
-
         public static List<SelectListItem> MListAllStatus(List<Bo_Status> oListStatus)
         {
             List<SelectListItem> oMListStatus = new List<SelectListItem>();
@@ -82,7 +83,7 @@ namespace Project_BusinessManagement.Models
             return oMListStatus;
         }
 
-        public static List<SelectListItem> MListAllStatusWithSelect(List<Bo_Status> oListStatus)
+        public static List<SelectListItem> MListStatusWithSelect(List<Bo_Status> oListStatus)
         {
             List<SelectListItem> oMListStatus = new List<SelectListItem>();
             SelectListItem oListItemSelect = new SelectListItem();
