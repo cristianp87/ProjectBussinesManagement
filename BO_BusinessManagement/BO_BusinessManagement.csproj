@@ -47,6 +47,8 @@
     <Compile Include="Bo_Invoice.cs" />
     <Compile Include="Bo_InvoiceItem.cs" />
     <Compile Include="Bo_Object.cs" />
+    <Compile Include="Bo_Order.cs" />
+    <Compile Include="Bo_OrderItem.cs" />
     <Compile Include="Bo_Product.cs" />
     <Compile Include="Bo_Status.cs" />
     <Compile Include="Bo_Supplier.cs" />

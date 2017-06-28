@@ -1,7 +1,7 @@
 ﻿@model Project_BusinessManagement.Models.MSupplier
 
 @{
-    ViewBag.Title = "Información Proveedor";
+    ViewBag.Title = "Detalles";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 @if (Model.LMessageException != null)
@@ -10,10 +10,10 @@
         <strong>Error!</strong> @Model.LMessageException
     </div>
 }
-<h2>Detalle Proveedor</h2>
+<h2>Detalle</h2>
 
 <div>
-    <h4>MSupplier</h4>
+    <h4>Proveeedor</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
@@ -75,5 +75,5 @@
 </div>
 <p>
     @Html.ActionLink("Editar", "Edit", new {  id = Model.LIdSupplier}) |
-    @Html.ActionLink("Ir a Proveedores", "Index")
+    @Html.ActionLink("Ir a Lista De Proveedores", "Index")
 </p>

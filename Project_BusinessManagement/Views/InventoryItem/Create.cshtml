@@ -1,7 +1,7 @@
 ﻿@model Project_BusinessManagement.Models.MInventoryItem
 
 @{
-    ViewBag.Title = "Create";
+    ViewBag.Title = "Crear";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
@@ -12,37 +12,23 @@
     </div>
 }
 
-<h2>Create</h2>
+<h2>Crear</h2>
 
 @using (Html.BeginForm()) 
 {
     @Html.AntiForgeryToken()
     
     <div class="form-horizontal">
-        <h4>MInventoryItem</h4>
+        <h4>Item De Inventario</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        <div class="form-group">
-            @Html.LabelFor(model => model.LIdInventoryItem, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.LIdInventoryItem, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.LIdInventoryItem, "", new { @class = "text-danger" })
-            </div>
-        </div>
+
 
         <div class="form-group">
-            @Html.LabelFor(model => model.LCreationDate, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.LInventory.LNameInventory, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.LCreationDate, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.LCreationDate, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.LIdInventory, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.LIdInventory, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.LIdInventory, "", new { @class = "text-danger" })
+                @Html.EditorFor(model => model.LInventory.LNameInventory,new { htmlAttributes = new { @class = "disabled", @readonly = true } })
+                @Html.ValidationMessageFor(model => model.LInventory.LNameInventory, "", new { @class = "text-danger" })
             </div>
         </div>
 
@@ -81,17 +67,18 @@
         <div class="form-group">
             <div class="col-md-10">
                 @Html.HiddenFor(model => model.LObject.LIdObject, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.HiddenFor(model => model.LInventory.LIdInventory, new { htmlAttributes = new { @class = "form-control" } })
             </div>
         </div>
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-default" />
+                <input type="submit" value="Crear" class="btn btn-success" />
             </div>
         </div>
     </div>
 }
 
 <div>
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Ir a lista de items de inventario", "Index", new { id = Model.LInventory.LIdInventory })
 </div>

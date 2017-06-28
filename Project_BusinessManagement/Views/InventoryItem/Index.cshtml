@@ -1,31 +1,34 @@
 ﻿@model IEnumerable<Project_BusinessManagement.Models.MInventoryItem>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Items De Inventario";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Index</h2>
+<h2>Items de Inventario</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create", new { idInventory = ViewData["LIdInventory"]})
+    @Html.ActionLink("Crear Registro", "Create", new { idInventory = ViewData["LIdInventory"]})
 </p>
-<table class="table">
+<table class="tablesorter">
     <tr>
         <th>
             @Html.DisplayNameFor(model => model.LIdInventoryItem)
+        </th>       
+        <th>
+            @Html.DisplayNameFor(model => model.LInventory.LNameInventory)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.LCreationDate)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.LIdInventory)
-        </th>
+            @Html.DisplayNameFor(model => model.LProduct.LNameProduct)
+        </th>      
         <th>
             @Html.DisplayNameFor(model => model.LQtySellable)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.LQtyNonSellable)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.LCreationDate)
         </th>
         <th></th>
     </tr>
@@ -36,11 +39,11 @@
             @Html.DisplayFor(modelItem => item.LIdInventoryItem)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.LCreationDate)
+            @Html.DisplayFor(modelItem => item.LInventory.LNameInventory)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.LIdInventory)
-        </td>
+            @Html.DisplayFor(modelItem => item.LProduct.LNameProduct)
+        </td>        
         <td>
             @Html.DisplayFor(modelItem => item.LQtySellable)
         </td>
@@ -48,11 +51,33 @@
             @Html.DisplayFor(modelItem => item.LQtyNonSellable)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new {  id=item.LIdInventoryItem }) |
-            @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+            @Html.DisplayFor(modelItem => item.LCreationDate)
+        </td>
+        <td>
+            @Html.ActionLink("Editar", "Edit", new {  id=item.LIdInventoryItem }) |
+            @Html.ActionLink("Detalle", "Details", new {  id=item.LIdInventoryItem }) |
+            @Html.ActionLink("Eliminar", "Delete", new {  id=item.LIdInventoryItem })
         </td>
     </tr>
 }
 
 </table>
+<div id="pager" class="pager">
+    <form>
+        <a href="#"><img src="~/Images/Icons/IFirst.png" class="first" alt="Primero" title="Primero" /></a>
+        <a href="#"><img src="~/Images/Icons/IPrev.png" class="prev" alt="Anterior" title="Anterior" /></a>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <!-- the "pagedisplay" can be any element, including an input -->
+        <span class="pagedisplay" data-pager-output-filtered="{startRow:input} &ndash; {endRow} / {filteredRows} of {totalRows} total rows"></span>
+        <a href="#"><img src="~/Images/Icons/INext.png" class="next" alt="Siguiente" title="Siguiente" /></a>
+        <a href="#"><img src="~/Images/Icons/ILast.png" class="last" alt="Ultimo" title="Ultimo" /></a>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <select class="pagesize">
+            <option value="10" selected="selected">10</option>
+            <option value="50">50</option>
+            <option value="100">100</option>
+            <option value="500">500</option>
+            <option value="1000">1000</option>
+        </select>
+    </form>
+</div>

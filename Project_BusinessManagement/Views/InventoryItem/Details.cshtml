@@ -1,14 +1,14 @@
 ﻿@model Project_BusinessManagement.Models.MInventoryItem
 
 @{
-    ViewBag.Title = "Details";
+    ViewBag.Title = "Detalle";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <h2>Details</h2>
 
 <div>
-    <h4>MInventoryItem</h4>
+    <h4>Detalle Items de Inventario</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
@@ -20,19 +20,19 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.LCreationDate)
+            @Html.DisplayNameFor(model => model.LInventory.LNameInventory)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.LCreationDate)
+            @Html.DisplayFor(model => model.LInventory.LNameInventory)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.LIdInventory)
+            @Html.DisplayNameFor(model => model.LProduct.LNameProduct)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.LIdInventory)
+            @Html.DisplayFor(model => model.LProduct.LNameProduct)
         </dd>
 
         <dt>
@@ -51,9 +51,17 @@
             @Html.DisplayFor(model => model.LQtyNonSellable)
         </dd>
 
+        <dt>
+            @Html.DisplayNameFor(model => model.LCreationDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LCreationDate)
+        </dd>  
+
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Editar", "Edit", new {  id = Model.LIdInventoryItem }) |
+    @Html.ActionLink("Ir a lista de items de inventario", "Index", new { id = Model.LInventory.LIdInventory })
 </p>

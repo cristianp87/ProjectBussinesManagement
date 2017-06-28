@@ -37,14 +37,17 @@ namespace Dao_BussinessManagement
                             oInventoryItem.LStatus = new Bo_Status();
                             oInventoryItem.LObject = new Bo_Object();
                             oInventoryItem.LProduct = new Bo_Product();
+                            oInventoryItem.LInventory = new Bo_Inventory();
                             oInventoryItem.LIdInventoryItem = Convert.ToInt32(lReader["IdInventoryItem"].ToString());
-                            oInventoryItem.LIdInventory = pIdInventory;
                             oInventoryItem.LProduct.LIdProduct = Convert.ToInt32(lReader["IdProduct"].ToString());
                             oInventoryItem.LProduct.LNameProduct = lReader["NameProduct"].ToString();
                             oInventoryItem.LCreationDate = Convert.ToDateTime(lReader["CreationDate"].ToString());
                             oInventoryItem.LStatus.LIdStatus = lReader["IdStatus"].ToString();
-                            oInventoryItem.LQtySellable = Convert.ToInt32(lReader["QtySellable"].ToString());
-                            oInventoryItem.LQtyNonSellable = Convert.ToInt32(lReader["QtyNonSellable"].ToString());
+                            oInventoryItem.LQtySellable = Convert.ToDecimal(lReader["QtySellable"].ToString());
+                            oInventoryItem.LQtyNonSellable = Convert.ToDecimal(lReader["QtyNonSellable"].ToString());
+                            oInventoryItem.LObject.LIdObject = Convert.ToInt32(lReader["IdObject"].ToString());
+                            oInventoryItem.LInventory.LIdInventory = Convert.ToInt32(lReader["IdInventory"].ToString());
+                            oInventoryItem.LInventory.LNameInventory = lReader["NameInventory"].ToString();
                             oInventoryItem.LObject.LIdObject = Convert.ToInt32(lReader["IdObject"].ToString());
                             oListInventoryItem.Add(oInventoryItem);
                         }
@@ -92,13 +95,16 @@ namespace Dao_BussinessManagement
                             oInventoryItem.LStatus = new Bo_Status();
                             oInventoryItem.LObject = new Bo_Object();
                             oInventoryItem.LProduct = new Bo_Product();
+                            oInventoryItem.LInventory = new Bo_Inventory();
                             oInventoryItem.LIdInventoryItem = Convert.ToInt32(lReader["IdInventoryItem"].ToString());
+                            oInventoryItem.LInventory.LIdInventory = Convert.ToInt32(lReader["IdInventory"].ToString());
+                            oInventoryItem.LInventory.LNameInventory = lReader["NameInventory"].ToString();
                             oInventoryItem.LProduct.LIdProduct = Convert.ToInt32(lReader["IdProduct"].ToString());
                             oInventoryItem.LProduct.LNameProduct = lReader["NameProduct"].ToString();
                             oInventoryItem.LCreationDate = Convert.ToDateTime(lReader["CreationDate"].ToString());
                             oInventoryItem.LStatus.LIdStatus = lReader["IdStatus"].ToString();
-                            oInventoryItem.LQtySellable = Convert.ToInt32(lReader["QtySellable"].ToString());
-                            oInventoryItem.LQtyNonSellable = Convert.ToInt32(lReader["QtyNonSellable"].ToString());
+                            oInventoryItem.LQtySellable = Convert.ToDecimal(lReader["QtySellable"].ToString());
+                            oInventoryItem.LQtyNonSellable = Convert.ToDecimal(lReader["QtyNonSellable"].ToString());
                             oInventoryItem.LObject.LIdObject = Convert.ToInt32(lReader["IdObject"].ToString());
                         }
 
@@ -123,7 +129,7 @@ namespace Dao_BussinessManagement
         public string Dao_InsertInventoryItem(Bo_InventoryItem pInventoryItem)
         {
             Dao_UtilsLib.dao_Addparameters(lListParam, SqlDbType.Int, "@IdProduct", pInventoryItem.LProduct.LIdProduct.ToString());
-            Dao_UtilsLib.dao_Addparameters(lListParam, SqlDbType.Int, "@IdInventory", pInventoryItem.LIdInventory.ToString());
+            Dao_UtilsLib.dao_Addparameters(lListParam, SqlDbType.Int, "@IdInventory", pInventoryItem.LInventory.LIdInventory.ToString());
             Dao_UtilsLib.dao_Addparameters(lListParam, SqlDbType.VarChar, "@IdStatus", pInventoryItem.LStatus.LIdStatus.ToString());
             Dao_UtilsLib.dao_Addparameters(lListParam, SqlDbType.Int, "@IdObject", pInventoryItem.LObject.LIdObject.ToString());
             Dao_UtilsLib.dao_Addparameters(lListParam, SqlDbType.Decimal, "@QtySellable", pInventoryItem.LQtySellable.ToString());
@@ -135,7 +141,7 @@ namespace Dao_BussinessManagement
         {
             Dao_UtilsLib.dao_Addparameters(lListParam, SqlDbType.Int, "@IdInventoryItem", pInventoryItem.LIdInventoryItem.ToString());
             Dao_UtilsLib.dao_Addparameters(lListParam, SqlDbType.Int, "@IdProduct", pInventoryItem.LProduct.LIdProduct.ToString());
-            Dao_UtilsLib.dao_Addparameters(lListParam, SqlDbType.Int, "@IdInventory", pInventoryItem.LIdInventory.ToString());
+            Dao_UtilsLib.dao_Addparameters(lListParam, SqlDbType.Int, "@IdInventory", pInventoryItem.LInventory.LIdInventory.ToString());
             Dao_UtilsLib.dao_Addparameters(lListParam, SqlDbType.VarChar, "@IdStatus", pInventoryItem.LStatus.LIdStatus.ToString());
             Dao_UtilsLib.dao_Addparameters(lListParam, SqlDbType.Int, "@IdObject", pInventoryItem.LObject.LIdObject.ToString());
             Dao_UtilsLib.dao_Addparameters(lListParam, SqlDbType.Decimal, "@QtySellable", pInventoryItem.LQtySellable.ToString());

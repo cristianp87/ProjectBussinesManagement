@@ -1,16 +1,16 @@
 ﻿@model IEnumerable<Project_BusinessManagement.Models.MInventory>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Inventario";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Index</h2>
+<h2>Inventario</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Crear Inventario", "Create")
 </p>
-<table class="table">
+<table class="tablesorter">
     <tr>
         <th>
             @Html.DisplayNameFor(model => model.LIdInventory)
@@ -36,11 +36,31 @@
             @Html.DisplayFor(modelItem => item.LCreationDate)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new {  id=item.LIdInventory }) |
-            @Html.ActionLink("Delete", "Delete", new {  id=item.LIdInventory  }) |
+            @Html.ActionLink("Editar", "Edit", new {  id=item.LIdInventory }) |
+            @Html.ActionLink("Eliminar", "Delete", new {  id=item.LIdInventory  }) |
             @Html.ActionLink("Items", "../InventoryItem/Index", new { id = item.LIdInventory })
         </td>
     </tr>
 }
 
 </table>
+
+<div id="pager" class="pager">
+    <form>
+        <a href="#"><img src="~/Images/Icons/IFirst.png" class="first" alt="Primero" title="Primero" /></a>
+        <a href="#"><img src="~/Images/Icons/IPrev.png" class="prev" alt="Anterior" title="Anterior" /></a>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <!-- the "pagedisplay" can be any element, including an input -->
+        <span class="pagedisplay" data-pager-output-filtered="{startRow:input} &ndash; {endRow} / {filteredRows} of {totalRows} total rows"></span>
+        <a href="#"><img src="~/Images/Icons/INext.png" class="next" alt="Siguiente" title="Siguiente" /></a>
+        <a href="#"><img src="~/Images/Icons/ILast.png" class="last" alt="Ultimo" title="Ultimo" /></a>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <select class="pagesize">
+            <option value="10" selected="selected">10</option>
+            <option value="50">50</option>
+            <option value="100">100</option>
+            <option value="500">500</option>
+            <option value="1000">1000</option>
+        </select>
+    </form>
+</div>

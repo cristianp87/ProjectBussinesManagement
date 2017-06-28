@@ -16,10 +16,10 @@ namespace Bll_Business
             return oDaoInventoryITem.Dao_getListInventoryItemByIdInventory(pIdInventory);
         }
 
-        public static Bo_InventoryItem bll_GetInventoryItemById(int pIdInventory)
+        public static Bo_InventoryItem bll_GetInventoryItemById(int pIdInventoryItem)
         {
             Dao_InventoryItem oDaoInventoryITem = new Dao_InventoryItem();
-            return oDaoInventoryITem.Dao_getInventoryItemById(pIdInventory);
+            return oDaoInventoryITem.Dao_getInventoryItemById(pIdInventoryItem);
         }
 
         public static string bll_InsertInventoryItem(int pIdInventory, int pIdProduct, int pIdObject, string pIdStatus, decimal pQtySellable, decimal pQtyNonSellable)
@@ -28,7 +28,8 @@ namespace Bll_Business
             oInventoryItem.LObject = new Bo_Object();
             oInventoryItem.LStatus = new Bo_Status();
             oInventoryItem.LProduct = new Bo_Product();
-            oInventoryItem.LIdInventory = pIdInventory;
+            oInventoryItem.LInventory = new Bo_Inventory();
+            oInventoryItem.LInventory.LIdInventory = pIdInventory;
             oInventoryItem.LProduct.LIdProduct = pIdProduct;
             oInventoryItem.LObject.LIdObject = pIdObject;
             oInventoryItem.LStatus.LIdStatus = pIdStatus;
@@ -38,17 +39,20 @@ namespace Bll_Business
             return oDaoInventoryItem.Dao_InsertInventoryItem(oInventoryItem);
         }
 
-        public static string bll_UpdateInventoryITem(int pIdInventoryItem, int pIdInventory, int pIdProduct, int pIdObject, string pIdStatus)
+        public static string bll_UpdateInventoryITem(int pIdInventoryItem, int pIdInventory, int pIdProduct, decimal pQtySellable, decimal pQtyNonSellable, int pIdObject, string pIdStatus)
         {
             Bo_InventoryItem oInventoryItem = new Bo_InventoryItem();
             oInventoryItem.LObject = new Bo_Object();
             oInventoryItem.LStatus = new Bo_Status();
             oInventoryItem.LProduct = new Bo_Product();
+            oInventoryItem.LInventory = new Bo_Inventory();
             oInventoryItem.LIdInventoryItem = pIdInventoryItem;
-            oInventoryItem.LIdInventory = pIdInventory;
+            oInventoryItem.LInventory.LIdInventory = pIdInventory;
             oInventoryItem.LProduct.LIdProduct = pIdProduct;
             oInventoryItem.LObject.LIdObject = pIdObject;
             oInventoryItem.LStatus.LIdStatus = pIdStatus;
+            oInventoryItem.LQtySellable = pQtySellable;
+            oInventoryItem.LQtyNonSellable = pQtyNonSellable;
             Dao_InventoryItem oDaoInventoryItem = new Dao_InventoryItem();
             return oDaoInventoryItem.Dao_UpdateInventoryItem(oInventoryItem);
         }

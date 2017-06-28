@@ -1,7 +1,7 @@
 ﻿@model Project_BusinessManagement.Models.MSupplier
 
 @{
-    ViewBag.Title = "Delete";
+    ViewBag.Title = "Eliminar";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 <div class="bg-warning">
@@ -13,7 +13,7 @@
     }
 
 </div>
-<h2>Eliminar Proveedor</h2>
+<h2>Eliminar</h2>
 
 <h3>Esta Seguro de Eliminar el Proveedor?</h3>
 <div>
@@ -59,8 +59,8 @@
         @Html.AntiForgeryToken()
 
         <div class="form-actions no-color">
-            <input type="submit" value="Delete" class="btn btn-danger" /> |
-            @Html.ActionLink("Ir a Proveedores", "Index")
+            <input type="submit" value="Eliminar" class="btn btn-danger" /> |
+            @Html.ActionLink("Ir a Lista De Proveedores", "Index")
         </div>
     }
 </div>

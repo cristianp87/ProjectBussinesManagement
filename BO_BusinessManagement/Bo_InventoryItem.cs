@@ -13,7 +13,7 @@ namespace BO_BusinessManagement
         private DateTime lCreationDate;
         private Bo_Status lStatus;
         private Bo_Object lObject;
-        private int lIdInventory;
+        private Bo_Inventory lInventory;
         private decimal lQtySellable;
         private decimal lQtyNonSellable;
 
@@ -83,18 +83,6 @@ namespace BO_BusinessManagement
             }
         }
 
-        public int LIdInventory
-        {
-            get
-            {
-                return lIdInventory;
-            }
-
-            set
-            {
-                lIdInventory = value;
-            }
-        }
 
         public decimal LQtySellable
         {
@@ -119,6 +107,19 @@ namespace BO_BusinessManagement
             set
             {
                 lQtyNonSellable = value;
+            }
+        }
+
+        public Bo_Inventory LInventory
+        {
+            get
+            {
+                return lInventory;
+            }
+
+            set
+            {
+                lInventory = value;
             }
         }
     }
