@@ -13,6 +13,7 @@ namespace Project_BusinessManagement.Models
     {
         private int lIdProduct;
         private string lNameProduct;
+        private string lCdProduct;
         private DateTime lCreationDate;
         private MUnit lUnit;
         private decimal lValue;
@@ -204,6 +205,20 @@ namespace Project_BusinessManagement.Models
                 lMessageException = value;
             }
         }
+        [DisplayName("Codigo Producto")]
+        [Required(ErrorMessage = "El valor del proveedor es requerido.")]
+        public string LCdProduct
+        {
+            get
+            {
+                return lCdProduct;
+            }
+
+            set
+            {
+                lCdProduct = value;
+            }
+        }
 
         public static List<MProduct> MListProduct(List<Bo_Product> oBListProduct)
         {
@@ -212,6 +227,7 @@ namespace Project_BusinessManagement.Models
                 MProduct oMProduct = new MProduct();
                 oMProduct.lIdProduct = x.LIdProduct;
                 oMProduct.LNameProduct = x.LNameProduct;
+                oMProduct.lCdProduct = x.LCdProduct;
                 oMProduct.LValue = x.LValue;
                 oMProduct.LValueSupplier = x.LValueSupplier;
                 oMProduct.LCreationDate = x.LCreationDate;
@@ -258,6 +274,7 @@ namespace Project_BusinessManagement.Models
             oMProduct.lSupplier = new MSupplier();
             oMProduct.LListSupplier = new List<SelectListItem>();
             oMProduct.LNameProduct = oBProduct.LNameProduct;
+            oMProduct.LCdProduct = oBProduct.LCdProduct;
             oMProduct.LUnit.LIdUnit = oBProduct.LUnit.LIdUnit;
             oMProduct.LUnit.LNameUnit = oBProduct.LUnit.LNameUnit;
             oMProduct.LUnit.LCdUnit = oBProduct.LUnit.LCdUnit;
@@ -290,6 +307,7 @@ namespace Project_BusinessManagement.Models
             oMProduct.LListStatus = new List<SelectListItem>();
             oMProduct.LListSupplier = new List<SelectListItem>();
             oMProduct.lNameProduct = null;
+            oMProduct.LCdProduct = null;
             oMProduct.LValue = 0;
             oMProduct.LValueSupplier = 0;
             oMProduct.LCreationDate = new DateTime();

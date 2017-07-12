@@ -47,6 +47,8 @@
     <Compile Include="Dao_InventoryItem.cs" />
     <Compile Include="Dao_Invoice.cs" />
     <Compile Include="Dao_InvoiceItem.cs" />
+    <Compile Include="Dao_Order.cs" />
+    <Compile Include="Dao_OrderItem.cs" />
     <Compile Include="Dao_Product.cs" />
     <Compile Include="Dao_Supplier.cs" />
     <Compile Include="Dao_TypeIdentification.cs" />

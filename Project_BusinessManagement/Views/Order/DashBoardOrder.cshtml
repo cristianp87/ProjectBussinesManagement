@@ -1,0 +1,72 @@
+﻿@model Project_BusinessManagement.Models.MOrder
+
+@{
+    ViewBag.Title = "DashBoardOrder";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@section Scripts
+{
+    <script type="text/javascript">
+
+     var yourApp = yourApp || {};
+     yourApp.Urls = yourApp.Urls || {};
+     yourApp.Urls.baseUrl = '@Url.Content("~")';
+     yourApp.Urls.getAllInventory = '@Url.Action("GetInventory")';
+     yourApp.Urls.getItem = '@Url.Action("GetOrderItem")';
+    </script>
+    <script src="~/csJquery/JOrder/JOrderDash.js"></script>
+}
+
+<h2>DashBoardOrder</h2>
+
+
+<div class="form-horizontal">
+    <div class="form-group">
+        <label id="lblInventory" name="lblInventory" class="control-label col-md-2" > Inventario</label>
+        <div class="col-md-10">
+            <select id="ddlInventory" class="form-control" name="ddlInventory">
+                <option id="0">Seleccione...</option>
+            </select>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label id="lblProduct" name="lblProduct" class="control-label col-md-2">Producto</label>
+        <div class="col-md-10">
+            <input type="text" id="txtProduct" class="form-control" name="txtProduct" />
+        </div>
+    </div>
+    <div class="form-group">
+        <label id="lblCntProduct" name="lblCntProduct" class="control-label col-md-2">Cantidad</label>
+        <div class="col-md-10">
+            <input type="text" id="txtCntProduct" class="form-control" name="txtCntProduct" />
+        </div>
+    </div>
+    <input type="button" id="btnItem" name="btnItem" class="btn btn-block col-md-4" value="Agregar Producto"  />
+</div>
+<br />
+<br />
+    <table class="table" id="tableOrder" name ="tableOrder">
+        <tr>
+            <th>
+                Nombre Inventario
+            </th>
+            <th>
+                Codigo Producto
+            </th>
+            <th>
+                Nombre Producto
+            </th>
+            <th>
+                Valor Producto
+            </th>
+            <th>
+                Cantidad Producto
+            </th>
+            <th>
+                Total Producto
+            </th>
+        </tr>
+    </table>
+
+<input type="button" id="btnCreateOrder" name="btnCreateOrder" class="btn btn-success" value="Agregar Pedido" />

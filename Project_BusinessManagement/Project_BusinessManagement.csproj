@@ -110,6 +110,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="csJquery\JOrder\JOrderDash.js" />
     <Content Include="csJquery\JSupplier\JListSupplier.js" />
     <Content Include="Images\Icons\IFirst.png" />
     <Content Include="Images\Icons\ILast.png" />
@@ -184,6 +185,7 @@
     <Content Include="Views\InventoryItem\Create.cshtml" />
     <Content Include="Views\InventoryItem\Delete.cshtml" />
     <Content Include="Views\InventoryItem\Details.cshtml" />
+    <Content Include="Views\Order\DashBoardOrder.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -198,6 +200,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\InventoryController.cs" />
     <Compile Include="Controllers\InventoryItemController.cs" />
+    <Compile Include="Controllers\OrderController.cs" />
     <Compile Include="Controllers\ProductController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -218,9 +221,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Controllers\SupplierController.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Views\Order\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <ProjectReference Include="..\Bll_Business\Bll_Business.csproj">
       <Project>{e270b63e-1209-4094-a270-40d6f59fc1ea}</Project>

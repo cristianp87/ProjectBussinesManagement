@@ -17,6 +17,7 @@ namespace BO_BusinessManagement
         private decimal lValueSupplier;
         private Bo_Object lObject;
         private Bo_Status lStatus;
+        private string lCdProduct;
 
         public int LIdProduct
         {
@@ -132,6 +133,19 @@ namespace BO_BusinessManagement
             set
             {
                 lStatus = value;
+            }
+        }
+
+        public string LCdProduct
+        {
+            get
+            {
+                return lCdProduct;
+            }
+
+            set
+            {
+                lCdProduct = value;
             }
         }
     }
