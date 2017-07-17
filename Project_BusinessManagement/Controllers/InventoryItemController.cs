@@ -40,6 +40,7 @@ namespace Project_BusinessManagement.Controllers
             try
             {
                 ModelState.Remove("LProduct.LNameProduct");
+                ModelState.Remove("LProduct.LCdProduct");
                 if (ModelState.IsValid)
                 {
                     string lMessage = Bll_InventoryItem.bll_InsertInventoryItem(idInventory, Convert.ToInt32(Request.Form["LProduct.LIdProduct"].ToString()), Convert.ToInt32(Request.Form["LObject.LIdObject"].ToString()), Request.Form["LStatus.LIdStatus"].ToString(), Convert.ToDecimal(Request.Form["LQtySellable"].ToString()), Convert.ToDecimal(Request.Form["LQtyNonSellable"].ToString()));
@@ -88,6 +89,7 @@ namespace Project_BusinessManagement.Controllers
             {
                 Models.MInventoryItem lInventoryItem = new Models.MInventoryItem();
                 ModelState.Remove("LProduct.LNameProduct");
+                ModelState.Remove("LProduct.LCdProduct");
                 if (ModelState.IsValid)
                 {
                     string lMessage = Bll_InventoryItem.bll_UpdateInventoryITem(id, Convert.ToInt32(Request.Form["LInventory.LIdInventory"].ToString()), Convert.ToInt32(Request.Form["LProduct.LIdProduct"].ToString()), Convert.ToDecimal(Request.Form["LQtySellable"].ToString()), Convert.ToDecimal(Request.Form["LQtyNonSellable"].ToString()), Convert.ToInt32(Request.Form["LObject.LIdObject"].ToString()), Request.Form["LStatus.LIdStatus"].ToString());

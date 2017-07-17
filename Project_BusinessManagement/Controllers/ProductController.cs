@@ -43,7 +43,7 @@ namespace Project_BusinessManagement.Controllers
                 ModelState.Remove("LSupplier.LNoIdentification");
                 if (ModelState.IsValid)
                 {
-                    string lMessage = Bll_Product.bll_InsertProduct(Request.Form["LNameProduct"].ToString(), Convert.ToDecimal(Request.Form["LValue"]), Convert.ToDecimal(Request.Form["LValueSupplier"]), Convert.ToInt32(Request.Form["LUnit.LIdUnit"].ToString()), Convert.ToInt32(Request.Form["LSupplier.LIdSupplier"].ToString()), Convert.ToInt32(Request.Form["LObject.LIdObject"].ToString()), Request.Form["LStatus.LIdStatus"].ToString());
+                    string lMessage = Bll_Product.bll_InsertProduct(Request.Form["LNameProduct"].ToString(), Request.Form["LCdProduct"].ToString(), Convert.ToDecimal(Request.Form["LValue"]), Convert.ToDecimal(Request.Form["LValueSupplier"]), Convert.ToInt32(Request.Form["LUnit.LIdUnit"].ToString()), Convert.ToInt32(Request.Form["LSupplier.LIdSupplier"].ToString()), Convert.ToInt32(Request.Form["LObject.LIdObject"].ToString()), Request.Form["LStatus.LIdStatus"].ToString());
                     if (lMessage == null)
                     {
                         return RedirectToAction("Index");
@@ -90,7 +90,7 @@ namespace Project_BusinessManagement.Controllers
                 ModelState.Remove("LSupplier.LNoIdentification");
                 if (ModelState.IsValid)
                 {
-                    string lMessage = Bll_Product.bll_UpdateProduct(id, Request.Form["LNameProduct"].ToString(), Convert.ToDecimal(Request.Form["LValue"]), Convert.ToDecimal(Request.Form["LValueSupplier"]), Convert.ToInt32(Request.Form["LUnit.LIdUnit"].ToString()), Convert.ToInt32(Request.Form["LSupplier.LIdSupplier"].ToString()), Convert.ToInt32(Request.Form["LObject.LIdObject"].ToString()), Request.Form["LStatus.LIdStatus"].ToString());
+                    string lMessage = Bll_Product.bll_UpdateProduct(id, Request.Form["LNameProduct"].ToString(), Request.Form["LCdProduct"].ToString(), Convert.ToDecimal(Request.Form["LValue"]), Convert.ToDecimal(Request.Form["LValueSupplier"]), Convert.ToInt32(Request.Form["LUnit.LIdUnit"].ToString()), Convert.ToInt32(Request.Form["LSupplier.LIdSupplier"].ToString()), Convert.ToInt32(Request.Form["LObject.LIdObject"].ToString()), Request.Form["LStatus.LIdStatus"].ToString());
                     if (lMessage == null)
                     {
                         return RedirectToAction("Index");

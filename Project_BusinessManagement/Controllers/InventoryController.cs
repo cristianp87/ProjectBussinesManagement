@@ -16,7 +16,7 @@ namespace Project_BusinessManagement.Controllers
         {
             List<Bo_Inventory> lListBoInventory = new List<Bo_Inventory>();
             lListBoInventory = Bll_Inventory.bll_GetAllInventory();
-            return Json(Models.MInventory.MListInventory(lListBoInventory));
+            return View(Models.MInventory.MListInventory(lListBoInventory));
         }
 
         // GET: Inventory/Details/5

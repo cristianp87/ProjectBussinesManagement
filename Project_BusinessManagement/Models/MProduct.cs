@@ -25,6 +25,9 @@ namespace Project_BusinessManagement.Models
         private List<SelectListItem> lListUnit;
         private List<SelectListItem> lListSupplier;
         private string lMessageException;
+        private List<SelectListItem> lListSelectTaxe;
+        private List<MTaxe> lListTaxe;
+        private MTaxe lTaxe;
 
         [UIHint("LIdSupplier")]
         [DisplayName("IDProducto")]
@@ -217,6 +220,45 @@ namespace Project_BusinessManagement.Models
             set
             {
                 lCdProduct = value;
+            }
+        }
+
+        public List<MTaxe> LListTaxe
+        {
+            get
+            {
+                return lListTaxe;
+            }
+
+            set
+            {
+                lListTaxe = value;
+            }
+        }
+
+        public MTaxe LTaxe
+        {
+            get
+            {
+                return lTaxe;
+            }
+
+            set
+            {
+                lTaxe = value;
+            }
+        }
+
+        public List<SelectListItem> LListSelectTaxe
+        {
+            get
+            {
+                return lListSelectTaxe;
+            }
+
+            set
+            {
+                lListSelectTaxe = value;
             }
         }
 

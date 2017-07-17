@@ -216,6 +216,7 @@
     <Compile Include="Models\MProduct.cs" />
     <Compile Include="Models\MStatus.cs" />
     <Compile Include="Models\MSupplier.cs" />
+    <Compile Include="Models\MTaxe.cs" />
     <Compile Include="Models\MTypeIdentification.cs" />
     <Compile Include="Models\MUnit.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

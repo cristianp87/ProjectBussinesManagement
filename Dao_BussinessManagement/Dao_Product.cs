@@ -177,7 +177,7 @@ namespace Dao_BussinessManagement
         public string Dao_InsertProduct(Bo_Product pProduct)
         {
             Dao_UtilsLib.dao_Addparameters(lListParam, SqlDbType.VarChar, "@NameProduct", pProduct.LNameProduct);
-            Dao_UtilsLib.dao_Addparameters(lListParam, SqlDbType.VarChar, "@CdProduct", pProduct.LNameProduct);
+            Dao_UtilsLib.dao_Addparameters(lListParam, SqlDbType.VarChar, "@CdProduct", pProduct.LCdProduct);
             Dao_UtilsLib.dao_Addparameters(lListParam, SqlDbType.Int, "@IdUnit", pProduct.LUnit.LIdUnit.ToString());
             Dao_UtilsLib.dao_Addparameters(lListParam, SqlDbType.Decimal, "@Price", pProduct.LValue.ToString());
             Dao_UtilsLib.dao_Addparameters(lListParam, SqlDbType.Int, "@IdSupplier", pProduct.LSupplier.LIdSupplier.ToString());
@@ -191,7 +191,7 @@ namespace Dao_BussinessManagement
         {
             Dao_UtilsLib.dao_Addparameters(lListParam, SqlDbType.Int, "@IdProduct", pProduct.LIdProduct.ToString());
             Dao_UtilsLib.dao_Addparameters(lListParam, SqlDbType.VarChar, "@NameProduct", pProduct.LNameProduct);
-            Dao_UtilsLib.dao_Addparameters(lListParam, SqlDbType.VarChar, "@CdProduct", pProduct.LNameProduct);
+            Dao_UtilsLib.dao_Addparameters(lListParam, SqlDbType.VarChar, "@CdProduct", pProduct.LCdProduct);
             Dao_UtilsLib.dao_Addparameters(lListParam, SqlDbType.Int, "@IdUnit", pProduct.LUnit.LIdUnit.ToString());
             Dao_UtilsLib.dao_Addparameters(lListParam, SqlDbType.Decimal, "@Price", pProduct.LValue.ToString());
             Dao_UtilsLib.dao_Addparameters(lListParam, SqlDbType.Int, "@IdSupplier", pProduct.LSupplier.LIdSupplier.ToString());

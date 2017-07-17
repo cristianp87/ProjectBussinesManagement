@@ -22,7 +22,7 @@ namespace Bll_Business
             return oDaoProduct.Dao_getProductListAll();
         }
 
-        public static string bll_InsertProduct(string pNameProduct, decimal pPrice, decimal pPriceSupplier, int pIdUnit, int pIdSupplier, int pIdObject, string pIdStatus)
+        public static string bll_InsertProduct(string pNameProduct, string pCdProduct, decimal pPrice, decimal pPriceSupplier, int pIdUnit, int pIdSupplier, int pIdObject, string pIdStatus)
         {
             Bo_Product oProduct = new Bo_Product();
             oProduct.LObject = new Bo_Object();
@@ -30,6 +30,7 @@ namespace Bll_Business
             oProduct.LSupplier = new Bo_Supplier();
             oProduct.LUnit = new Bo_Unit();
             oProduct.LNameProduct = pNameProduct;
+            oProduct.LCdProduct = pCdProduct;
             oProduct.LValue = pPrice;
             oProduct.LValueSupplier = pPriceSupplier;
             oProduct.LUnit.LIdUnit = pIdUnit;
@@ -40,7 +41,7 @@ namespace Bll_Business
             return oDaoProduct.Dao_InsertProduct(oProduct);
         }
 
-        public static string bll_UpdateProduct(int pIdProduct, string pNameProduct, decimal pPrice, decimal pPriceSupplier, int pIdUnit, int pIdSupplier, int pIdObject, string pIdStatus)
+        public static string bll_UpdateProduct(int pIdProduct, string pNameProduct, string pCdProduct, decimal pPrice, decimal pPriceSupplier, int pIdUnit, int pIdSupplier, int pIdObject, string pIdStatus)
         {
             Bo_Product oProduct = new Bo_Product();
             oProduct.LObject = new Bo_Object();
@@ -49,6 +50,7 @@ namespace Bll_Business
             oProduct.LUnit = new Bo_Unit();
             oProduct.LIdProduct = pIdProduct;
             oProduct.LNameProduct = pNameProduct;
+            oProduct.LCdProduct = pCdProduct;
             oProduct.LValue = pPrice;
             oProduct.LValueSupplier = pPriceSupplier;
             oProduct.LUnit.LIdUnit = pIdUnit;
