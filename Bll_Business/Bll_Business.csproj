@@ -48,6 +48,7 @@
     <Compile Include="Bll_Status.cs" />
     <Compile Include="Bll_Supplier.cs" />
     <Compile Include="Bll_Inventory.cs" />
+    <Compile Include="Bll_Taxe.cs" />
     <Compile Include="Bll_TypeIdentification.cs" />
     <Compile Include="Bll_UtilsLib.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

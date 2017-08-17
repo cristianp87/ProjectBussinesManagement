@@ -13,6 +13,7 @@ namespace Project_BusinessManagement.Models
         private MStatus lStatus;
         private MObject lObject;
         private MOrder lOrder;
+        private decimal lQty;
         private decimal lValueProduct;
         private decimal lValueSupplier;
         private decimal lValueTaxes;
@@ -173,6 +174,19 @@ namespace Project_BusinessManagement.Models
             set
             {
                 lMessageException = value;
+            }
+        }
+
+        public decimal LQty
+        {
+            get
+            {
+                return lQty;
+            }
+
+            set
+            {
+                lQty = value;
             }
         }
     }

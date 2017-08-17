@@ -16,10 +16,10 @@ namespace Bll_Business
             return oDaoInvoice.Dao_getInvoiceById(pIdInvoice);
         }
 
-        public static List<Bo_Invoice> bll_GetAllInvoice()
+        public static List<Bo_Invoice> bll_GetAllInvoice(int pIdcustomer)
         {
             Dao_Invoice oDaoInvoice = new Dao_Invoice();
-            return oDaoInvoice.Dao_getInvoiceListAll();
+            return oDaoInvoice.Dao_getInvoiceListAll(pIdcustomer);
         }
 
         public static string bll_InsertInvoice(string pCdInvoice, int pIdCustomer, int pIdObject, string pIdStatus)

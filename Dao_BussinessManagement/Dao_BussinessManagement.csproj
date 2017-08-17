@@ -51,6 +51,7 @@
     <Compile Include="Dao_OrderItem.cs" />
     <Compile Include="Dao_Product.cs" />
     <Compile Include="Dao_Supplier.cs" />
+    <Compile Include="Dao_Taxe.cs" />
     <Compile Include="Dao_TypeIdentification.cs" />
     <Compile Include="Dao_User.cs" />
     <Compile Include="Dao_UtilsLib.cs" />

@@ -33,9 +33,29 @@ namespace Project_BusinessManagement.Controllers
         [HttpPost]
         public JsonResult GetOrderItem(int idProduct)
         {
-            Bo_Product lProduct= new Bo_Product();
-            lProduct = Bll_Product.bll_GetProductById(idProduct);
-            return Json(Models.MProduct.MProductById(lProduct));
+            try
+            {
+                Bo_Product lProduct = new Bo_Product();
+                lProduct = Bll_Product.bll_GetProductById(idProduct);
+                if(lProduct.LException != null)
+                {
+                    
+                    return Json(new { Success = false, Message = "ErrorDao! " + lProduct.LMessageDao + " " + lProduct.LException});
+                }
+                if (lProduct.LCdProduct != null)
+                {
+                    return Json(new { Success = true, Content = Models.MProduct.MProductById(lProduct) });
+                }
+                else
+                {
+                    return Json(new { Success = false, Message = "El Producto no existe en la base de datos." });
+                }
+            }catch(Exception e)
+            {
+                return Json(new { Success = false, Message = "Error! " + e.Message });
+            }
+            
+            
         }
 
         // GET: Order/Details/5
@@ -52,17 +72,17 @@ namespace Project_BusinessManagement.Controllers
 
         // POST: Order/Create
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        public JsonResult Create(List<Models.MOrderItem> pListItems)
         {
             try
             {
-                // TODO: Add insert logic here
+                var o = 1;
 
-                return RedirectToAction("Index");
+                return Json("Index");
             }
             catch
             {
-                return View();
+                return Json("d");
             }
         }
 

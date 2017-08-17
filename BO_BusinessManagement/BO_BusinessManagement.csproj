@@ -52,6 +52,7 @@
     <Compile Include="Bo_Product.cs" />
     <Compile Include="Bo_Status.cs" />
     <Compile Include="Bo_Supplier.cs" />
+    <Compile Include="Bo_Taxe.cs" />
     <Compile Include="Bo_Unit.cs" />
     <Compile Include="Bo_User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

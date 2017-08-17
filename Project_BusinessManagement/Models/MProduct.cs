@@ -315,6 +315,7 @@ namespace Project_BusinessManagement.Models
             oMProduct.LListStatus = new List<SelectListItem>();
             oMProduct.lSupplier = new MSupplier();
             oMProduct.LListSupplier = new List<SelectListItem>();
+            oMProduct.LListTaxe = new List<MTaxe>();
             oMProduct.LNameProduct = oBProduct.LNameProduct;
             oMProduct.LCdProduct = oBProduct.LCdProduct;
             oMProduct.LUnit.LIdUnit = oBProduct.LUnit.LIdUnit;
@@ -334,6 +335,7 @@ namespace Project_BusinessManagement.Models
             oMProduct.LListSupplier = MSupplier.MListAllSupplier(Bll_Business.Bll_Supplier.bll_GetAllSupplier());
             oMProduct.LListStatus = MStatus.MListAllStatus(Bll_Business.Bll_Status.Bll_getListStatusByIdObject(oBProduct.LObject.LIdObject));
             oMProduct.LListUnit = MUnit.MListAllUnitWithSelect(Bll_Business.Bll_UtilsLib.bll_GetAllUnit());
+            oMProduct.LListTaxe = MTaxe.MListAllTaxesXProduct(Bll_Business.Bll_Taxe.bll_GetListallTaxesXProduct(oBProduct.LIdProduct));
             return oMProduct;
         }
 

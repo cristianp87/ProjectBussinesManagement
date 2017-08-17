@@ -17,6 +17,7 @@ namespace BO_BusinessManagement
         private decimal lValueSupplier;
         private Bo_Object lObject;
         private Bo_Status lStatus;
+        private Bo_Taxe lTaxe;
         private string lCdProduct;
 
         public int LIdProduct
@@ -146,6 +147,19 @@ namespace BO_BusinessManagement
             set
             {
                 lCdProduct = value;
+            }
+        }
+
+        public Bo_Taxe LTaxe
+        {
+            get
+            {
+                return lTaxe;
+            }
+
+            set
+            {
+                lTaxe = value;
             }
         }
     }

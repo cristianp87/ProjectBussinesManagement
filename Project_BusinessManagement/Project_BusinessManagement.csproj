@@ -186,6 +186,7 @@
     <Content Include="Views\InventoryItem\Delete.cshtml" />
     <Content Include="Views\InventoryItem\Details.cshtml" />
     <Content Include="Views\Order\DashBoardOrder.cshtml" />
+    <Content Include="Views\Invoice\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -200,6 +201,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\InventoryController.cs" />
     <Compile Include="Controllers\InventoryItemController.cs" />
+    <Compile Include="Controllers\InvoiceController.cs" />
     <Compile Include="Controllers\OrderController.cs" />
     <Compile Include="Controllers\ProductController.cs" />
     <Compile Include="Global.asax.cs">
@@ -210,6 +212,7 @@
     <Compile Include="Models\MGlobalVariables.cs" />
     <Compile Include="Models\MInventory.cs" />
     <Compile Include="Models\MInventoryItem.cs" />
+    <Compile Include="Models\MInvoice.cs" />
     <Compile Include="Models\MObject.cs" />
     <Compile Include="Models\MOrder.cs" />
     <Compile Include="Models\MOrderItem.cs" />

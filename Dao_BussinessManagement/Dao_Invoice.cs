@@ -64,7 +64,7 @@ namespace Dao_BussinessManagement
             }
         }
 
-        public List<Bo_Invoice> Dao_getInvoiceListAll()
+        public List<Bo_Invoice> Dao_getInvoiceListAll(int pIdCustomer)
         {
             using (SqlConnection lConex = Dao_UtilsLib.Dao_SqlConnection(lConex))
             {
@@ -75,6 +75,7 @@ namespace Dao_BussinessManagement
                     lCommand.CommandTimeout = 30;
                     lCommand.CommandType = CommandType.StoredProcedure;
                     lCommand.Connection = lConex;
+                    lCommand.Parameters.Add(new SqlParameter("IdCustomer", pIdCustomer));
                     var lReader = lCommand.ExecuteReader();
                     List<Bo_Invoice> oListInvoice = new List<Bo_Invoice>();
                     if (lReader.HasRows)
