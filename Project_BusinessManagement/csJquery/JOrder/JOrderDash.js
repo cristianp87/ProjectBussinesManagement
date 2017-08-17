@@ -1,7 +1,28 @@
 ﻿$(document).ready(function () {
+    LoadTypeIdentification();
     LoadInventory();
+    
 });
 var arrayOrderItem = new Array();
+
+$('#btnConfirmCustomer').click(function () {
+    $.ajax({
+        type: 'POST',
+        url: yourApp.Urls.GetCustomer,
+        dataType: 'json',
+        data: { pIdtypeIdentification: $("#ddltypeIdentification").val(), pNoIdentification: $("#txtDocCustomer").val() },
+        success: function (customer) {
+            if (customer.Success) {
+                ajaxItem(product.Content)
+            } else {
+                alert('No se pudo Ingresar el producto.' + product.Message);
+            }
+        },
+        error: function (ex) {
+            alert('No se pudo Ingresar el producto.' + ex);
+        }
+    });
+});
 
 $('#btnItem').click(function () {
     if ($('#ddlInventory').val() != "0") {
@@ -34,7 +55,7 @@ $('#btnCreateOrder').click(function () {
             type: 'POST',
             url: yourApp.Urls.CreateOrderItem,
             dataType: 'json',
-            data: { pListItems: JSON.stringify(arrayOrderItem) },
+            data: { pListItems: arrayOrderItem },
             success: function (product) { ajaxItem(product) },
             error: function (ex) {
                 alert('No se pudo Ingresar el pedido.' + ex);
@@ -57,6 +78,18 @@ function LoadInventory(){
     });   
 }
 
+function LoadTypeIdentification(){
+    $.ajax({  
+        type: 'POST',  
+        url: yourApp.Urls.GetListTypeIdentification,
+        dataType: 'json',   
+        success: function (listTypeIdentification) { ajaxTypeIdentification(listTypeIdentification) },
+        error: function (ex) {  
+            alert('No se pudo cargar la lista.' + ex);  
+        }  
+    });   
+}
+
 function ajaxInventory(inventorys) {
     // states contains the JSON formatted list  
     // of states passed from the controller  
@@ -67,10 +100,20 @@ function ajaxInventory(inventorys) {
         });
 }
 
+function ajaxTypeIdentification(pListTypeIdentification) {
+    // states contains the JSON formatted list  
+    // of states passed from the controller  
+    $.each(pListTypeIdentification, function (i, typeIdentification) {
+        $("#ddlTypeIdentification").append('<option value="'
+    + typeIdentification.Value + '">'
+    + typeIdentification.Text + '</option>');
+        });
+}
+
 function OrderItemAll() {
     var lListOrderItem = new Array();
     $("#tableOrder tbody tr").each(function (index) {
-        var lCodProduct, lsumTaxeprd, lValueProduct, lTotal, lCantProduct;
+        var lCodProduct, lTotal, lCantProduct;
         $(this).children("td").each(function (index2) {
             switch (index2) {
                 case 1:
@@ -93,14 +136,83 @@ function addOrderItemArray(pOrderItem) {
 }
 
 function MOrderItem(lCodProduct, lCantProduct, lTotal) {
+    this.LIdOrderItem = 0;
     this.LProduct = new MProduct(lCodProduct);
+    this.LCreationDate = new Date();
+    this.LStatus = null;
+    this.LObject = null;
+    this.LOrder = null;   
+    this.LValueProduct = parseFloat(0);
+    this.LValueSupplier = parseFloat(0);
+    this.LValueTaxes = parseFloat(0);
+    this.LValueDesc = parseFloat(0);
+    this.LMessageException = "";
     this.LQty = parseFloat(0);
     this.LValueTotal = parseFloat(0);
     this.LQty = lCantProduct;
     this.LValueTotal = lTotal;
 }
 
+function MOrder(lCodProduct, lCantProduct, lTotal) {
+    this.LIdOrder = 0;
+    this.LCreationDate = new Date();
+    this.LStatus = null;
+    this.LObject = null;
+    this.LInventory = null;
+    this.LCustomer = new MCustomer(0);
+    this.LMessageException;
+    this.lListOrderItem;
+}
+
+function MCustomer(lIdcustomer) {
+    this.LIdCustomer = 0;
+    this.LNameCustomer = "";
+    this.LLastNameCustomer = "";
+    this.LCreationDate = new Date();
+    this.LTypeIdentification = null;
+    this.LNoIdentification = "";
+    this.LStatus = null;
+    this.LObject = null;
+    this.LListTypeIdentification = null;
+    this.LListStatus = null;
+    this.LMessageException = "";
+    this.LModificationDate = new Date();
+    this.LIdCustomer = lIdcustomer;
+}
+
+function MInventory(lIdInventory) {
+    this.LIdInventory = 0;
+    this.LNameInventory = "";
+    this.LCreationDate = new Date();
+    this.LStatus = null;
+    this.LObject = null;
+    this.LListInventoryItem = null;
+    this.LListStatus = null;
+    this.LMessageException = "";
+    this.LIdInventory = lIdInventory;
+}
+
+
+
+
 function MProduct(lCodProduct) {
+    this.LIdProduct = 0;
+    this.LNameProduct = "";
+    this.LCdProduct = "";
+    this.LCreationDate = new Date();
+    this.LUnit = null;
+    this.LValue = parseFloat(0);
+    this.LSupplier;
+    this.LValueSupplier;
+    this.LObject = null;
+    this.LStatus = null;
+    this.LListStatus = null;
+    this.LListUnit = null;
+    this.LListSupplier = null;
+    this.LMessageException = null;
+    this.LListSelectTaxe = null;
+    this.LListTaxe = null;
+    this.LTaxe = null;
     this.LCdProduct = lCodProduct;
 }
 

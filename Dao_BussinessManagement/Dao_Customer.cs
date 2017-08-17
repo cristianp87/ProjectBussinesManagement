@@ -68,6 +68,59 @@ namespace Dao_BussinessManagement
             }
         }
 
+        public Bo_Customer Dao_getCustomerByDocument(string PNoIdentification, int PIdTypeIdentification)
+        {
+            using (SqlConnection lConex = Dao_UtilsLib.Dao_SqlConnection(lConex))
+            {
+                try
+                {
+                    SqlCommand lCommand = new SqlCommand();
+                    lCommand.CommandText = "spr_GetCustomerByIdentification";
+                    lCommand.CommandTimeout = 30;
+                    lCommand.CommandType = CommandType.StoredProcedure;
+                    lCommand.Connection = lConex;
+                    lCommand.Parameters.Add(new SqlParameter("@NoIdentification", PNoIdentification));
+                    lCommand.Parameters.Add(new SqlParameter("@IdTypeIdentification", PIdTypeIdentification));
+                    var lReader = lCommand.ExecuteReader();
+                    Bo_Customer oCustomer = new Bo_Customer();
+                    if (lReader.HasRows)
+                    {
+                        while (lReader.Read())
+                        {
+                            oCustomer.LStatus = new Bo_Status();
+                            oCustomer.LObject = new Bo_Object();
+                            oCustomer.LTypeIdentification = new Bo_TypeIdentification();
+                            oCustomer.LIdCustomer = Convert.ToInt32(lReader["IdCustomer"].ToString());
+                            oCustomer.LTypeIdentification.LIdTypeIdentification = Convert.ToInt32(lReader["IdTypeIdentification"].ToString());
+                            oCustomer.LNoIdentification = lReader["NoIdentification"].ToString();
+                            oCustomer.LNameCustomer = lReader["NameCustomer"].ToString();
+                            oCustomer.LLastNameCustomer = lReader["LastNameCustomer"].ToString();
+                            oCustomer.LCreationDate = Convert.ToDateTime(lReader["CreationDate"].ToString());
+                            oCustomer.LModificationDate = Convert.ToDateTime(lReader["ModificationDate"].ToString());
+                            oCustomer.LStatus.LIdStatus = lReader["IdStatus"].ToString();
+                            oCustomer.LObject.LIdObject = Convert.ToInt32(lReader["IdObject"].ToString());
+
+                        }
+
+
+                    }
+                    Dao_UtilsLib.Dao_CloseSqlconnection(lConex);
+                    return oCustomer;
+                }
+                catch (Exception e)
+                {
+                    Bo_Customer oCustomer = new Bo_Customer();
+                    oCustomer.LException = e.Message;
+                    if (e.InnerException != null)
+                        oCustomer.LInnerException = e.InnerException.ToString();
+                    oCustomer.LMessageDao = "Hubo un problema en la consulta, contacte al administrador.";
+                    Dao_UtilsLib.Dao_CloseSqlconnection(lConex);
+                    return oCustomer;
+                }
+
+            }
+        }
+
         public List<Bo_Customer> Dao_getListAllCustomer()
         {
             using (SqlConnection lConex = Dao_UtilsLib.Dao_SqlConnection(lConex))

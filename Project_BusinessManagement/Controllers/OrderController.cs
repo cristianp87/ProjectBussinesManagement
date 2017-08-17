@@ -23,11 +23,28 @@ namespace Project_BusinessManagement.Controllers
         }
 
         [HttpPost]
+        public JsonResult GetCustomer(int pIdtypeIdentification, string pNoIdentification)
+        {
+
+            Bo_Customer lCustomer= new Bo_Customer();
+            lCustomer = Bll_Customer.bll_GetCustomerByIdentification(pNoIdentification, pIdtypeIdentification);
+            return Json(Models.MCustomer.MCustomerById(lCustomer));
+        }
+
+        [HttpPost]
         public JsonResult GetInventory()
         {
             List<Bo_Inventory> lListBoInventory = new List<Bo_Inventory>();
             lListBoInventory = Bll_Inventory.bll_GetAllInventory();
             return Json(Models.MInventory.MListInventory(lListBoInventory));
+        }
+
+        [HttpPost]
+        public JsonResult GetTypeIdentification()
+        {
+            List<Bo_TypeIdentification> lListTypeIdentification = new List<Bo_TypeIdentification>();
+            lListTypeIdentification = Bll_TypeIdentification.bll_getListTypeIdentification();
+            return Json(Models.MTypeIdentification.MListAllTypeIdentification(lListTypeIdentification));
         }
 
         [HttpPost]
@@ -72,7 +89,7 @@ namespace Project_BusinessManagement.Controllers
 
         // POST: Order/Create
         [HttpPost]
-        public JsonResult Create(List<Models.MOrderItem> pListItems)
+        public JsonResult Create(List<Models.MOrderItem> pListItems, Models.MOrder pOrder)
         {
             try
             {

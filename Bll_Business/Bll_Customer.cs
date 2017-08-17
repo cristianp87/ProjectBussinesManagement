@@ -16,6 +16,12 @@ namespace Bll_Business
             return oDaoCustomer.Dao_getCustomerById(pIdCustomer);
         }
 
+        public static Bo_Customer bll_GetCustomerByIdentification(string pNoIdentification, int pIdTypeIdentification)
+        {
+            Dao_Customer oDaoCustomer = new Dao_Customer();
+            return oDaoCustomer.Dao_getCustomerByDocument(pNoIdentification, pIdTypeIdentification);
+        }
+
         public static List<Bo_Customer> bll_GetAllCustomer()
         {
             Dao_Customer oDaoCustomer = new Dao_Customer();
