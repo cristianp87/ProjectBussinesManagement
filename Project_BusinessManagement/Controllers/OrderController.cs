@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using Bll_Business;
 using BO_BusinessManagement;
+using Project_BusinessManagement.Models;
 
 namespace Project_BusinessManagement.Controllers
 {
@@ -28,7 +29,18 @@ namespace Project_BusinessManagement.Controllers
 
             Bo_Customer lCustomer= new Bo_Customer();
             lCustomer = Bll_Customer.bll_GetCustomerByIdentification(pNoIdentification, pIdtypeIdentification);
-            return Json(Models.MCustomer.MCustomerById(lCustomer));
+            if (lCustomer.LException != null)
+            {
+
+                return Json(new { Success = false, Message = "ErrorDao! " + lCustomer.LMessageDao + " " + lCustomer.LException });
+            }else if (lCustomer.LNameCustomer != null)
+            {
+                return Json(new { Success = true, Content = lCustomer });
+            }
+            else
+            {
+                return Json(new { Success = false, Message = "El cliente no existe en la base de datos." });
+            }
         }
 
         [HttpPost]
@@ -89,17 +101,16 @@ namespace Project_BusinessManagement.Controllers
 
         // POST: Order/Create
         [HttpPost]
-        public JsonResult Create(List<Models.MOrderItem> pListItems, Models.MOrder pOrder)
+        public JsonResult Create(Bo_Order pOrder)
         {
             try
             {
-                var o = 1;
-
-                return Json("Index");
+                var result = Bll_Order.bll_InsertOrder(pOrder.LInventory.LIdInventory, pOrder.LCustomer.LIdCustomer, Bll_UtilsLib.bll_GetObjectByName(MGlobalVariables.LNameObjectOrder).LIdObject, "APPRO", pOrder.LListOrderItem, Bll_UtilsLib.bll_GetObjectByName(MGlobalVariables.LNameObjectOrderItem).LIdObject, "APPRO");
+                return Json(new { Success = true, Content = result});
             }
-            catch
+            catch (Exception e)
             {
-                return Json("d");
+                return Json(new { Success = false, Message = "Error! " + e.Message });
             }
         }
 

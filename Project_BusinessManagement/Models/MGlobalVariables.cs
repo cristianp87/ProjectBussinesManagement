@@ -13,6 +13,8 @@ namespace Project_BusinessManagement.Models
         private static string lNameObjectProduct;
         private static string lNameObjectInventory;
         private static string lNameObjectInventoryItem;
+        private static string lNameObjectOrder;
+        private static string lNameObjectOrderItem;
 
         public static string LNameObjectSupplier
         {
@@ -56,6 +58,24 @@ namespace Project_BusinessManagement.Models
             {
                 lNameObjectInventoryItem = ConfigurationManager.AppSettings["objectInvenItem"].ToString();
                 return lNameObjectInventoryItem;
+            }
+        }
+
+        public static string LNameObjectOrder
+        {
+            get
+            {
+                lNameObjectOrder = ConfigurationManager.AppSettings["objectOrder"].ToString();
+                return lNameObjectOrder;
+            }
+        }
+
+        public static string LNameObjectOrderItem
+        {
+            get
+            {
+                lNameObjectOrderItem = ConfigurationManager.AppSettings["objectOrderItem"].ToString();
+                return lNameObjectOrderItem;
             }
         }
     }

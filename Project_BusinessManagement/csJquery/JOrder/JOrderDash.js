@@ -10,19 +10,32 @@ $('#btnConfirmCustomer').click(function () {
         type: 'POST',
         url: yourApp.Urls.GetCustomer,
         dataType: 'json',
-        data: { pIdtypeIdentification: $("#ddltypeIdentification").val(), pNoIdentification: $("#txtDocCustomer").val() },
+        data: { pIdtypeIdentification: $('#ddlTypeIdentification').val(), pNoIdentification: $('#txtDocCustomer').val() },
         success: function (customer) {
-            if (customer.Success) {
-                ajaxItem(product.Content)
-            } else {
-                alert('No se pudo Ingresar el producto.' + product.Message);
-            }
+                changeIcon(customer);
         },
         error: function (ex) {
-            alert('No se pudo Ingresar el producto.' + ex);
+            alert('No se pudo Ingresar el producto error.' + ex);
         }
     });
 });
+
+function changeIcon(customer)
+{
+    if (customer.Success) {
+        $('#linkCustomer > span').removeClass('glyphicon glyphicon-remove');
+        $('#linkCustomer > span').removeClass('glyphicon glyphicon-ok');
+        $('#linkCustomer > span').addClass('glyphicon glyphicon-ok');
+        $('#linkCustomer').href = '#';
+        $('#hdnIdcustomer').val(customer.Content.LIdCustomer);
+
+    } else {
+        $('#linkCustomer > span').removeClass('glyphicon glyphicon-remove');
+        $('#linkCustomer > span').removeClass('glyphicon glyphicon-ok')
+        $('#linkCustomer > span').addClass('glyphicon glyphicon-remove');
+        $('#linkCustomer').prop("href", yourApp.Urls.GoCustomer);
+    }
+}
 
 $('#btnItem').click(function () {
     if ($('#ddlInventory').val() != "0") {
@@ -55,7 +68,7 @@ $('#btnCreateOrder').click(function () {
             type: 'POST',
             url: yourApp.Urls.CreateOrderItem,
             dataType: 'json',
-            data: { pListItems: arrayOrderItem },
+            data: { pOrder: processOrder($('#hdnIdcustomer').val(), $('#ddlInventory').val()) },
             success: function (product) { ajaxItem(product) },
             error: function (ex) {
                 alert('No se pudo Ingresar el pedido.' + ex);
@@ -101,8 +114,6 @@ function ajaxInventory(inventorys) {
 }
 
 function ajaxTypeIdentification(pListTypeIdentification) {
-    // states contains the JSON formatted list  
-    // of states passed from the controller  
     $.each(pListTypeIdentification, function (i, typeIdentification) {
         $("#ddlTypeIdentification").append('<option value="'
     + typeIdentification.Value + '">'
@@ -113,21 +124,27 @@ function ajaxTypeIdentification(pListTypeIdentification) {
 function OrderItemAll() {
     var lListOrderItem = new Array();
     $("#tableOrder tbody tr").each(function (index) {
-        var lCodProduct, lTotal, lCantProduct;
+        var lCodProduct, lTotal, lCantProduct, lValueProduct, lValueTaxes;
         $(this).children("td").each(function (index2) {
             switch (index2) {
                 case 1:
                     lCodProduct = $(this).text();
                     break;
+                case 3:
+                    lValueProduct = parseFloat($(this).text());
+                    break;
                 case 4:
                     lCantProduct = parseFloat($(this).text());
+                    break;
+                case 1:
+                    lValueTaxes = parseFloat($(this).text());
                     break;
                 case 6:
                     lTotal = parseFloat($(this).text());
                     break;
             }
         });
-        addOrderItemArray(new MOrderItem(lCodProduct, lCantProduct, lTotal));
+        addOrderItemArray(new MOrderItem(lCodProduct, lValueProduct, 0, lValueTaxes, 0, lCantProduct, lTotal));
     });
 }
 
@@ -135,12 +152,16 @@ function addOrderItemArray(pOrderItem) {
     arrayOrderItem.push(pOrderItem);
 }
 
-function MOrderItem(lCodProduct, lCantProduct, lTotal) {
+function processOrder(pIdCustomer, pIdInventory) {
+    return new MOrder(arrayOrderItem, pIdCustomer, pIdInventory)
+}
+
+function MOrderItem(pCodProduct,pValue,pValueSupplier, pValueTaxes, pValueDesc, pCantProduct, pTotal) {
     this.LIdOrderItem = 0;
-    this.LProduct = new MProduct(lCodProduct);
+    this.LProduct = new MProduct(pCodProduct);
     this.LCreationDate = new Date();
     this.LStatus = null;
-    this.LObject = null;
+    this.LObject = 300;
     this.LOrder = null;   
     this.LValueProduct = parseFloat(0);
     this.LValueSupplier = parseFloat(0);
@@ -149,19 +170,23 @@ function MOrderItem(lCodProduct, lCantProduct, lTotal) {
     this.LMessageException = "";
     this.LQty = parseFloat(0);
     this.LValueTotal = parseFloat(0);
-    this.LQty = lCantProduct;
-    this.LValueTotal = lTotal;
+    this.LValueProduct = pValue;
+    this.LValueSupplier = pValueSupplier;
+    this.LValueTaxes = pValueTaxes;
+    this.LValueDesc = pValueDesc;
+    this.LQty = pCantProduct;
+    this.LValueTotal = pTotal;
 }
 
-function MOrder(lCodProduct, lCantProduct, lTotal) {
+function MOrder(pListOrderItem, pIdCustomer, pIdInventory) {
     this.LIdOrder = 0;
     this.LCreationDate = new Date();
     this.LStatus = null;
     this.LObject = null;
-    this.LInventory = null;
-    this.LCustomer = new MCustomer(0);
+    this.LInventory = new MInventory(pIdInventory);
+    this.LCustomer = new MCustomer(pIdCustomer);
     this.LMessageException;
-    this.lListOrderItem;
+    this.lListOrderItem = pListOrderItem;
 }
 
 function MCustomer(lIdcustomer) {

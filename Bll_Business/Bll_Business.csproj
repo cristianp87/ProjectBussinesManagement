@@ -44,6 +44,8 @@
     <Compile Include="Bll_InventoryItem.cs" />
     <Compile Include="Bll_Invoice.cs" />
     <Compile Include="Bll_InvoiceItem.cs" />
+    <Compile Include="Bll_Order.cs" />
+    <Compile Include="Bll_OrderItem.cs" />
     <Compile Include="Bll_Product.cs" />
     <Compile Include="Bll_Status.cs" />
     <Compile Include="Bll_Supplier.cs" />

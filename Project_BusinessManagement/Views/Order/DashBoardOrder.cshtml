@@ -14,8 +14,10 @@
          yourApp.Urls.getAllInventory = '@Url.Action("GetInventory")';
          yourApp.Urls.getItem = '@Url.Action("GetOrderItem")';
          yourApp.Urls.CreateOrderItem = '@Url.Action("Create")';
-        yourApp.Urls.GetListTypeIdentification = '@Url.Action("GetTypeIdentification")'
-        yourApp.Urls.GetCustomer = '@Url.Action("GetCustomer")'
+        yourApp.Urls.GetListTypeIdentification = '@Url.Action("GetTypeIdentification")';
+        yourApp.Urls.GetCustomer = '@Url.Action("GetCustomer")';
+        yourApp.Urls.GoCustomer = '@Url.Action("Create","Customer")'
+
     </script>
     <script src="~/csJquery/JOrder/JOrderDash.js"></script>
 }
@@ -25,22 +27,24 @@
 
 <div class="form-horizontal">
     <div class="form-group">
-        <label id="lblTypeIdentification" name="lblTypeIdentification" class="control-label col-md-2"> Tipo de Identificacion</label>
-        <div class="col-md-10">
+        <label id="lblTypeIdentification" name="lblTypeIdentification" class="control-label col-md-3">Tipo Identificacion</label>
+        <div class="col-md-9">
             <select id="ddlTypeIdentification" class="form-control" name="ddlTypeIdentification">
                 <option value="0">Seleccione...</option>
             </select>
         </div>
         <label id="lblDocument" name="lblDocument" class="control-label col-md-2"> Cliente</label>
         <div class="col-md-8">
-            <input type="text" id="txtDocCustomer" class="form-control" name="txtDocCustomer" /> 
+            <input type="text" id="txtDocCustomer" class="form-control" name="txtDocCustomer" />
         </div>
         <div class="col-md-2">
-            <a id="linkCustomer" href="#"> <span id="changeIcon" class="glyphicon glyphicon-remove-circle" ></span></a>
-            <img id="imgVerification" name="imgVerification" />
+            <a id="linkCustomer" href="#"> <span id="changeIcon"></span></a>
         </div>
-        <input type="button" id="btnConfirmCustomer" name="btnConfirmCustomer"  class="btn btn-block col-md-4" value="Confirmar Cliente" />
-    </div>
+        <div class="col-md-12">
+            <input type="button" id="btnConfirmCustomer" name="btnConfirmCustomer" value="Confirmar Cliente" />
+        </div>
+
+        </div>
     <div class="form-group">
         <label id="lblInventory" name="lblInventory" class="control-label col-md-2" > Inventario</label>
         <div class="col-md-10">
@@ -99,3 +103,5 @@
     </table>
 
 <input type="button" id="btnCreateOrder" name="btnCreateOrder" class="btn btn-success" value="Agregar Pedido" />
+<input type="hidden" id="hdnIdcustomer" name="hdnIdcustomer" value="0" />
+<input type="hidden" id="hdnIdProduct" name="hdnIdcustomer" value="0" />

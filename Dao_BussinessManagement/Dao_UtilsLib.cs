@@ -83,6 +83,50 @@ namespace Dao_BussinessManagement
             return lResult;
         }
 
+        public static string Dao_executeSqlScalarWithProcedement(List<SqlParameter> lListParameters, string pNameTransaction, string pNameProcedure)
+        {
+
+            string lResult = null;
+            using (SqlConnection lConex = Dao_UtilsLib.Dao_SqlConnection(lConex))
+            {
+                using (SqlTransaction lTran = lConex.BeginTransaction(pNameTransaction))
+                {
+                    SqlCommand lCommand = lConex.CreateCommand();
+                    lCommand.Connection = lConex;
+                    lCommand.CommandType = CommandType.StoredProcedure;
+                    lCommand.Transaction = lTran;
+                    try
+                    {
+                        lCommand.CommandType = CommandType.StoredProcedure;
+                        lCommand.CommandText = pNameProcedure;
+                        lCommand.CommandTimeout = 30;
+
+                        if (lListParameters.Count > 0)
+                        {
+                            lListParameters.ForEach(x => { lCommand.Parameters.Add(x); });
+                        }
+                        lResult = lCommand.ExecuteScalar().ToString();
+                        lTran.Commit();
+                    }
+                    catch (Exception ex)
+                    {
+                        lResult = "Commit Exception Type: " + ex.GetType() + "  Message: " + ex.Message;
+
+                        try
+                        {
+                            lTran.Rollback();
+                        }
+                        catch (Exception ex2)
+                        {
+                            lResult += " Rollback Exception Type: " + ex2.GetType() + "  Message: " + ex2.Message;
+                        }
+                    }
+                    Dao_UtilsLib.Dao_CloseSqlconnection(lConex);
+                }
+            }
+            return lResult;
+        }
+
         public static Bo_Object DaoUtilsLib_getObject(string lNameObject){
             using (SqlConnection lConex = Dao_SqlConnection(lConex))
             {
