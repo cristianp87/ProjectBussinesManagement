@@ -18,8 +18,9 @@ namespace Dao_BussinessManagement
             Dao_UtilsLib.dao_Addparameters(lListParam, SqlDbType.VarChar, "@CodProduct", pOrderItem.LProduct.LCdProduct.ToString());
             Dao_UtilsLib.dao_Addparameters(lListParam, SqlDbType.Int, "@IdOrder", pOrderItem.LOrder.LIdOrder.ToString());
             Dao_UtilsLib.dao_Addparameters(lListParam, SqlDbType.Decimal, "@ValueProduct", pOrderItem.LValueProduct.ToString());
-            Dao_UtilsLib.dao_Addparameters(lListParam, SqlDbType.Decimal, "@ValueSupplier", pOrderItem.LValueTaxes.ToString());
-            Dao_UtilsLib.dao_Addparameters(lListParam, SqlDbType.Decimal, "@ValueTaxesProduct", pOrderItem.LValueSupplier.ToString());
+            Dao_UtilsLib.dao_Addparameters(lListParam, SqlDbType.Decimal, "@Qty", pOrderItem.LQty.ToString());
+            Dao_UtilsLib.dao_Addparameters(lListParam, SqlDbType.Decimal, "@ValueSupplier", pOrderItem.LValueSupplier.ToString());
+            Dao_UtilsLib.dao_Addparameters(lListParam, SqlDbType.Decimal, "@ValueTaxesProduct", pOrderItem.LValueTaxes.ToString());
             Dao_UtilsLib.dao_Addparameters(lListParam, SqlDbType.Decimal, "@ValueDescProduct", pOrderItem.LValueDesc.ToString());
             Dao_UtilsLib.dao_Addparameters(lListParam, SqlDbType.Decimal, "@ValueTotalProduct", pOrderItem.LValueTotal.ToString());
             Dao_UtilsLib.dao_Addparameters(lListParam, SqlDbType.VarChar, "@IdStatus", pOrderItem.LStatus.LIdStatus.ToString());

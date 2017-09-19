@@ -57,12 +57,33 @@ namespace Bll_Business
             return oDaoInventoryItem.Dao_UpdateInventoryItem(oInventoryItem);
         }
 
+
         public static string bll_DeleteInventoryItem(int pIdInventoryItem)
         {
             Bo_InventoryItem oInventoryItem = new Bo_InventoryItem();
             oInventoryItem.LIdInventoryItem = pIdInventoryItem;
             Dao_InventoryItem oDaoInventoryItem = new Dao_InventoryItem();
             return oDaoInventoryItem.Dao_DeleteInventoryItem(oInventoryItem);
+        }
+
+
+        public static string bll_SubstractInventoryItem(Bo_OrderItem pOrderItem, int lIdInventory)
+        {
+            Bo_InventoryItem lInventoryItem = new Bo_InventoryItem();
+            lInventoryItem.LProduct = new Bo_Product();
+            lInventoryItem.LInventory = new Bo_Inventory();
+            lInventoryItem.LQtySellable = pOrderItem.LQty;
+            lInventoryItem.LProduct.LCdProduct = pOrderItem.LProduct.LCdProduct;
+            lInventoryItem.LInventory.LIdInventory = lIdInventory;
+            Dao_InventoryItem lDaoInventoryItem = new Dao_InventoryItem();
+            if(lDaoInventoryItem.Dao_SubstractInventoryItem(lInventoryItem) == "1")
+            {
+                return "";
+            }
+            else
+            {
+                return "No hay mas del producto con el codigo" + pOrderItem.LProduct.LCdProduct + " en el inventario";
+            }
         }
     }
 }

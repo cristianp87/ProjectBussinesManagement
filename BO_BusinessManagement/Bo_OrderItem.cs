@@ -19,6 +19,7 @@ namespace BO_BusinessManagement
         private decimal lValueTaxes;
         private decimal lValueDesc;
         private decimal lValueTotal;
+        private decimal lQty;
 
         public int LIdOrderItem
         {
@@ -152,7 +153,22 @@ namespace BO_BusinessManagement
 
         public decimal LValueTotal
         {
-            get { return ((LValueProduct - LValueDesc) + LValueTaxes); }
+            get {
+                lValueTotal = ((LValueProduct - LValueDesc) + LValueTaxes);
+                return lValueTotal; }
+        }
+
+        public decimal LQty
+        {
+            get
+            {
+                return lQty;
+            }
+
+            set
+            {
+                lQty = value;
+            }
         }
     }
 }

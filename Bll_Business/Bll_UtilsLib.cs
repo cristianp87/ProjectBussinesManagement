@@ -19,5 +19,11 @@ namespace Bll_Business
         {
             return Dao_UtilsLib.DaoUtilsLib_getAllUnit();
         }
+
+        public static Bo_Status bll_getStatusApproByObject(int pIdObject)
+        {
+            return Dao_UtilsLib.DaoUtilsLib_getStatusAppro(pIdObject);
+
+        }
     }
 }

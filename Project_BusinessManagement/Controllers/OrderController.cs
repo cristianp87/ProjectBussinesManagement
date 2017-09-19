@@ -106,7 +106,15 @@ namespace Project_BusinessManagement.Controllers
             try
             {
                 var result = Bll_Order.bll_InsertOrder(pOrder.LInventory.LIdInventory, pOrder.LCustomer.LIdCustomer, Bll_UtilsLib.bll_GetObjectByName(MGlobalVariables.LNameObjectOrder).LIdObject, "APPRO", pOrder.LListOrderItem, Bll_UtilsLib.bll_GetObjectByName(MGlobalVariables.LNameObjectOrderItem).LIdObject, "APPRO");
-                return Json(new { Success = true, Content = result});
+                if(string.IsNullOrEmpty(result))
+                {
+                    return Json(new { Success = true, Content = result });
+                }
+                else
+                {
+                    return Json(new { Success = false, Content = result });
+                }
+                
             }
             catch (Exception e)
             {

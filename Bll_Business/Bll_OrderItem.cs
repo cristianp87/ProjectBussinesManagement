@@ -10,7 +10,7 @@ namespace Bll_Business
 {
     class Bll_OrderItem
     {
-        public static string bll_InsertListOrderItem(int pIdOrder, List<Bo_OrderItem> pListOrderItem)
+        public static string bll_InsertListOrderItem(int pIdOrder,int pIdInventory, List<Bo_OrderItem> pListOrderItem)
         {
             var lObject = Bll_UtilsLib.bll_GetObjectByName("ORDITEM");
             string lResult = "";
@@ -21,18 +21,26 @@ namespace Bll_Business
                 lOrderItem.LStatus = new Bo_Status();
                 lOrderItem.LProduct = new Bo_Product();
                 lOrderItem.LOrder = new Bo_Order();
-                lOrderItem.LProduct.LIdProduct = x.LProduct.LIdProduct;
+                lOrderItem.LProduct.LCdProduct = x.LProduct.LCdProduct;
                 lOrderItem.LOrder.LIdOrder = pIdOrder;
                 lOrderItem.LValueProduct = x.LValueProduct;
                 lOrderItem.LValueSupplier = x.LValueSupplier;
                 lOrderItem.LValueTaxes = x.LValueTaxes;
                 lOrderItem.LValueDesc = x.LValueDesc;
+                lOrderItem.LQty = x.LQty;
                 lOrderItem.LObject.LIdObject = lObject.LIdObject;
-                lOrderItem.LStatus.LIdStatus = "APPRO";
-                Dao_OrderItem lDaoOrderItem = new Dao_OrderItem();
-                lResult = lDaoOrderItem.Dao_InsertOrderItem(lOrderItem);
+                lOrderItem.LStatus.LIdStatus = Bll_UtilsLib.bll_getStatusApproByObject(lObject.LIdObject).LIdStatus;
+                lResult = Bll_InventoryItem.bll_SubstractInventoryItem(lOrderItem, pIdInventory);
+                if (string.IsNullOrEmpty(lResult))
+                {
+                    Dao_OrderItem lDaoOrderItem = new Dao_OrderItem();
+                    lResult = lDaoOrderItem.Dao_InsertOrderItem(lOrderItem);
+                }
+                
             });
-            return "";            
+            return lResult;            
         }
+
+
     }
 }

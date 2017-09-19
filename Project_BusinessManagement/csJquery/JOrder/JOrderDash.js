@@ -4,25 +4,28 @@
     
 });
 var arrayOrderItem = new Array();
+var lTotalizador = parseFloat(0);
 
 $('#btnConfirmCustomer').click(function () {
+    hideException();
     $.ajax({
         type: 'POST',
         url: yourApp.Urls.GetCustomer,
         dataType: 'json',
         data: { pIdtypeIdentification: $('#ddlTypeIdentification').val(), pNoIdentification: $('#txtDocCustomer').val() },
-        success: function (customer) {
-                changeIcon(customer);
+        success: function (customer) {           
+            processOrderDash(customer);
         },
         error: function (ex) {
-            alert('No se pudo Ingresar el producto error.' + ex);
+            showException('No se pudo Ingresar el producto error.' + ex);
         }
     });
 });
 
-function changeIcon(customer)
+function processOrderDash(customer)
 {
     if (customer.Success) {
+        $('#OrderDash').removeClass('hide');
         $('#linkCustomer > span').removeClass('glyphicon glyphicon-remove');
         $('#linkCustomer > span').removeClass('glyphicon glyphicon-ok');
         $('#linkCustomer > span').addClass('glyphicon glyphicon-ok');
@@ -30,38 +33,55 @@ function changeIcon(customer)
         $('#hdnIdcustomer').val(customer.Content.LIdCustomer);
 
     } else {
-        $('#linkCustomer > span').removeClass('glyphicon glyphicon-remove');
+        $('#OrderDash').removeClass('hide');
+        $('#OrderDash').addClass('hide');
+        $('#linkCustomer > span').removeClass('glyphicon glyphicon-remove');       
         $('#linkCustomer > span').removeClass('glyphicon glyphicon-ok')
         $('#linkCustomer > span').addClass('glyphicon glyphicon-remove');
         $('#linkCustomer').prop("href", yourApp.Urls.GoCustomer);
     }
 }
 
+
+
 $('#btnItem').click(function () {
+    hideException();
     if ($('#ddlInventory').val() != "0") {
-        $.ajax({
-            type: 'POST',
-            url: yourApp.Urls.getItem,
-            dataType: 'json',
-            data: { idProduct: $("#txtProduct").val() },
-            success: function (product) {
-                if (product.Success) {
-                    ajaxItem(product.Content)
-                } else {
-                    alert('No se pudo Ingresar el producto.' + product.Message);
+        if ($('#txtCntProduct').val() != "") {
+            $.ajax({
+                type: 'POST',
+                url: yourApp.Urls.getItem,
+                dataType: 'json',
+                data: { idProduct: $("#txtProduct").val() },
+                success: function (product) {
+                    if (product.Success) {
+                        ajaxItem(product.Content)
+                    } else {
+                        showException('No se pudo Ingresar el producto.' + product.Message);
+                    }
+                },
+                error: function (ex) {
+                    showException('No se pudo Ingresar el producto.' + ex);
                 }
-            },
-            error: function (ex) {
-                alert('No se pudo Ingresar el producto.' + ex);
-            }
-        });
+            });
+        } else {
+            showException('Debe ingresar la cantidad del producto');
+        }
+       
     } else {
-        alert('El inventario debe seleccionarse');
+        showException('El inventario debe seleccionarse');
     }
 
 });
 
+$('#txtCntProduct').on('input', function (e) {
+    if (!/^[0-9.]*$/i.test(this.value)) {
+        this.value = this.value.replace(/[^0-9.]+/ig, "");
+    }
+});
+
 $('#btnCreateOrder').click(function () {
+    hideException();
     if ($('#ddlInventory').val() != "0") {
         OrderItemAll();
         $.ajax({
@@ -69,13 +89,18 @@ $('#btnCreateOrder').click(function () {
             url: yourApp.Urls.CreateOrderItem,
             dataType: 'json',
             data: { pOrder: processOrder($('#hdnIdcustomer').val(), $('#ddlInventory').val()) },
-            success: function (product) { ajaxItem(product) },
+            success: function (product) {
+                if (product.Success)
+                    showException('Se ha generado el pedido');
+                else
+                    showException('No se pudo Ingresar el pedido.' + product.Content);
+            },
             error: function (ex) {
-                alert('No se pudo Ingresar el pedido.' + ex);
+                showException('No se pudo Ingresar el pedido.' + ex);
             }
         });
     } else {
-        alert('El inventario debe seleccionarse');
+        showException('El inventario debe seleccionarse');
     }
 
 });
@@ -104,8 +129,6 @@ function LoadTypeIdentification(){
 }
 
 function ajaxInventory(inventorys) {
-    // states contains the JSON formatted list  
-    // of states passed from the controller  
     $.each(inventorys, function (i, inventory) {
         $("#ddlInventory").append('<option value="'
     + inventory.LIdInventory + '">'
@@ -122,6 +145,7 @@ function ajaxTypeIdentification(pListTypeIdentification) {
 }
 
 function OrderItemAll() {
+    this.clearVariables();
     var lListOrderItem = new Array();
     $("#tableOrder tbody tr").each(function (index) {
         var lCodProduct, lTotal, lCantProduct, lValueProduct, lValueTaxes;
@@ -131,12 +155,12 @@ function OrderItemAll() {
                     lCodProduct = $(this).text();
                     break;
                 case 3:
-                    lValueProduct = parseFloat($(this).text());
+                    lValueProduct = parseFloat($(this).text());  
                     break;
                 case 4:
                     lCantProduct = parseFloat($(this).text());
                     break;
-                case 1:
+                case 5:
                     lValueTaxes = parseFloat($(this).text());
                     break;
                 case 6:
@@ -262,15 +286,21 @@ function ajaxItem(product) {
                     }
                     break;
                 case 6:
-                    if(updateProduct){
+                    if (updateProduct) {
+                        var lbeforeTotal = parseFloat($(this).text());
                         lTotal = (product.LValue + sumTaxe) * lCantProduct;
                         $(this).text(lTotal);
+                        lTotalizador = (lTotalizador - lbeforeTotal) + lTotal;
+                        $("#lblTotalizador").text("" + lTotalizador + "$");
                     }
                     break;
             }
+            
         });
     });
     if (!updateProduct) {
+        lTotalizador = lTotalizador + (product.LValue + sumTaxe) * $("#txtCntProduct").val();
+        $("#lblTotalizador").text("" + lTotalizador + "$");
         $("#tableOrder").append('<tr id="row' + $("#tableOrder")["0"].rows.length + '"><td>'
         + $("#ddlInventory option:selected").text() + '</td><td>'
         + product.LCdProduct + '</td><td>'
@@ -305,3 +335,18 @@ $(document).on("click",".btnDeleterow",function(){
     var parent = $(this).parents().get(0);
     $(parent).remove();
 });
+
+function clearVariables() {
+    arrayOrderItem = new Array();
+    lTotalizador = 0;
+}
+
+function showException(message) {
+    $('#dvException').removeClass("hide");
+    $('#lblException').text(message);
+}
+
+function hideException() {
+    $('#dvException').addClass("hide");
+    $('#lblException').val("");
+}

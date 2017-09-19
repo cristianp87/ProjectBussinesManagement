@@ -169,6 +169,48 @@ namespace Dao_BussinessManagement
             }
         }
 
+        public static Bo_Status DaoUtilsLib_getStatusAppro(int pIdObject)
+        {
+            using (SqlConnection lConex = Dao_SqlConnection(lConex))
+            {
+
+                try
+                {
+                    SqlCommand lCommand = new SqlCommand();
+                    lCommand.CommandText = "spr_GetStatusApproByIdObject";
+                    lCommand.CommandTimeout = 30;
+                    lCommand.CommandType = CommandType.StoredProcedure;
+                    lCommand.Connection = lConex;
+                    lCommand.Parameters.Add(new SqlParameter("IdObject", pIdObject));
+                    var lReader = lCommand.ExecuteReader();
+                    Bo_Status lStatus = new Bo_Status();
+                    if (lReader.HasRows)
+                    {
+                        while (lReader.Read())
+                        {
+                            lStatus.LIdStatus = lReader["IdStatus"].ToString();
+                            lStatus.LNameStatus = lReader["NameStatus"].ToString();
+                            lStatus.LDsEstado = lReader["DsEstado"].ToString();
+                            lStatus.LFlActive = Convert.ToBoolean(lReader["flActive"].ToString());
+                        }
+                    }
+                    Dao_CloseSqlconnection(lConex);
+                    return lStatus;
+                }
+                catch (Exception e)
+                {
+                    Bo_Status lStatus = new Bo_Status();
+                    lStatus.LException = e.Message;
+                    if (e.InnerException != null)
+                        lStatus.LInnerException = e.InnerException.ToString();
+                    lStatus.LMessageDao = "Hubo un problema en la Consulta del estado, contacte al administrador.";
+                    Dao_CloseSqlconnection(lConex);
+                    return lStatus;
+                }
+
+            }
+        }
+
         public static List<Bo_Unit> DaoUtilsLib_getAllUnit()
         {
             using (SqlConnection lConex = Dao_SqlConnection(lConex))

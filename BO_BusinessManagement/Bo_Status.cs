@@ -9,6 +9,7 @@ namespace BO_BusinessManagement
     public class Bo_Status: Bo_Exception
     {
         private  string lIdStatus;
+        private string lNameStatus;
         private  string lDsEstado;
         private  DateTime lCreationDate;
         private  bool lFlActive;
@@ -62,6 +63,19 @@ namespace BO_BusinessManagement
             set
             {
                 lFlActive = value;
+            }
+        }
+
+        public string LNameStatus
+        {
+            get
+            {
+                return lNameStatus;
+            }
+
+            set
+            {
+                lNameStatus = value;
             }
         }
     }

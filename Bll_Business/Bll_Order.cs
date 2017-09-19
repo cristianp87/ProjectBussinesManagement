@@ -12,7 +12,7 @@ namespace Bll_Business
     {
         public static string bll_InsertOrder(int pIdInventory, int pIdCustomer, int pIdObject, string pIdStatus, List<Bo_OrderItem> pListOrderItem, int pIdObjectOI,string pIdStatusOI)
         {
-            string resul;
+            string resul = "";
             Bo_Order lOrder = new Bo_Order();
             lOrder.LObject = new Bo_Object();
             lOrder.LStatus = new Bo_Status();
@@ -28,9 +28,13 @@ namespace Bll_Business
             string lstrIdOrder = lDaoOrder.Dao_InsertOrder(lOrder);
             if (int.TryParse(lstrIdOrder, out lIdOrder))
             {
-                resul = Bll_OrderItem.bll_InsertListOrderItem(lIdOrder, pListOrderItem);
+                resul = Bll_OrderItem.bll_InsertListOrderItem(lIdOrder,pIdInventory, pListOrderItem);              
             }
-            return "";
+            else
+            {
+                resul = "No se pudo ingresar la orden.";
+            }
+            return resul;
         }
     }
 }
