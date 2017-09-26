@@ -118,8 +118,10 @@ namespace Project_BusinessManagement.Controllers
             pMCustomer.LListTypeIdentification = new List<SelectListItem>();
             pMCustomer.LListTypeIdentification = Models.MTypeIdentification.MListAllTypeIdentification(Bll_TypeIdentification.bll_getListTypeIdentification());
             pMCustomer.LListStatus = new List<SelectListItem>();
-           // pMCustomer.LListStatus = Models.MStatus.MListAllStatus(Bll_Status.Bll_getListStatusByIdObject(pMCustomer.LObject.LIdObject));
         }
+
+
+        
 
         // GET: Customer/Delete/5
         public ActionResult Delete(int id)

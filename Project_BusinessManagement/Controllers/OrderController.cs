@@ -104,11 +104,17 @@ namespace Project_BusinessManagement.Controllers
         public JsonResult Create(Bo_Order pOrder)
         {
             try
-            {
-                var result = Bll_Order.bll_InsertOrder(pOrder.LInventory.LIdInventory, pOrder.LCustomer.LIdCustomer, Bll_UtilsLib.bll_GetObjectByName(MGlobalVariables.LNameObjectOrder).LIdObject, "APPRO", pOrder.LListOrderItem, Bll_UtilsLib.bll_GetObjectByName(MGlobalVariables.LNameObjectOrderItem).LIdObject, "APPRO");
+            {              
+            var result = Bll_Order.bll_InsertOrder(pOrder.LInventory.LIdInventory, pOrder.LCustomer.LIdCustomer, Bll_UtilsLib.bll_GetObjectByName(MGlobalVariables.LNameObjectOrder).LIdObject, Bll_UtilsLib.bll_getStatusApproByObject(Bll_UtilsLib.bll_GetObjectByName(MGlobalVariables.LNameObjectOrder).LIdObject).LIdStatus, pOrder.LListOrderItem, Bll_UtilsLib.bll_GetObjectByName(MGlobalVariables.LNameObjectOrderItem).LIdObject, Bll_UtilsLib.bll_getStatusApproByObject(Bll_UtilsLib.bll_GetObjectByName(MGlobalVariables.LNameObjectOrderItem).LIdObject).LIdStatus);
+            
                 if(string.IsNullOrEmpty(result))
                 {
-                    return Json(new { Success = true, Content = result });
+                    List<Bo_InvoiceItem> lListInvoiceItem = Bll_InvoiceItem.bll_ChangeOrderItemToInvoiceItem(pOrder.LListOrderItem, Bll_UtilsLib.bll_GetObjectByName(MGlobalVariables.LNameObjectInvoiceItem));
+                    result = Bll_Invoice.bll_InsertInvoiceAll("LCD" + pOrder.LInventory.LIdInventory + pOrder.LCustomer.LIdCustomer, pOrder.LCustomer.LIdCustomer, pOrder.LIdOrder, Bll_UtilsLib.bll_GetObjectByName(MGlobalVariables.LNameObjectInvoice).LIdObject, lListInvoiceItem);
+                    if(string.IsNullOrEmpty(result))
+                        return Json(new { Success = true, Content = result });
+                    else
+                        return Json(new { Success = false, Content = result });
                 }
                 else
                 {

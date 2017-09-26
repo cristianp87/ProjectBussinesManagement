@@ -11,6 +11,7 @@ namespace BO_BusinessManagement
         private int lIdInvoice;
         private string lCdInvoice;
         private DateTime lCreationDate;
+        private Bo_Order lOrder;
         private Bo_Object lObject;
         private Bo_Status lStatus;
         private Bo_Customer lCustomer;
@@ -107,6 +108,19 @@ namespace BO_BusinessManagement
             set
             {
                 lListInvoiceItem = value;
+            }
+        }
+
+        public Bo_Order LOrder
+        {
+            get
+            {
+                return lOrder;
+            }
+
+            set
+            {
+                lOrder = value;
             }
         }
     }

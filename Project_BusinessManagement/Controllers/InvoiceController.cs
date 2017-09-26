@@ -21,7 +21,9 @@ namespace Project_BusinessManagement.Controllers
         // GET: Invoice/Details/5
         public ActionResult Details(int id)
         {
-            return View();
+            Bo_Invoice lBoInvoice = new Bo_Invoice();
+            lBoInvoice = Bll_Invoice.bll_GetInvoiceById(id);
+            return View(Models.MInvoice.TrasferToMInvoice(lBoInvoice));
         }
 
         // GET: Invoice/Create

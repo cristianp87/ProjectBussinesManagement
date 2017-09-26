@@ -249,6 +249,7 @@
     <Content Include="Views\InventoryItem\Details.cshtml" />
     <Content Include="Views\Order\DashBoardOrder.cshtml" />
     <Content Include="Views\Invoice\Index.cshtml" />
+    <Content Include="Views\Invoice\Details.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -275,6 +276,7 @@
     <Compile Include="Models\MInventory.cs" />
     <Compile Include="Models\MInventoryItem.cs" />
     <Compile Include="Models\MInvoice.cs" />
+    <Compile Include="Models\MInvoiceItem.cs" />
     <Compile Include="Models\MObject.cs" />
     <Compile Include="Models\MOrder.cs" />
     <Compile Include="Models\MOrderItem.cs" />
@@ -299,6 +301,9 @@
       <Project>{1287fc76-f226-4d34-bbe7-3468934459ee}</Project>
       <Name>BO_BusinessManagement</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

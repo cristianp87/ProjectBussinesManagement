@@ -91,7 +91,7 @@ $('#btnCreateOrder').click(function () {
             data: { pOrder: processOrder($('#hdnIdcustomer').val(), $('#ddlInventory').val()) },
             success: function (product) {
                 if (product.Success)
-                    showException('Se ha generado el pedido');
+                    showSuccess('Se ha generado el pedido');
                 else
                     showException('No se pudo Ingresar el pedido.' + product.Content);
             },
@@ -343,6 +343,13 @@ function clearVariables() {
 
 function showException(message) {
     $('#dvException').removeClass("hide");
+    $('#lblException').removeClass("alert-success").removeClass("alert-danger").addClass("alert-danger");
+    $('#lblException').text(message);
+}
+
+function showSuccess(message) {
+    $('#dvException').removeClass("hide");
+    $('#lblException').removeClass("alert-danger").addClass("alert-success");
     $('#lblException').text(message);
 }
 

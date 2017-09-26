@@ -22,7 +22,29 @@ namespace Bll_Business
             return oDaoInvoice.Dao_getInvoiceListAll(pIdcustomer);
         }
 
-        public static string bll_InsertInvoice(string pCdInvoice, int pIdCustomer, int pIdObject, string pIdStatus)
+        public static string bll_InsertInvoiceAll(string pCdInvoice, int pIdCustomer, int pIdOrder, int pIdObjectInvoice,List<Bo_InvoiceItem> lListInvoiceItem )
+        {
+            string lResult = "";
+            int lIdInvoice = 0;
+            lResult = bll_InsertInvoice(pCdInvoice,pIdCustomer, pIdOrder, pIdObjectInvoice, Bll_UtilsLib.bll_getStatusApproByObject(pIdObjectInvoice).LIdStatus);
+            if(int.TryParse(lResult,out lIdInvoice))
+            {
+                lResult = "";
+                string lStatusItem = Bll_UtilsLib.bll_getStatusApproByObject(lListInvoiceItem[0].LObject.LIdObject).LIdStatus;
+                lListInvoiceItem.ForEach(x =>
+               {
+                   lResult += Bll_InvoiceItem.bll_InsertInvoiceItem(lIdInvoice, x.LQuantity, x.LValueProd, x.LValueSupplier, x.LValueTaxes, x.LValueDesc, x.LProduct.LIdProduct, x.LObject.LIdObject, lStatusItem);
+               });
+            }
+            else
+            {
+                lResult = "No se ingreso la factura al sistema, contacte con el administrador";
+            }
+
+            return lResult;
+        }
+
+        public static string bll_InsertInvoice(string pCdInvoice, int pIdCustomer,int pIdOrder, int pIdObject, string pIdStatus)
         {
             Bo_Invoice oInvoice = new Bo_Invoice();
             oInvoice.LObject = new Bo_Object();
@@ -30,6 +52,7 @@ namespace Bll_Business
             oInvoice.LCustomer = new Bo_Customer();
             oInvoice.LCdInvoice = pCdInvoice;
             oInvoice.LCustomer.LIdCustomer = pIdCustomer;
+            oInvoice.LOrder.LIdOrder = pIdOrder;
             oInvoice.LObject.LIdObject = pIdObject;
             oInvoice.LStatus.LIdStatus = pIdStatus;
             Dao_Invoice oDaoInvoice = new Dao_Invoice();

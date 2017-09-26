@@ -68,5 +68,7 @@ namespace Bll_Business
             Dao_Customer oDaoCustomer = new Dao_Customer();
             return oDaoCustomer.Dao_DeleteInventory(oCustomer);
         }
+
+        
     }
 }

@@ -71,6 +71,12 @@ namespace Dao_BussinessManagement
         {
             Dao_UtilsLib.dao_Addparameters(lListParam, SqlDbType.Int, "@IdInvoice", pInvoiceItem.LIdInvoice.ToString());
             Dao_UtilsLib.dao_Addparameters(lListParam, SqlDbType.Int, "@IdProduct", pInvoiceItem.LProduct.LIdProduct.ToString());
+            Dao_UtilsLib.dao_Addparameters(lListParam, SqlDbType.Decimal, "@Qty", pInvoiceItem.LQuantity.ToString());
+            Dao_UtilsLib.dao_Addparameters(lListParam, SqlDbType.Decimal, "@ValueProduct", pInvoiceItem.LValueProd.ToString());
+            Dao_UtilsLib.dao_Addparameters(lListParam, SqlDbType.Decimal, "@ValueDesc", pInvoiceItem.LValueDesc.ToString());
+            Dao_UtilsLib.dao_Addparameters(lListParam, SqlDbType.Decimal, "@ValueSupplier", pInvoiceItem.LValueSupplier.ToString());
+            Dao_UtilsLib.dao_Addparameters(lListParam, SqlDbType.Decimal, "@ValueTaxes", pInvoiceItem.LValueTaxes.ToString());
+            Dao_UtilsLib.dao_Addparameters(lListParam, SqlDbType.Decimal, "@ValueTotal", pInvoiceItem.LValueTotal.ToString());
             Dao_UtilsLib.dao_Addparameters(lListParam, SqlDbType.VarChar, "@IdStatus", pInvoiceItem.LStatus.LIdStatus);
             Dao_UtilsLib.dao_Addparameters(lListParam, SqlDbType.Int, "@IdObject", pInvoiceItem.LObject.LIdObject.ToString());
             return Dao_UtilsLib.Dao_executeSqlTransactionWithProcedement(lListParam, "LTranInsertInvoiceItem", "spr_CreateInvoiceItem");

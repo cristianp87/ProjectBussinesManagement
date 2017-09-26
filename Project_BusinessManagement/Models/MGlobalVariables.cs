@@ -15,6 +15,8 @@ namespace Project_BusinessManagement.Models
         private static string lNameObjectInventoryItem;
         private static string lNameObjectOrder;
         private static string lNameObjectOrderItem;
+        private static string lNameObjectInvoice;
+        private static string lNameObjectInvoiceItem;
 
         public static string LNameObjectSupplier
         {
@@ -77,6 +79,26 @@ namespace Project_BusinessManagement.Models
                 lNameObjectOrderItem = ConfigurationManager.AppSettings["objectOrderItem"].ToString();
                 return lNameObjectOrderItem;
             }
+        }
+
+        public static string LNameObjectInvoice
+        {
+            get
+            {
+                lNameObjectInvoice = ConfigurationManager.AppSettings["objectInvoice"].ToString();
+                return lNameObjectInvoice;
+            }
+
+        }
+
+        public static string LNameObjectInvoiceItem
+        {
+            get
+            {
+                lNameObjectInvoiceItem = ConfigurationManager.AppSettings["objectInvoiceItem"].ToString();
+                return lNameObjectInvoiceItem;
+            }
+
         }
     }
 }

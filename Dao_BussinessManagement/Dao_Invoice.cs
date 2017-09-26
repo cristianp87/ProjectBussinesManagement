@@ -119,9 +119,10 @@ namespace Dao_BussinessManagement
         {
             Dao_UtilsLib.dao_Addparameters(lListParam, SqlDbType.VarChar, "@CdInvoice", pInvoice.LCdInvoice);
             Dao_UtilsLib.dao_Addparameters(lListParam, SqlDbType.Int, "@IdCustomer", pInvoice.LCustomer.LIdCustomer.ToString());
+            Dao_UtilsLib.dao_Addparameters(lListParam, SqlDbType.Int, "@IdOrder", pInvoice.LOrder.LIdOrder.ToString());
             Dao_UtilsLib.dao_Addparameters(lListParam, SqlDbType.VarChar, "@IdStatus", pInvoice.LStatus.LIdStatus.ToString());
             Dao_UtilsLib.dao_Addparameters(lListParam, SqlDbType.Int, "@IdObject", pInvoice.LObject.LIdObject.ToString());
-            return Dao_UtilsLib.Dao_executeSqlTransactionWithProcedement(lListParam, "LTranInsertInvoice", "spr_CreateInvoice");
+            return Dao_UtilsLib.Dao_executeSqlScalarWithProcedement(lListParam, "LTranInsertInvoice", "spr_CreateInvoice");
         }
 
         public string Dao_UpdateInvoice(Bo_Invoice pInvoice)
