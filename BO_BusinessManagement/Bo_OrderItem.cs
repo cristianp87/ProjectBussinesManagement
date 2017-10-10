@@ -154,7 +154,7 @@ namespace BO_BusinessManagement
         public decimal LValueTotal
         {
             get {
-                lValueTotal = ((LValueProduct - LValueDesc) + LValueTaxes);
+                lValueTotal = (((LValueProduct - LValueDesc) * LQty) + (LValueTaxes * LQty));
                 return lValueTotal; }
         }
 

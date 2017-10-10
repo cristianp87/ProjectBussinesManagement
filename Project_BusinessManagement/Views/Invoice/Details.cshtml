@@ -40,10 +40,13 @@
         <thead>
             <tr>
                 <td>
-                    NombreProducto
+                    Nombre Producto
                 </td>
                 <td>
-                    cantidad
+                    Cantidad
+                </td>
+                <td>
+                    Valor Producto
                 </td>
                 <td>
                     Valor Total
@@ -55,16 +58,16 @@
             {
                 <tr>
                     <td>
-                        @Html.DisplayFor(modelItem => item.LProduct.LNameProduct)
-                        
+                        @Html.DisplayFor(modelItem => item.LProduct.LNameProduct)                       
                     </td>
                     <td>
-                        @Html.DisplayFor(modelItem => item.LQuantity)
-                        
+                        @Html.DisplayFor(modelItem => item.LQuantity)                      
                     </td>
                     <td>
-                        @Html.DisplayFor(modelItem => item.LProduct.LValue)
-
+                        @Html.DisplayFor(modelItem => item.LValueProd)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.LValueTotal)
                     </td>
                 </tr>
             }

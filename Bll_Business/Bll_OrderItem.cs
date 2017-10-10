@@ -8,8 +8,14 @@ using System.Threading.Tasks;
 
 namespace Bll_Business
 {
-    class Bll_OrderItem
+    public class Bll_OrderItem
     {
+        public static List<Bo_OrderItem> bll_GetOrderItem(int pIdOrder)
+        {
+            Dao_OrderItem lDaoOrderItem = new Dao_OrderItem();
+            return lDaoOrderItem.Dao_getListOrderItem(pIdOrder);
+        }
+
         public static string bll_InsertListOrderItem(int pIdOrder,int pIdInventory, List<Bo_OrderItem> pListOrderItem)
         {
             var lObject = Bll_UtilsLib.bll_GetObjectByName("ORDITEM");

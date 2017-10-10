@@ -22,11 +22,11 @@ namespace Bll_Business
             return oDaoInvoice.Dao_getInvoiceListAll(pIdcustomer);
         }
 
-        public static string bll_InsertInvoiceAll(string pCdInvoice, int pIdCustomer, int pIdOrder, int pIdObjectInvoice,List<Bo_InvoiceItem> lListInvoiceItem )
+        public static string bll_InsertInvoiceAll( int pIdCustomer, int pIdOrder, int pIdObjectInvoice,List<Bo_InvoiceItem> lListInvoiceItem )
         {
             string lResult = "";
             int lIdInvoice = 0;
-            lResult = bll_InsertInvoice(pCdInvoice,pIdCustomer, pIdOrder, pIdObjectInvoice, Bll_UtilsLib.bll_getStatusApproByObject(pIdObjectInvoice).LIdStatus);
+            lResult = bll_InsertInvoice(bll_GetcdInvoice(),pIdCustomer, pIdOrder, pIdObjectInvoice, Bll_UtilsLib.bll_getStatusApproByObject(pIdObjectInvoice).LIdStatus);
             if(int.TryParse(lResult,out lIdInvoice))
             {
                 lResult = "";
@@ -34,7 +34,7 @@ namespace Bll_Business
                 lListInvoiceItem.ForEach(x =>
                {
                    lResult += Bll_InvoiceItem.bll_InsertInvoiceItem(lIdInvoice, x.LQuantity, x.LValueProd, x.LValueSupplier, x.LValueTaxes, x.LValueDesc, x.LProduct.LIdProduct, x.LObject.LIdObject, lStatusItem);
-               });
+               });               
             }
             else
             {
@@ -44,12 +44,19 @@ namespace Bll_Business
             return lResult;
         }
 
+        public static string bll_GetcdInvoice()
+        {
+            Dao_Invoice lDaoinvoice = new Dao_Invoice();
+            return lDaoinvoice.Dao_getCdInvoice(); 
+        }
+
         public static string bll_InsertInvoice(string pCdInvoice, int pIdCustomer,int pIdOrder, int pIdObject, string pIdStatus)
         {
             Bo_Invoice oInvoice = new Bo_Invoice();
             oInvoice.LObject = new Bo_Object();
             oInvoice.LStatus = new Bo_Status();
             oInvoice.LCustomer = new Bo_Customer();
+            oInvoice.LOrder = new Bo_Order();
             oInvoice.LCdInvoice = pCdInvoice;
             oInvoice.LCustomer.LIdCustomer = pIdCustomer;
             oInvoice.LOrder.LIdOrder = pIdOrder;

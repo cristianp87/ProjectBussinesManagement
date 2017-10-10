@@ -15,7 +15,8 @@
          yourApp.Urls.getItem = '@Url.Action("GetOrderItem")';
          yourApp.Urls.CreateOrderItem = '@Url.Action("Create")';
         yourApp.Urls.GetListTypeIdentification = '@Url.Action("GetTypeIdentification")';
-        yourApp.Urls.GetCustomer = '@Url.Action("GetCustomer")';
+        yourApp.Urls.GetCustomer = '@Url.Action("GetCustomer")';;
+        yourApp.Urls.GoInvoiceDetails = '@Url.Action("Details","Invoice")'
         yourApp.Urls.GoCustomer = '@Url.Action("Create","Customer")'
 
     </script>
@@ -27,6 +28,7 @@
 <div id="dvException" class="hide" >
     <label id="lblException" class="alert alert-danger">
     </label>
+    <a id="linkInvoice" href="#"></a>
 </div>
 
 <div class="form-horizontal">
@@ -116,4 +118,4 @@
 
 <input type="button" id="btnCreateOrder" name="btnCreateOrder" class="btn btn-success" value="Agregar Pedido" />
 <input type="hidden" id="hdnIdcustomer" name="hdnIdcustomer" value="0" />
-<input type="hidden" id="hdnIdProduct" name="hdnIdcustomer" value="0" />
+<input type="hidden" id="hdnIdProduct" name="hdnIdProduct" value="0" />

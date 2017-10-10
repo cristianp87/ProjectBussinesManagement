@@ -41,6 +41,8 @@ namespace Dao_BussinessManagement
                             oInvoiceItem.LIdInvoice = Convert.ToInt32(lReader["IdInvoice"].ToString());
                             oInvoiceItem.LProduct.LIdProduct = Convert.ToInt32(lReader["IdProduct"].ToString());
                             oInvoiceItem.LProduct.LNameProduct = lReader["NameProduct"].ToString();
+                            oInvoiceItem.LQuantity = Convert.ToDecimal(lReader["Qty"].ToString());
+                            oInvoiceItem.LValueProd = Convert.ToDecimal(lReader["ValueProduct"].ToString());
                             oInvoiceItem.LCreationDate = Convert.ToDateTime(lReader["CreationDate"].ToString());
                             oInvoiceItem.LStatus.LIdStatus = lReader["IdStatus"].ToString();
                             oInvoiceItem.LObject.LIdObject = Convert.ToInt32(lReader["IdObject"].ToString());

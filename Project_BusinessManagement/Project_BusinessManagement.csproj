@@ -250,6 +250,8 @@
     <Content Include="Views\Order\DashBoardOrder.cshtml" />
     <Content Include="Views\Invoice\Index.cshtml" />
     <Content Include="Views\Invoice\Details.cshtml" />
+    <Content Include="Views\Order\Index.cshtml" />
+    <Content Include="Views\OrderItem\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -266,6 +268,7 @@
     <Compile Include="Controllers\InventoryItemController.cs" />
     <Compile Include="Controllers\InvoiceController.cs" />
     <Compile Include="Controllers\OrderController.cs" />
+    <Compile Include="Controllers\OrderItemController.cs" />
     <Compile Include="Controllers\ProductController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -291,6 +294,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Reports\" />
+    <Folder Include="Views\InvoiceItem\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Bll_Business\Bll_Business.csproj">

@@ -168,7 +168,7 @@ namespace BO_BusinessManagement
         {
             get
             {
-                lValueTotal = ((LValueProd - LValueDesc) + LValueTaxes);
+                lValueTotal = (((LValueProd - LValueDesc) * LQuantity) + (LValueTaxes * LQuantity));
                 return lValueTotal;
             }
         }

@@ -15,6 +15,11 @@ namespace Project_BusinessManagement.Models
         private decimal lQuantity = 0;
         private MStatus lStatus = new MStatus();
         private MObject lObject = new MObject();
+        private decimal lValueTaxes;
+        private decimal lValueSupplier;
+        private decimal lValueDesc;
+        private decimal lValueProd;
+        private decimal lValueTotal;
 
         public int LIdInvoiceItem
         {
@@ -107,6 +112,67 @@ namespace Project_BusinessManagement.Models
             }
         }
 
+        public decimal LValueTaxes
+        {
+            get
+            {
+                return lValueTaxes;
+            }
+
+            set
+            {
+                lValueTaxes = value;
+            }
+        }
+
+        public decimal LValueSupplier
+        {
+            get
+            {
+                return lValueSupplier;
+            }
+
+            set
+            {
+                lValueSupplier = value;
+            }
+        }
+
+        public decimal LValueDesc
+        {
+            get
+            {
+                return lValueDesc;
+            }
+
+            set
+            {
+                lValueDesc = value;
+            }
+        }
+
+        public decimal LValueProd
+        {
+            get
+            {
+                return lValueProd;
+            }
+
+            set
+            {
+                lValueProd = value;
+            }
+        }
+
+        public decimal LValueTotal
+        {
+            get
+            {
+                lValueTotal = (((LValueProd - LValueDesc) * LQuantity) + (LValueTaxes * LQuantity));
+                return lValueTotal;
+            }
+        }
+
         public static List<MInvoiceItem> MListInvoiceItem(List<Bo_InvoiceItem> oBListInvoiceItem)
         {
             List<MInvoiceItem> oMListInvoiceItem = new List<MInvoiceItem>();
@@ -121,6 +187,7 @@ namespace Project_BusinessManagement.Models
                 oMInvoiceItem.LProduct.LCdProduct = x.LProduct.LCdProduct;
                 oMInvoiceItem.LProduct.LNameProduct = x.LProduct.LNameProduct;
                 oMInvoiceItem.LProduct.LValue = x.LProduct.LValue;
+                oMInvoiceItem.lValueProd = x.LValueProd;
                 oMListInvoiceItem.Add(oMInvoiceItem);
             });
             return oMListInvoiceItem;

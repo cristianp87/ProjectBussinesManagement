@@ -90,8 +90,10 @@ $('#btnCreateOrder').click(function () {
             dataType: 'json',
             data: { pOrder: processOrder($('#hdnIdcustomer').val(), $('#ddlInventory').val()) },
             success: function (product) {
-                if (product.Success)
+                if (product.Success){
                     showSuccess('Se ha generado el pedido');
+                    $('#linkInvoice').prop("href", yourApp.Urls.GoInvoiceDetails).text("Ver Factura");
+                }                   
                 else
                     showException('No se pudo Ingresar el pedido.' + product.Content);
             },
@@ -357,3 +359,4 @@ function hideException() {
     $('#dvException').addClass("hide");
     $('#lblException').val("");
 }
+

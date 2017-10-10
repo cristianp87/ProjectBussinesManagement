@@ -53,7 +53,8 @@
                     @Html.ActionLink("Editar", "Edit", new {  id=item.LIdCustomer  }) |
                     @Html.ActionLink("Detalle", "Details", new {  id=item.LIdCustomer  }) |
                     @Html.ActionLink("Eliminar", "Delete", new {  id=item.LIdCustomer  }) |
-                    @Html.ActionLink("Facturas", "Index", "Invoice", new { idCustomer = item.LIdCustomer }, null)
+                    @Html.ActionLink("Facturas", "Index", "Invoice", new { idCustomer = item.LIdCustomer }, null) |
+                    @Html.ActionLink("Pedidos", "Index", "Order", new { pIdCustomer = item.LIdCustomer }, null)
                 </td>
             </tr>
         }

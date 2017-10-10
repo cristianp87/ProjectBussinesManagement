@@ -115,6 +115,36 @@ namespace Dao_BussinessManagement
             }
         }
 
+        public string Dao_getCdInvoice()
+        {
+            using (SqlConnection lConex = Dao_UtilsLib.Dao_SqlConnection(lConex))
+            {
+                try
+                {
+                    SqlCommand lCommand = new SqlCommand();
+                    lCommand.CommandText = "spr_GetCdInvoice";
+                    lCommand.CommandTimeout = 30;
+                    lCommand.CommandType = CommandType.StoredProcedure;
+                    lCommand.Connection = lConex;
+                    var lReader = lCommand.ExecuteReader();
+                    string lResult = "";
+                    if (lReader.HasRows)
+                    {
+                        while (lReader.Read())
+                        {
+                            lResult = lReader["CdInvoice"].ToString();   
+                        }
+                    }
+                    Dao_UtilsLib.Dao_CloseSqlconnection(lConex);
+                    return lResult;
+                }
+                catch (Exception e)
+                {
+                    return e.Message;
+                }
+            }
+        }
+
         public string Dao_InsertInvoice(Bo_Invoice pInvoice)
         {
             Dao_UtilsLib.dao_Addparameters(lListParam, SqlDbType.VarChar, "@CdInvoice", pInvoice.LCdInvoice);
