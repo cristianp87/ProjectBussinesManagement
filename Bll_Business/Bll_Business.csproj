@@ -41,6 +41,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Bll_Customer.cs" />
+    <Compile Include="Bll_DashBoard.cs" />
     <Compile Include="Bll_InventoryItem.cs" />
     <Compile Include="Bll_Invoice.cs" />
     <Compile Include="Bll_InvoiceItem.cs" />

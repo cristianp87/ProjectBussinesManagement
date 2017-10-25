@@ -114,9 +114,12 @@ namespace Project_BusinessManagement.Models
             List<MInvoice> oMListInvoice = new List<MInvoice>();
             oBListInvoice.ForEach(x => {
                 MInvoice oMInvoice = new MInvoice();
+                MCustomer oMCustomer = new MCustomer();
                 oMInvoice.LIdInvoice = x.LIdInvoice;
                 oMInvoice.LCdInvoice = x.LCdInvoice;
                 oMInvoice.LCreationDate = x.LCreationDate;
+                oMCustomer.LNameCustomer = x.LCustomer.LNameCustomer;
+                oMCustomer.LIdCustomer = x.LCustomer.LIdCustomer;
                 oMListInvoice.Add(oMInvoice);
             });
             return oMListInvoice;

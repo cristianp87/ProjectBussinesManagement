@@ -42,6 +42,7 @@
   <ItemGroup>
     <Compile Include="Bo_Configuration.cs" />
     <Compile Include="Bo_Customer.cs" />
+    <Compile Include="Bo_DashBoard.cs" />
     <Compile Include="Bo_Exception.cs" />
     <Compile Include="Bo_Inventory.cs" />
     <Compile Include="Bo_InventoryItem.cs" />
