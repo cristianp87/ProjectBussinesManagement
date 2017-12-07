@@ -10,6 +10,12 @@ namespace Bll_Business
 {
     public static class Bll_Product
     {
+        public static Bo_Product bll_GetProductByCode(string pCdProduct)
+        {
+            Dao_Product oDaoProduct = new Dao_Product();
+            return oDaoProduct.Dao_getProductByCode(pCdProduct);
+        }
+
         public static Bo_Product bll_GetProductById(int pIdProduct)
         {
             Dao_Product oDaoProduct = new Dao_Product();

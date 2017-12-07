@@ -15,6 +15,8 @@ namespace BO_BusinessManagement
         private Bo_Inventory lInventory;
         private Bo_Customer lCustomer;
 
+        private List<Bo_OrderItem> lListOrderItem;
+
         public int LIdOrder
         {
             get
@@ -90,6 +92,19 @@ namespace BO_BusinessManagement
             set
             {
                 lCustomer = value;
+            }
+        }
+
+        public List<Bo_OrderItem> LListOrderItem
+        {
+            get
+            {
+                return lListOrderItem;
+            }
+
+            set
+            {
+                lListOrderItem = value;
             }
         }
     }

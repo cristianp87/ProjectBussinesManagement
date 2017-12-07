@@ -15,5 +15,17 @@ namespace Bll_Business
             Dao_Taxe oDaoTaxe = new Dao_Taxe();
             return oDaoTaxe.Dao_getLisAllTaxesXProduct(pIdProduct);
         }
+
+        public static List<Bo_Taxe> bll_GetListTaxes()
+        {
+            Dao_Taxe oDaoTaxe = new Dao_Taxe();
+            return oDaoTaxe.Dao_getLisTaxes();
+        }
+
+        public static Bo_Taxe bll_GetTaxeById(int pIdTaxe)
+        {
+            Dao_Taxe oDaoTaxe = new Dao_Taxe();
+            return oDaoTaxe.Dao_getTaxeById(pIdTaxe);
+        }
     }
 }

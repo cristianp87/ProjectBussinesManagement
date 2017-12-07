@@ -5,15 +5,18 @@ using System.Web;
 using System.Web.Mvc;
 using Bll_Business;
 using BO_BusinessManagement;
+using Project_BusinessManagement.Models;
 
 namespace Project_BusinessManagement.Controllers
 {
     public class OrderController : Controller
     {
         // GET: Order
-        public ActionResult Index()
+        public ActionResult Index(int pIdCustomer)
         {
-            return View();
+            List<Bo_Order> lListOrder = new List<Bo_Order>();
+            lListOrder = Bll_Order.bll_GetListOrderByCustomer(pIdCustomer);
+            return View(Models.MOrder.MListOrder(lListOrder));
         }
 
         // GET: Order
@@ -23,11 +26,39 @@ namespace Project_BusinessManagement.Controllers
         }
 
         [HttpPost]
+        public JsonResult GetCustomer(int pIdtypeIdentification, string pNoIdentification)
+        {
+
+            Bo_Customer lCustomer= new Bo_Customer();
+            lCustomer = Bll_Customer.bll_GetCustomerByIdentification(pNoIdentification, pIdtypeIdentification);
+            if (lCustomer.LException != null)
+            {
+
+                return Json(new { Success = false, Message = "ErrorDao! " + lCustomer.LMessageDao + " " + lCustomer.LException });
+            }else if (lCustomer.LNameCustomer != null)
+            {
+                return Json(new { Success = true, Content = lCustomer });
+            }
+            else
+            {
+                return Json(new { Success = false, Message = "El cliente no existe en la base de datos." });
+            }
+        }
+
+        [HttpPost]
         public JsonResult GetInventory()
         {
             List<Bo_Inventory> lListBoInventory = new List<Bo_Inventory>();
             lListBoInventory = Bll_Inventory.bll_GetAllInventory();
             return Json(Models.MInventory.MListInventory(lListBoInventory));
+        }
+
+        [HttpPost]
+        public JsonResult GetTypeIdentification()
+        {
+            List<Bo_TypeIdentification> lListTypeIdentification = new List<Bo_TypeIdentification>();
+            lListTypeIdentification = Bll_TypeIdentification.bll_getListTypeIdentification();
+            return Json(Models.MTypeIdentification.MListAllTypeIdentification(lListTypeIdentification));
         }
 
         [HttpPost]
@@ -72,17 +103,30 @@ namespace Project_BusinessManagement.Controllers
 
         // POST: Order/Create
         [HttpPost]
-        public JsonResult Create(List<Models.MOrderItem> pListItems)
+        public JsonResult Create(Bo_Order pOrder)
         {
             try
-            {
-                var o = 1;
-
-                return Json("Index");
+            {              
+            var result = Bll_Order.bll_InsertOrder(pOrder.LInventory.LIdInventory, pOrder.LCustomer.LIdCustomer, Bll_UtilsLib.bll_GetObjectByName(MGlobalVariables.LNameObjectOrder).LIdObject, Bll_UtilsLib.bll_getStatusApproByObject(Bll_UtilsLib.bll_GetObjectByName(MGlobalVariables.LNameObjectOrder).LIdObject).LIdStatus, pOrder.LListOrderItem, Bll_UtilsLib.bll_GetObjectByName(MGlobalVariables.LNameObjectOrderItem).LIdObject, Bll_UtilsLib.bll_getStatusApproByObject(Bll_UtilsLib.bll_GetObjectByName(MGlobalVariables.LNameObjectOrderItem).LIdObject).LIdStatus);
+                int lIdOrder = 0;
+                if(int.TryParse(result, out lIdOrder))
+                {
+                    List<Bo_InvoiceItem> lListInvoiceItem = Bll_InvoiceItem.bll_ChangeOrderItemToInvoiceItem(pOrder.LListOrderItem, Bll_UtilsLib.bll_GetObjectByName(MGlobalVariables.LNameObjectInvoiceItem));
+                    result = Bll_Invoice.bll_InsertInvoiceAll(pOrder.LCustomer.LIdCustomer, lIdOrder, Bll_UtilsLib.bll_GetObjectByName(MGlobalVariables.LNameObjectInvoice).LIdObject, lListInvoiceItem);
+                    if(string.IsNullOrEmpty(result))
+                        return Json(new { Success = true, Content = result });
+                    else
+                        return Json(new { Success = false, Content = result });
+                }
+                else
+                {
+                    return Json(new { Success = false, Content = result });
+                }
+                
             }
-            catch
+            catch (Exception e)
             {
-                return Json("d");
+                return Json(new { Success = false, Message = "Error! " + e.Message });
             }
         }
 

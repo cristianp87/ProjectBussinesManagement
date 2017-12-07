@@ -15,6 +15,7 @@ namespace Project_BusinessManagement.Models
         private MObject lObject;
         private MStatus lStatus;
         private MCustomer lCustomer;
+        private List<MInvoiceItem> lListMInvoiceItem = new List<MInvoiceItem>();
 
         [DisplayName("Id Factura")]
         public int LIdInvoice
@@ -95,17 +96,43 @@ namespace Project_BusinessManagement.Models
             }
         }
 
+        public List<MInvoiceItem> LListMInvoiceItem
+        {
+            get
+            {
+                return lListMInvoiceItem;
+            }
+
+            set
+            {
+                lListMInvoiceItem = value;
+            }
+        }
+
         public static List<MInvoice> MListInvoice(List<Bo_Invoice> oBListInvoice)
         {
             List<MInvoice> oMListInvoice = new List<MInvoice>();
             oBListInvoice.ForEach(x => {
                 MInvoice oMInvoice = new MInvoice();
+                MCustomer oMCustomer = new MCustomer();
                 oMInvoice.LIdInvoice = x.LIdInvoice;
                 oMInvoice.LCdInvoice = x.LCdInvoice;
                 oMInvoice.LCreationDate = x.LCreationDate;
+                oMCustomer.LNameCustomer = x.LCustomer.LNameCustomer;
+                oMCustomer.LIdCustomer = x.LCustomer.LIdCustomer;
                 oMListInvoice.Add(oMInvoice);
             });
             return oMListInvoice;
+        }
+
+        public static MInvoice TrasferToMInvoice(Bo_Invoice oBInvoice)
+        {
+            MInvoice oMInvoice = new MInvoice();
+            oMInvoice.LIdInvoice = oBInvoice.LIdInvoice;
+            oMInvoice.LCdInvoice = oBInvoice.LCdInvoice;
+            oMInvoice.LCreationDate = oBInvoice.LCreationDate;
+            oMInvoice.LListMInvoiceItem = MInvoiceItem.MListInvoiceItem(oBInvoice.LListInvoiceItem);
+            return oMInvoice;
         }
     }
 }

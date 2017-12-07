@@ -154,5 +154,13 @@ namespace Dao_BussinessManagement
             Dao_UtilsLib.dao_Addparameters(lListParam, SqlDbType.Int, "@IdInventoryItem", pInventoryItem.LIdInventoryItem.ToString());
             return Dao_UtilsLib.Dao_executeSqlTransactionWithProcedement(lListParam, "LTranDeleteInventoryItem", "spr_DeleteInventoryItem");
         }
+
+        public string Dao_SubstractInventoryItem(Bo_InventoryItem pInventoryItem)
+        {
+            Dao_UtilsLib.dao_Addparameters(lListParam, SqlDbType.Int, "@IdInventory", pInventoryItem.LInventory.LIdInventory.ToString());
+            Dao_UtilsLib.dao_Addparameters(lListParam, SqlDbType.VarChar, "@CdProduct", pInventoryItem.LProduct.LCdProduct.ToString());
+            Dao_UtilsLib.dao_Addparameters(lListParam, SqlDbType.Decimal, "@QtySellable", pInventoryItem.LQtySellable.ToString());
+            return Dao_UtilsLib.Dao_executeSqlScalarWithProcedement(lListParam, "LTranSubstractInventoryItem", "spr_substractinventory");
+        }
     }
 }

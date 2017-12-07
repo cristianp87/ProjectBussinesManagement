@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -16,6 +17,7 @@ namespace BO_BusinessManagement
         private Bo_Status lStatus;
         private Bo_Object lObject;
 
+        [RegularExpression("^([1-9]{0,11})$", ErrorMessage = "No es valido la selección")]
         public int LIdTaxe
         {
             get

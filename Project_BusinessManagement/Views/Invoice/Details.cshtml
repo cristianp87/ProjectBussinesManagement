@@ -1,0 +1,81 @@
+﻿@model Project_BusinessManagement.Models.MInvoice
+
+@{
+    ViewBag.Title = "Detalle";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Factura</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.LIdInvoice)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LIdInvoice)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LCdInvoice)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LCdInvoice)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LCreationDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LCreationDate)
+        </dd>
+
+    </dl>
+    <table>
+        <thead>
+            <tr>
+                <td>
+                    Nombre Producto
+                </td>
+                <td>
+                    Cantidad
+                </td>
+                <td>
+                    Valor Producto
+                </td>
+                <td>
+                    Valor Total
+                </td>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.LListMInvoiceItem)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.LProduct.LNameProduct)                       
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.LQuantity)                      
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.LValueProd)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.LValueTotal)
+                    </td>
+                </tr>
+            }
+            
+        </tbody>
+    </table>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

@@ -13,6 +13,11 @@ namespace BO_BusinessManagement
         private Bo_Product lProduct;
         private DateTime lCreationDate;
         private decimal lQuantity;
+        private decimal lValueTaxes;
+        private decimal lValueSupplier;
+        private decimal lValueDesc;
+        private decimal lValueProd;
+        private decimal lValueTotal;
         private Bo_Status lStatus;
         private Bo_Object lObject;
 
@@ -104,6 +109,67 @@ namespace BO_BusinessManagement
             set
             {
                 lObject = value;
+            }
+        }
+
+        public decimal LValueTaxes
+        {
+            get
+            {
+                return lValueTaxes;
+            }
+
+            set
+            {
+                lValueTaxes = value;
+            }
+        }
+
+        public decimal LValueSupplier
+        {
+            get
+            {
+                return lValueSupplier;
+            }
+
+            set
+            {
+                lValueSupplier = value;
+            }
+        }
+
+        public decimal LValueDesc
+        {
+            get
+            {
+                return lValueDesc;
+            }
+
+            set
+            {
+                lValueDesc = value;
+            }
+        }
+
+        public decimal LValueProd
+        {
+            get
+            {
+                return lValueProd;
+            }
+
+            set
+            {
+                lValueProd = value;
+            }
+        }
+
+        public decimal LValueTotal
+        {
+            get
+            {
+                lValueTotal = (((LValueProd - LValueDesc) * LQuantity) + (LValueTaxes * LQuantity));
+                return lValueTotal;
             }
         }
     }

@@ -1,5 +1,7 @@
-﻿using System;
+﻿using BO_BusinessManagement;
+using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Web;
 
@@ -46,7 +48,7 @@ namespace Project_BusinessManagement.Models
                 lProduct = value;
             }
         }
-
+        [DisplayName("Fecha De Creación")]
         public DateTime LCreationDate
         {
             get
@@ -98,7 +100,7 @@ namespace Project_BusinessManagement.Models
                 lOrder = value;
             }
         }
-
+        [DisplayName("Valor de Producto")]
         public decimal LValueProduct
         {
             get
@@ -111,7 +113,7 @@ namespace Project_BusinessManagement.Models
                 lValueProduct = value;
             }
         }
-
+        [DisplayName("Valoe de Proveedor")]
         public decimal LValueSupplier
         {
             get
@@ -125,6 +127,7 @@ namespace Project_BusinessManagement.Models
             }
         }
 
+        [DisplayName("Valor De Impuestos")]
         public decimal LValueTaxes
         {
             get
@@ -137,7 +140,7 @@ namespace Project_BusinessManagement.Models
                 lValueTaxes = value;
             }
         }
-
+        [DisplayName("Valor de Descuento")]
         public decimal LValueDesc
         {
             get
@@ -150,7 +153,7 @@ namespace Project_BusinessManagement.Models
                 lValueDesc = value;
             }
         }
-
+        [DisplayName("Valor Total")]
         public decimal LValueTotal
         {
             get
@@ -176,7 +179,7 @@ namespace Project_BusinessManagement.Models
                 lMessageException = value;
             }
         }
-
+        [DisplayName("Cantidad")]
         public decimal LQty
         {
             get
@@ -188,6 +191,29 @@ namespace Project_BusinessManagement.Models
             {
                 lQty = value;
             }
+        }
+
+        public static List<MOrderItem> MListOrder(List<Bo_OrderItem> pListOrderItem)
+        {
+            List<MOrderItem> lListOrderItem = new List<MOrderItem>();
+            pListOrderItem.ForEach(x => {
+                MOrderItem lMOrderItem = new MOrderItem();
+                lMOrderItem.LProduct = new MProduct();
+                lMOrderItem.lOrder = new MOrder();
+                lMOrderItem.LIdOrderItem = x.LIdOrderItem;
+                lMOrderItem.LProduct.LNameProduct = x.LProduct.LNameProduct;
+                lMOrderItem.LProduct.LIdProduct = x.LProduct.LIdProduct;
+                lMOrderItem.LOrder.LIdOrder = x.LOrder.LIdOrder;
+                lMOrderItem.LQty = x.LQty;
+                lMOrderItem.LValueProduct = x.LValueProduct;
+                lMOrderItem.LValueSupplier = x.LValueSupplier;
+                lMOrderItem.LValueTaxes = x.LValueTaxes;
+                lMOrderItem.LValueDesc = x.LValueDesc;
+                lMOrderItem.LCreationDate = x.LCreationDate;
+                lMOrderItem.LValueTotal = x.LValueTotal;
+                lListOrderItem.Add(lMOrderItem);
+            });
+            return lListOrderItem;
         }
     }
 }

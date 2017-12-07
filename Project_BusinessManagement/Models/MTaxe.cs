@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using BO_BusinessManagement;
 using System.Linq;
 using System.Web;
+using System.Web.Mvc;
 
 namespace Project_BusinessManagement.Models
 {
@@ -123,6 +124,22 @@ namespace Project_BusinessManagement.Models
                 oMListTaxe.Add(lTaxe);
             });
             return oMListTaxe;
+        }
+
+        public static List<SelectListItem> MListTaxesWithSelect(List<Bo_Taxe> lListTaxe)
+        {
+            List<SelectListItem> lListSelectTaxes = new List<SelectListItem>();
+            SelectListItem lListItemSelect = new SelectListItem();
+            lListItemSelect.Text = "Seleccione...";
+            lListItemSelect.Value = "0";
+            lListSelectTaxes.Add(lListItemSelect);
+            lListTaxe.ForEach(x => {
+                SelectListItem lListItem = new SelectListItem();
+                lListItem.Value = x.LIdTaxe.ToString();
+                lListItem.Text = x.LNameTaxe;
+                lListSelectTaxes.Add(lListItem);
+            });
+            return lListSelectTaxes;
         }
     }
 }

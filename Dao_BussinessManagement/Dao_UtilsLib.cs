@@ -83,6 +83,50 @@ namespace Dao_BussinessManagement
             return lResult;
         }
 
+        public static string Dao_executeSqlScalarWithProcedement(List<SqlParameter> lListParameters, string pNameTransaction, string pNameProcedure)
+        {
+
+            string lResult = null;
+            using (SqlConnection lConex = Dao_UtilsLib.Dao_SqlConnection(lConex))
+            {
+                using (SqlTransaction lTran = lConex.BeginTransaction(pNameTransaction))
+                {
+                    SqlCommand lCommand = lConex.CreateCommand();
+                    lCommand.Connection = lConex;
+                    lCommand.CommandType = CommandType.StoredProcedure;
+                    lCommand.Transaction = lTran;
+                    try
+                    {
+                        lCommand.CommandType = CommandType.StoredProcedure;
+                        lCommand.CommandText = pNameProcedure;
+                        lCommand.CommandTimeout = 30;
+
+                        if (lListParameters.Count > 0)
+                        {
+                            lListParameters.ForEach(x => { lCommand.Parameters.Add(x); });
+                        }
+                        lResult = lCommand.ExecuteScalar().ToString();
+                        lTran.Commit();
+                    }
+                    catch (Exception ex)
+                    {
+                        lResult = "Commit Exception Type: " + ex.GetType() + "  Message: " + ex.Message;
+
+                        try
+                        {
+                            lTran.Rollback();
+                        }
+                        catch (Exception ex2)
+                        {
+                            lResult += " Rollback Exception Type: " + ex2.GetType() + "  Message: " + ex2.Message;
+                        }
+                    }
+                    Dao_UtilsLib.Dao_CloseSqlconnection(lConex);
+                }
+            }
+            return lResult;
+        }
+
         public static Bo_Object DaoUtilsLib_getObject(string lNameObject){
             using (SqlConnection lConex = Dao_SqlConnection(lConex))
             {
@@ -120,6 +164,48 @@ namespace Dao_BussinessManagement
                     oObject.LMessageDao = "Hubo un problema en la consulta, contacte al administrador.";
                     Dao_CloseSqlconnection(lConex);
                     return oObject;
+                }
+
+            }
+        }
+
+        public static Bo_Status DaoUtilsLib_getStatusAppro(int pIdObject)
+        {
+            using (SqlConnection lConex = Dao_SqlConnection(lConex))
+            {
+
+                try
+                {
+                    SqlCommand lCommand = new SqlCommand();
+                    lCommand.CommandText = "spr_GetStatusApproByIdObject";
+                    lCommand.CommandTimeout = 30;
+                    lCommand.CommandType = CommandType.StoredProcedure;
+                    lCommand.Connection = lConex;
+                    lCommand.Parameters.Add(new SqlParameter("IdObject", pIdObject));
+                    var lReader = lCommand.ExecuteReader();
+                    Bo_Status lStatus = new Bo_Status();
+                    if (lReader.HasRows)
+                    {
+                        while (lReader.Read())
+                        {
+                            lStatus.LIdStatus = lReader["IdStatus"].ToString();
+                            lStatus.LNameStatus = lReader["NameStatus"].ToString();
+                            lStatus.LDsEstado = lReader["DsEstado"].ToString();
+                            lStatus.LFlActive = Convert.ToBoolean(lReader["flActive"].ToString());
+                        }
+                    }
+                    Dao_CloseSqlconnection(lConex);
+                    return lStatus;
+                }
+                catch (Exception e)
+                {
+                    Bo_Status lStatus = new Bo_Status();
+                    lStatus.LException = e.Message;
+                    if (e.InnerException != null)
+                        lStatus.LInnerException = e.InnerException.ToString();
+                    lStatus.LMessageDao = "Hubo un problema en la Consulta del estado, contacte al administrador.";
+                    Dao_CloseSqlconnection(lConex);
+                    return lStatus;
                 }
 
             }
@@ -169,6 +255,47 @@ namespace Dao_BussinessManagement
 
             }
         }
+
+        public static string DaoUtilsLib_getParameterValueConfiguration(string pNameParameter, string pNameParameterParent)
+        {
+            using (SqlConnection lConex = Dao_SqlConnection(lConex))
+            {
+                try
+                {
+                    SqlCommand lCommand = new SqlCommand();
+                    lCommand.CommandText = "spr_GetParameterConfigurationValue";
+                    lCommand.CommandTimeout = 30;
+                    lCommand.CommandType = CommandType.StoredProcedure;
+                    lCommand.Connection = lConex;
+                    var lReader = lCommand.ExecuteReader();
+                    Bo_ConfigurationValue lConfigurationValue = new Bo_ConfigurationValue();
+                    if (lReader.HasRows)
+                    {
+                        while (lReader.Read())
+                        {
+                            lConfigurationValue.LIdParameter = Convert.ToInt32(lReader["IdParameter"].ToString());
+                            lConfigurationValue.LValueParameter = lReader["Value"].ToString();
+                            lConfigurationValue.LCreationDate = Convert.ToDateTime(lReader["CreationDate"].ToString());
+                        }
+                    }
+                    Dao_CloseSqlconnection(lConex);
+                    return lConfigurationValue.LValueParameter;
+                }
+                catch (Exception e)
+                {
+                    Bo_ConfigurationValue lConfigurationValue = new Bo_ConfigurationValue();
+                    lConfigurationValue.LException = e.Message;
+                    if (e.InnerException != null)
+                        lConfigurationValue.LInnerException = e.InnerException.ToString();
+                    lConfigurationValue.LMessageDao = "Hubo un problema en la consulta, contacte al administrador.";
+                    Dao_CloseSqlconnection(lConex);
+                    return lConfigurationValue.LException;
+                }
+
+            }
+        }
+
+
 
     }
 }

@@ -1,5 +1,8 @@
-﻿using System;
+﻿using Bll_Business;
+using BO_BusinessManagement;
+using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Web;
 
@@ -28,7 +31,7 @@ namespace Project_BusinessManagement.Models
                 lIdOrder = value;
             }
         }
-
+        [DisplayName("Fecha De Creación")]
         public DateTime LCreationDate
         {
             get
@@ -118,6 +121,23 @@ namespace Project_BusinessManagement.Models
             {
                 lListOrderItem = value;
             }
+        }
+
+        public static List<MOrder> MListOrder(List<Bo_Order> pListOrder)
+        {
+            List<MOrder> lListOrder= new List<MOrder>();
+            pListOrder.ForEach(x => {
+                MOrder lMOrder = new MOrder();
+                lMOrder.LInventory = new MInventory();
+                lMOrder.LCustomer = new MCustomer();
+                lMOrder.LIdOrder = x.LIdOrder;
+                lMOrder.LInventory.LNameInventory = x.LInventory.LNameInventory;
+                lMOrder.LCustomer.LNameCustomer = x.LCustomer.LNameCustomer;
+                lMOrder.LCustomer.LLastNameCustomer = x.LCustomer.LLastNameCustomer;
+                lMOrder.LCreationDate = x.LCreationDate;
+                lListOrder.Add(lMOrder);
+            });
+            return lListOrder;
         }
     }
 }
