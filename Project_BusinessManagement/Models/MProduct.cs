@@ -18,6 +18,7 @@ namespace Project_BusinessManagement.Models
         private MUnit lUnit;
         private decimal lValue;
         private MSupplier lSupplier;
+        private MTaxe lTaxe;
         private decimal lValueSupplier;
         private MObject lObject;
         private MStatus lStatus;
@@ -27,7 +28,8 @@ namespace Project_BusinessManagement.Models
         private string lMessageException;
         private List<SelectListItem> lListSelectTaxe;
         private List<MTaxe> lListTaxe;
-        private MTaxe lTaxe;
+        private string lListIdsTaxe;
+        
 
         [UIHint("LIdSupplier")]
         [DisplayName("IDProducto")]
@@ -262,6 +264,19 @@ namespace Project_BusinessManagement.Models
             }
         }
 
+        public string LListIdsTaxe
+        {
+            get
+            {
+                return lListIdsTaxe;
+            }
+
+            set
+            {
+                lListIdsTaxe = value;
+            }
+        }
+
         public static List<MProduct> MListProduct(List<Bo_Product> oBListProduct)
         {
             List<MProduct> oMListProduct = new List<MProduct>();
@@ -316,6 +331,7 @@ namespace Project_BusinessManagement.Models
             oMProduct.lSupplier = new MSupplier();
             oMProduct.LListSupplier = new List<SelectListItem>();
             oMProduct.LListTaxe = new List<MTaxe>();
+            oMProduct.LListUnit = new List<SelectListItem>();
             oMProduct.LNameProduct = oBProduct.LNameProduct;
             oMProduct.LCdProduct = oBProduct.LCdProduct;
             oMProduct.LUnit.LIdUnit = oBProduct.LUnit.LIdUnit;
@@ -347,12 +363,16 @@ namespace Project_BusinessManagement.Models
             oMProduct.LObject = new MObject();
             oMProduct.LStatus = new MStatus();
             oMProduct.LUnit = new MUnit();
+            oMProduct.LTaxe = new MTaxe();
             oMProduct.LListUnit = new List<SelectListItem>();
             oMProduct.LListStatus = new List<SelectListItem>();
             oMProduct.LListSupplier = new List<SelectListItem>();
+            oMProduct.LListSelectTaxe = new List<SelectListItem>();
+            oMProduct.LListTaxe = new List<MTaxe>();            
             oMProduct.lNameProduct = null;
             oMProduct.LCdProduct = null;
             oMProduct.LValue = 0;
+            oMProduct.LListIdsTaxe = null;
             oMProduct.LValueSupplier = 0;
             oMProduct.LCreationDate = new DateTime();
             oMProduct.lObject.LIdObject = oObject.LIdObject;
@@ -362,6 +382,7 @@ namespace Project_BusinessManagement.Models
             oMProduct.LListStatus = MStatus.MListStatusWithSelect(Bll_Business.Bll_Status.Bll_getListStatusByIdObject(oMProduct.LObject.LIdObject));
             oMProduct.LListSupplier = MSupplier.MListAllSupplierWithSelect(Bll_Business.Bll_Supplier.bll_GetAllSupplier());
             oMProduct.LListUnit = MUnit.MListAllUnitWithSelect(Bll_Business.Bll_UtilsLib.bll_GetAllUnit());
+            oMProduct.LListSelectTaxe = MTaxe.MListTaxesWithSelect(Bll_Business.Bll_Taxe.bll_GetListTaxes());
             return oMProduct;
         }
     }

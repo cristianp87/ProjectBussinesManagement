@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using BO_BusinessManagement;
 using Bll_Business;
+using Project_BusinessManagement.App_Start;
 
 namespace Project_BusinessManagement.Controllers
 {
@@ -61,7 +62,6 @@ namespace Project_BusinessManagement.Controllers
                     ListEmptyProduct(pMProduct);
                     return View(pMProduct);
                 }
-
             }
             catch (Exception e)
             {
@@ -70,6 +70,44 @@ namespace Project_BusinessManagement.Controllers
                 return View(pMProduct);
             }
         }
+
+        [HttpPost]
+        public ActionResult AddTaxe(Models.MProduct pMProduct)
+        {
+            try
+            {
+                
+                pMProduct.LTaxe = new Models.MTaxe();
+                pMProduct.LStatus = new Models.MStatus();
+                if(pMProduct.LListIdsTaxe == null)
+                {
+                    pMProduct.LListIdsTaxe = Request.Form["LTaxe.LIdTaxe"].ToString();
+                }
+                else
+                {
+                    pMProduct.LListIdsTaxe = "," + Request.Form["LTaxe.LIdTaxe"].ToString();
+                }
+                ListEmptyProduct(pMProduct);
+                List<Models.MTaxe> lListTaxe = new List<Models.MTaxe>();
+                lListTaxe = pMProduct.LListTaxe;             
+                pMProduct.LTaxe.LIdTaxe = Convert.ToInt32(Request.Form["LTaxe.LIdTaxe"].ToString());
+                pMProduct.LListTaxe = new List<Models.MTaxe>();
+                if (lListTaxe != null)
+                {
+                    pMProduct.LListTaxe = lListTaxe;
+                }
+                pMProduct.LListTaxe.Add(pMProduct.LTaxe);
+                return View("Create", pMProduct);
+            }
+            catch (Exception e)
+            {
+                ListEmptyProduct(pMProduct);
+                pMProduct.LMessageException = e.Message;
+                return View("Create", pMProduct);
+            }
+        }
+
+
 
         // GET: Product/Edit/5
         public ActionResult Edit(int id)
@@ -157,6 +195,8 @@ namespace Project_BusinessManagement.Controllers
             pMProduct.LListUnit = Models.MUnit.MListAllUnitWithSelect(Bll_UtilsLib.bll_GetAllUnit());
             pMProduct.LListStatus = new List<SelectListItem>();
             pMProduct.LListStatus = Models.MStatus.MListAllStatus(Bll_Status.Bll_getListStatusByIdObject(pMProduct.LObject.LIdObject));
+            pMProduct.LListSelectTaxe = new List<SelectListItem>();
+            pMProduct.LListSelectTaxe = Models.MTaxe.MListTaxesWithSelect(Bll_Taxe.bll_GetListTaxes());
         }
 
         private static Models.MProduct CurrentProduct(Models.MProduct pMProduct, Models.MProduct pMProductOld, int id, string pMessageException)
