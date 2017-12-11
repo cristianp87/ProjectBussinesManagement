@@ -16,6 +16,8 @@ namespace Project_BusinessManagement.Models
         private DateTime lCreationDate;
         private MStatus lStatus;
         private MObject lObject;
+        private int lIdProduct;
+        private string lMessageException;
 
         public int LIdTaxe
         {
@@ -108,9 +110,36 @@ namespace Project_BusinessManagement.Models
             }
         }
 
-        public static List<MTaxe> MListAllTaxesXProduct(List<Bo_Taxe> oListTaxe)
+        public int LIdProduct
+        {
+            get
+            {
+                return lIdProduct;
+            }
+
+            set
+            {
+                lIdProduct = value;
+            }
+        }
+
+        public string LMessageException
+        {
+            get
+            {
+                return lMessageException;
+            }
+
+            set
+            {
+                lMessageException = value;
+            }
+        }
+
+        public static List<MTaxe> MListAllTaxesXProduct(List<Bo_Taxe> oListTaxe, int? pIdProducto)
         {
             List<MTaxe> oMListTaxe = new List<MTaxe>();
+            
             oListTaxe.ForEach(x => {
                 MTaxe lTaxe = new MTaxe();
                 lTaxe.LStatus = new MStatus();
@@ -121,8 +150,21 @@ namespace Project_BusinessManagement.Models
                 lTaxe.LValueTaxe = x.LValueTaxe;
                 lTaxe.LStatus.LIdStatus = x.LStatus.LIdStatus;
                 lTaxe.lObject.LIdObject = x.LObject.LIdObject;
+                lTaxe.lIdProduct = pIdProducto==null? 0: Convert.ToInt32(pIdProducto);
+                lTaxe.LMessageException = null;
                 oMListTaxe.Add(lTaxe);
             });
+
+            if (!oMListTaxe.Any())
+            { 
+                MTaxe lTaxe = new MTaxe();
+                lTaxe.lIdProduct = pIdProducto == null ? 0 : Convert.ToInt32(pIdProducto);
+                lTaxe.LNameTaxe = "N/A";
+                lTaxe.LIsPercent = false;
+                lTaxe.LValueTaxe = 0;
+                lTaxe.LMessageException = "No tiene Impuestos";
+                oMListTaxe.Add(lTaxe);
+            }
             return oMListTaxe;
         }
 

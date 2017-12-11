@@ -71,7 +71,8 @@ namespace Project_BusinessManagement.Controllers
             }
         }
 
-        [HttpPost]
+
+
         public ActionResult AddTaxe(Models.MProduct pMProduct)
         {
             try

@@ -176,8 +176,13 @@
     <Content Include="Images\Icons\ILast.png" />
     <Content Include="Images\Icons\INext.png" />
     <Content Include="Images\Icons\IPrev.png" />
-    <Content Include="packages.config" />
+    <Content Include="packages.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Content\StyleMaster.css" />
+    <None Include="Scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="Scripts\jquery-1.10.2.js" />
+    <Content Include="Scripts\jquery-1.10.2.min.js" />
     <Content Include="Scripts\jquery.metadata.js" />
     <Content Include="Scripts\jquery.signalR-2.2.2.js" />
     <Content Include="Scripts\jquery.signalR-2.2.2.min.js" />
@@ -189,6 +194,7 @@
     <Content Include="Scripts\jquery.tablesorter.widgets-filter-formatter.min.js" />
     <Content Include="Scripts\jquery.tablesorter.widgets.js" />
     <Content Include="Scripts\jquery.tablesorter.widgets.min.js" />
+    <None Include="Scripts\jquery.validate-vsdoc.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Views\Web.config">
@@ -215,6 +221,7 @@
     <Content Include="Content\bootstrap-theme.css.map" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Scripts\jquery-1.10.2.min.map" />
     <None Include="Scripts\jquery-2.2.3.intellisense.js" />
     <Content Include="Scripts\jquery-2.2.3.js" />
     <Content Include="Scripts\jquery-2.2.3.min.js" />
@@ -254,6 +261,9 @@
     <Content Include="Views\OrderItem\Index.cshtml" />
     <Content Include="Views\DashBoard\Index.cshtml" />
     <Content Include="Views\Product\AddTaxe.cshtml" />
+    <Content Include="Views\Taxe\Create.cshtml" />
+    <Content Include="Views\Taxe\Index.cshtml" />
+    <Content Include="Views\Taxe\AssociateProduct.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -274,6 +284,7 @@
     <Compile Include="Controllers\OrderController.cs" />
     <Compile Include="Controllers\OrderItemController.cs" />
     <Compile Include="Controllers\ProductController.cs" />
+    <Compile Include="Controllers\TaxeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>

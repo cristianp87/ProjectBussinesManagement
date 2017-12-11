@@ -351,7 +351,7 @@ namespace Project_BusinessManagement.Models
             oMProduct.LListSupplier = MSupplier.MListAllSupplier(Bll_Business.Bll_Supplier.bll_GetAllSupplier());
             oMProduct.LListStatus = MStatus.MListAllStatus(Bll_Business.Bll_Status.Bll_getListStatusByIdObject(oBProduct.LObject.LIdObject));
             oMProduct.LListUnit = MUnit.MListAllUnitWithSelect(Bll_Business.Bll_UtilsLib.bll_GetAllUnit());
-            oMProduct.LListTaxe = MTaxe.MListAllTaxesXProduct(Bll_Business.Bll_Taxe.bll_GetListallTaxesXProduct(oBProduct.LIdProduct));
+            oMProduct.LListTaxe = MTaxe.MListAllTaxesXProduct(Bll_Business.Bll_Taxe.bll_GetListallTaxesXProduct(oBProduct.LIdProduct), null);
             return oMProduct;
         }
 

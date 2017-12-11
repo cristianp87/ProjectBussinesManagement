@@ -16,3 +16,12 @@ C:\Users\CristianPc\Documents\Projects\ProjectBussinesManagement\Bll_Business\bi
 C:\Users\CristianPc\Documents\Projects\ProjectBussinesManagement\Bll_Business\obj\Debug\Bll_Business.csprojResolveAssemblyReference.cache
 C:\Users\CristianPc\Documents\Projects\ProjectBussinesManagement\Bll_Business\obj\Debug\Bll_Business.dll
 C:\Users\CristianPc\Documents\Projects\ProjectBussinesManagement\Bll_Business\obj\Debug\Bll_Business.pdb
+C:\Users\cripac\Documents\GitHub\ProjectBussinesManagement\Bll_Business\bin\Debug\Bll_Business.dll
+C:\Users\cripac\Documents\GitHub\ProjectBussinesManagement\Bll_Business\bin\Debug\Bll_Business.pdb
+C:\Users\cripac\Documents\GitHub\ProjectBussinesManagement\Bll_Business\bin\Debug\BO_BusinessManagement.dll
+C:\Users\cripac\Documents\GitHub\ProjectBussinesManagement\Bll_Business\bin\Debug\Dao_BussinessManagement.dll
+C:\Users\cripac\Documents\GitHub\ProjectBussinesManagement\Bll_Business\bin\Debug\BO_BusinessManagement.pdb
+C:\Users\cripac\Documents\GitHub\ProjectBussinesManagement\Bll_Business\bin\Debug\Dao_BussinessManagement.pdb
+C:\Users\cripac\Documents\GitHub\ProjectBussinesManagement\Bll_Business\obj\Debug\Bll_Business.csprojResolveAssemblyReference.cache
+C:\Users\cripac\Documents\GitHub\ProjectBussinesManagement\Bll_Business\obj\Debug\Bll_Business.dll
+C:\Users\cripac\Documents\GitHub\ProjectBussinesManagement\Bll_Business\obj\Debug\Bll_Business.pdb
