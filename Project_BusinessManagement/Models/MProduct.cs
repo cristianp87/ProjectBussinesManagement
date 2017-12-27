@@ -31,7 +31,7 @@ namespace Project_BusinessManagement.Models
         private string lListIdsTaxe;
         
 
-        [UIHint("LIdSupplier")]
+        [UIHint("LIdProduct")]
         [DisplayName("IDProducto")]
         public int LIdProduct
         {

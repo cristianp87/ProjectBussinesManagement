@@ -264,6 +264,7 @@
     <Content Include="Views\Taxe\Create.cshtml" />
     <Content Include="Views\Taxe\Index.cshtml" />
     <Content Include="Views\Taxe\AssociateProduct.cshtml" />
+    <Content Include="Views\Taxe\Delete.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

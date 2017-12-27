@@ -217,6 +217,13 @@ namespace Dao_BussinessManagement
             return Dao_UtilsLib.Dao_executeSqlTransactionWithProcedement(lListParam, "LTranInsertTaxeXProduct", "spr_CreateTaxeXProduct");
         }
 
+        public string Dao_DeleteTaxeXProduct(int pIdProduct, int pIdTaxe)
+        {
+            Dao_UtilsLib.dao_Addparameters(lListParam, SqlDbType.Int, "@IdProduct", pIdProduct.ToString());
+            Dao_UtilsLib.dao_Addparameters(lListParam, SqlDbType.Int, "@IdTaxe", pIdTaxe.ToString());
+            return Dao_UtilsLib.Dao_executeSqlTransactionWithProcedement(lListParam, "LTranDeleteTaxeXProduct", "spr_DeleteTaxeXProduct");
+        }
+
 
     }
 }

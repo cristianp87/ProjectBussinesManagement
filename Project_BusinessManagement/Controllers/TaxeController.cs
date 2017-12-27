@@ -106,24 +106,36 @@ namespace Project_BusinessManagement.Controllers
         }
 
         // GET: Taxe/Delete/5
-        public ActionResult Delete(int id)
+        public ActionResult Delete(int pIdTaxe, int pIdProduct)
         {
-            return View();
+            Bo_Taxe lTaxe= new Bo_Taxe();
+            Models.MTaxe lMTaxe = new Models.MTaxe();
+            lTaxe = Bll_Taxe.bll_GetTaxe(pIdTaxe);
+            lMTaxe = Models.MTaxe.GetTaxeXProduct(lTaxe, pIdProduct);
+            return View(lMTaxe);
         }
 
         // POST: Taxe/Delete/5
         [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
+        public ActionResult Delete(int pIdTaxe, int pIdProduct, Models.MTaxe pTaxe)
         {
             try
             {
-                // TODO: Add delete logic here
-
-                return RedirectToAction("Index");
+                var lMessage = Bll_Taxe.bll_DeleteTaxeXProduct(pIdProduct, pIdTaxe);
+                if (string.IsNullOrEmpty(lMessage))
+                {
+                    return RedirectToAction("Index", new { pIdProduct = pIdProduct});
+                }
+                else
+                {
+                    pTaxe.LMessageException = lMessage;
+                    return View(pTaxe);
+                }
             }
-            catch
+            catch(Exception e)
             {
-                return View();
+                pTaxe.LMessageException = e.Message;
+                return View(pTaxe);
             }
         }
 

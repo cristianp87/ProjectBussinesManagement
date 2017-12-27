@@ -33,5 +33,17 @@ namespace Bll_Business
             Dao_Taxe lDaoTaxe = new Dao_Taxe();
             return lDaoTaxe.Dao_InsertTaxeXProduct(pIdProduct, pIdTaxe);
         }
+
+        public static Bo_Taxe bll_GetTaxe(int pIdTaxe)
+        {
+            Dao_Taxe lDaoTaxe = new Dao_Taxe();
+            return lDaoTaxe.Dao_getTaxeById(pIdTaxe);
+        }
+
+        public static string bll_DeleteTaxeXProduct(int pIdProduct, int pIdTaxe)
+        {
+            Dao_Taxe lDaoTaxe = new Dao_Taxe();
+            return lDaoTaxe.Dao_DeleteTaxeXProduct(pIdProduct, pIdTaxe);
+        }
     }
 }

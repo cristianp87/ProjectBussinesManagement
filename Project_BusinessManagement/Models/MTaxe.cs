@@ -4,6 +4,8 @@ using BO_BusinessManagement;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 
 namespace Project_BusinessManagement.Models
 {
@@ -19,6 +21,8 @@ namespace Project_BusinessManagement.Models
         private int lIdProduct;
         private string lMessageException;
 
+        [UIHint("LIdTaxe")]
+        [DisplayName("Id Impuesto")]
         public int LIdTaxe
         {
             get
@@ -32,6 +36,7 @@ namespace Project_BusinessManagement.Models
             }
         }
 
+        [DisplayName("Nombre")]
         public string LNameTaxe
         {
             get
@@ -45,6 +50,7 @@ namespace Project_BusinessManagement.Models
             }
         }
 
+        [DisplayName("Valor")]
         public decimal LValueTaxe
         {
             get
@@ -58,6 +64,7 @@ namespace Project_BusinessManagement.Models
             }
         }
 
+        [DisplayName("Porcentaje")]
         public bool LIsPercent
         {
             get
@@ -71,6 +78,7 @@ namespace Project_BusinessManagement.Models
             }
         }
 
+        [DisplayName("Fecha Creacion")]
         public DateTime LCreationDate
         {
             get
@@ -182,6 +190,25 @@ namespace Project_BusinessManagement.Models
                 lListSelectTaxes.Add(lListItem);
             });
             return lListSelectTaxes;
+        }
+
+        public static MTaxe GetTaxeXProduct(Bo_Taxe pTaxe, int pIdProduct)
+        {
+            var lTaxe = new MTaxe();
+            lTaxe.LObject = new MObject();
+            lTaxe.LStatus = new MStatus();
+            lTaxe.LCreationDate = pTaxe.LCreationDate;
+            lTaxe.LIdProduct = pIdProduct;
+            lTaxe.LIdTaxe = pTaxe.LIdTaxe;
+            lTaxe.LIsPercent = pTaxe.LIsPercent;
+            lTaxe.LMessageException = pTaxe.LMessageDao;
+            lTaxe.LNameTaxe = pTaxe.LNameTaxe;
+            lTaxe.LObject.LIdObject = pTaxe.LObject.LIdObject;
+            lTaxe.LObject.LNameObject = pTaxe.LObject.LNameObject;
+            lTaxe.LStatus.LIdStatus = pTaxe.LStatus.LIdStatus;
+            lTaxe.LStatus.LDsEstado = pTaxe.LStatus.LDsEstado;
+            lTaxe.LValueTaxe = pTaxe.LValueTaxe;
+            return lTaxe;
         }
     }
 }

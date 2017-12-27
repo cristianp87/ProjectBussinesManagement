@@ -55,6 +55,7 @@
             @Html.DisplayFor(modelItem => item.LValueSupplier)
         </td>
         <td>
+            @Html.ActionLink("Impuestos", "Index", "Taxe", new { pIdProduct = item.LIdProduct }, null) |
             @Html.ActionLink("Editar", "Edit", new {  id=item.LIdProduct }) |
             @Html.ActionLink("Detalle", "Details", new {  id=item.LIdProduct }) |
             @Html.ActionLink("Eliminar", "Delete", new {  id=item.LIdProduct })
