@@ -91,8 +91,8 @@ $('#btnCreateOrder').click(function () {
             data: { pOrder: processOrder($('#hdnIdcustomer').val(), $('#ddlInventory').val()) },
             success: function (product) {
                 if (product.Success){
-                    showSuccess('Se ha generado el pedido');
-                    $('#linkInvoice').prop("href", yourApp.Urls.GoInvoiceDetails).text("Ver Factura");
+                    showSuccess('Se ha generado el pedido.');
+                    $('#linkInvoice').prop("href", yourApp.Urls.GoInvoiceDetails + "?id=" + product.Content).text("Ver Factura");
                 }                   
                 else
                     showException('No se pudo Ingresar el pedido.' + product.Content);
@@ -102,7 +102,7 @@ $('#btnCreateOrder').click(function () {
             }
         });
     } else {
-        showException('El inventario debe seleccionarse');
+        showException('El inventario debe seleccionarse.');
     }
 
 });
@@ -157,20 +157,20 @@ function OrderItemAll() {
                     lCodProduct = $(this).text();
                     break;
                 case 3:
-                    lValueProduct = parseFloat($(this).text());  
+                    lValueProduct = $(this).text();  
                     break;
                 case 4:
-                    lCantProduct = parseFloat($(this).text());
+                    lCantProduct = $(this).text();
                     break;
                 case 5:
-                    lValueTaxes = parseFloat($(this).text());
+                    lValueTaxes = $(this).text();
                     break;
                 case 6:
-                    lTotal = parseFloat($(this).text());
+                    lTotal = $(this).text();
                     break;
             }
         });
-        addOrderItemArray(new MOrderItem(lCodProduct, lValueProduct, 0, lValueTaxes, 0, lCantProduct, lTotal));
+        addOrderItemArray(new MOrderItem(lCodProduct, lValueProduct, '0', lValueTaxes, '0', lCantProduct, lTotal));
     });
 }
 
@@ -187,21 +187,21 @@ function MOrderItem(pCodProduct,pValue,pValueSupplier, pValueTaxes, pValueDesc, 
     this.LProduct = new MProduct(pCodProduct);
     this.LCreationDate = new Date();
     this.LStatus = null;
-    this.LObject = 300;
+    this.LObject = null;
     this.LOrder = null;   
-    this.LValueProduct = parseFloat(0);
-    this.LValueSupplier = parseFloat(0);
-    this.LValueTaxes = parseFloat(0);
-    this.LValueDesc = parseFloat(0);
+    this.LValueProduct = '0';
+    this.LValueSupplier = '0';
+    this.LValueTaxes = '0';
+    this.LValueDesc = '0';
     this.LMessageException = "";
-    this.LQty = parseFloat(0);
-    this.LValueTotal = parseFloat(0);
-    this.LValueProduct = pValue;
-    this.LValueSupplier = pValueSupplier;
-    this.LValueTaxes = pValueTaxes;
-    this.LValueDesc = pValueDesc;
-    this.LQty = pCantProduct;
-    this.LValueTotal = pTotal;
+    this.LQty = '0';
+    this.LValueTotal = '0';
+    this.LValueProduct = ConvertToDecimal(pValue);
+    this.LValueSupplier = ConvertToDecimal(pValueSupplier);
+    this.LValueTaxes = ConvertToDecimal(pValueTaxes);
+    this.LValueDesc = ConvertToDecimal(pValueDesc);
+    this.LQty = ConvertToDecimal(pCantProduct);
+    this.LValueTotal = ConvertToDecimal(pTotal);
 }
 
 function MOrder(pListOrderItem, pIdCustomer, pIdInventory) {
@@ -359,4 +359,11 @@ function hideException() {
     $('#dvException').addClass("hide");
     $('#lblException').val("");
 }
+
+function ConvertToDecimal(value){
+    return value.replace(".", ",")
+}
+
+
+
 

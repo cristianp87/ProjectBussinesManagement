@@ -5,7 +5,7 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Details</h2>
+<h2>Detalle</h2>
 
 <div>
     <h4>Factura</h4>
@@ -36,46 +36,61 @@
         </dd>
 
     </dl>
-    <table>
-        <thead>
+    <div class="table-responsive">
+        <table class="tablesorter">
             <tr>
-                <td>
+                <th>
                     Nombre Producto
-                </td>
-                <td>
+                </th>
+                <th>
                     Cantidad
-                </td>
-                <td>
+                </th>
+                <th>
                     Valor Producto
-                </td>
-                <td>
+                </th>
+                <th>
                     Valor Total
-                </td>
+                </th>
             </tr>
-        </thead>
-        <tbody>
-            @foreach (var item in Model.LListMInvoiceItem)
+                @foreach (var item in Model.LListMInvoiceItem)
             {
-                <tr>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.LProduct.LNameProduct)                       
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.LQuantity)                      
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.LValueProd)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.LValueTotal)
-                    </td>
-                </tr>
-            }
-            
-        </tbody>
-    </table>
-</div>
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.LProduct.LNameProduct)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.LQuantity)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.LValueProd)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.LValueTotal)
+                        </td>
+                    </tr>
+                }
+        </table>
+        <div id="pager" class="pager">
+            <form>
+                <a href="#"><img src="~/Images/Icons/IFirst.png" class="first" alt="Primero" title="Primero" /></a>
+                <a href="#"><img src="~/Images/Icons/IPrev.png" class="prev" alt="Anterior" title="Anterior" /></a>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <!-- the "pagedisplay" can be any element, including an input -->
+                <span class="pagedisplay" data-pager-output-filtered="{startRow:input} &ndash; {endRow} / {filteredRows} of {totalRows} total rows"></span>
+                <a href="#"><img src="~/Images/Icons/INext.png" class="next" alt="Siguiente" title="Siguiente" /></a>
+                <a href="#"><img src="~/Images/Icons/ILast.png" class="last" alt="Ultimo" title="Ultimo" /></a>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <select class="pagesize">
+                    <option value="10" selected="selected">10</option>
+                    <option value="50">50</option>
+                    <option value="100">100</option>
+                    <option value="500">500</option>
+                    <option value="1000">1000</option>
+                </select>
+            </form>
+        </div>
+        </div>
+    </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Ir a Pedidos", "DashBoard", "Order")
 </p>

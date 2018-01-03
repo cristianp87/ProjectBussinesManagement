@@ -170,6 +170,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\StyleMaster2.css" />
     <Content Include="csJquery\JOrder\JOrderDash.js" />
     <Content Include="csJquery\JSupplier\JListSupplier.js" />
     <Content Include="Images\Icons\IFirst.png" />
@@ -265,6 +266,7 @@
     <Content Include="Views\Taxe\Index.cshtml" />
     <Content Include="Views\Taxe\AssociateProduct.cshtml" />
     <Content Include="Views\Taxe\Delete.cshtml" />
+    <Content Include="Views\Shared\Layout2.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

@@ -30,11 +30,12 @@ namespace Bll_Business
             if(int.TryParse(lResult,out lIdInvoice))
             {
                 lResult = "";
-                string lStatusItem = Bll_UtilsLib.bll_getStatusApproByObject(lListInvoiceItem[0].LObject.LIdObject).LIdStatus;
-                lListInvoiceItem.ForEach(x =>
-               {
+                var lStatusItem = Bll_UtilsLib.bll_getStatusApproByObject(lListInvoiceItem[0].LObject.LIdObject).LIdStatus;
+                lListInvoiceItem.ForEach(x => {
                    lResult += Bll_InvoiceItem.bll_InsertInvoiceItem(lIdInvoice, x.LQuantity, x.LValueProd, x.LValueSupplier, x.LValueTaxes, x.LValueDesc, x.LProduct.LIdProduct, x.LObject.LIdObject, lStatusItem);
-               });               
+               });
+                if (string.IsNullOrEmpty(lResult))
+                    lResult = lIdInvoice.ToString();             
             }
             else
             {

@@ -15,9 +15,9 @@
          yourApp.Urls.getItem = '@Url.Action("GetOrderItem")';
          yourApp.Urls.CreateOrderItem = '@Url.Action("Create")';
         yourApp.Urls.GetListTypeIdentification = '@Url.Action("GetTypeIdentification")';
-        yourApp.Urls.GetCustomer = '@Url.Action("GetCustomer")';;
-        yourApp.Urls.GoInvoiceDetails = '@Url.Action("Details","Invoice")'
-        yourApp.Urls.GoCustomer = '@Url.Action("Create","Customer")'
+        yourApp.Urls.GetCustomer = '@Url.Action("GetCustomer")';
+        yourApp.Urls.GoInvoiceDetails = '@Url.Action("Details","Invoice")';
+        yourApp.Urls.GoCustomer = '@Url.Action("Create","Customer")';
 
     </script>
     <script src="~/csJquery/JOrder/JOrderDash.js"></script>
@@ -28,7 +28,7 @@
 <div id="dvException" class="hide" >
     <label id="lblException" class="alert alert-danger">
     </label>
-    <a id="linkInvoice" href="#"></a>
+    <a id="linkInvoice" href="#" class="btn btn-info"></a>
 </div>
 
 <div class="form-horizontal">
