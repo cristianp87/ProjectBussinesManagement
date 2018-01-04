@@ -17,6 +17,8 @@
 
     <script type="text/javascript">
         $(function () {
+
+
             $("table.tablesorter").tablesorter({ widthFixed: true, sortList: [[2, 2]] })
             .tablesorterPager({ container: $("#pager"), size: $(".pagesize option:selected").val() });
 
@@ -55,12 +57,14 @@
     <div class="container-fluid text-center">
         <div class="row content">
             <div class="col-sm-2 sidenav">
-                <p>@Html.ActionLink("DashBoard", "Index", "DashBoard")</p>
-                <p>@Html.ActionLink("Proveedores", "Index", "Supplier")</p>
-                <p>@Html.ActionLink("Clientes", "Index", "Customer")</p>
-                <p>@Html.ActionLink("Productos", "Index", "Product")</p>
-                <p>@Html.ActionLink("Inventario", "Index", "Inventory")</p>
-                <p>@Html.ActionLink("Realizar Pedido", "DashBoardOrder", "Order")</p>
+                <ul class="nav nav-tabs nav-pills nav-stacked well">
+                    <li class="@(ViewContext.RouteData.Values["Controller"].ToString() == "DashBoard" ? "active" : "")">@Html.ActionLink("DashBoard", "Index", "DashBoard")</li>
+                    <li class="@(ViewContext.RouteData.Values["Controller"].ToString() == "Supplier" ? "active" : "")">@Html.ActionLink("Proveedores", "Index", "Supplier")</li>
+                    <li class="@(ViewContext.RouteData.Values["Controller"].ToString() == "Customer" ? "active" : "")">@Html.ActionLink("Clientes", "Index", "Customer")</li>
+                    <li class="@(ViewContext.RouteData.Values["Controller"].ToString() == "Product" ? "active" : "")">@Html.ActionLink("Productos", "Index", "Product")</li>
+                    <li class="@(ViewContext.RouteData.Values["Controller"].ToString() == "Inventory" ? "active" : "")">@Html.ActionLink("Inventario", "Index", "Inventory")</li>
+                    <li class="@(ViewContext.RouteData.Values["Controller"].ToString() == "Order" ? "active" : "")">@Html.ActionLink("Realizar Pedido", "DashBoardOrder", "Order")</li>
+                </ul>
             </div>
             <div class="col-sm-8 text-left">
                 <div class="container-fluid">
