@@ -280,6 +280,8 @@
     <Content Include="Views\Taxe\AssociateProduct.cshtml" />
     <Content Include="Views\Taxe\Delete.cshtml" />
     <Content Include="Views\Shared\Layout2.cshtml" />
+    <Content Include="Views\Return\Index.cshtml" />
+    <Content Include="Views\Return\ReturnIndex.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -301,6 +303,7 @@
     <Compile Include="Controllers\OrderController.cs" />
     <Compile Include="Controllers\OrderItemController.cs" />
     <Compile Include="Controllers\ProductController.cs" />
+    <Compile Include="Controllers\ReturnController.cs" />
     <Compile Include="Controllers\TaxeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>

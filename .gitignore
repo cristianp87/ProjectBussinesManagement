@@ -2,3 +2,6 @@
 BO_BusinessManagement/obj/Debug/BO_BusinessManagement.csprojResolveAssemblyReference.cache
 Project_BusinessManagement/bin/Project_BusinessManagement.pdb
 Project_BusinessManagement/obj/Debug/Project_BusinessManagement.pdb
+.vs/Project_BusinessManagement/v14/.suo
+packages/Microsoft.AspNet.WebApi.5.2.3/Microsoft.AspNet.WebApi.5.2.3.nupkg
+packages/Microsoft.AspNet.WebApi.Client.5.2.3/lib/net45/System.Net.Http.Formatting.dll

@@ -220,3 +220,9 @@ C:\Users\cripac\Documents\GitHub\ProjectBussinesManagement\Project_BusinessManag
 C:\Users\cripac\Documents\GitHub\ProjectBussinesManagement\Project_BusinessManagement\obj\Debug\Project_BusinessManagement.csprojResolveAssemblyReference.cache
 C:\Users\cripac\Documents\GitHub\ProjectBussinesManagement\Project_BusinessManagement\obj\Debug\Project_BusinessManagement.dll
 C:\Users\cripac\Documents\GitHub\ProjectBussinesManagement\Project_BusinessManagement\obj\Debug\Project_BusinessManagement.pdb
+C:\Users\cripac\Documents\GitHub\ProjectBussinesManagement\Project_BusinessManagement\bin\System.Net.Http.Formatting.dll
+C:\Users\cripac\Documents\GitHub\ProjectBussinesManagement\Project_BusinessManagement\bin\System.Web.Http.dll
+C:\Users\cripac\Documents\GitHub\ProjectBussinesManagement\Project_BusinessManagement\bin\System.Web.Http.WebHost.dll
+C:\Users\cripac\Documents\GitHub\ProjectBussinesManagement\Project_BusinessManagement\bin\System.Net.Http.Formatting.xml
+C:\Users\cripac\Documents\GitHub\ProjectBussinesManagement\Project_BusinessManagement\bin\System.Web.Http.xml
+C:\Users\cripac\Documents\GitHub\ProjectBussinesManagement\Project_BusinessManagement\bin\System.Web.Http.WebHost.xml
