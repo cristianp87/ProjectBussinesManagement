@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace BO_BusinessManagement
 {
-    public class Bo_User
+    public class Bo_User : Bo_Exception
     {
         private int lIdUser;
         private string lFNameUser;
