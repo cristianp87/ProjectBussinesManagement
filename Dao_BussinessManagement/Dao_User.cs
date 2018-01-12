@@ -14,7 +14,7 @@ namespace Dao_BussinessManagement
     {
         List<SqlParameter> lListParam = new List<SqlParameter>();
 
-        public Bo_User Dao_getUserByUser(string pUser, string pPassword)
+        public Bo_User Dao_getUserByUser(string pUser)
         {
             using (SqlConnection lConex = Dao_UtilsLib.Dao_SqlConnection(lConex))
             {
@@ -26,7 +26,6 @@ namespace Dao_BussinessManagement
                     lCommand.CommandType = CommandType.StoredProcedure;
                     lCommand.Connection = lConex;
                     lCommand.Parameters.Add(new SqlParameter("User", pUser));
-                    lCommand.Parameters.Add(new SqlParameter("Password", pPassword));
 
                     var lReader = lCommand.ExecuteReader();
                     Bo_User lUser = new Bo_User();
@@ -40,6 +39,7 @@ namespace Dao_BussinessManagement
                             lUser.LUser = lReader["Usuario"].ToString();
                             lUser.LFNameUser = lReader["FName"].ToString();
                             lUser.LSNameUser = lReader["SName"].ToString();
+                            lUser.LPassword = lReader["PasswordHash"].ToString(); 
                             lUser.LStatus.LIdStatus = lReader["IdStatus"].ToString();
                             lUser.LObject.LIdObject = Convert.ToInt32(lReader["IdObject"].ToString());
                         }
