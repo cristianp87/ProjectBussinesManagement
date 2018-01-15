@@ -59,5 +59,21 @@ namespace Dao_BussinessManagement
                 }
             }
         }
+
+        public string Dao_InsertUser(Bo_User pUser)
+        {
+            Dao_UtilsLib.dao_Addparameters(lListParam, SqlDbType.Int, "@IdTypeIdentification", pUser.LTypeIdentification.LIdTypeIdentification.ToString());
+            Dao_UtilsLib.dao_Addparameters(lListParam, SqlDbType.VarChar, "@NoIdentification", pUser.LNoIdentification);
+            Dao_UtilsLib.dao_Addparameters(lListParam, SqlDbType.VarChar, "@FName", pUser.LFNameUser);
+            Dao_UtilsLib.dao_Addparameters(lListParam, SqlDbType.VarChar, "@SName", pUser.LSNameUser);
+            Dao_UtilsLib.dao_Addparameters(lListParam, SqlDbType.VarChar, "@FLastName", pUser.LFLastName);
+            Dao_UtilsLib.dao_Addparameters(lListParam, SqlDbType.VarChar, "@SLastName", pUser.LSLastName);
+            Dao_UtilsLib.dao_Addparameters(lListParam, SqlDbType.Int, "@IdObject", pUser.LObject.LIdObject.ToString());
+            Dao_UtilsLib.dao_Addparameters(lListParam, SqlDbType.DateTime, "@BirthDate", pUser.LBirthDate.ToString());
+            Dao_UtilsLib.dao_Addparameters(lListParam, SqlDbType.VarChar, "@User", pUser.LUser);
+            Dao_UtilsLib.dao_Addparameters(lListParam, SqlDbType.VarChar, "@Password", pUser.LPassword);
+            Dao_UtilsLib.dao_Addparameters(lListParam, SqlDbType.VarChar, "@IdStatus", pUser.LStatus.LIdStatus);
+            return Dao_UtilsLib.Dao_executeSqlTransactionWithProcedement(lListParam, "LTranInsertUser", "spr_CreateUser");
+        }
     }
 }

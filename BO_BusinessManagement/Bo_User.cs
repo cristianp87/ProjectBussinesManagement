@@ -17,6 +17,8 @@ namespace BO_BusinessManagement
         private DateTime lBirthDate;
         private string lUser;
         private string lPassword;
+        private string lNoIdentification;
+        private Bo_TypeIdentification lTypeIdentification;
         private Bo_Object lObject;
         private Bo_Status lStatus;
 
@@ -160,6 +162,32 @@ namespace BO_BusinessManagement
             set
             {
                 lStatus = value;
+            }
+        }
+
+        public string LNoIdentification
+        {
+            get
+            {
+                return lNoIdentification;
+            }
+
+            set
+            {
+                lNoIdentification = value;
+            }
+        }
+
+        public Bo_TypeIdentification LTypeIdentification
+        {
+            get
+            {
+                return lTypeIdentification;
+            }
+
+            set
+            {
+                lTypeIdentification = value;
             }
         }
     }
