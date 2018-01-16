@@ -10,5 +10,11 @@ namespace Bll_Business
             var lUser = new Dao_User();
             return lUser.Dao_getUserByUser(pUser);
         }
+
+        public static string bll_InsertUser(Bo_User pUser)
+        {
+            var lUser = new Dao_User();
+            return lUser.Dao_InsertUser(pUser);
+        }
     }
 }

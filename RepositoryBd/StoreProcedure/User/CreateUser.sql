@@ -14,12 +14,13 @@ CREATE PROCEDURE spr_CreateUser
 	@FName as varchar(50),
 	@SName as varchar(50),
 	@FLastName as varchar(50),
-	@SLastName as varchar(50),
+	@SLastName as varchar(50) = null,
 	@IdObject as int,
 	@BirthDate as DateTime,
 	@User as varchar(20),
-	@Password as varchar(20),
-	@IdStatus as varchar(10)
+	@Password as varchar(MAX),
+	@IdStatus as varchar(10),
+	@IdRole as int
 	
 AS
 BEGIN
@@ -28,5 +29,7 @@ BEGIN
 
 	Insert Into [User](IdTypeIdentification, NoIdentification, FName, SName, FLastName, SLastName, IdObject, FechaNacimiento, Usuario, [Password], IdStatus, CreationDate, ModificationDate)
 	values(@IdTypeIdentification, @NoIdentification, @FName, @SName, @FLastName, @SLastName, @IdObject, @BirthDate, @User, @Password, @IdStatus, GETDATE(), GETDATE())
+
+	exec spr_CreateRoleForUser @@Identity, @IdRole
 END
 GO

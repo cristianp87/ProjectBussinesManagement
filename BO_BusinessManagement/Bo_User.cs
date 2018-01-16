@@ -21,6 +21,7 @@ namespace BO_BusinessManagement
         private Bo_TypeIdentification lTypeIdentification;
         private Bo_Object lObject;
         private Bo_Status lStatus;
+        private Bo_Role lRole;
 
         public int LIdUser
         {
@@ -188,6 +189,19 @@ namespace BO_BusinessManagement
             set
             {
                 lTypeIdentification = value;
+            }
+        }
+
+        public Bo_Role LRole
+        {
+            get
+            {
+                return lRole;
+            }
+
+            set
+            {
+                lRole = value;
             }
         }
     }

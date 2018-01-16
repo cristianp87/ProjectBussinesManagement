@@ -41,6 +41,7 @@ namespace Dao_BussinessManagement
                             lUser.LSNameUser = lReader["SName"].ToString();
                             lUser.LPassword = lReader["PasswordHash"].ToString(); 
                             lUser.LStatus.LIdStatus = lReader["IdStatus"].ToString();
+                            lUser.LFLastName = lReader["FLastName"].ToString();
                             lUser.LObject.LIdObject = Convert.ToInt32(lReader["IdObject"].ToString());
                         }
                     }
@@ -73,6 +74,7 @@ namespace Dao_BussinessManagement
             Dao_UtilsLib.dao_Addparameters(lListParam, SqlDbType.VarChar, "@User", pUser.LUser);
             Dao_UtilsLib.dao_Addparameters(lListParam, SqlDbType.VarChar, "@Password", pUser.LPassword);
             Dao_UtilsLib.dao_Addparameters(lListParam, SqlDbType.VarChar, "@IdStatus", pUser.LStatus.LIdStatus);
+            Dao_UtilsLib.dao_Addparameters(lListParam, SqlDbType.Int, "@IdRole", pUser.LRole.LIdRole.ToString());
             return Dao_UtilsLib.Dao_executeSqlTransactionWithProcedement(lListParam, "LTranInsertUser", "spr_CreateUser");
         }
     }
