@@ -17,7 +17,7 @@ BEGIN
 	SET NOCOUNT ON;
 
     -- Insert statements for procedure here
-	SELECT ur.IdUser, ur.IdRole, r.NameRole, r.flActive
+	SELECT ur.IdUser, ur.IdRole, r.NameRole
 	From UserRole ur
 	Inner join [Role] r on r.IdRole = ur.IdRole
 	Where IdUser =  @IdUser

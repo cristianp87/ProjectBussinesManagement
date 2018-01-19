@@ -61,6 +61,8 @@ namespace Dao_BussinessManagement
             }
         }
 
+       
+
         public string Dao_InsertUser(Bo_User pUser)
         {
             Dao_UtilsLib.dao_Addparameters(lListParam, SqlDbType.Int, "@IdTypeIdentification", pUser.LTypeIdentification.LIdTypeIdentification.ToString());
