@@ -9,6 +9,7 @@ using Project_BusinessManagement.App_Start;
 
 namespace Project_BusinessManagement.Controllers
 {
+    [Authorize(Roles = "Administrador")]
     public class ProductController : Controller
     {
         // GET: Product

@@ -8,6 +8,7 @@ using BO_BusinessManagement;
 
 namespace Project_BusinessManagement.Controllers
 {
+    [Authorize(Roles = "Administrador")]
     public class InventoryItemController : Controller
     {
         // GET: InventoryItem

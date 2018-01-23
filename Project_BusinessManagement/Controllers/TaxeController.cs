@@ -8,6 +8,7 @@ using System.Web.Mvc;
 
 namespace Project_BusinessManagement.Controllers
 {
+    [Authorize(Roles = "Administrador")]
     public class TaxeController : Controller
     {
         // GET: Taxe

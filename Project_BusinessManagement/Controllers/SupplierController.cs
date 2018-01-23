@@ -9,6 +9,7 @@ using System.Collections;
 
 namespace Project_BusinessManagement.Views.Supplier
 {
+    [Authorize(Roles = "Administrador")]
     public class SupplierController : Controller
     {
         // GET: Supplier

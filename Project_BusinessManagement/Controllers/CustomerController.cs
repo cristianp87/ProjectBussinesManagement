@@ -8,6 +8,7 @@ using BO_BusinessManagement;
 
 namespace Project_BusinessManagement.Controllers
 {
+    [Authorize(Roles = "Administrador")]
     public class CustomerController : Controller
     {
         // GET: Customer

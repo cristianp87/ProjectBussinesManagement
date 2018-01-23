@@ -9,6 +9,7 @@ using Project_BusinessManagement.Models;
 
 namespace Project_BusinessManagement.Controllers
 {
+    [Authorize(Roles = "Administrador")]
     public class InventoryController : Controller
     {
         // GET: Inventory

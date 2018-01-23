@@ -2,6 +2,7 @@
 using System;
 using System.Diagnostics;
 using System.Web.Mvc;
+using System.Web.Optimization;
 using System.Web.Routing;
 
 namespace Project_BusinessManagement
@@ -11,8 +12,10 @@ namespace Project_BusinessManagement
 
         protected void Application_Start(object sender, EventArgs e)
         {
+            AreaRegistration.RegisterAllAreas();
             FilterConfig.Configure(GlobalFilters.Filters);
             RouteConfig.Configure(RouteTable.Routes);
+            BundleConfig.RegisterBundles(BundleTable.Bundles);
         }
 
         protected void Session_Start(object sender, EventArgs e)

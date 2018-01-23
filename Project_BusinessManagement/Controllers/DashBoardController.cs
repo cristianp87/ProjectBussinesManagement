@@ -9,6 +9,7 @@ using System.Collections;
 
 namespace Project_BusinessManagement.Controllers
 {
+    [Authorize(Roles = "Administrador")]
     public class DashBoardController : Controller
     {
         // GET: DashBoard

@@ -6,6 +6,7 @@ using System.Web.Mvc;
 
 namespace Project_BusinessManagement.Controllers
 {
+    [Authorize(Roles = "Administrador")]
     public class OrderItemController : Controller
     {
         // GET: OrderItem
