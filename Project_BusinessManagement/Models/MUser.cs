@@ -16,7 +16,6 @@ namespace Project_BusinessManagement.Models
         public string Id { get; set; }
         public string LFirstName { get; set; }
         public string LSecondName { get; set; }
-
         public string LLastName { get; set; }
         public string LSLastName { get; set; }
         public int LIdTypeIdentification { get; set; }
@@ -26,7 +25,7 @@ namespace Project_BusinessManagement.Models
         public string UserName { get; set; }
         public string LIdStatus { get; set; }
         public IList<string> LRoles { get; set; }
-
+        public string LEmail { get; set; }
         public MUser()
         {
             LModificationDate = DateTime.Now;

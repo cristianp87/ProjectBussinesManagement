@@ -42,6 +42,7 @@ namespace Dao_BussinessManagement
                             lUser.LPassword = lReader["PasswordHash"].ToString(); 
                             lUser.LStatus.LIdStatus = lReader["IdStatus"].ToString();
                             lUser.LFLastName = lReader["FLastName"].ToString();
+                            lUser.LEmail = lReader["Email"].ToString();
                             lUser.LObject.LIdObject = Convert.ToInt32(lReader["IdObject"].ToString());
                         }
                     }
@@ -89,6 +90,7 @@ namespace Dao_BussinessManagement
                             lUser.LPassword = lReader["PasswordHash"].ToString();
                             lUser.LStatus.LIdStatus = lReader["IdStatus"].ToString();
                             lUser.LFLastName = lReader["FLastName"].ToString();
+                            lUser.LEmail = lReader["Email"].ToString();
                             lUser.LObject.LIdObject = Convert.ToInt32(lReader["IdObject"].ToString());
                         }
                     }

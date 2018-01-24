@@ -40,7 +40,8 @@ namespace Project_BusinessManagement.Security
                         LCreateDate = DateTime.Now,
                         LPasswordHash = lUser.LPassword,
                         LUser = lUser.LUser,
-                        UserName = lUser.LFNameUser + " " + lUser.LFLastName
+                        UserName = lUser.LFNameUser + " " + lUser.LFLastName,
+                        LEmail = lUser.LEmail
 
                     };
 
@@ -69,7 +70,8 @@ namespace Project_BusinessManagement.Security
                     LCreateDate = DateTime.Now,
                     LPasswordHash = lUser.LPassword,
                     LUser = lUser.LUser,
-                    UserName = lUser.LFNameUser + " " + lUser.LFLastName
+                    UserName = lUser.LFNameUser + " " + lUser.LFLastName,
+                    LEmail = lUser.LEmail
 
                 };
 
