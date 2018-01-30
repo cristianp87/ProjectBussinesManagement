@@ -60,7 +60,6 @@ namespace Project_BusinessManagement.Controllers.Security
                     ModelState.AddModelError("", "Invalid username or password.");
                 }
             }
-
             // If we got this far, something failed, redisplay form 
             return View(model);
         }
