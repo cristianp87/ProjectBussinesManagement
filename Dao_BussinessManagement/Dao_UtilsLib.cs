@@ -268,6 +268,48 @@ namespace Dao_BussinessManagement
                     lCommand.CommandType = CommandType.StoredProcedure;
                     lCommand.Connection = lConex;
                     var lReader = lCommand.ExecuteReader();
+                    lCommand.Parameters.Add(new SqlParameter("NameParameter", pNameParameter));
+                    lCommand.Parameters.Add(new SqlParameter("NameParentParameter", pNameParameterParent));
+                    Bo_ConfigurationValue lConfigurationValue = new Bo_ConfigurationValue();
+                    if (lReader.HasRows)
+                    {
+                        while (lReader.Read())
+                        {
+                            lConfigurationValue.LIdParameter = Convert.ToInt32(lReader["IdParameter"].ToString());
+                            lConfigurationValue.LValueParameter = lReader["Value"].ToString();
+                            lConfigurationValue.LCreationDate = Convert.ToDateTime(lReader["CreationDate"].ToString());
+                        }
+                    }
+                    Dao_CloseSqlconnection(lConex);
+                    return lConfigurationValue.LValueParameter;
+                }
+                catch (Exception e)
+                {
+                    Bo_ConfigurationValue lConfigurationValue = new Bo_ConfigurationValue();
+                    lConfigurationValue.LException = e.Message;
+                    if (e.InnerException != null)
+                        lConfigurationValue.LInnerException = e.InnerException.ToString();
+                    lConfigurationValue.LMessageDao = "Hubo un problema en la consulta, contacte al administrador.";
+                    Dao_CloseSqlconnection(lConex);
+                    return lConfigurationValue.LException;
+                }
+
+            }
+        }
+
+        public static string DaoUtilsLib_getParameterConfigurationActive(string pNameParameter, string pNameParameterParent)
+        {
+            using (SqlConnection lConex = Dao_SqlConnection(lConex))
+            {
+                try
+                {
+                    SqlCommand lCommand = new SqlCommand();
+                    lCommand.CommandText = "spr_GetParameterConfigurationActive";
+                    lCommand.CommandTimeout = 30;
+                    lCommand.CommandType = CommandType.StoredProcedure;
+                    lCommand.Connection = lConex;
+                    var lReader = lCommand.ExecuteReader();
+                    lCommand.Parameters.Add(new SqlParameter("NameParameter", pNameParameter));
                     Bo_ConfigurationValue lConfigurationValue = new Bo_ConfigurationValue();
                     if (lReader.HasRows)
                     {

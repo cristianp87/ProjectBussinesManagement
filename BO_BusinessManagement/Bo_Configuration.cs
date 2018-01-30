@@ -8,9 +8,9 @@ namespace BO_BusinessManagement
 {
     public class Bo_ConfigurationValue:Bo_Exception
     {
-        private int lIdParameter;
-        private string lValueParameter;
-        private DateTime lCreationDate;
+        private int lIdParameter = 0;
+        private string lValueParameter = null;
+        private DateTime lCreationDate = DateTime.Now;
 
         public int LIdParameter
         {
