@@ -1,11 +1,11 @@
-﻿using Owin;
-using Microsoft.AspNet.Identity;
+﻿using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin;
 using Microsoft.Owin.Security.Cookies;
-using System;
-using Microsoft.AspNet.Identity.Owin;
-using Project_BusinessManagement.Security;
+using Owin;
 using Project_BusinessManagement.Models;
+using Project_BusinessManagement.Security;
+using System;
 
 namespace Project_BusinessManagement
 {

@@ -1,6 +1,5 @@
-﻿using System;
+﻿using BO_BusinessManagement;
 using Dao_BussinessManagement;
-using BO_BusinessManagement;
 namespace Bll_Business
 {
     public static class Bll_User

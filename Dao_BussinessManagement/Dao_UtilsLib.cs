@@ -1,13 +1,9 @@
-﻿using System;
+﻿using BO_BusinessManagement;
+using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
-using System.Configuration;
-using System.Data.Sql;
-using BO_BusinessManagement;
 
 namespace Dao_BussinessManagement
 {
@@ -297,7 +293,7 @@ namespace Dao_BussinessManagement
             }
         }
 
-        public static string DaoUtilsLib_getParameterConfigurationActive(string pNameParameter, string pNameParameterParent)
+        public static string DaoUtilsLib_getParameterConfigurationActive(string pNameParameter, bool pActive)
         {
             using (SqlConnection lConex = Dao_SqlConnection(lConex))
             {
@@ -308,8 +304,9 @@ namespace Dao_BussinessManagement
                     lCommand.CommandTimeout = 30;
                     lCommand.CommandType = CommandType.StoredProcedure;
                     lCommand.Connection = lConex;
-                    var lReader = lCommand.ExecuteReader();
+                    var lReader = lCommand.ExecuteReader(); 
                     lCommand.Parameters.Add(new SqlParameter("NameParameter", pNameParameter));
+                    lCommand.Parameters.Add(new SqlParameter("flActive", pActive));
                     Bo_ConfigurationValue lConfigurationValue = new Bo_ConfigurationValue();
                     if (lReader.HasRows)
                     {

@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Dao_BussinessManagement
+namespace BO_BusinessManagement
 {
-    class Dao_ConfigurationParameter
+    class Bo_Parameter
     {
     }
 }
