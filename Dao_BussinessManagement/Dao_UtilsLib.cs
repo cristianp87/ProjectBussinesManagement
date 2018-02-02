@@ -263,9 +263,9 @@ namespace Dao_BussinessManagement
                     lCommand.CommandTimeout = 30;
                     lCommand.CommandType = CommandType.StoredProcedure;
                     lCommand.Connection = lConex;
-                    var lReader = lCommand.ExecuteReader();
                     lCommand.Parameters.Add(new SqlParameter("NameParameter", pNameParameter));
                     lCommand.Parameters.Add(new SqlParameter("NameParentParameter", pNameParameterParent));
+                    var lReader = lCommand.ExecuteReader();                 
                     Bo_ConfigurationValue lConfigurationValue = new Bo_ConfigurationValue();
                     if (lReader.HasRows)
                     {
@@ -304,9 +304,10 @@ namespace Dao_BussinessManagement
                     lCommand.CommandTimeout = 30;
                     lCommand.CommandType = CommandType.StoredProcedure;
                     lCommand.Connection = lConex;
-                    var lReader = lCommand.ExecuteReader(); 
                     lCommand.Parameters.Add(new SqlParameter("NameParameter", pNameParameter));
                     lCommand.Parameters.Add(new SqlParameter("flActive", pActive));
+                    var lReader = lCommand.ExecuteReader(); 
+                    
                     Bo_ConfigurationValue lConfigurationValue = new Bo_ConfigurationValue();
                     if (lReader.HasRows)
                     {

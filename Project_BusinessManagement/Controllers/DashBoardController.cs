@@ -1,4 +1,5 @@
 ﻿using Bll_Business;
+using Project_BusinessManagement.Filters;
 using System.Collections;
 using System.Linq;
 using System.Web.Helpers;
@@ -7,6 +8,7 @@ using System.Web.Mvc;
 namespace Project_BusinessManagement.Controllers
 {
     [Authorize(Roles = "Administrador")]
+    [ConfigurationApp(pParameter: "IsDashBoard")]
     public class DashBoardController : Controller
     {
         // GET: DashBoard

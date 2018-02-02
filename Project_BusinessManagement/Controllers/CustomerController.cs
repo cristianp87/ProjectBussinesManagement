@@ -1,5 +1,6 @@
 ﻿using Bll_Business;
 using BO_BusinessManagement;
+using Project_BusinessManagement.Filters;
 using System;
 using System.Collections.Generic;
 using System.Web.Mvc;
@@ -7,6 +8,7 @@ using System.Web.Mvc;
 namespace Project_BusinessManagement.Controllers
 {
     [Authorize(Roles = "Administrador")]
+    [ConfigurationApp( pParameter:"IsCustomer")]
     public class CustomerController : Controller
     {
         // GET: Customer
@@ -26,6 +28,7 @@ namespace Project_BusinessManagement.Controllers
             return View(Models.MCustomer.MCustomerById(oBCustomer));
         }
 
+        [ConfigurationApp(pParameter: "CreateCustomer")]
         // GET: Customer/Create
         public ActionResult Create()
         {
@@ -69,6 +72,7 @@ namespace Project_BusinessManagement.Controllers
             }
         }
 
+        [ConfigurationApp(pParameter: "EditCustomer")]
         // GET: Customer/Edit/5
         public ActionResult Edit(int id)
         {
@@ -120,8 +124,8 @@ namespace Project_BusinessManagement.Controllers
         }
 
 
-        
 
+        [ConfigurationApp(pParameter: "DeleteCustomer")]
         // GET: Customer/Delete/5
         public ActionResult Delete(int id)
         {

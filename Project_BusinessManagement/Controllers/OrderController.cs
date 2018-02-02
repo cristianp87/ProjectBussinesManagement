@@ -1,5 +1,6 @@
 ﻿using Bll_Business;
 using BO_BusinessManagement;
+using Project_BusinessManagement.Filters;
 using Project_BusinessManagement.Models;
 using System;
 using System.Collections.Generic;
@@ -8,6 +9,7 @@ using System.Web.Mvc;
 namespace Project_BusinessManagement.Controllers
 {
     [Authorize(Roles = "Administrador")]
+    [ConfigurationApp(pParameter: "IsRealizeOrder")]
     public class OrderController : Controller
     {
         // GET: Order
@@ -94,6 +96,7 @@ namespace Project_BusinessManagement.Controllers
             return View();
         }
 
+        [ConfigurationApp(pParameter: "CreateOrder")]
         // GET: Order/Create
         public ActionResult Create()
         {

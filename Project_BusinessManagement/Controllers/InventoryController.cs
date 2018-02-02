@@ -1,5 +1,6 @@
 ﻿using Bll_Business;
 using BO_BusinessManagement;
+using Project_BusinessManagement.Filters;
 using Project_BusinessManagement.Models;
 using System;
 using System.Collections.Generic;
@@ -8,6 +9,7 @@ using System.Web.Mvc;
 namespace Project_BusinessManagement.Controllers
 {
     [Authorize(Roles = "Administrador")]
+    [ConfigurationApp(pParameter: "IsInventory")]
     public class InventoryController : Controller
     {
         // GET: Inventory
@@ -24,6 +26,7 @@ namespace Project_BusinessManagement.Controllers
             return View();
         }
 
+        [ConfigurationApp(pParameter: "CreateInventory")]
         // GET: Inventory/Create
         public ActionResult Create()
         {
@@ -72,6 +75,7 @@ namespace Project_BusinessManagement.Controllers
             pMInventory.LListStatus = Models.MStatus.MListAllStatus(Bll_Status.Bll_getListStatusByIdObject(pMInventory.LObject.LIdObject));
         }
 
+        [ConfigurationApp(pParameter: "EditInventory")]
         // GET: Inventory/Edit/5
         public ActionResult Edit(int id)
         {
@@ -113,6 +117,7 @@ namespace Project_BusinessManagement.Controllers
             }
         }
 
+        [ConfigurationApp(pParameter: "DeleteInventory")]
         // GET: Inventory/Delete/5
         public ActionResult Delete(int id)
         {

@@ -253,6 +253,7 @@ namespace Project_BusinessManagement.Models
             get
             {
                 lResult = Bll_UtilsLib.bll_GetValueParameter("moduleCustomer", true);
+
                 if (bool.TryParse(lResult, out lBool))
                     return lBool;
                 else

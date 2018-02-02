@@ -1,5 +1,6 @@
 ﻿using Bll_Business;
 using BO_BusinessManagement;
+using Project_BusinessManagement.Filters;
 using System;
 using System.Collections.Generic;
 using System.Web.Mvc;
@@ -7,6 +8,7 @@ using System.Web.Mvc;
 namespace Project_BusinessManagement.Controllers
 {
     [Authorize(Roles = "Administrador")]
+    [ConfigurationApp(pParameter: "IsInventory")]
     public class InventoryItemController : Controller
     {
         // GET: InventoryItem
@@ -26,6 +28,7 @@ namespace Project_BusinessManagement.Controllers
             return View(Models.MInventoryItem.MInventoryItemById(lOInventoryItem));
         }
 
+        [ConfigurationApp(pParameter: "CreateInventory")]
         // GET: InventoryItem/Create
         public ActionResult Create(int idInventory)
         {         
@@ -70,8 +73,8 @@ namespace Project_BusinessManagement.Controllers
             }
         }
 
-        
 
+        [ConfigurationApp(pParameter: "EditInventory")]
         // GET: InventoryItem/Edit/5
         public ActionResult Edit(int id)
         {
@@ -115,6 +118,7 @@ namespace Project_BusinessManagement.Controllers
             }
         }
 
+        [ConfigurationApp(pParameter: "DeleteInventory")]
         // GET: InventoryItem/Delete/5
         public ActionResult Delete(int id)
         {
