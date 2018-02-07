@@ -7,7 +7,7 @@ namespace Bll_Business
 {
     public class Bll_Order
     {
-        public static string bll_InsertOrder(int pIdInventory, int pIdCustomer, int pIdObject, string pIdStatus, List<Bo_OrderItem> pListOrderItem, int pIdObjectOI,string pIdStatusOI)
+        public static string bll_InsertOrder(int pIdInventory, int pIdCustomer, int pIdObject, string pIdStatus, List<Bo_OrderItem> pListOrderItem, bool pIsInventory, int pIdObjectOI,string pIdStatusOI)
         {
             string lResul = "";
             Bo_Order lOrder = new Bo_Order();
@@ -25,7 +25,7 @@ namespace Bll_Business
             string lstrIdOrder = lDaoOrder.Dao_InsertOrder(lOrder);
             if (int.TryParse(lstrIdOrder, out lIdOrder))
             {
-                lResul = Bll_OrderItem.bll_InsertListOrderItem(lIdOrder,pIdInventory, pListOrderItem);
+                lResul = Bll_OrderItem.bll_InsertListOrderItem(lIdOrder,pIdInventory, pListOrderItem, pIsInventory);
                 if (string.IsNullOrEmpty(lResul))
                 {
                     lResul = "" + lIdOrder;

@@ -12,6 +12,7 @@ namespace Project_BusinessManagement.Controllers
     [ConfigurationApp(pParameter: "IsRealizeOrder")]
     public class OrderController : Controller
     {
+        MParameter lParameter = new MParameter();
         // GET: Order
         public ActionResult Index(int pIdCustomer)
         {
@@ -108,8 +109,8 @@ namespace Project_BusinessManagement.Controllers
         public JsonResult Create(Bo_Order pOrder)
         {
             try
-            {              
-                var lResult = Bll_Order.bll_InsertOrder(pOrder.LInventory.LIdInventory, pOrder.LCustomer.LIdCustomer, Bll_UtilsLib.bll_GetObjectByName(MGlobalVariables.LNameObjectOrder).LIdObject, Bll_UtilsLib.bll_getStatusApproByObject(Bll_UtilsLib.bll_GetObjectByName(MGlobalVariables.LNameObjectOrder).LIdObject).LIdStatus, pOrder.LListOrderItem, Bll_UtilsLib.bll_GetObjectByName(MGlobalVariables.LNameObjectOrderItem).LIdObject, Bll_UtilsLib.bll_getStatusApproByObject(Bll_UtilsLib.bll_GetObjectByName(MGlobalVariables.LNameObjectOrderItem).LIdObject).LIdStatus);
+            {                      
+                var lResult = Bll_Order.bll_InsertOrder(pOrder.LInventory.LIdInventory, pOrder.LCustomer.LIdCustomer, Bll_UtilsLib.bll_GetObjectByName(MGlobalVariables.LNameObjectOrder).LIdObject, Bll_UtilsLib.bll_getStatusApproByObject(Bll_UtilsLib.bll_GetObjectByName(MGlobalVariables.LNameObjectOrder).LIdObject).LIdStatus, pOrder.LListOrderItem, lParameter.lIsModuleInventory, Bll_UtilsLib.bll_GetObjectByName(MGlobalVariables.LNameObjectOrderItem).LIdObject, Bll_UtilsLib.bll_getStatusApproByObject(Bll_UtilsLib.bll_GetObjectByName(MGlobalVariables.LNameObjectOrderItem).LIdObject).LIdStatus);
                 int lIdOrder = 0;
                 if(int.TryParse(lResult, out lIdOrder))
                 {
