@@ -1,0 +1,7 @@
+C:\Users\cripac\Documents\GitHub\ProjectBussinesManagement\IBusiness\bin\Debug\IBusiness.dll
+C:\Users\cripac\Documents\GitHub\ProjectBussinesManagement\IBusiness\bin\Debug\IBusiness.pdb
+C:\Users\cripac\Documents\GitHub\ProjectBussinesManagement\IBusiness\obj\Debug\IBusiness.csprojResolveAssemblyReference.cache
+C:\Users\cripac\Documents\GitHub\ProjectBussinesManagement\IBusiness\obj\Debug\IBusiness.dll
+C:\Users\cripac\Documents\GitHub\ProjectBussinesManagement\IBusiness\obj\Debug\IBusiness.pdb
+C:\Users\cripac\Documents\GitHub\ProjectBussinesManagement\IBusiness\bin\Debug\BO_BusinessManagement.dll
+C:\Users\cripac\Documents\GitHub\ProjectBussinesManagement\IBusiness\bin\Debug\BO_BusinessManagement.pdb

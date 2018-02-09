@@ -360,6 +360,10 @@
       <Project>{1287fc76-f226-4d34-bbe7-3468934459ee}</Project>
       <Name>BO_BusinessManagement</Name>
     </ProjectReference>
+    <ProjectReference Include="..\IBusiness\IBusiness.csproj">
+      <Project>{A09DD1D3-90FB-419A-B840-2F51B6645C25}</Project>
+      <Name>IBusiness</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Service References\" />

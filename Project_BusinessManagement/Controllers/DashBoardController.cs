@@ -4,6 +4,8 @@ using System.Collections;
 using System.Linq;
 using System.Web.Helpers;
 using System.Web.Mvc;
+using IBusiness.Common;
+using IBusiness.Management;
 
 namespace Project_BusinessManagement.Controllers
 {
@@ -11,17 +13,21 @@ namespace Project_BusinessManagement.Controllers
     [ConfigurationApp(pParameter: "IsDashBoard")]
     public class DashBoardController : Controller
     {
+        #region properties
+
+        public IDashBoard LBoard = FacadeProvider.GetFacade<IDashBoard>();
+        #endregion
         // GET: DashBoard
         public ActionResult Index()
         {
-
             return View();
         }
+
         public ActionResult ProductSellToday()
         {
             ArrayList xValue = new ArrayList();
             ArrayList yValue = new ArrayList();
-            var list =  Bll_DashBoard.bll_GetProductSellToday();
+            var list =  this.LBoard.bll_GetProductSellToday();
 
             list.ToList().ForEach(rs => xValue.Add(rs.Xstring));
             list.ToList().ForEach(rs => yValue.Add(rs.Yint));
@@ -37,7 +43,7 @@ namespace Project_BusinessManagement.Controllers
         {
             ArrayList xValue = new ArrayList();
             ArrayList yValue = new ArrayList();
-            var list = Bll_DashBoard.bll_GetProductSellToday();
+            var list = this.LBoard.bll_GetProductSellToday();
 
             list.ToList().ForEach(rs => xValue.Add(rs.Xstring));
             list.ToList().ForEach(rs => yValue.Add(rs.Yint));

@@ -4,6 +4,7 @@ using System.Diagnostics;
 using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
+using IBusiness.Common;
 
 namespace Project_BusinessManagement
 {
@@ -16,9 +17,10 @@ namespace Project_BusinessManagement
             FilterConfig.Configure(GlobalFilters.Filters);
             RouteConfig.Configure(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
+            FacadeProvider.FacadeProviderInstance = null ;
         }
 
-        protected void Session_Start(object sender, EventArgs e)
+    protected void Session_Start(object sender, EventArgs e)
         {
 
         }

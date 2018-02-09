@@ -67,6 +67,10 @@
       <Project>{233bf147-9ecb-442f-b20a-9c07df694a7a}</Project>
       <Name>Dao_BussinessManagement</Name>
     </ProjectReference>
+    <ProjectReference Include="..\IBusiness\IBusiness.csproj">
+      <Project>{A09DD1D3-90FB-419A-B840-2F51B6645C25}</Project>
+      <Name>IBusiness</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -96,12 +96,23 @@
     {
         <div class="col-sm-2 sidenav">
             <ul class="nav nav-tabs nav-pills nav-stacked well">
-                <li class="@(ViewContext.RouteData.Values["Controller"].ToString() == "DashBoard" ? "active" : "")">@Html.ActionLink("DashBoard", "Index", "DashBoard")</li>
-                <li class="@(ViewContext.RouteData.Values["Controller"].ToString() == "Supplier" ? "active" : "")">@Html.ActionLink("Proveedores", "Index", "Supplier")</li>
-                <li class="@(ViewContext.RouteData.Values["Controller"].ToString() == "Customer" ? "active" : "")">@Html.ActionLink("Clientes", "Index", "Customer")</li>
-                <li class="@(ViewContext.RouteData.Values["Controller"].ToString() == "Product" ? "active" : "")">@Html.ActionLink("Productos", "Index", "Product")</li>
-                <li class="@(ViewContext.RouteData.Values["Controller"].ToString() == "Inventory" ? "active" : "")">@Html.ActionLink("Inventario", "Index", "Inventory")</li>
-                <li class="@(ViewContext.RouteData.Values["Controller"].ToString() == "Order" ? "active" : "")">@Html.ActionLink("Realizar Pedido", "DashBoardOrder", "Order")</li>
+                @if (User.IsInRole("Administrador"))
+                {
+                    <li class="@(ViewContext.RouteData.Values["Controller"].ToString() == "DashBoard" ? "active" : "")">@Html.ActionLink("DashBoard", "Index", "DashBoard")</li>
+                    <li class="@(ViewContext.RouteData.Values["Controller"].ToString() == "Supplier" ? "active" : "")">@Html.ActionLink("Proveedores", "Index", "Supplier")</li>
+                    <li class="@(ViewContext.RouteData.Values["Controller"].ToString() == "Customer" ? "active" : "")">@Html.ActionLink("Clientes", "Index", "Customer")</li>
+                    <li class="@(ViewContext.RouteData.Values["Controller"].ToString() == "Product" ? "active" : "")">@Html.ActionLink("Productos", "Index", "Product")</li>
+                    <li class="@(ViewContext.RouteData.Values["Controller"].ToString() == "Inventory" ? "active" : "")">@Html.ActionLink("Inventario", "Index", "Inventory")</li>
+                    <li class="@(ViewContext.RouteData.Values["Controller"].ToString() == "Order" ? "active" : "")">@Html.ActionLink("Realizar Pedido", "DashBoardOrder", "Order")</li>
+                }
+                @if (User.IsInRole("Cajero"))
+                {
+                    <li class="@(ViewContext.RouteData.Values["Controller"].ToString() == "Customer" ? "active" : "")">@Html.ActionLink("Clientes", "Index", "Customer")</li>
+                    <li class="@(ViewContext.RouteData.Values["Controller"].ToString() == "Order" ? "active" : "")">@Html.ActionLink("Realizar Pedido", "DashBoardOrder", "Order")</li>
+                }
+
+
+
             </ul>
         </div>
     }

@@ -2,7 +2,7 @@
 
 namespace Project_BusinessManagement.Controllers
 {
-    [Authorize(Roles = "Administrador")]
+    [Authorize(Roles = "Administrador, Cajero")]
     public class OrderItemController : Controller
     {
         // GET: OrderItem
@@ -29,8 +29,6 @@ namespace Project_BusinessManagement.Controllers
         {
             try
             {
-                // TODO: Add insert logic here
-
                 return RedirectToAction("Index");
             }
             catch

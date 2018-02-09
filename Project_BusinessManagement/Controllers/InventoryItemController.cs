@@ -4,6 +4,9 @@ using Project_BusinessManagement.Filters;
 using System;
 using System.Collections.Generic;
 using System.Web.Mvc;
+using IBusiness.Common;
+using IBusiness.Management;
+using Project_BusinessManagement.Models;
 
 namespace Project_BusinessManagement.Controllers
 {
@@ -11,6 +14,10 @@ namespace Project_BusinessManagement.Controllers
     [ConfigurationApp(pParameter: "IsInventory")]
     public class InventoryItemController : Controller
     {
+        #region Variables and Constants
+        public IInventory LInventory =
+        FacadeProvider.GetFacade<IInventory>();
+        #endregion
         // GET: InventoryItem
         public ActionResult Index(int id)
         {
@@ -161,16 +168,19 @@ namespace Project_BusinessManagement.Controllers
             return pMInventoryItem;
         }
 
-        private static Models.MInventoryItem CurrentInventoryItem(Models.MInventoryItem pMInventoryItem, Models.MInventoryItem pMInventoryOldItem, int id, string pMessageException, int pIdInventory)
+        private  Models.MInventoryItem CurrentInventoryItem(MInventoryItem pMInventoryItem, Models.MInventoryItem pMInventoryOldItem, int id, string pMessageException, int pIdInventory)
         {
+            if (pMInventoryItem == null)
+            {
+                throw new ArgumentNullException(nameof(pMInventoryItem));
+            }
             pMInventoryItem = pMInventoryOldItem;
-            Bo_Inventory lObInventory = new Bo_Inventory();
             pMInventoryItem.LListStatus = new List<SelectListItem>();
             pMInventoryItem.LListProduct = new List<SelectListItem>();
-            pMInventoryItem.LListStatus = Models.MStatus.MListAllStatus(Bll_Status.Bll_getListStatusByIdObject(pMInventoryItem.LObject.LIdObject));
-            pMInventoryItem.LListProduct = Models.MProduct.MListAllProduct(Bll_Product.bll_GetAllProduct());
-            pMInventoryItem.LInventory = new Models.MInventory();
-            lObInventory = Bll_Inventory.bll_GetInventoryById(pIdInventory);
+            pMInventoryItem.LListStatus = MStatus.MListAllStatus(Bll_Status.Bll_getListStatusByIdObject(pMInventoryItem.LObject.LIdObject));
+            pMInventoryItem.LListProduct = MProduct.MListAllProduct(Bll_Product.bll_GetAllProduct());
+            pMInventoryItem.LInventory = new MInventory();
+            var lObInventory = this.LInventory.bll_GetInventoryById(pIdInventory);
             pMInventoryItem.LInventory.LIdInventory = lObInventory.LIdInventory;
             pMInventoryItem.LInventory.LNameInventory = lObInventory.LNameInventory;
             pMInventoryItem.LMessageException = pMessageException;
