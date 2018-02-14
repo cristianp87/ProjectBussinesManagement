@@ -16,7 +16,7 @@ namespace Project_BusinessManagement.Controllers
     {
         #region Variables and Constants
         public IInventory LInventory =
-        FacadeProvider.GetFacade<IInventory>();
+        FacadeProvider.Resolver<IInventory>();
         #endregion
         // GET: InventoryItem
         public ActionResult Index(int id)

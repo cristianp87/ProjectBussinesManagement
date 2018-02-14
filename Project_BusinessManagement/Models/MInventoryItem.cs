@@ -12,7 +12,7 @@ namespace Project_BusinessManagement.Models
     {
         #region Variables and Constants
         public static IInventory LInventoryTInventory =
-        FacadeProvider.GetFacade<IInventory>();
+        FacadeProvider.Resolver<IInventory>();
         #endregion
         private int lIdInventoryItem;
         private MProduct lProduct = null;

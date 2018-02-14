@@ -17,10 +17,10 @@ namespace Project_BusinessManagement.Controllers
         #region Variables and Constants
 
         public ICustomer LCustomerFacade =
-        FacadeProvider.GetFacade<ICustomer>();
+        FacadeProvider.Resolver<ICustomer>();
 
         public IInventory LInventory =
-        FacadeProvider.GetFacade<IInventory>();
+        FacadeProvider.Resolver<IInventory>();
         #endregion
         private MParameter lParameter = new MParameter();
         // GET: Order
