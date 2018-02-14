@@ -1,14 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
-using Bll_Business;
+﻿using Bll_Business;
 using BO_BusinessManagement;
-using System.Collections;
+using Project_BusinessManagement.Filters;
+using System;
+using System.Collections.Generic;
+using System.Web.Mvc;
 
 namespace Project_BusinessManagement.Views.Supplier
 {
+    [Authorize(Roles = "Administrador")]
+    [ConfigurationApp(pParameter: "IsSupplier")]
     public class SupplierController : Controller
     {
         // GET: Supplier
@@ -27,6 +27,7 @@ namespace Project_BusinessManagement.Views.Supplier
             return View(Models.MSupplier.MSupplierById(oBSupplier));
         }
 
+        [ConfigurationApp(pParameter: "CreateSupplier")]
         // GET: Supplier/Create
         public ActionResult Create()
         {
@@ -78,6 +79,7 @@ namespace Project_BusinessManagement.Views.Supplier
             //pMsupplier.LListStatus = Models.MStatus.MListAllStatus(Bll_Status.Bll_getListStatusByIdObject(pMsupplier.LObject.LIdObject));
         }
 
+        [ConfigurationApp(pParameter: "EditSupplier")]
         // GET: Supplier/Edit/5
         public ActionResult Edit(int id)
         {
@@ -121,6 +123,7 @@ namespace Project_BusinessManagement.Views.Supplier
             }
         }
 
+        [ConfigurationApp(pParameter: "DeleteSupplier")]
         // GET: Supplier/Delete/5
         public ActionResult Delete(int id)
         {

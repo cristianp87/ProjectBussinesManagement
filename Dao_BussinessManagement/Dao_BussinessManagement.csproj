@@ -41,7 +41,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Dao_ConfigurationParameter.cs" />
     <Compile Include="Dao_Customer.cs" />
     <Compile Include="Dao_DashBoard.cs" />
     <Compile Include="Dao_Inventory.cs" />
@@ -51,6 +50,7 @@
     <Compile Include="Dao_Order.cs" />
     <Compile Include="Dao_OrderItem.cs" />
     <Compile Include="Dao_Product.cs" />
+    <Compile Include="Dao_Role.cs" />
     <Compile Include="Dao_Supplier.cs" />
     <Compile Include="Dao_Taxe.cs" />
     <Compile Include="Dao_TypeIdentification.cs" />

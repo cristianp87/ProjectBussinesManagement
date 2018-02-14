@@ -1,16 +1,28 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
-using Bll_Business;
+﻿using Bll_Business;
 using BO_BusinessManagement;
+using Project_BusinessManagement.Filters;
 using Project_BusinessManagement.Models;
+using System;
+using System.Collections.Generic;
+using System.Web.Mvc;
+using IBusiness.Common;
+using IBusiness.Management;
 
 namespace Project_BusinessManagement.Controllers
 {
+    [Authorize(Roles = "Administrador, Cajero")]
+    [ConfigurationApp(pParameter: "IsRealizeOrder")]
     public class OrderController : Controller
     {
+        #region Variables and Constants
+
+        public ICustomer LCustomerFacade =
+        FacadeProvider.GetFacade<ICustomer>();
+
+        public IInventory LInventory =
+        FacadeProvider.GetFacade<IInventory>();
+        #endregion
+        private MParameter lParameter = new MParameter();
         // GET: Order
         public ActionResult Index(int pIdCustomer)
         {
@@ -28,9 +40,7 @@ namespace Project_BusinessManagement.Controllers
         [HttpPost]
         public JsonResult GetCustomer(int pIdtypeIdentification, string pNoIdentification)
         {
-
-            Bo_Customer lCustomer= new Bo_Customer();
-            lCustomer = Bll_Customer.bll_GetCustomerByIdentification(pNoIdentification, pIdtypeIdentification);
+            var lCustomer = this.LCustomerFacade.bll_GetCustomerByIdentification(pNoIdentification, pIdtypeIdentification);
             if (lCustomer.LException != null)
             {
 
@@ -48,17 +58,15 @@ namespace Project_BusinessManagement.Controllers
         [HttpPost]
         public JsonResult GetInventory()
         {
-            List<Bo_Inventory> lListBoInventory = new List<Bo_Inventory>();
-            lListBoInventory = Bll_Inventory.bll_GetAllInventory();
+            var lListBoInventory = this.LInventory.bll_GetAllInventory();
             return Json(Models.MInventory.MListInventory(lListBoInventory));
         }
 
         [HttpPost]
         public JsonResult GetTypeIdentification()
         {
-            List<Bo_TypeIdentification> lListTypeIdentification = new List<Bo_TypeIdentification>();
-            lListTypeIdentification = Bll_TypeIdentification.bll_getListTypeIdentification();
-            return Json(Models.MTypeIdentification.MListAllTypeIdentification(lListTypeIdentification));
+            var lListTypeIdentification = Bll_TypeIdentification.bll_getListTypeIdentification();
+            return Json(MTypeIdentification.MListAllTypeIdentification(lListTypeIdentification));
         }
 
         [HttpPost]
@@ -95,6 +103,7 @@ namespace Project_BusinessManagement.Controllers
             return View();
         }
 
+        [ConfigurationApp(pParameter: "CreateOrder")]
         // GET: Order/Create
         public ActionResult Create()
         {
@@ -106,8 +115,8 @@ namespace Project_BusinessManagement.Controllers
         public JsonResult Create(Bo_Order pOrder)
         {
             try
-            {              
-                var lResult = Bll_Order.bll_InsertOrder(pOrder.LInventory.LIdInventory, pOrder.LCustomer.LIdCustomer, Bll_UtilsLib.bll_GetObjectByName(MGlobalVariables.LNameObjectOrder).LIdObject, Bll_UtilsLib.bll_getStatusApproByObject(Bll_UtilsLib.bll_GetObjectByName(MGlobalVariables.LNameObjectOrder).LIdObject).LIdStatus, pOrder.LListOrderItem, Bll_UtilsLib.bll_GetObjectByName(MGlobalVariables.LNameObjectOrderItem).LIdObject, Bll_UtilsLib.bll_getStatusApproByObject(Bll_UtilsLib.bll_GetObjectByName(MGlobalVariables.LNameObjectOrderItem).LIdObject).LIdStatus);
+            {                      
+                var lResult = Bll_Order.bll_InsertOrder(pOrder.LInventory.LIdInventory, pOrder.LCustomer.LIdCustomer, Bll_UtilsLib.bll_GetObjectByName(MGlobalVariables.LNameObjectOrder).LIdObject, Bll_UtilsLib.bll_getStatusApproByObject(Bll_UtilsLib.bll_GetObjectByName(MGlobalVariables.LNameObjectOrder).LIdObject).LIdStatus, pOrder.LListOrderItem, lParameter.lIsModuleInventory, Bll_UtilsLib.bll_GetObjectByName(MGlobalVariables.LNameObjectOrderItem).LIdObject, Bll_UtilsLib.bll_getStatusApproByObject(Bll_UtilsLib.bll_GetObjectByName(MGlobalVariables.LNameObjectOrderItem).LIdObject).LIdStatus);
                 int lIdOrder = 0;
                 if(int.TryParse(lResult, out lIdOrder))
                 {

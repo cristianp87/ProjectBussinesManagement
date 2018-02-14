@@ -1,21 +1,28 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
-using Bll_Business;
+﻿using Bll_Business;
 using BO_BusinessManagement;
+using Project_BusinessManagement.Filters;
 using Project_BusinessManagement.Models;
+using System;
+using System.Collections.Generic;
+using System.Web.Mvc;
+using IBusiness.Common;
+using IBusiness.Management;
 
 namespace Project_BusinessManagement.Controllers
 {
+    [Authorize(Roles = "Administrador")]
+    [ConfigurationApp(pParameter: "IsInventory")]
     public class InventoryController : Controller
     {
+        #region Variables and Constants
+        public IInventory LInventory =
+        FacadeProvider.GetFacade<IInventory>();
+        #endregion
         // GET: Inventory
         public ActionResult Index()
         {
             List<Bo_Inventory> lListBoInventory = new List<Bo_Inventory>();
-            lListBoInventory = Bll_Inventory.bll_GetAllInventory();
+            lListBoInventory = this.LInventory.bll_GetAllInventory();
             return View(Models.MInventory.MListInventory(lListBoInventory));
         }
 
@@ -25,6 +32,7 @@ namespace Project_BusinessManagement.Controllers
             return View();
         }
 
+        [ConfigurationApp(pParameter: "CreateInventory")]
         // GET: Inventory/Create
         public ActionResult Create()
         {
@@ -39,7 +47,7 @@ namespace Project_BusinessManagement.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                    string lMessage = Bll_Inventory.bll_InsertInventory(Request.Form["LNameInventory"].ToString(), Convert.ToInt32(Request.Form["LObject.LIdObject"].ToString()), Request.Form["LStatus.LIdStatus"].ToString());
+                    string lMessage = this.LInventory.bll_InsertInventory(Request.Form["LNameInventory"].ToString(), Convert.ToInt32(Request.Form["LObject.LIdObject"].ToString()), Request.Form["LStatus.LIdStatus"].ToString());
                     if (lMessage == null)
                     {
                         return RedirectToAction("Index");
@@ -73,11 +81,12 @@ namespace Project_BusinessManagement.Controllers
             pMInventory.LListStatus = Models.MStatus.MListAllStatus(Bll_Status.Bll_getListStatusByIdObject(pMInventory.LObject.LIdObject));
         }
 
+        [ConfigurationApp(pParameter: "EditInventory")]
         // GET: Inventory/Edit/5
         public ActionResult Edit(int id)
         {
             Bo_Inventory lInventory = new Bo_Inventory();
-            lInventory = Bll_Inventory.bll_GetInventoryById(id);
+            lInventory = this.LInventory.bll_GetInventoryById(id);
             return View(Models.MInventory.MInventoryById(lInventory));
         }
 
@@ -90,7 +99,7 @@ namespace Project_BusinessManagement.Controllers
                 Models.MInventory lMInventory = new Models.MInventory();
                 if (ModelState.IsValid)
                 {
-                    string lMessage = Bll_Inventory.bll_UpdateInventory(id, Request.Form["LNameInventory"].ToString(), Convert.ToInt32(Request.Form["LObject.LIdObject"].ToString()), Request.Form["LStatus.LIdStatus"].ToString());
+                    string lMessage = this.LInventory.bll_UpdateInventory(id, Request.Form["LNameInventory"].ToString(), Convert.ToInt32(Request.Form["LObject.LIdObject"].ToString()), Request.Form["LStatus.LIdStatus"].ToString());
                     if (lMessage == null)
                     {
                         return RedirectToAction("Index");
@@ -114,11 +123,12 @@ namespace Project_BusinessManagement.Controllers
             }
         }
 
+        [ConfigurationApp(pParameter: "DeleteInventory")]
         // GET: Inventory/Delete/5
         public ActionResult Delete(int id)
         {
             Bo_Inventory lInventory = new Bo_Inventory();
-            lInventory = Bll_Inventory.bll_GetInventoryById(id);
+            lInventory = this.LInventory.bll_GetInventoryById(id);
             return View(Models.MInventory.MInventoryById(lInventory));
         }
 
@@ -128,7 +138,7 @@ namespace Project_BusinessManagement.Controllers
         {
             try
             {
-                string lMessage = Bll_Inventory.bll_DeleteInventory(id);
+                string lMessage = this.LInventory.bll_DeleteInventory(id);
                 if (lMessage == null)
                 {
                     return RedirectToAction("Index");
@@ -146,10 +156,10 @@ namespace Project_BusinessManagement.Controllers
                 return View(pMInventory);
             }
         }
-        private static Models.MInventory CurrentInventory(Models.MInventory pMInventory, Models.MInventory pMInventoryOld, int id, string pMessageException)
+        private MInventory CurrentInventory(Models.MInventory pMInventory, Models.MInventory pMInventoryOld, int id, string pMessageException)
         {
             Bo_Inventory oBInventory = new Bo_Inventory();
-            oBInventory = Bll_Inventory.bll_GetInventoryById(id);
+            oBInventory = this.LInventory.bll_GetInventoryById(id);
             pMInventory = Models.MInventory.MInventoryById(oBInventory);
             pMInventory.LNameInventory = pMInventoryOld.LNameInventory;
             pMInventory.LStatus.LIdStatus = pMInventoryOld.LStatus.LIdStatus;

@@ -1,20 +1,27 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
-using Bll_Business;
+﻿using Bll_Business;
 using BO_BusinessManagement;
+using IBusiness.Management;
+using Project_BusinessManagement.Filters;
+using System;
+using System.Collections.Generic;
+using System.Web.Mvc;
+using IBusiness.Common;
 
 namespace Project_BusinessManagement.Controllers
 {
+    [Authorize(Roles = "Administrador, Cajero")]
+    [ConfigurationApp( pParameter:"IsCustomer")]
     public class CustomerController : Controller
     {
+        #region Variables and Constants
+        public ICustomer LCustomerFacade =
+        FacadeProvider.GetFacade<ICustomer>();
+        #endregion
         // GET: Customer
         public ActionResult Index()
         {
             List<Bo_Customer> oBListCustomer = new List<Bo_Customer>();
-            oBListCustomer = Bll_Customer.bll_GetAllCustomer();
+            oBListCustomer = this.LCustomerFacade.bll_GetAllCustomer();
 
             return View(Models.MCustomer.MListCustomer(oBListCustomer));
         }
@@ -23,10 +30,11 @@ namespace Project_BusinessManagement.Controllers
         public ActionResult Details(int id)
         {
             Bo_Customer oBCustomer = new Bo_Customer();
-            oBCustomer = Bll_Customer.bll_GetCustomerById(id);
+            oBCustomer = this.LCustomerFacade.bll_GetCustomerById(id);
             return View(Models.MCustomer.MCustomerById(oBCustomer));
         }
 
+        [ConfigurationApp(pParameter: "CreateCustomer")]
         // GET: Customer/Create
         public ActionResult Create()
         {
@@ -42,7 +50,7 @@ namespace Project_BusinessManagement.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                    string lMessage = Bll_Customer.bll_InsertCustomer(Request.Form["LNameCustomer"].ToString(), Request.Form["LLastNameCustomer"].ToString(), Request.Form["LNoIdentification"].ToString(), Convert.ToInt32(Request.Form["LTypeIdentification.LIdTypeIdentification"].ToString()), Convert.ToInt32(Request.Form["LObject.LIdObject"].ToString()), Request.Form["LStatus.LIdStatus"].ToString());
+                    string lMessage = this.LCustomerFacade.bll_InsertCustomer(Request.Form["LNameCustomer"].ToString(), Request.Form["LLastNameCustomer"].ToString(), Request.Form["LNoIdentification"].ToString(), Convert.ToInt32(Request.Form["LTypeIdentification.LIdTypeIdentification"].ToString()), Convert.ToInt32(Request.Form["LObject.LIdObject"].ToString()), Request.Form["LStatus.LIdStatus"].ToString());
                     if (lMessage == null)
                     {
                         return RedirectToAction("Index");
@@ -70,11 +78,12 @@ namespace Project_BusinessManagement.Controllers
             }
         }
 
+        [ConfigurationApp(pParameter: "EditCustomer")]
         // GET: Customer/Edit/5
         public ActionResult Edit(int id)
         {
             Bo_Customer oBCustomer = new Bo_Customer();
-            oBCustomer = Bll_Customer.bll_GetCustomerById(id);
+            oBCustomer = this.LCustomerFacade.bll_GetCustomerById(id);
             return View(Models.MCustomer.MCustomerById(oBCustomer));
         }
 
@@ -86,7 +95,7 @@ namespace Project_BusinessManagement.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                    var lMessage = Bll_Customer.bll_UpdateCustomer(id, Request.Form["LNameCustomer"].ToString(), Request.Form["LLastNameCustomer"].ToString(), Request.Form["LNoIdentification"].ToString(), Convert.ToInt32(Request.Form["LTypeIdentification.LIdTypeIdentification"].ToString()), Convert.ToInt32(Request.Form["LObject.LIdObject"].ToString()), Request.Form["LStatus.LIdStatus"].ToString());
+                    var lMessage = this.LCustomerFacade.bll_UpdateCustomer(id, Request.Form["LNameCustomer"].ToString(), Request.Form["LLastNameCustomer"].ToString(), Request.Form["LNoIdentification"].ToString(), Convert.ToInt32(Request.Form["LTypeIdentification.LIdTypeIdentification"].ToString()), Convert.ToInt32(Request.Form["LObject.LIdObject"].ToString()), Request.Form["LStatus.LIdStatus"].ToString());
                     if (lMessage == null)
                     {
                         return RedirectToAction("Index");
@@ -121,13 +130,13 @@ namespace Project_BusinessManagement.Controllers
         }
 
 
-        
 
+        [ConfigurationApp(pParameter: "DeleteCustomer")]
         // GET: Customer/Delete/5
         public ActionResult Delete(int id)
         {
             Bo_Customer oBCustomer = new Bo_Customer();
-            oBCustomer = Bll_Customer.bll_GetCustomerById(id);
+            oBCustomer = this.LCustomerFacade.bll_GetCustomerById(id);
             return View(Models.MCustomer.MCustomerById(oBCustomer));
         }
 
@@ -137,7 +146,7 @@ namespace Project_BusinessManagement.Controllers
         {
             try
             {
-                var lMessage = Bll_Customer.bll_DeleteCustomer(id);
+                var lMessage = this.LCustomerFacade.bll_DeleteCustomer(id);
                 if (lMessage == null)
                 {                   
                     return RedirectToAction("Index");

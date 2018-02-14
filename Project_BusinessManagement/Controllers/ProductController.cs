@@ -1,14 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
+﻿using Bll_Business;
 using BO_BusinessManagement;
-using Bll_Business;
-using Project_BusinessManagement.App_Start;
+using Project_BusinessManagement.Filters;
+using System;
+using System.Collections.Generic;
+using System.Web.Mvc;
 
 namespace Project_BusinessManagement.Controllers
 {
+    [Authorize(Roles = "Administrador")]
+    [ConfigurationApp(pParameter: "IsProduct")]
     public class ProductController : Controller
     {
         // GET: Product
@@ -27,6 +27,7 @@ namespace Project_BusinessManagement.Controllers
             return View(Models.MProduct.MProductById(oBProduct));
         }
 
+        [ConfigurationApp(pParameter: "CreateProduct")]
         // GET: Product/Create
         public ActionResult Create()
         {
@@ -109,7 +110,7 @@ namespace Project_BusinessManagement.Controllers
         }
 
 
-
+        [ConfigurationApp(pParameter: "EditProduct")]
         // GET: Product/Edit/5
         public ActionResult Edit(int id)
         {
@@ -155,6 +156,7 @@ namespace Project_BusinessManagement.Controllers
             }
         }
 
+        [ConfigurationApp(pParameter: "DeleteProduct")]
         // GET: Product/Delete/5
         public ActionResult Delete(int id)
         {

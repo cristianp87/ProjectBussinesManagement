@@ -1,15 +1,19 @@
-﻿using System;
+﻿using BO_BusinessManagement;
+using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using BO_BusinessManagement;
 using System.ComponentModel;
 using System.Web.Mvc;
+using IBusiness.Common;
+using IBusiness.Management;
 
 namespace Project_BusinessManagement.Models
 {
     public class MInventoryItem
     {
+        #region Variables and Constants
+        public static IInventory LInventoryTInventory =
+        FacadeProvider.GetFacade<IInventory>();
+        #endregion
         private int lIdInventoryItem;
         private MProduct lProduct = null;
         private DateTime lCreationDate;
@@ -217,9 +221,8 @@ namespace Project_BusinessManagement.Models
         public static MInventoryItem MInventoryEmpty(int pIdInventory)
         {
             MInventoryItem oMInventoryItem = new MInventoryItem();
-            Bo_Object oObject = new Bo_Object();
-            Bo_Inventory obInventory = Bll_Business.Bll_Inventory.bll_GetInventoryById(pIdInventory);
-            oObject = Bll_Business.Bll_UtilsLib.bll_GetObjectByName(MGlobalVariables.LNameObjectInventoryItem);
+            Bo_Inventory obInventory = LInventoryTInventory.bll_GetInventoryById(pIdInventory);
+            var oObject = Bll_Business.Bll_UtilsLib.bll_GetObjectByName(MGlobalVariables.LNameObjectInventoryItem);
             oMInventoryItem.LObject = new MObject();
             oMInventoryItem.LStatus = new MStatus();
             oMInventoryItem.LListStatus = new List<SelectListItem>();

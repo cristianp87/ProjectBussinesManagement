@@ -48,6 +48,7 @@
     <Compile Include="Bll_Order.cs" />
     <Compile Include="Bll_OrderItem.cs" />
     <Compile Include="Bll_Product.cs" />
+    <Compile Include="Bll_Role.cs" />
     <Compile Include="Bll_Status.cs" />
     <Compile Include="Bll_Supplier.cs" />
     <Compile Include="Bll_Inventory.cs" />
@@ -65,6 +66,10 @@
     <ProjectReference Include="..\Dao_BussinessManagement\Dao_BussinessManagement.csproj">
       <Project>{233bf147-9ecb-442f-b20a-9c07df694a7a}</Project>
       <Name>Dao_BussinessManagement</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\IBusiness\IBusiness.csproj">
+      <Project>{A09DD1D3-90FB-419A-B840-2F51B6645C25}</Project>
+      <Name>IBusiness</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -1,10 +1,6 @@
 ﻿using BO_BusinessManagement;
 using Dao_BussinessManagement;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Bll_Business
 {
@@ -16,7 +12,7 @@ namespace Bll_Business
             return lDaoOrderItem.Dao_getListOrderItem(pIdOrder);
         }
 
-        public static string bll_InsertListOrderItem(int pIdOrder,int pIdInventory, List<Bo_OrderItem> pListOrderItem)
+        public static string bll_InsertListOrderItem(int pIdOrder,int pIdInventory, List<Bo_OrderItem> pListOrderItem, bool pIsInventory)
         {
             var lObject = Bll_UtilsLib.bll_GetObjectByName("ORDITEM");
             string lResult = "";
@@ -36,7 +32,8 @@ namespace Bll_Business
                 lOrderItem.LQty = x.LQty;
                 lOrderItem.LObject.LIdObject = lObject.LIdObject;
                 lOrderItem.LStatus.LIdStatus = Bll_UtilsLib.bll_getStatusApproByObject(lObject.LIdObject).LIdStatus;
-                lResult = Bll_InventoryItem.bll_SubstractInventoryItem(lOrderItem, pIdInventory);
+                if(pIsInventory)
+                    lResult = Bll_InventoryItem.bll_SubstractInventoryItem(lOrderItem, pIdInventory);
                 if (string.IsNullOrEmpty(lResult))
                 {
                     Dao_OrderItem lDaoOrderItem = new Dao_OrderItem();
