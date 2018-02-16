@@ -25,7 +25,7 @@ namespace Bll_Business.Common
             UnityContainer = new UnityContainer();
             UnityContainer.RegisterType<ICustomer, BllCustomer>();
             UnityContainer.RegisterType<IDashBoard, BllDashBoard>();
-            UnityContainer.RegisterType<IInventory, Bll_Inventory>();
+            UnityContainer.RegisterType<IInventory, BllInventory>();
             this.myFacadesInstances = new ConcurrentDictionary<Type, IFacade>();
         }
 

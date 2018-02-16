@@ -1,73 +1,69 @@
 ﻿using BO_BusinessManagement;
 using Dao_BussinessManagement;
 using System.Collections.Generic;
+using IBusiness.Management;
 
 namespace Bll_Business
 {
-    public static class Bll_Product
+    public class BllProduct : IProduct
     {
-        public static Bo_Product bll_GetProductByCode(string pCdProduct)
+        public Bo_Product bll_GetProductByCode(string pCdProduct)
         {
-            Dao_Product oDaoProduct = new Dao_Product();
+            var oDaoProduct = new Dao_Product();
             return oDaoProduct.Dao_getProductByCode(pCdProduct);
         }
 
-        public static Bo_Product bll_GetProductById(int pIdProduct)
+        public Bo_Product bll_GetProductById(int pIdProduct)
         {
-            Dao_Product oDaoProduct = new Dao_Product();
+            var oDaoProduct = new Dao_Product();
             return oDaoProduct.Dao_getProductById(pIdProduct);
         }
 
-        public static List<Bo_Product> bll_GetAllProduct()
+        public List<Bo_Product> bll_GetAllProduct()
         {
-            Dao_Product oDaoProduct = new Dao_Product();
+            var oDaoProduct = new Dao_Product();
             return oDaoProduct.Dao_getProductListAll();
         }
 
-        public static string bll_InsertProduct(string pNameProduct, string pCdProduct, decimal pPrice, decimal pPriceSupplier, int pIdUnit, int pIdSupplier, int pIdObject, string pIdStatus)
+        public string bll_InsertProduct(string pNameProduct, string pCdProduct, decimal pPrice, decimal pPriceSupplier, int pIdUnit, int pIdSupplier, int pIdObject, string pIdStatus)
         {
-            Bo_Product oProduct = new Bo_Product();
-            oProduct.LObject = new Bo_Object();
-            oProduct.LStatus = new Bo_Status();
-            oProduct.LSupplier = new Bo_Supplier();
-            oProduct.LUnit = new Bo_Unit();
-            oProduct.LNameProduct = pNameProduct;
-            oProduct.LCdProduct = pCdProduct;
-            oProduct.LValue = pPrice;
-            oProduct.LValueSupplier = pPriceSupplier;
-            oProduct.LUnit.LIdUnit = pIdUnit;
-            oProduct.LSupplier.LIdSupplier = pIdSupplier;
-            oProduct.LObject.LIdObject = pIdObject;
-            oProduct.LStatus.LIdStatus = pIdStatus;
-            Dao_Product oDaoProduct = new Dao_Product();
+            var oProduct = new Bo_Product
+            {
+                LObject = new Bo_Object {LIdObject = pIdObject},
+                LStatus = new Bo_Status {LIdStatus = pIdStatus},
+                LSupplier = new Bo_Supplier {LIdSupplier = pIdSupplier},
+                LUnit = new Bo_Unit {LIdUnit = pIdUnit},
+                LNameProduct = pNameProduct,
+                LCdProduct = pCdProduct,
+                LValue = pPrice,
+                LValueSupplier = pPriceSupplier
+            };
+            var oDaoProduct = new Dao_Product();
             return oDaoProduct.Dao_InsertProduct(oProduct);
         }
 
-        public static string bll_UpdateProduct(int pIdProduct, string pNameProduct, string pCdProduct, decimal pPrice, decimal pPriceSupplier, int pIdUnit, int pIdSupplier, int pIdObject, string pIdStatus)
+        public string bll_UpdateProduct(int pIdProduct, string pNameProduct, string pCdProduct, decimal pPrice, decimal pPriceSupplier, int pIdUnit, int pIdSupplier, int pIdObject, string pIdStatus)
         {
-            Bo_Product oProduct = new Bo_Product();
-            oProduct.LObject = new Bo_Object();
-            oProduct.LStatus = new Bo_Status();
-            oProduct.LSupplier = new Bo_Supplier();
-            oProduct.LUnit = new Bo_Unit();
-            oProduct.LIdProduct = pIdProduct;
-            oProduct.LNameProduct = pNameProduct;
-            oProduct.LCdProduct = pCdProduct;
-            oProduct.LValue = pPrice;
-            oProduct.LValueSupplier = pPriceSupplier;
-            oProduct.LUnit.LIdUnit = pIdUnit;
-            oProduct.LSupplier.LIdSupplier = pIdSupplier;
-            oProduct.LObject.LIdObject = pIdObject;
-            oProduct.LStatus.LIdStatus = pIdStatus;
-            Dao_Product oDaoProduct = new Dao_Product();
+            var oProduct = new Bo_Product
+            {
+                LObject = new Bo_Object {LIdObject = pIdObject},
+                LStatus = new Bo_Status {LIdStatus = pIdStatus},
+                LSupplier = new Bo_Supplier {LIdSupplier = pIdSupplier},
+                LUnit = new Bo_Unit {LIdUnit = pIdUnit},
+                LIdProduct = pIdProduct,
+                LNameProduct = pNameProduct,
+                LCdProduct = pCdProduct,
+                LValue = pPrice,
+                LValueSupplier = pPriceSupplier
+            };
+            var oDaoProduct = new Dao_Product();
             return oDaoProduct.Dao_UpdateProduct(oProduct);
         }
 
-        public static string bll_DeleteProduct(int pIdProduct)
+        public string bll_DeleteProduct(int pIdProduct)
         {
-            Bo_Product oProduct = new Bo_Product();
-            oProduct.LIdProduct = pIdProduct;
-            Dao_Product oDaoProduct = new Dao_Product();
+            var oProduct = new Bo_Product {LIdProduct = pIdProduct};
+            var oDaoProduct = new Dao_Product();
             return oDaoProduct.Dao_DeleteProduct(oProduct);
         }
     }

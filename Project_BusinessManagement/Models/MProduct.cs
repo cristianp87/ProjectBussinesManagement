@@ -4,349 +4,161 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.Web.Mvc;
+using IBusiness.Common;
+using IBusiness.Management;
 
 namespace Project_BusinessManagement.Models
 {
     public class MProduct
     {
-        private int lIdProduct;
-        private string lNameProduct;
-        private string lCdProduct;
-        private DateTime lCreationDate;
-        private MUnit lUnit;
-        private decimal lValue;
-        private MSupplier lSupplier;
-        private MTaxe lTaxe;
-        private decimal lValueSupplier;
-        private MObject lObject;
-        private MStatus lStatus;
-        private List<SelectListItem> lListStatus;
-        private List<SelectListItem> lListUnit;
-        private List<SelectListItem> lListSupplier;
-        private string lMessageException;
-        private List<SelectListItem> lListSelectTaxe;
-        private List<MTaxe> lListTaxe;
-        private string lListIdsTaxe;
-        
+        #region Variables and Constants
+        public static ISupplier LiSupplier =
+        FacadeProvider.Resolver<ISupplier>();
+        #endregion
 
         [UIHint("LIdProduct")]
         [DisplayName("IDProducto")]
-        public int LIdProduct
-        {
-            get
-            {
-                return lIdProduct;
-            }
+        public int LIdProduct { get; set; }
 
-            set
-            {
-                lIdProduct = value;
-            }
-        }
         [Required(ErrorMessage = "El nombre de producto es requerido.")]
         [DisplayName("Nombre Producto")]
-        public string LNameProduct
-        {
-            get
-            {
-                return lNameProduct;
-            }
+        public string LNameProduct { get; set; }
 
-            set
-            {
-                lNameProduct = value;
-            }
-        }
         [DataType(DataType.DateTime, ErrorMessage = "No es una fecha")]
         [DisplayName("Fecha De Creacion")]
-        public DateTime LCreationDate
-        {
-            get
-            {
-                return lCreationDate;
-            }
+        public DateTime LCreationDate { get; set; }
 
-            set
-            {
-                lCreationDate = value;
-            }
-        }
+        public MUnit LUnit { get; set; }
 
-        public MUnit LUnit
-        {
-            get
-            {
-                return lUnit;
-            }
-
-            set
-            {
-                lUnit = value;
-            }
-        }
         [Required(ErrorMessage = "El valor de producto es requerido.")]
         [DisplayName("Valor Producto")]
-        public decimal LValue
-        {
-            get
-            {
-                return lValue;
-            }
+        public decimal LValue { get; set; }
 
-            set
-            {
-                lValue = value;
-            }
-        }
 
-         
-        public MSupplier LSupplier
-        {
-            get
-            {
-                return lSupplier;
-            }
+        public MSupplier LSupplier { get; set; }
 
-            set
-            {
-                lSupplier = value;
-            }
-        }
         [Required(ErrorMessage = "El valor del proveedor es requerido.")]
         [DisplayName("Valor del Proveedor")]
-        public decimal LValueSupplier
-        {
-            get
-            {
-                return lValueSupplier;
-            }
-
-            set
-            {
-                lValueSupplier = value;
-            }
-        }
+        public decimal LValueSupplier { get; set; }
 
 
-        public MObject LObject
-        {
-            get
-            {
-                return lObject;
-            }
-
-            set
-            {
-                lObject = value;
-            }
-        }
+        public MObject LObject { get; set; }
 
         [DisplayName("Estado")]
-        public MStatus LStatus
-        {
-            get
-            {
-                return lStatus;
-            }
+        public MStatus LStatus { get; set; }
 
-            set
-            {
-                lStatus = value;
-            }
-        }
-
-        public List<SelectListItem> LListStatus
-        {
-            get
-            {
-                return lListStatus;
-            }
-
-            set
-            {
-                lListStatus = value;
-            }
-        }
+        public List<SelectListItem> LListStatus { get; set; }
 
         [DisplayName("Proveedores")]
-        public List<SelectListItem> LListUnit
-        {
-            get
-            {
-                return lListUnit;
-            }
-
-            set
-            {
-                lListUnit = value;
-            }
-        }
+        public List<SelectListItem> LListUnit { get; set; }
 
         [DisplayName("Proveedores")]
-        public List<SelectListItem> LListSupplier
-        {
-            get
-            {
-                return lListSupplier;
-            }
+        public List<SelectListItem> LListSupplier { get; set; }
 
-            set
-            {
-                lListSupplier = value;
-            }
-        }
+        public string LMessageException { get; set; }
 
-        public string LMessageException
-        {
-            get
-            {
-                return lMessageException;
-            }
-
-            set
-            {
-                lMessageException = value;
-            }
-        }
         [DisplayName("Codigo Producto")]
         [Required(ErrorMessage = "El valor del proveedor es requerido.")]
-        public string LCdProduct
-        {
-            get
-            {
-                return lCdProduct;
-            }
+        public string LCdProduct { get; set; }
 
-            set
-            {
-                lCdProduct = value;
-            }
-        }
+        public List<MTaxe> LListTaxe { get; set; }
 
-        public List<MTaxe> LListTaxe
-        {
-            get
-            {
-                return lListTaxe;
-            }
+        public MTaxe LTaxe { get; set; }
 
-            set
-            {
-                lListTaxe = value;
-            }
-        }
+        public List<SelectListItem> LListSelectTaxe { get; set; }
 
-        public MTaxe LTaxe
-        {
-            get
-            {
-                return lTaxe;
-            }
-
-            set
-            {
-                lTaxe = value;
-            }
-        }
-
-        public List<SelectListItem> LListSelectTaxe
-        {
-            get
-            {
-                return lListSelectTaxe;
-            }
-
-            set
-            {
-                lListSelectTaxe = value;
-            }
-        }
-
-        public string LListIdsTaxe
-        {
-            get
-            {
-                return lListIdsTaxe;
-            }
-
-            set
-            {
-                lListIdsTaxe = value;
-            }
-        }
+        public string LListIdsTaxe { get; set; }
 
         public static List<MProduct> MListProduct(List<Bo_Product> oBListProduct)
         {
             List<MProduct> oMListProduct = new List<MProduct>();
             oBListProduct.ForEach(x => {
-                MProduct oMProduct = new MProduct();
-                oMProduct.lIdProduct = x.LIdProduct;
-                oMProduct.LNameProduct = x.LNameProduct;
-                oMProduct.lCdProduct = x.LCdProduct;
-                oMProduct.LValue = x.LValue;
-                oMProduct.LValueSupplier = x.LValueSupplier;
-                oMProduct.LCreationDate = x.LCreationDate;
-                oMListProduct.Add(oMProduct);
+                                           var oMProduct = new MProduct
+                                           {
+                                               LIdProduct = x.LIdProduct,
+                                               LNameProduct = x.LNameProduct,
+                                               LCdProduct = x.LCdProduct,
+                                               LValue = x.LValue,
+                                               LValueSupplier = x.LValueSupplier,
+                                               LCreationDate = x.LCreationDate
+                                           };
+                                           oMListProduct.Add(oMProduct);
             });
             return oMListProduct;
         }
 
         public static List<SelectListItem> MListAllProduct(List<Bo_Product> oBListProduct)
         {
-            List<SelectListItem> oMListProduct = new List<SelectListItem>();
+            var oMListProduct = new List<SelectListItem>();
             oBListProduct.ForEach(x => {
-                SelectListItem oListItem = new SelectListItem();
-                oListItem.Value = x.LIdProduct.ToString();
-                oListItem.Text = x.LNameProduct;
-                oMListProduct.Add(oListItem);
+                                           var oListItem = new SelectListItem
+                                           {
+                                               Value = x.LIdProduct.ToString(),
+                                               Text = x.LNameProduct
+                                           };
+                                           oMListProduct.Add(oListItem);
             });
             return oMListProduct;
         }
 
         public static List<SelectListItem> MListAllProductwithSelect(List<Bo_Product> oBListProduct)
         {
-            List<SelectListItem> oMListProduct = new List<SelectListItem>();
-            SelectListItem oListItemSelect = new SelectListItem();
-            oListItemSelect.Text = "Seleccione...";
-            oListItemSelect.Value = "0";
+            var oMListProduct = new List<SelectListItem>();
+            var oListItemSelect = new SelectListItem
+            {
+                Text = "Seleccione...",
+                Value = "0"
+            };
             oMListProduct.Add(oListItemSelect);
             oBListProduct.ForEach(x => {
-                SelectListItem oListItem = new SelectListItem();
-                oListItem.Value = x.LIdProduct.ToString();
-                oListItem.Text = x.LNameProduct;
-                oMListProduct.Add(oListItem);
+                                           var oListItem = new SelectListItem
+                                           {
+                                               Value = x.LIdProduct.ToString(),
+                                               Text = x.LNameProduct
+                                           };
+                                           oMListProduct.Add(oListItem);
             });
             return oMListProduct;
         }
 
         public static MProduct MProductById(Bo_Product oBProduct)
         {
-            MProduct oMProduct = new MProduct();
-            oMProduct.LObject = new MObject();
-            oMProduct.LStatus = new MStatus();
-            oMProduct.LUnit = new MUnit();
-            oMProduct.LListStatus = new List<SelectListItem>();
-            oMProduct.lSupplier = new MSupplier();
-            oMProduct.LListSupplier = new List<SelectListItem>();
-            oMProduct.LListTaxe = new List<MTaxe>();
-            oMProduct.LListUnit = new List<SelectListItem>();
-            oMProduct.LNameProduct = oBProduct.LNameProduct;
-            oMProduct.LCdProduct = oBProduct.LCdProduct;
-            oMProduct.LUnit.LIdUnit = oBProduct.LUnit.LIdUnit;
-            oMProduct.LUnit.LNameUnit = oBProduct.LUnit.LNameUnit;
-            oMProduct.LUnit.LCdUnit = oBProduct.LUnit.LCdUnit;
-            oMProduct.LUnit.LFlActive = oBProduct.LUnit.LFlActive;
-            oMProduct.lIdProduct = oBProduct.LIdProduct;
-            oMProduct.LCreationDate = oBProduct.LCreationDate;
-            oMProduct.LValue = oBProduct.LValue;
-            oMProduct.LValueSupplier = oBProduct.LValueSupplier;
-            oMProduct.LSupplier.LIdSupplier = oBProduct.LSupplier.LIdSupplier;
-            oMProduct.lSupplier.LNameSupplier = oBProduct.LSupplier.LNameSupplier;
-            oMProduct.lObject.LIdObject = oBProduct.LObject.LIdObject;
-            oMProduct.LObject.LNameObject = oBProduct.LObject.LNameObject;
-            oMProduct.LStatus.LDsEstado = oBProduct.LStatus.LDsEstado;
-            oMProduct.LStatus.LIdStatus = oBProduct.LStatus.LIdStatus;
-            oMProduct.LListSupplier = MSupplier.MListAllSupplier(Bll_Business.Bll_Supplier.bll_GetAllSupplier());
+            var oMProduct = new MProduct
+            {
+                LObject = new MObject
+                {
+                    LIdObject = oBProduct.LObject.LIdObject,
+                    LNameObject = oBProduct.LObject.LNameObject
+                },
+                LStatus = new MStatus
+                {
+                    LDsEstado = oBProduct.LStatus.LDsEstado,
+                    LIdStatus = oBProduct.LStatus.LIdStatus
+                },
+                LUnit = new MUnit
+                {
+                    LIdUnit = oBProduct.LUnit.LIdUnit,
+                    LNameUnit = oBProduct.LUnit.LNameUnit,
+                    LCdUnit = oBProduct.LUnit.LCdUnit,
+                    LFlActive = oBProduct.LUnit.LFlActive
+                },
+                LListStatus = new List<SelectListItem>(),
+                LSupplier = new MSupplier
+                {
+                    LIdSupplier = oBProduct.LSupplier.LIdSupplier,
+                    LNameSupplier = oBProduct.LSupplier.LNameSupplier
+                },
+                LListSupplier = new List<SelectListItem>(),
+                LListTaxe = new List<MTaxe>(),
+                LListUnit = new List<SelectListItem>(),
+                LNameProduct = oBProduct.LNameProduct,
+                LCdProduct = oBProduct.LCdProduct,
+                LIdProduct = oBProduct.LIdProduct,
+                LCreationDate = oBProduct.LCreationDate,
+                LValue = oBProduct.LValue,
+                LValueSupplier = oBProduct.LValueSupplier
+            };
+            oMProduct.LListSupplier = MSupplier.MListAllSupplier(LiSupplier.bll_GetAllSupplier());
             oMProduct.LListStatus = MStatus.MListAllStatus(Bll_Business.Bll_Status.Bll_getListStatusByIdObject(oBProduct.LObject.LIdObject));
             oMProduct.LListUnit = MUnit.MListAllUnitWithSelect(Bll_Business.Bll_UtilsLib.bll_GetAllUnit());
             oMProduct.LListTaxe = MTaxe.MListAllTaxesXProduct(Bll_Business.Bll_Taxe.bll_GetListallTaxesXProduct(oBProduct.LIdProduct), null);
@@ -354,31 +166,37 @@ namespace Project_BusinessManagement.Models
         }
 
         public static MProduct MProductEmpty(Bo_Product oBProduct)
-        {
-            MProduct oMProduct = new MProduct();
-            Bo_Object oObject = new Bo_Object();
-            oObject = Bll_Business.Bll_UtilsLib.bll_GetObjectByName(MGlobalVariables.LNameObjectProduct);
-            oMProduct.LObject = new MObject();
-            oMProduct.LStatus = new MStatus();
-            oMProduct.LUnit = new MUnit();
-            oMProduct.LTaxe = new MTaxe();
-            oMProduct.LListUnit = new List<SelectListItem>();
-            oMProduct.LListStatus = new List<SelectListItem>();
-            oMProduct.LListSupplier = new List<SelectListItem>();
-            oMProduct.LListSelectTaxe = new List<SelectListItem>();
-            oMProduct.LListTaxe = new List<MTaxe>();            
-            oMProduct.lNameProduct = null;
-            oMProduct.LCdProduct = null;
-            oMProduct.LValue = 0;
-            oMProduct.LListIdsTaxe = null;
-            oMProduct.LValueSupplier = 0;
-            oMProduct.LCreationDate = new DateTime();
-            oMProduct.lObject.LIdObject = oObject.LIdObject;
-            oMProduct.lObject.LNameObject = oObject.LNameObject;
-            oMProduct.LStatus.LDsEstado = null;
-            oMProduct.LStatus.LIdStatus = null;
+        {          
+            var oObject = Bll_Business.Bll_UtilsLib.bll_GetObjectByName(MGlobalVariables.LNameObjectProduct);
+            var oMProduct = new MProduct
+            {
+                LObject = new MObject
+                {
+                    LIdObject = oObject.LIdObject,
+                    LNameObject = oObject.LNameObject
+                },
+                LStatus = new MStatus
+                {
+                    LDsEstado = null,
+                    LIdStatus = null
+                },
+                LUnit = new MUnit(),
+                LTaxe = new MTaxe(),
+                LListUnit = new List<SelectListItem>(),
+                LListStatus = new List<SelectListItem>(),
+                LListSupplier = new List<SelectListItem>(),
+                LListSelectTaxe = new List<SelectListItem>(),
+                LListTaxe = new List<MTaxe>(),
+                LNameProduct = null,
+                LCdProduct = null,
+                LValue = 0,
+                LListIdsTaxe = null,
+                LValueSupplier = 0,
+                LCreationDate = new DateTime()
+            };
+
             oMProduct.LListStatus = MStatus.MListStatusWithSelect(Bll_Business.Bll_Status.Bll_getListStatusByIdObject(oMProduct.LObject.LIdObject));
-            oMProduct.LListSupplier = MSupplier.MListAllSupplierWithSelect(Bll_Business.Bll_Supplier.bll_GetAllSupplier());
+            oMProduct.LListSupplier = MSupplier.MListAllSupplierWithSelect(LiSupplier.bll_GetAllSupplier());
             oMProduct.LListUnit = MUnit.MListAllUnitWithSelect(Bll_Business.Bll_UtilsLib.bll_GetAllUnit());
             oMProduct.LListSelectTaxe = MTaxe.MListTaxesWithSelect(Bll_Business.Bll_Taxe.bll_GetListTaxes());
             return oMProduct;

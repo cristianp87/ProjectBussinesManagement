@@ -78,6 +78,13 @@
     <Compile Include="Management\ICustomer.cs" />
     <Compile Include="Management\IDashBoard.cs" />
     <Compile Include="Management\IInventory.cs" />
+    <Compile Include="Management\IInventoryItem.cs" />
+    <Compile Include="Management\IInvoice.cs" />
+    <Compile Include="Management\IInvoiceItem.cs" />
+    <Compile Include="Management\IOrder.cs" />
+    <Compile Include="Management\IOrderItem.cs" />
+    <Compile Include="Management\IProduct.cs" />
+    <Compile Include="Management\ISupplier.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -87,7 +94,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <None Include="packages.config" />
+    <None Include="Management\packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
