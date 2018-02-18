@@ -1,9 +1,7 @@
-﻿using System;
+﻿using BO_BusinessManagement;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Linq;
-using System.Web;
-using BO_BusinessManagement;
 
 namespace Project_BusinessManagement.Models
 {

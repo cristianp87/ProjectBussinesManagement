@@ -2,20 +2,29 @@
 using System;
 using System.Diagnostics;
 using System.Web.Mvc;
+using System.Web.Optimization;
 using System.Web.Routing;
+using IBusiness.Common;
+using Unity;
 
 namespace Project_BusinessManagement
 {
     public class Global : System.Web.HttpApplication
     {
+        private  IUnityContainer _unityContainer;
 
         protected void Application_Start(object sender, EventArgs e)
         {
+            _unityContainer = new UnityContainer();
+            AreaRegistration.RegisterAllAreas();
             FilterConfig.Configure(GlobalFilters.Filters);
             RouteConfig.Configure(RouteTable.Routes);
+            BundleConfig.RegisterBundles(BundleTable.Bundles);
+            var registerUnity = _unityContainer.RegisterType<IFacadeProvider, Bll_Business.Common.FacadeProvider>();
+            FacadeProvider.FacadeProviderInstance = registerUnity.Resolve<IFacadeProvider>();
         }
 
-        protected void Session_Start(object sender, EventArgs e)
+    protected void Session_Start(object sender, EventArgs e)
         {
 
         }
