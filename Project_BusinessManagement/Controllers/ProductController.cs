@@ -4,6 +4,9 @@ using Project_BusinessManagement.Filters;
 using System;
 using System.Collections.Generic;
 using System.Web.Mvc;
+using IBusiness.Common;
+using IBusiness.Management;
+using Project_BusinessManagement.Models;
 
 namespace Project_BusinessManagement.Controllers
 {
@@ -11,20 +14,25 @@ namespace Project_BusinessManagement.Controllers
     [ConfigurationApp(pParameter: "IsProduct")]
     public class ProductController : Controller
     {
+        #region Variables and Constants
+        public static IProduct LiProduct =
+        FacadeProvider.Resolver<IProduct>();
+
+        public static ISupplier LiSupplier =
+        FacadeProvider.Resolver<ISupplier>();
+        #endregion
         // GET: Product
         public ActionResult Index()
         {
-            List<Bo_Product> oBListProduct = new List<Bo_Product>();
-            oBListProduct = Bll_Product.bll_GetAllProduct();
-            return View(Models.MProduct.MListProduct(oBListProduct));
+            var oBListProduct = LiProduct.bll_GetAllProduct();
+            return this.View(Models.MProduct.MListProduct(oBListProduct));
         }
 
         // GET: Product/Details/5
         public ActionResult Details(int id)
         {
-            Bo_Product oBProduct = new Bo_Product();
-            oBProduct = Bll_Product.bll_GetProductById(id);
-            return View(Models.MProduct.MProductById(oBProduct));
+            var oBProduct = LiProduct.bll_GetProductById(id);
+            return this.View(Models.MProduct.MProductById(oBProduct));
         }
 
         [ConfigurationApp(pParameter: "CreateProduct")]
@@ -32,7 +40,7 @@ namespace Project_BusinessManagement.Controllers
         public ActionResult Create()
         {
             Bo_Product oBProduct = new Bo_Product();
-            return View(Models.MProduct.MProductEmpty(oBProduct));
+            return this.View(Models.MProduct.MProductEmpty(oBProduct));
         }
 
         // POST: Product/Create
@@ -41,34 +49,34 @@ namespace Project_BusinessManagement.Controllers
         {
             try
             {
-                ModelState.Remove("LSupplier.LNameSupplier");
-                ModelState.Remove("LSupplier.LNoIdentification");
-                if (ModelState.IsValid)
+                this.ModelState.Remove("LSupplier.LNameSupplier");
+                this.ModelState.Remove("LSupplier.LNoIdentification");
+                if (this.ModelState.IsValid)
                 {
-                    string lMessage = Bll_Product.bll_InsertProduct(Request.Form["LNameProduct"].ToString(), Request.Form["LCdProduct"].ToString(), Convert.ToDecimal(Request.Form["LValue"]), Convert.ToDecimal(Request.Form["LValueSupplier"]), Convert.ToInt32(Request.Form["LUnit.LIdUnit"].ToString()), Convert.ToInt32(Request.Form["LSupplier.LIdSupplier"].ToString()), Convert.ToInt32(Request.Form["LObject.LIdObject"].ToString()), Request.Form["LStatus.LIdStatus"].ToString());
+                    var lMessage = LiProduct.bll_InsertProduct(this.Request.Form["LNameProduct"].ToString(), this.Request.Form["LCdProduct"].ToString(), Convert.ToDecimal(this.Request.Form["LValue"]), Convert.ToDecimal(this.Request.Form["LValueSupplier"]), Convert.ToInt32(this.Request.Form["LUnit.LIdUnit"].ToString()), Convert.ToInt32(this.Request.Form["LSupplier.LIdSupplier"].ToString()), Convert.ToInt32(this.Request.Form["LObject.LIdObject"].ToString()), this.Request.Form["LStatus.LIdStatus"].ToString());
                     if (lMessage == null)
                     {
-                        return RedirectToAction("Index");
+                        return this.RedirectToAction("Index");
                     }
                     else
                     {
                         ListEmptyProduct(pMProduct);
                         pMProduct.LMessageException = lMessage;
-                        return View(pMProduct);
+                        return this.View(pMProduct);
                     }
 
                 }
                 else
                 {
                     ListEmptyProduct(pMProduct);
-                    return View(pMProduct);
+                    return this.View(pMProduct);
                 }
             }
             catch (Exception e)
             {
                 ListEmptyProduct(pMProduct);
                 pMProduct.LMessageException = e.Message;
-                return View(pMProduct);
+                return this.View(pMProduct);
             }
         }
 
@@ -83,29 +91,28 @@ namespace Project_BusinessManagement.Controllers
                 pMProduct.LStatus = new Models.MStatus();
                 if(pMProduct.LListIdsTaxe == null)
                 {
-                    pMProduct.LListIdsTaxe = Request.Form["LTaxe.LIdTaxe"].ToString();
+                    pMProduct.LListIdsTaxe = this.Request.Form["LTaxe.LIdTaxe"].ToString();
                 }
                 else
                 {
-                    pMProduct.LListIdsTaxe = "," + Request.Form["LTaxe.LIdTaxe"].ToString();
+                    pMProduct.LListIdsTaxe = "," + this.Request.Form["LTaxe.LIdTaxe"].ToString();
                 }
                 ListEmptyProduct(pMProduct);
-                List<Models.MTaxe> lListTaxe = new List<Models.MTaxe>();
-                lListTaxe = pMProduct.LListTaxe;             
-                pMProduct.LTaxe.LIdTaxe = Convert.ToInt32(Request.Form["LTaxe.LIdTaxe"].ToString());
+                var lListTaxe = pMProduct.LListTaxe;             
+                pMProduct.LTaxe.LIdTaxe = Convert.ToInt32(this.Request.Form["LTaxe.LIdTaxe"].ToString());
                 pMProduct.LListTaxe = new List<Models.MTaxe>();
                 if (lListTaxe != null)
                 {
                     pMProduct.LListTaxe = lListTaxe;
                 }
                 pMProduct.LListTaxe.Add(pMProduct.LTaxe);
-                return View("Create", pMProduct);
+                return this.View("Create", pMProduct);
             }
             catch (Exception e)
             {
                 ListEmptyProduct(pMProduct);
                 pMProduct.LMessageException = e.Message;
-                return View("Create", pMProduct);
+                return this.View("Create", pMProduct);
             }
         }
 
@@ -114,9 +121,8 @@ namespace Project_BusinessManagement.Controllers
         // GET: Product/Edit/5
         public ActionResult Edit(int id)
         {
-            Bo_Product oBProduct = new Bo_Product();
-            oBProduct = Bll_Product.bll_GetProductById(id);
-            return View(Models.MProduct.MProductById(oBProduct));
+            var oBProduct = LiProduct.bll_GetProductById(id);
+            return this.View(Models.MProduct.MProductById(oBProduct));
         }
 
         // POST: Product/Edit/5
@@ -125,34 +131,34 @@ namespace Project_BusinessManagement.Controllers
         {
             try
             {
-                Models.MProduct lMProduct = new Models.MProduct();
-                ModelState.Remove("LSupplier.LNameSupplier");
-                ModelState.Remove("LSupplier.LNoIdentification");
-                if (ModelState.IsValid)
+                var lMProduct = new MProduct();
+                this.ModelState.Remove("LSupplier.LNameSupplier");
+                this.ModelState.Remove("LSupplier.LNoIdentification");
+                if (this.ModelState.IsValid)
                 {
-                    string lMessage = Bll_Product.bll_UpdateProduct(id, Request.Form["LNameProduct"].ToString(), Request.Form["LCdProduct"].ToString(), Convert.ToDecimal(Request.Form["LValue"]), Convert.ToDecimal(Request.Form["LValueSupplier"]), Convert.ToInt32(Request.Form["LUnit.LIdUnit"].ToString()), Convert.ToInt32(Request.Form["LSupplier.LIdSupplier"].ToString()), Convert.ToInt32(Request.Form["LObject.LIdObject"].ToString()), Request.Form["LStatus.LIdStatus"].ToString());
+                    var lMessage = LiProduct.bll_UpdateProduct(id, this.Request.Form["LNameProduct"].ToString(), this.Request.Form["LCdProduct"].ToString(), Convert.ToDecimal(this.Request.Form["LValue"]), Convert.ToDecimal(this.Request.Form["LValueSupplier"]), Convert.ToInt32(this.Request.Form["LUnit.LIdUnit"].ToString()), Convert.ToInt32(this.Request.Form["LSupplier.LIdSupplier"].ToString()), Convert.ToInt32(this.Request.Form["LObject.LIdObject"].ToString()), this.Request.Form["LStatus.LIdStatus"].ToString());
                     if (lMessage == null)
                     {
-                        return RedirectToAction("Index");
+                        return this.RedirectToAction("Index");
                     }
                     else
                     {
-                        return View(CurrentProduct(lMProduct, pMProduct, id, lMessage));
+                        return this.View(CurrentProduct(lMProduct, pMProduct, id, lMessage));
                     }
 
                 }
                 else
                 {
                     CurrentProduct(lMProduct, pMProduct, id, "Hay Campos que deben ser llenados.");
-                    return View(lMProduct);
+                    return this.View(lMProduct);
                 }
             }
             catch(Exception e)
             {
                 
-                Models.MProduct lMProduct = new Models.MProduct();
+                var lMProduct = new MProduct();
                 CurrentProduct(lMProduct, pMProduct, id, e.Message);
-                return View(lMProduct);
+                return this.View(lMProduct);
             }
         }
 
@@ -160,9 +166,8 @@ namespace Project_BusinessManagement.Controllers
         // GET: Product/Delete/5
         public ActionResult Delete(int id)
         {
-            Bo_Product oBProduct = new Bo_Product();
-            oBProduct = Bll_Product.bll_GetProductById(id);
-            return View(Models.MProduct.MProductById(oBProduct));
+            var oBProduct = LiProduct.bll_GetProductById(id);
+            return this.View(Models.MProduct.MProductById(oBProduct));
         }
 
         // POST: Product/Delete/5
@@ -171,29 +176,29 @@ namespace Project_BusinessManagement.Controllers
         {
             try
             {
-                string lMessage = Bll_Product.bll_DeleteProduct(id);
+                var lMessage = LiProduct.bll_DeleteProduct(id);
                 if(lMessage == null)
                 {
-                    return RedirectToAction("Index");
+                    return this.RedirectToAction("Index");
                 }
                 else
                 {
                     pMProduct.LMessageException = lMessage;
-                    return View(pMProduct);
+                    return this.View(pMProduct);
                 }
                 
             }
             catch(Exception e)
             {
                 pMProduct.LMessageException = e.Message;
-                return View(pMProduct);
+                return this.View(pMProduct);
             }
         }
 
-        private static void ListEmptyProduct(Models.MProduct pMProduct)
+        private static void ListEmptyProduct(MProduct pMProduct)
         {
             pMProduct.LListSupplier = new List<SelectListItem>();
-            pMProduct.LListSupplier = Models.MSupplier.MListAllSupplierWithSelect(Bll_Supplier.bll_GetAllSupplier());
+            pMProduct.LListSupplier = Models.MSupplier.MListAllSupplierWithSelect(LiSupplier.bll_GetAllSupplier());
             pMProduct.LListUnit = new List<SelectListItem>();
             pMProduct.LListUnit = Models.MUnit.MListAllUnitWithSelect(Bll_UtilsLib.bll_GetAllUnit());
             pMProduct.LListStatus = new List<SelectListItem>();
@@ -202,11 +207,10 @@ namespace Project_BusinessManagement.Controllers
             pMProduct.LListSelectTaxe = Models.MTaxe.MListTaxesWithSelect(Bll_Taxe.bll_GetListTaxes());
         }
 
-        private static Models.MProduct CurrentProduct(Models.MProduct pMProduct, Models.MProduct pMProductOld, int id, string pMessageException)
+        private static Models.MProduct CurrentProduct(MProduct pMProduct, MProduct pMProductOld, int id, string pMessageException)
         {
-            Bo_Product oBProduct = new Bo_Product();
-            oBProduct = Bll_Product.bll_GetProductById(id);
-            pMProduct = Models.MProduct.MProductById(oBProduct);
+            var oBProduct = LiProduct.bll_GetProductById(id);
+            pMProduct = MProduct.MProductById(oBProduct);
             pMProduct.LNameProduct = pMProductOld.LNameProduct;
             pMProduct.LValue = pMProductOld.LValue;
             pMProduct.LValueSupplier = pMProductOld.LValueSupplier;

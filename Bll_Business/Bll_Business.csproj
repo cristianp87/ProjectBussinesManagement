@@ -88,6 +88,7 @@
     <Compile Include="Bll_TypeIdentification.cs" />
     <Compile Include="Bll_User.cs" />
     <Compile Include="Bll_UtilsLib.cs" />
+    <Compile Include="Common\FacadeProvider.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

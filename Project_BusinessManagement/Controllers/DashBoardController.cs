@@ -15,7 +15,7 @@ namespace Project_BusinessManagement.Controllers
     {
         #region properties
 
-        public IDashBoard LBoard = FacadeProvider.GetFacade<IDashBoard>();
+        public IDashBoard LBoard = FacadeProvider.Resolver<IDashBoard>();
         #endregion
         // GET: DashBoard
         public ActionResult Index()
@@ -25,13 +25,13 @@ namespace Project_BusinessManagement.Controllers
 
         public ActionResult ProductSellToday()
         {
-            ArrayList xValue = new ArrayList();
-            ArrayList yValue = new ArrayList();
+            var xValue = new ArrayList();
+            var yValue = new ArrayList();
             var list =  this.LBoard.bll_GetProductSellToday();
 
             list.ToList().ForEach(rs => xValue.Add(rs.Xstring));
             list.ToList().ForEach(rs => yValue.Add(rs.Yint));
-             new System.Web.Helpers.Chart(width: 400, height: 200, theme: ChartTheme.Green)
+             new Chart(width: 400, height: 200, theme: ChartTheme.Green)
             .AddTitle("Productos Vendidos Hoy")
             .AddSeries("default", chartType: "column", xValue: xValue, yValues: yValue)
             .Write("bmp");
@@ -41,13 +41,13 @@ namespace Project_BusinessManagement.Controllers
 
         public ActionResult ProductSellTodayLine()
         {
-            ArrayList xValue = new ArrayList();
-            ArrayList yValue = new ArrayList();
+            var xValue = new ArrayList();
+            var yValue = new ArrayList();
             var list = this.LBoard.bll_GetProductSellToday();
 
             list.ToList().ForEach(rs => xValue.Add(rs.Xstring));
             list.ToList().ForEach(rs => yValue.Add(rs.Yint));
-            new System.Web.Helpers.Chart(width: 400, height: 200, theme: ChartTheme.Green)
+            new Chart(width: 400, height: 200, theme: ChartTheme.Green)
            .AddTitle("Productos Vendidos Hoy")
            .AddSeries("default", chartType: "line", xValue: xValue, yValues: yValue)
            .Write("bmp");

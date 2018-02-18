@@ -1,59 +1,57 @@
 ﻿using BO_BusinessManagement;
 using Dao_BussinessManagement;
 using System.Collections.Generic;
+using IBusiness.Management;
 
 namespace Bll_Business
 {
-    public class Bll_Supplier
+    public class BllSupplier : ISupplier
     {
-        public static Bo_Supplier bll_GetSupplierById(int pIdSupplier)
+        public Bo_Supplier bll_GetSupplierById(int pIdSupplier)
         {
-            Dao_Supplier oDaoSupplier = new Dao_Supplier();
+            var oDaoSupplier = new Dao_Supplier();
             return oDaoSupplier.Dao_getSupplierById(pIdSupplier);
         }
 
-        public static List<Bo_Supplier> bll_GetAllSupplier()
+        public List<Bo_Supplier> bll_GetAllSupplier()
         {
-            Dao_Supplier oDaoSupplier = new Dao_Supplier();
+            var oDaoSupplier = new Dao_Supplier();
             return oDaoSupplier.Dao_getSupplierListAll();
         }
 
-        public static string bll_InsertSupplier(string pNameSupplier, string pNoIdentification, int pIdTypeIdentifiction, int pIdObject, string pIdStatus)
+        public string bll_InsertSupplier(string pNameSupplier, string pNoIdentification, int pIdTypeIdentifiction, int pIdObject, string pIdStatus)
         {
-            Bo_Supplier oSupplier = new Bo_Supplier();
-            oSupplier.LObject = new Bo_Object();
-            oSupplier.LStatus = new Bo_Status();
-            oSupplier.LTypeIdentification = new Bo_TypeIdentification();
-            oSupplier.LNameSupplier = pNameSupplier;
-            oSupplier.LNoIdentification = pNoIdentification;
-            oSupplier.LTypeIdentification.LIdTypeIdentification = pIdTypeIdentifiction;
-            oSupplier.LObject.LIdObject = pIdObject;
-            oSupplier.LStatus.LIdStatus = pIdStatus;
-            Dao_Supplier oDaoSupplier= new Dao_Supplier();
+            var oSupplier = new Bo_Supplier
+            {
+                LObject = new Bo_Object {LIdObject = pIdObject},
+                LStatus = new Bo_Status {LIdStatus = pIdStatus},
+                LTypeIdentification = new Bo_TypeIdentification {LIdTypeIdentification = pIdTypeIdentifiction},
+                LNameSupplier = pNameSupplier,
+                LNoIdentification = pNoIdentification
+            };
+            var oDaoSupplier= new Dao_Supplier();
             return oDaoSupplier.Dao_InsertSupplier(oSupplier);
         }
 
-        public static string bll_UpdateSupplier(int pIdSupplier, string pNameSupplier, string pNoIdentification, int pIdTypeIdentifiction, int pIdObject, string pIdStatus)
+        public string bll_UpdateSupplier(int pIdSupplier, string pNameSupplier, string pNoIdentification, int pIdTypeIdentifiction, int pIdObject, string pIdStatus)
         {
-            Bo_Supplier oSupplier = new Bo_Supplier();
-            oSupplier.LObject = new Bo_Object();
-            oSupplier.LStatus = new Bo_Status();
-            oSupplier.LTypeIdentification = new Bo_TypeIdentification();
-            oSupplier.LIdSupplier = pIdSupplier;
-            oSupplier.LNameSupplier = pNameSupplier;
-            oSupplier.LNoIdentification = pNoIdentification;
-            oSupplier.LTypeIdentification.LIdTypeIdentification = pIdTypeIdentifiction;
-            oSupplier.LObject.LIdObject = pIdObject;
-            oSupplier.LStatus.LIdStatus = pIdStatus;
-            Dao_Supplier oDaoSupplier = new Dao_Supplier();
+            var oSupplier = new Bo_Supplier
+            {
+                LObject = new Bo_Object {LIdObject = pIdObject},
+                LStatus = new Bo_Status {LIdStatus = pIdStatus},
+                LTypeIdentification = new Bo_TypeIdentification {LIdTypeIdentification = pIdTypeIdentifiction},
+                LIdSupplier = pIdSupplier,
+                LNameSupplier = pNameSupplier,
+                LNoIdentification = pNoIdentification
+            };
+            var oDaoSupplier = new Dao_Supplier();
             return oDaoSupplier.Dao_UpdateSupplier(oSupplier);
         }
 
-        public static string bll_DeleteSupplier(int pIdSupplier)
+        public string bll_DeleteSupplier(int pIdSupplier)
         {
-            Bo_Supplier oSupplier = new Bo_Supplier();
-            oSupplier.LIdSupplier = pIdSupplier;
-            Dao_Supplier oDaoSupplier = new Dao_Supplier();
+            var oSupplier = new Bo_Supplier {LIdSupplier = pIdSupplier};
+            var oDaoSupplier = new Dao_Supplier();
             return oDaoSupplier.Dao_DeleteSupplier(oSupplier);
         }
     }

@@ -1,76 +1,82 @@
 ﻿using BO_BusinessManagement;
 using Dao_BussinessManagement;
 using System.Collections.Generic;
+using IBusiness.Management;
 
 namespace Bll_Business
 {
-    public class Bll_InvoiceItem
+    public class BllInvoiceItem: IInvoiceItem
     {
-        public static List<Bo_InvoiceItem> bll_GetInvoiceItemsByIdInvoice(int pIdInvoice)
+        private readonly IProduct LiProduct;
+
+        public BllInvoiceItem()
         {
-            Dao_InvoiceItem oDaoInvoiceItem = new Dao_InvoiceItem();
+            this.LiProduct = new BllProduct();
+        }
+        public List<Bo_InvoiceItem> bll_GetInvoiceItemsByIdInvoice(int pIdInvoice)
+        {
+            var oDaoInvoiceItem = new Dao_InvoiceItem();
             return oDaoInvoiceItem.Dao_getInvoiceItemByIdInvoice(pIdInvoice);
         }
 
-        public static List<Bo_InvoiceItem> bll_ChangeOrderItemToInvoiceItem(List<Bo_OrderItem> lListOrderItem, Bo_Object lObjectInvoice)
+        public List<Bo_InvoiceItem> bll_ChangeOrderItemToInvoiceItem(List<Bo_OrderItem> lListOrderItem, Bo_Object lObjectInvoice)
         {
-            List<Bo_InvoiceItem> lListInvoiceItem = new List<Bo_InvoiceItem>();
-            lListOrderItem.ForEach(x =>
+            var lListInvoiceItem = new List<Bo_InvoiceItem>();
+            lListOrderItem?.ForEach(x =>
             {
-                Bo_InvoiceItem lInvoiceItem = new Bo_InvoiceItem();
-                lInvoiceItem.LProduct = new Bo_Product();
-                lInvoiceItem.LProduct = Bll_Product.bll_GetProductByCode(x.LProduct.LCdProduct);              
-                lInvoiceItem.LQuantity = x.LQty;
-                lInvoiceItem.LValueProd = x.LValueProduct;
-                lInvoiceItem.LValueDesc = x.LValueDesc;
-                lInvoiceItem.LValueSupplier = x.LValueSupplier;
-                lInvoiceItem.LValueTaxes = x.LValueTaxes;
-                lInvoiceItem.LObject = lObjectInvoice;
+                var lInvoiceItem = new Bo_InvoiceItem
+                {
+                    LProduct = new Bo_Product(),
+                    LQuantity = x.LQty,
+                    LValueProd = x.LValueProduct,
+                    LValueDesc = x.LValueDesc,
+                    LValueSupplier = x.LValueSupplier,
+                    LValueTaxes = x.LValueTaxes,
+                    LObject = lObjectInvoice
+                };
+                lInvoiceItem.LProduct = this.LiProduct.bll_GetProductByCode(x.LProduct.LCdProduct);
                 lListInvoiceItem.Add(lInvoiceItem);
             });
             return lListInvoiceItem;
         }
 
 
-        public static string bll_InsertInvoiceItem(int pIdInvoice, decimal pQuantity, decimal pValueProduct, decimal pValueSupplier, decimal pValueTaxes, decimal pValueDesc, int pIdProduct, int pIdObject, string pIdStatus)
+        public string bll_InsertInvoiceItem(int pIdInvoice, decimal pQuantity, decimal pValueProduct, decimal pValueSupplier, decimal pValueTaxes, decimal pValueDesc, int pIdProduct, int pIdObject, string pIdStatus)
         {
-            Bo_InvoiceItem oInvoiceItem = new Bo_InvoiceItem();
-            oInvoiceItem.LObject = new Bo_Object();
-            oInvoiceItem.LStatus = new Bo_Status();
-            oInvoiceItem.LProduct = new Bo_Product();
-            oInvoiceItem.LIdInvoice = pIdInvoice;
-            oInvoiceItem.LQuantity = pQuantity;
-            oInvoiceItem.LProduct.LIdProduct = pIdProduct;
-            oInvoiceItem.LValueDesc = pValueDesc;
-            oInvoiceItem.LValueProd = pValueProduct;
-            oInvoiceItem.LValueSupplier = pValueSupplier;
-            oInvoiceItem.LValueTaxes = pValueTaxes;
-            oInvoiceItem.LObject.LIdObject = pIdObject;
-            oInvoiceItem.LStatus.LIdStatus = pIdStatus;
-            Dao_InvoiceItem oDaoInvoiceItem = new Dao_InvoiceItem();
+            var oInvoiceItem = new Bo_InvoiceItem
+            {
+                LObject = new Bo_Object {LIdObject = pIdObject},
+                LStatus = new Bo_Status {LIdStatus = pIdStatus},
+                LProduct = new Bo_Product {LIdProduct = pIdProduct},
+                LIdInvoice = pIdInvoice,
+                LQuantity = pQuantity,
+                LValueDesc = pValueDesc,
+                LValueProd = pValueProduct,
+                LValueSupplier = pValueSupplier,
+                LValueTaxes = pValueTaxes
+            };
+            var oDaoInvoiceItem = new Dao_InvoiceItem();
             return oDaoInvoiceItem.Dao_InsertInvoiceItem(oInvoiceItem);
         }
 
-        public static string bll_UpdateInvoiceTem(int pIdInvoice, int pQuantity, int pIdProduct, int pIdObject, string pIdStatus)
+        public string bll_UpdateInvoiceTem(int pIdInvoice, int pQuantity, int pIdProduct, int pIdObject, string pIdStatus)
         {
-            Bo_InvoiceItem oInvoiceItem = new Bo_InvoiceItem();
-            oInvoiceItem.LObject = new Bo_Object();
-            oInvoiceItem.LStatus = new Bo_Status();
-            oInvoiceItem.LProduct = new Bo_Product();
-            oInvoiceItem.LIdInvoice = pIdInvoice;
-            oInvoiceItem.LQuantity = pQuantity;
-            oInvoiceItem.LProduct.LIdProduct = pIdProduct;
-            oInvoiceItem.LObject.LIdObject = pIdObject;
-            oInvoiceItem.LStatus.LIdStatus = pIdStatus; 
-            Dao_InvoiceItem oDaoInvoiceItem = new Dao_InvoiceItem();
+            var oInvoiceItem = new Bo_InvoiceItem
+            {
+                LObject = new Bo_Object {LIdObject = pIdObject},
+                LStatus = new Bo_Status {LIdStatus = pIdStatus},
+                LProduct = new Bo_Product {LIdProduct = pIdProduct},
+                LIdInvoice = pIdInvoice,
+                LQuantity = pQuantity
+            };
+            var oDaoInvoiceItem = new Dao_InvoiceItem();
             return oDaoInvoiceItem.Dao_UpdateInvoiceIem(oInvoiceItem);
         }
 
-        public static string bll_DeleteInvoiceItem(int pIdInvoiceItem)
+        public string bll_DeleteInvoiceItem(int pIdInvoiceItem)
         {
-            Bo_InvoiceItem oInvoiceItem = new Bo_InvoiceItem();
-            oInvoiceItem.LIdInvoiceItem = pIdInvoiceItem;
-            Dao_InvoiceItem oDaoInvoiceItem = new Dao_InvoiceItem();
+            var oInvoiceItem = new Bo_InvoiceItem {LIdInvoiceItem = pIdInvoiceItem};
+            var oDaoInvoiceItem = new Dao_InvoiceItem();
             return oDaoInvoiceItem.Dao_DeleteInvoiceItem(oInvoiceItem);
         }
     }

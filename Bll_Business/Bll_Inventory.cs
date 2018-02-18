@@ -5,50 +5,49 @@ using IBusiness.Management;
 
 namespace Bll_Business
 {
-    public class Bll_Inventory : IInventory
+    public class BllInventory : IInventory
     {
         public List<Bo_Inventory> bll_GetAllInventory()
         {
-            Dao_Inventory oDao = new Dao_Inventory();
+            var oDao = new Dao_Inventory();
             return oDao.Dao_getAllInventory();
         }
 
         public Bo_Inventory bll_GetInventoryById(int pIdInventory)
         {
-            Dao_Inventory oDao = new Dao_Inventory();
+            var oDao = new Dao_Inventory();
             return oDao.Dao_getInventoryById(pIdInventory);
         }
 
         public string bll_InsertInventory(string pNameInventory, int pIdObject, string pIdStatus)
         {
-            Bo_Inventory oInventory = new Bo_Inventory();
-            oInventory.LNameInventory = pNameInventory;
-            oInventory.LObject = new Bo_Object();
-            oInventory.LStatus = new Bo_Status();
-            oInventory.LObject.LIdObject = pIdObject;
-            oInventory.LStatus.LIdStatus = pIdStatus;
-            Dao_Inventory oDao = new Dao_Inventory();
+            var oInventory = new Bo_Inventory
+            {
+                LNameInventory = pNameInventory,
+                LObject = new Bo_Object {LIdObject = pIdObject},
+                LStatus = new Bo_Status {LIdStatus = pIdStatus}
+            };
+            var oDao = new Dao_Inventory();
             return oDao.Dao_InsertInventory(oInventory);
         }
 
         public string bll_UpdateInventory(int pIdInventory, string pNameInventory, int pIdObject, string pIdStatus)
         {
-            Bo_Inventory oInventory = new Bo_Inventory();
-            oInventory.LIdInventory = pIdInventory;
-            oInventory.LNameInventory = pNameInventory;
-            oInventory.LObject = new Bo_Object();
-            oInventory.LStatus = new Bo_Status();
-            oInventory.LObject.LIdObject = pIdObject;
-            oInventory.LStatus.LIdStatus = pIdStatus;
-            Dao_Inventory oDao = new Dao_Inventory();
+            var oInventory = new Bo_Inventory
+            {
+                LIdInventory = pIdInventory,
+                LNameInventory = pNameInventory,
+                LObject = new Bo_Object {LIdObject = pIdObject},
+                LStatus = new Bo_Status {LIdStatus = pIdStatus}
+            };
+            var oDao = new Dao_Inventory();
             return oDao.Dao_UpdateInventory(oInventory);
         }
 
         public string bll_DeleteInventory(int pIdInventory)
         {
-            Bo_Inventory oInventory = new Bo_Inventory();
-            oInventory.LIdInventory = pIdInventory;
-            Dao_Inventory oDao = new Dao_Inventory();
+            var oInventory = new Bo_Inventory {LIdInventory = pIdInventory};
+            var oDao = new Dao_Inventory();
             return oDao.Dao_DeleteInventory(oInventory);
         }
     }

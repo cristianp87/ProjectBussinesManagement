@@ -15,7 +15,7 @@ namespace Project_BusinessManagement.Controllers
     {
         #region Variables and Constants
         public ICustomer LCustomerFacade =
-        FacadeProvider.GetFacade<ICustomer>();
+        FacadeProvider.Resolver<ICustomer>();
         #endregion
         // GET: Customer
         public ActionResult Index()

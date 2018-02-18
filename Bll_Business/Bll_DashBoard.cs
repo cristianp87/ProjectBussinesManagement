@@ -9,7 +9,7 @@ namespace Bll_Business
     {
         public List<Bo_DashBoard> bll_GetProductSellToday()
         {
-            Dao_DashBoard oDaodashBoard = new Dao_DashBoard();
+            var oDaodashBoard = new Dao_DashBoard();
             return oDaodashBoard.Dao_getProductSellToday();
         }
     }

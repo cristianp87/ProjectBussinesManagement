@@ -11,4 +11,3 @@ C:\Users\cripac\Documents\GitHub\ProjectBussinesManagement\BO_BusinessManagement
 C:\Users\cripac\Documents\GitHub\ProjectBussinesManagement\BO_BusinessManagement\bin\Debug\BO_BusinessManagement.pdb
 C:\Users\cripac\Documents\GitHub\ProjectBussinesManagement\BO_BusinessManagement\obj\Debug\BO_BusinessManagement.dll
 C:\Users\cripac\Documents\GitHub\ProjectBussinesManagement\BO_BusinessManagement\obj\Debug\BO_BusinessManagement.pdb
-C:\Users\cripac\Documents\GitHub\ProjectBussinesManagement\BO_BusinessManagement\obj\Debug\BO_BusinessManagement.csprojResolveAssemblyReference.cache

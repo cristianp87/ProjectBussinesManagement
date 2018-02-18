@@ -19,12 +19,31 @@ C:\Users\CristianPc\Documents\Projects\ProjectBussinesManagement\Bll_Business\ob
 C:\Users\cripac\Documents\GitHub\ProjectBussinesManagement\Bll_Business\bin\Debug\Bll_Business.dll
 C:\Users\cripac\Documents\GitHub\ProjectBussinesManagement\Bll_Business\bin\Debug\Bll_Business.pdb
 C:\Users\cripac\Documents\GitHub\ProjectBussinesManagement\Bll_Business\bin\Debug\BO_BusinessManagement.dll
+C:\Users\cripac\Documents\GitHub\ProjectBussinesManagement\Bll_Business\bin\Debug\CommonServiceLocator.dll
 C:\Users\cripac\Documents\GitHub\ProjectBussinesManagement\Bll_Business\bin\Debug\Dao_BussinessManagement.dll
+C:\Users\cripac\Documents\GitHub\ProjectBussinesManagement\Bll_Business\bin\Debug\IBusiness.dll
+C:\Users\cripac\Documents\GitHub\ProjectBussinesManagement\Bll_Business\bin\Debug\Unity.Abstractions.dll
+C:\Users\cripac\Documents\GitHub\ProjectBussinesManagement\Bll_Business\bin\Debug\Unity.Configuration.dll
+C:\Users\cripac\Documents\GitHub\ProjectBussinesManagement\Bll_Business\bin\Debug\Unity.Container.dll
+C:\Users\cripac\Documents\GitHub\ProjectBussinesManagement\Bll_Business\bin\Debug\Unity.Interception.Configuration.dll
+C:\Users\cripac\Documents\GitHub\ProjectBussinesManagement\Bll_Business\bin\Debug\Unity.Interception.dll
+C:\Users\cripac\Documents\GitHub\ProjectBussinesManagement\Bll_Business\bin\Debug\Unity.RegistrationByConvention.dll
+C:\Users\cripac\Documents\GitHub\ProjectBussinesManagement\Bll_Business\bin\Debug\Unity.ServiceLocation.dll
 C:\Users\cripac\Documents\GitHub\ProjectBussinesManagement\Bll_Business\bin\Debug\BO_BusinessManagement.pdb
 C:\Users\cripac\Documents\GitHub\ProjectBussinesManagement\Bll_Business\bin\Debug\Dao_BussinessManagement.pdb
+C:\Users\cripac\Documents\GitHub\ProjectBussinesManagement\Bll_Business\bin\Debug\IBusiness.pdb
+C:\Users\cripac\Documents\GitHub\ProjectBussinesManagement\Bll_Business\bin\Debug\CommonServiceLocator.pdb
+C:\Users\cripac\Documents\GitHub\ProjectBussinesManagement\Bll_Business\bin\Debug\Unity.Abstractions.pdb
+C:\Users\cripac\Documents\GitHub\ProjectBussinesManagement\Bll_Business\bin\Debug\Unity.Configuration.pdb
+C:\Users\cripac\Documents\GitHub\ProjectBussinesManagement\Bll_Business\bin\Debug\Unity.Container.pdb
+C:\Users\cripac\Documents\GitHub\ProjectBussinesManagement\Bll_Business\bin\Debug\Unity.Interception.pdb
+C:\Users\cripac\Documents\GitHub\ProjectBussinesManagement\Bll_Business\bin\Debug\Unity.Interception.Configuration.pdb
+C:\Users\cripac\Documents\GitHub\ProjectBussinesManagement\Bll_Business\bin\Debug\Unity.RegistrationByConvention.pdb
+C:\Users\cripac\Documents\GitHub\ProjectBussinesManagement\Bll_Business\bin\Debug\Unity.ServiceLocation.pdb
 C:\Users\cripac\Documents\GitHub\ProjectBussinesManagement\Bll_Business\obj\Debug\Bll_Business.csprojResolveAssemblyReference.cache
 C:\Users\cripac\Documents\GitHub\ProjectBussinesManagement\Bll_Business\obj\Debug\Bll_Business.dll
 C:\Users\cripac\Documents\GitHub\ProjectBussinesManagement\Bll_Business\obj\Debug\Bll_Business.pdb
+<<<<<<< HEAD
 C:\Users\cripac\Documents\GitHub\ProjectBussinesManagement\Bll_Business\bin\Debug\IBusiness.dll
 C:\Users\cripac\Documents\GitHub\ProjectBussinesManagement\Bll_Business\bin\Debug\IBusiness.pdb
 C:\Users\CristianPc\Documents\Projects\ProjectBussinesManagement\Bll_Business\bin\Debug\CommonServiceLocator.dll
@@ -45,3 +64,5 @@ C:\Users\CristianPc\Documents\Projects\ProjectBussinesManagement\Bll_Business\bi
 C:\Users\CristianPc\Documents\Projects\ProjectBussinesManagement\Bll_Business\bin\Debug\Unity.Interception.Configuration.pdb
 C:\Users\CristianPc\Documents\Projects\ProjectBussinesManagement\Bll_Business\bin\Debug\Unity.RegistrationByConvention.pdb
 C:\Users\CristianPc\Documents\Projects\ProjectBussinesManagement\Bll_Business\bin\Debug\Unity.ServiceLocation.pdb
+=======
+>>>>>>> origin/ElTiempo

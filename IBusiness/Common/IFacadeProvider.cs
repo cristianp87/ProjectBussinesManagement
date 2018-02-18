@@ -1,4 +1,5 @@
 ﻿using System.Runtime.InteropServices.ComTypes;
+using Unity;
 
 namespace IBusiness.Common
 {
@@ -6,7 +7,7 @@ namespace IBusiness.Common
     {
         #region Methods
 
-        T GetFacade <T>() where T : IFacade;
+        T Resolver<T>() where T : IFacade ;
 
         #endregion
     }

@@ -1,34 +1,41 @@
 ﻿using BO_BusinessManagement;
 using Dao_BussinessManagement;
 using System.Collections.Generic;
+using IBusiness.Management;
 
 namespace Bll_Business
 {
-    public class Bll_Invoice
+    public class BllInvoice : IInvoice
     {
-        public static Bo_Invoice bll_GetInvoiceById(int pIdInvoice)
+        public IInvoiceItem LInvoiceItem;
+
+        public BllInvoice()
         {
-            Dao_Invoice oDaoInvoice = new Dao_Invoice();
+            this.LInvoiceItem = new BllInvoiceItem();
+        }
+        public Bo_Invoice bll_GetInvoiceById(int pIdInvoice)
+        {
+            var oDaoInvoice = new Dao_Invoice();
             return oDaoInvoice.Dao_getInvoiceById(pIdInvoice);
         }
 
-        public static List<Bo_Invoice> bll_GetAllInvoice(int pIdcustomer)
+        public List<Bo_Invoice> bll_GetAllInvoice(int pIdcustomer)
         {
-            Dao_Invoice oDaoInvoice = new Dao_Invoice();
+            var oDaoInvoice = new Dao_Invoice();
             return oDaoInvoice.Dao_getInvoiceListAll(pIdcustomer);
         }
 
-        public static string bll_InsertInvoiceAll( int pIdCustomer, int pIdOrder, int pIdObjectInvoice,List<Bo_InvoiceItem> lListInvoiceItem )
+        public string bll_InsertInvoiceAll( int pIdCustomer, int pIdOrder, int pIdObjectInvoice,List<Bo_InvoiceItem> lListInvoiceItem )
         {
-            string lResult = "";
-            int lIdInvoice = 0;
-            lResult = bll_InsertInvoice(bll_GetcdInvoice(),pIdCustomer, pIdOrder, pIdObjectInvoice, Bll_UtilsLib.bll_getStatusApproByObject(pIdObjectInvoice).LIdStatus);
+            var lResult = "";
+            var lIdInvoice = 0;
+            lResult = this.bll_InsertInvoice(this.bll_GetcdInvoice(),pIdCustomer, pIdOrder, pIdObjectInvoice, Bll_UtilsLib.bll_getStatusApproByObject(pIdObjectInvoice).LIdStatus);
             if(int.TryParse(lResult,out lIdInvoice))
             {
                 lResult = "";
                 var lStatusItem = Bll_UtilsLib.bll_getStatusApproByObject(lListInvoiceItem[0].LObject.LIdObject).LIdStatus;
                 lListInvoiceItem.ForEach(x => {
-                   lResult += Bll_InvoiceItem.bll_InsertInvoiceItem(lIdInvoice, x.LQuantity, x.LValueProd, x.LValueSupplier, x.LValueTaxes, x.LValueDesc, x.LProduct.LIdProduct, x.LObject.LIdObject, lStatusItem);
+                   lResult += this.LInvoiceItem.bll_InsertInvoiceItem(lIdInvoice, x.LQuantity, x.LValueProd, x.LValueSupplier, x.LValueTaxes, x.LValueDesc, x.LProduct.LIdProduct, x.LObject.LIdObject, lStatusItem);
                });
                 if (string.IsNullOrEmpty(lResult))
                     lResult = lIdInvoice.ToString();             
@@ -41,47 +48,43 @@ namespace Bll_Business
             return lResult;
         }
 
-        public static string bll_GetcdInvoice()
+        public string bll_GetcdInvoice()
         {
-            Dao_Invoice lDaoinvoice = new Dao_Invoice();
+            var lDaoinvoice = new Dao_Invoice();
             return lDaoinvoice.Dao_getCdInvoice(); 
         }
 
-        public static string bll_InsertInvoice(string pCdInvoice, int pIdCustomer,int pIdOrder, int pIdObject, string pIdStatus)
+        public string bll_InsertInvoice(string pCdInvoice, int pIdCustomer,int pIdOrder, int pIdObject, string pIdStatus)
         {
-            Bo_Invoice oInvoice = new Bo_Invoice();
-            oInvoice.LObject = new Bo_Object();
-            oInvoice.LStatus = new Bo_Status();
-            oInvoice.LCustomer = new Bo_Customer();
-            oInvoice.LOrder = new Bo_Order();
-            oInvoice.LCdInvoice = pCdInvoice;
-            oInvoice.LCustomer.LIdCustomer = pIdCustomer;
-            oInvoice.LOrder.LIdOrder = pIdOrder;
-            oInvoice.LObject.LIdObject = pIdObject;
-            oInvoice.LStatus.LIdStatus = pIdStatus;
-            Dao_Invoice oDaoInvoice = new Dao_Invoice();
+            var oInvoice = new Bo_Invoice
+            {
+                LObject = new Bo_Object {LIdObject = pIdObject},
+                LStatus = new Bo_Status {LIdStatus = pIdStatus},
+                LCustomer = new Bo_Customer {LIdCustomer = pIdCustomer},
+                LOrder = new Bo_Order {LIdOrder = pIdOrder},
+                LCdInvoice = pCdInvoice
+            };
+            var oDaoInvoice = new Dao_Invoice();
             return oDaoInvoice.Dao_InsertInvoice(oInvoice);
         }
 
-        public static string bll_UpdateInvoice(string pCdInvoice, int pIdCustomer, int pIdObject, string pIdStatus)
+        public string bll_UpdateInvoice(string pCdInvoice, int pIdCustomer, int pIdObject, string pIdStatus)
         {
-            Bo_Invoice oInvoice = new Bo_Invoice();
-            oInvoice.LObject = new Bo_Object();
-            oInvoice.LStatus = new Bo_Status();
-            oInvoice.LCustomer = new Bo_Customer();
-            oInvoice.LCdInvoice = pCdInvoice;
-            oInvoice.LCustomer.LIdCustomer = pIdCustomer;
-            oInvoice.LObject.LIdObject = pIdObject;
-            oInvoice.LStatus.LIdStatus = pIdStatus;
-            Dao_Invoice oDaoInvoice = new Dao_Invoice();
+            var oInvoice = new Bo_Invoice
+            {
+                LObject = new Bo_Object {LIdObject = pIdObject},
+                LStatus = new Bo_Status {LIdStatus = pIdStatus},
+                LCustomer = new Bo_Customer {LIdCustomer = pIdCustomer},
+                LCdInvoice = pCdInvoice
+            };
+            var oDaoInvoice = new Dao_Invoice();
             return oDaoInvoice.Dao_UpdateInvoice(oInvoice);
         }
 
-        public static string bll_DeleteInvoice(int pIdInvoice)
+        public string bll_DeleteInvoice(int pIdInvoice)
         {
-            Bo_Invoice oInvoice = new Bo_Invoice();
-            oInvoice.LIdInvoice = pIdInvoice;
-            Dao_Invoice oDaoInvoice = new Dao_Invoice();
+            var oInvoice = new Bo_Invoice {LIdInvoice = pIdInvoice};
+            var oDaoInvoice = new Dao_Invoice();
             return oDaoInvoice.Dao_DeleteInvoice(oInvoice);
         }
     }
