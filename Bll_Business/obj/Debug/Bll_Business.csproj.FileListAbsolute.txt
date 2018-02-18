@@ -44,8 +44,6 @@ C:\Users\cripac\Documents\GitHub\ProjectBussinesManagement\Bll_Business\obj\Debu
 C:\Users\cripac\Documents\GitHub\ProjectBussinesManagement\Bll_Business\obj\Debug\Bll_Business.dll
 C:\Users\cripac\Documents\GitHub\ProjectBussinesManagement\Bll_Business\obj\Debug\Bll_Business.pdb
 <<<<<<< HEAD
-C:\Users\cripac\Documents\GitHub\ProjectBussinesManagement\Bll_Business\bin\Debug\IBusiness.dll
-C:\Users\cripac\Documents\GitHub\ProjectBussinesManagement\Bll_Business\bin\Debug\IBusiness.pdb
 C:\Users\CristianPc\Documents\Projects\ProjectBussinesManagement\Bll_Business\bin\Debug\CommonServiceLocator.dll
 C:\Users\CristianPc\Documents\Projects\ProjectBussinesManagement\Bll_Business\bin\Debug\IBusiness.dll
 C:\Users\CristianPc\Documents\Projects\ProjectBussinesManagement\Bll_Business\bin\Debug\Unity.Abstractions.dll
