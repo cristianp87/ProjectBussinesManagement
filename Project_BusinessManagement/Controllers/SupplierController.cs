@@ -1,37 +1,43 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
-using Bll_Business;
+﻿using Bll_Business;
 using BO_BusinessManagement;
-using System.Collections;
+using Project_BusinessManagement.Filters;
+using System;
+using System.Collections.Generic;
+using System.Web.Mvc;
+using IBusiness.Management;
+using IBusiness.Common;
 
 namespace Project_BusinessManagement.Views.Supplier
 {
+    [Authorize(Roles = "Administrador")]
+    [ConfigurationApp(pParameter: "IsSupplier")]
     public class SupplierController : Controller
     {
+        #region Variables and Constants
+        public ISupplier LiSupplier =
+        FacadeProvider.Resolver<ISupplier>();
+        #endregion
+
         // GET: Supplier
         public ActionResult Index()
         {
-            List<Bo_Supplier> oBListSupplier = new List<Bo_Supplier>();
-            oBListSupplier = Bll_Supplier.bll_GetAllSupplier();  
-
-            return View(Models.MSupplier.MListSupplier(oBListSupplier));
+            var oBListSupplier = this.LiSupplier.bll_GetAllSupplier();
+            return this.View(Models.MSupplier.MListSupplier(oBListSupplier));
         }
+
         // GET: Supplier/Details/5
         public ActionResult Details(int id)
         {
-            Bo_Supplier oBSupplier = new Bo_Supplier();
-            oBSupplier = Bll_Supplier.bll_GetSupplierById(id);
-            return View(Models.MSupplier.MSupplierById(oBSupplier));
+            var oBSupplier = this.LiSupplier.bll_GetSupplierById(id);
+            return this.View(Models.MSupplier.MSupplierById(oBSupplier));
         }
 
+        [ConfigurationApp(pParameter: "CreateSupplier")]
         // GET: Supplier/Create
         public ActionResult Create()
         {
-            Bo_Supplier oBSupplier = new Bo_Supplier();
-            return View(Models.MSupplier.MSupplierEmpty(oBSupplier));
+            var oBSupplier = new Bo_Supplier();
+            return this.View(Models.MSupplier.MSupplierEmpty(oBSupplier));
         }
 
         // POST: Supplier/Create
@@ -40,25 +46,25 @@ namespace Project_BusinessManagement.Views.Supplier
         {
             try
             {
-                if (ModelState.IsValid)
+                if (this.ModelState.IsValid)
                 {
-                    string lMessage = Bll_Supplier.bll_InsertSupplier(Request.Form["LNameSupplier"].ToString(), Request.Form["LNoIdentification"].ToString(), Convert.ToInt32(Request.Form["LTypeIdentification.LIdTypeIdentification"].ToString()), Convert.ToInt32(Request.Form["LObject.LIdObject"].ToString()), Request.Form["LStatus.LIdStatus"].ToString());
+                    var lMessage = this.LiSupplier.bll_InsertSupplier(this.Request.Form["LNameSupplier"].ToString(), this.Request.Form["LNoIdentification"].ToString(), Convert.ToInt32(this.Request.Form["LTypeIdentification.LIdTypeIdentification"].ToString()), Convert.ToInt32(this.Request.Form["LObject.LIdObject"].ToString()), this.Request.Form["LStatus.LIdStatus"].ToString());
                     if (lMessage == null)
                     {
-                        return RedirectToAction("Index");
+                        return this.RedirectToAction("Index");
                     }
                     else
                     {
                         ListEmptySupplier(pMsupplier);
                         pMsupplier.LMessageException = lMessage;
-                        return View(pMsupplier);
+                        return this.View(pMsupplier);
                     }
 
                 }
                 else
                 {
                     ListEmptySupplier(pMsupplier);
-                    return View(pMsupplier);
+                    return this.View(pMsupplier);
                 }
 
             }
@@ -66,7 +72,7 @@ namespace Project_BusinessManagement.Views.Supplier
             {
                 ListEmptySupplier(pMsupplier);
                 pMsupplier.LMessageException = e.Message;
-                return View(pMsupplier);
+                return this.View(pMsupplier);
             }
         }
 
@@ -78,12 +84,12 @@ namespace Project_BusinessManagement.Views.Supplier
             //pMsupplier.LListStatus = Models.MStatus.MListAllStatus(Bll_Status.Bll_getListStatusByIdObject(pMsupplier.LObject.LIdObject));
         }
 
+        [ConfigurationApp(pParameter: "EditSupplier")]
         // GET: Supplier/Edit/5
         public ActionResult Edit(int id)
         {
-            Bo_Supplier oBSupplier = new Bo_Supplier();
-            oBSupplier = Bll_Supplier.bll_GetSupplierById(id);
-            return View(Models.MSupplier.MSupplierById(oBSupplier));
+            var oBSupplier = this.LiSupplier.bll_GetSupplierById(id);
+            return this.View(Models.MSupplier.MSupplierById(oBSupplier));
         }
 
         // POST: Supplier/Edit/5
@@ -92,24 +98,24 @@ namespace Project_BusinessManagement.Views.Supplier
         {
             try
             {               
-                if (ModelState.IsValid) { 
-                    var lMessage = Bll_Supplier.bll_UpdateSupplier(id, Request.Form["LNameSupplier"].ToString(), Request.Form["LNoIdentification"].ToString(), Convert.ToInt32(Request.Form["LTypeIdentification.LIdTypeIdentification"].ToString()), Convert.ToInt32(Request.Form["LObject.LIdObject"].ToString()), Request.Form["LStatus.LIdStatus"].ToString());
+                if (this.ModelState.IsValid) { 
+                    var lMessage = this.LiSupplier.bll_UpdateSupplier(id, this.Request.Form["LNameSupplier"].ToString(), this.Request.Form["LNoIdentification"].ToString(), Convert.ToInt32(this.Request.Form["LTypeIdentification.LIdTypeIdentification"].ToString()), Convert.ToInt32(this.Request.Form["LObject.LIdObject"].ToString()), this.Request.Form["LStatus.LIdStatus"].ToString());
                     if (lMessage == null)
                     {
-                        return RedirectToAction("Index");
+                        return this.RedirectToAction("Index");
                     }
                     else
                     {
                         ListEmptySupplier(pMsupplier);
                         pMsupplier.LMessageException = lMessage;
-                        return View(pMsupplier);
+                        return this.View(pMsupplier);
                     }
                                   
                 }
                 else
                 {
                     ListEmptySupplier(pMsupplier);
-                    return View(pMsupplier);
+                    return this.View(pMsupplier);
                 }
 
             }
@@ -117,16 +123,16 @@ namespace Project_BusinessManagement.Views.Supplier
             {
                 ListEmptySupplier(pMsupplier);
                 pMsupplier.LMessageException = e.Message;
-                return View(pMsupplier);
+                return this.View(pMsupplier);
             }
         }
 
+        [ConfigurationApp(pParameter: "DeleteSupplier")]
         // GET: Supplier/Delete/5
         public ActionResult Delete(int id)
         {
-            Bo_Supplier oBSupplier = new Bo_Supplier();
-            oBSupplier = Bll_Supplier.bll_GetSupplierById(id);
-            return View(Models.MSupplier.MSupplierById(oBSupplier));
+            var oBSupplier = this.LiSupplier.bll_GetSupplierById(id);
+            return this.View(Models.MSupplier.MSupplierById(oBSupplier));
         }
 
         // POST: Supplier/Delete/5
@@ -135,22 +141,18 @@ namespace Project_BusinessManagement.Views.Supplier
         {
             try
             {
-                var lMessage = Bll_Supplier.bll_DeleteSupplier(id);
-                if (lMessage.Equals(null))
+                var lMessage = this.LiSupplier.bll_DeleteSupplier(id);
+                if (lMessage == null)
                 {
-                    pMsupplier.LMessageException = lMessage;
-                    return RedirectToAction("Index");
-                }else
-                {
-                    return View();
+                    return this.RedirectToAction("Index");
                 }
-                    
-
+                pMsupplier.LMessageException = lMessage;
+                return this.View();
             }
             catch (Exception e)
             {
                 pMsupplier.LMessageException = e.Message;
-                return View();
+                return this.View();
             }
         }
     }

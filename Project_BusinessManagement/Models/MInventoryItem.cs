@@ -1,15 +1,22 @@
-﻿using System;
+﻿using BO_BusinessManagement;
+using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using BO_BusinessManagement;
 using System.ComponentModel;
 using System.Web.Mvc;
+using IBusiness.Common;
+using IBusiness.Management;
 
 namespace Project_BusinessManagement.Models
 {
     public class MInventoryItem
     {
+        #region Variables and Constants
+        public static IInventory LInventoryTInventory =
+        FacadeProvider.Resolver<IInventory>();
+
+        public static IProduct LiProduct =
+        FacadeProvider.Resolver<IProduct>();
+        #endregion
         private int lIdInventoryItem;
         private MProduct lProduct = null;
         private DateTime lCreationDate;
@@ -170,73 +177,99 @@ namespace Project_BusinessManagement.Models
 
         public static List<MInventoryItem> MListInventoryItem(List<Bo_InventoryItem> oBListInventoryItem)
         {
-            List<MInventoryItem> oMListInventoryItem = new List<MInventoryItem>();
+            var oMListInventoryItem = new List<MInventoryItem>();
             oBListInventoryItem.ForEach(x => {
-                MInventoryItem oMInventoryItem = new MInventoryItem();
-                oMInventoryItem.LProduct = new MProduct();
-                oMInventoryItem.LInventory = new MInventory();
-                oMInventoryItem.LInventory.LIdInventory = x.LInventory.LIdInventory;
-                oMInventoryItem.LInventory.LNameInventory = x.LInventory.LNameInventory;
-                oMInventoryItem.LIdInventoryItem = x.LIdInventoryItem;
-                oMInventoryItem.LProduct.LIdProduct = x.LProduct.LIdProduct;
-                oMInventoryItem.LProduct.LNameProduct = x.LProduct.LNameProduct;
-                oMInventoryItem.lQtySellable = x.LQtySellable;
-                oMInventoryItem.LQtyNonSellable = x.LQtyNonSellable;
-                oMInventoryItem.LCreationDate = x.LCreationDate;
-                oMListInventoryItem.Add(oMInventoryItem);
+                                                 var oMInventoryItem = new MInventoryItem
+                                                 {
+                                                     LProduct = new MProduct
+                                                     {
+                                                         LNameProduct = x.LProduct.LNameProduct,
+                                                         LIdProduct = x.LProduct.LIdProduct
+                                                     },
+                                                     LInventory = new MInventory
+                                                     {
+                                                         LIdInventory = x.LInventory.LIdInventory,
+                                                         LNameInventory = x.LInventory.LNameInventory
+                                                     },
+                                                     LIdInventoryItem = x.LIdInventoryItem,
+                                                     lQtySellable = x.LQtySellable,
+                                                     LQtyNonSellable = x.LQtyNonSellable,
+                                                     LCreationDate = x.LCreationDate
+                                                 };
+                                                 oMListInventoryItem.Add(oMInventoryItem);
             });
             return oMListInventoryItem;
         }
 
         public static MInventoryItem MInventoryItemById(Bo_InventoryItem oBInventoryItem)
         {
-            MInventoryItem oMInventoryItem = new MInventoryItem();
-            oMInventoryItem.LObject = new MObject();
-            oMInventoryItem.LStatus = new MStatus();
-            oMInventoryItem.LListStatus = new List<SelectListItem>();
-            oMInventoryItem.LListProduct = new List<SelectListItem>();
-            oMInventoryItem.LProduct = new MProduct();
-            oMInventoryItem.LInventory = new MInventory();
-            oMInventoryItem.LIdInventoryItem = oBInventoryItem.LIdInventoryItem;
-            oMInventoryItem.lInventory.LIdInventory = oBInventoryItem.LInventory.LIdInventory;
-            oMInventoryItem.lInventory.LNameInventory = oBInventoryItem.LInventory.LNameInventory;
-            oMInventoryItem.lQtySellable = oBInventoryItem.LQtySellable;
-            oMInventoryItem.LQtyNonSellable = oBInventoryItem.LQtyNonSellable;
-            oMInventoryItem.LCreationDate = oBInventoryItem.LCreationDate;
-            oMInventoryItem.lObject.LIdObject = oBInventoryItem.LObject.LIdObject;
-            oMInventoryItem.lObject.LNameObject = oBInventoryItem.LObject.LNameObject;
-            oMInventoryItem.LStatus.LDsEstado = oBInventoryItem.LStatus.LDsEstado;
-            oMInventoryItem.LStatus.LIdStatus = oBInventoryItem.LStatus.LIdStatus;
-            oMInventoryItem.LProduct.LIdProduct = oBInventoryItem.LProduct.LIdProduct;
-            oMInventoryItem.LProduct.LNameProduct = oBInventoryItem.LProduct.LNameProduct;
+            var oMInventoryItem = new MInventoryItem
+            {
+                LObject = new MObject(),
+                LStatus = new MStatus
+                {
+                    LIdStatus = oBInventoryItem.LStatus.LIdStatus,
+                    LDsEstado = oBInventoryItem.LStatus.LDsEstado
+                },
+                LListStatus = new List<SelectListItem>(),
+                LListProduct = new List<SelectListItem>(),
+                LProduct = new MProduct
+                {
+                    LIdProduct = oBInventoryItem.LProduct.LIdProduct,
+                    LNameProduct = oBInventoryItem.LProduct.LNameProduct
+                },
+                LInventory = new MInventory(),
+                LIdInventoryItem = oBInventoryItem.LIdInventoryItem,
+                lInventory =
+                {
+                    LIdInventory = oBInventoryItem.LInventory.LIdInventory,
+                    LNameInventory = oBInventoryItem.LInventory.LNameInventory
+                },
+                lQtySellable = oBInventoryItem.LQtySellable,
+                LQtyNonSellable = oBInventoryItem.LQtyNonSellable,
+                LCreationDate = oBInventoryItem.LCreationDate,
+                lObject =
+                {
+                    LIdObject = oBInventoryItem.LObject.LIdObject,
+                    LNameObject = oBInventoryItem.LObject.LNameObject
+                }
+            };
             oMInventoryItem.LListStatus = MStatus.MListAllStatus(Bll_Business.Bll_Status.Bll_getListStatusByIdObject(oMInventoryItem.LObject.LIdObject));
-            oMInventoryItem.LListProduct = MProduct.MListAllProduct(Bll_Business.Bll_Product.bll_GetAllProduct());
+            oMInventoryItem.LListProduct = MProduct.MListAllProduct(LiProduct.bll_GetAllProduct());
             return oMInventoryItem;
         }
 
         public static MInventoryItem MInventoryEmpty(int pIdInventory)
-        {
-            MInventoryItem oMInventoryItem = new MInventoryItem();
-            Bo_Object oObject = new Bo_Object();
-            Bo_Inventory obInventory = Bll_Business.Bll_Inventory.bll_GetInventoryById(pIdInventory);
-            oObject = Bll_Business.Bll_UtilsLib.bll_GetObjectByName(MGlobalVariables.LNameObjectInventoryItem);
-            oMInventoryItem.LObject = new MObject();
-            oMInventoryItem.LStatus = new MStatus();
-            oMInventoryItem.LListStatus = new List<SelectListItem>();
-            oMInventoryItem.LProduct = new MProduct();
-            oMInventoryItem.LListProduct = new List<SelectListItem>();
-            oMInventoryItem.LInventory = new MInventory();
-            oMInventoryItem.LInventory.LIdInventory = obInventory.LIdInventory;
-            oMInventoryItem.LInventory.LNameInventory = obInventory.LNameInventory;
-            oMInventoryItem.lQtySellable = 0;
-            oMInventoryItem.LQtyNonSellable = 0;
-            oMInventoryItem.LCreationDate = new DateTime();
-            oMInventoryItem.lObject.LIdObject = oObject.LIdObject;
-            oMInventoryItem.lObject.LNameObject = oObject.LNameObject;
-            oMInventoryItem.LStatus.LDsEstado = null;
-            oMInventoryItem.LStatus.LIdStatus = null;
+        {          
+            var obInventory = LInventoryTInventory.bll_GetInventoryById(pIdInventory);
+            var oObject = Bll_Business.Bll_UtilsLib.bll_GetObjectByName(MGlobalVariables.LNameObjectInventoryItem);
+            var oMInventoryItem = new MInventoryItem
+            {
+                LObject = new MObject(),
+                LStatus = new MStatus
+                {
+                    LDsEstado = null,
+                    LIdStatus = null
+                },
+                LListStatus = new List<SelectListItem>(),
+                LProduct = new MProduct(),
+                LListProduct = new List<SelectListItem>(),
+                LInventory = new MInventory
+                {
+                    LIdInventory = obInventory.LIdInventory,
+                    LNameInventory = obInventory.LNameInventory
+                },
+                lQtySellable = 0,
+                LQtyNonSellable = 0,
+                LCreationDate = new DateTime(),
+                lObject =
+                {
+                    LIdObject = oObject.LIdObject,
+                    LNameObject = oObject.LNameObject
+                }
+            };
             oMInventoryItem.LListStatus = MStatus.MListStatusWithSelect(Bll_Business.Bll_Status.Bll_getListStatusByIdObject(oMInventoryItem.LObject.LIdObject));
-            oMInventoryItem.LListProduct = MProduct.MListAllProductwithSelect(Bll_Business.Bll_Product.bll_GetAllProduct());
+            oMInventoryItem.LListProduct = MProduct.MListAllProductwithSelect(LiProduct.bll_GetAllProduct());
             return oMInventoryItem;
         }
 

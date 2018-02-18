@@ -1,6 +1,5 @@
-﻿using System;
+﻿using BO_BusinessManagement;
 using Dao_BussinessManagement;
-using BO_BusinessManagement;
 namespace Bll_Business
 {
     public static class Bll_User
@@ -9,6 +8,18 @@ namespace Bll_Business
         {
             var lUser = new Dao_User();
             return lUser.Dao_getUserByUser(pUser);
+        }
+
+        public static Bo_User bll_GetUserById(int pIdUser)
+        {
+            var lUser = new Dao_User();
+            return lUser.Dao_getUserById(pIdUser);
+        }
+
+        public static string bll_InsertUser(Bo_User pUser)
+        {
+            var lUser = new Dao_User();
+            return lUser.Dao_InsertUser(pUser);
         }
     }
 }

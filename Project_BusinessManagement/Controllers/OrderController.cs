@@ -1,64 +1,85 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
-using Bll_Business;
+﻿using Bll_Business;
 using BO_BusinessManagement;
+using Project_BusinessManagement.Filters;
 using Project_BusinessManagement.Models;
+using System;
+using System.Collections.Generic;
+using System.Web.Mvc;
+using IBusiness.Common;
+using IBusiness.Management;
 
 namespace Project_BusinessManagement.Controllers
 {
+    [Authorize(Roles = "Administrador, Cajero")]
+    [ConfigurationApp(pParameter: "IsRealizeOrder")]
     public class OrderController : Controller
     {
+        #region Variables and Constants
+
+        public ICustomer LCustomerFacade =
+        FacadeProvider.Resolver<ICustomer>();
+
+        public IInventory LInventory =
+        FacadeProvider.Resolver<IInventory>();
+
+        public readonly MParameter lParameter = new MParameter();
+
+        public IOrder LOrder =
+        FacadeProvider.Resolver<IOrder>();
+
+        public IInvoiceItem LInvoiceItem =
+        FacadeProvider.Resolver<IInvoiceItem>();
+
+        public IInvoice LInvoice =
+        FacadeProvider.Resolver<IInvoice>();
+
+        public IProduct LiProduct =
+        FacadeProvider.Resolver<IProduct>();
+        #endregion
+
         // GET: Order
         public ActionResult Index(int pIdCustomer)
         {
-            List<Bo_Order> lListOrder = new List<Bo_Order>();
-            lListOrder = Bll_Order.bll_GetListOrderByCustomer(pIdCustomer);
-            return View(MOrder.MListOrder(lListOrder));
+            var lListOrder = this.LOrder.bll_GetListOrderByCustomer(pIdCustomer);
+            return this.View(MOrder.MListOrder(lListOrder));
         }
 
         // GET: Order
         public ActionResult DashBoardOrder()
         {
-            return View();
+            return this.View();
         }
 
         [HttpPost]
         public JsonResult GetCustomer(int pIdtypeIdentification, string pNoIdentification)
         {
-
-            Bo_Customer lCustomer= new Bo_Customer();
-            lCustomer = Bll_Customer.bll_GetCustomerByIdentification(pNoIdentification, pIdtypeIdentification);
+            var lCustomer = this.LCustomerFacade.bll_GetCustomerByIdentification(pNoIdentification, pIdtypeIdentification);
             if (lCustomer.LException != null)
             {
 
-                return Json(new { Success = false, Message = "ErrorDao! " + lCustomer.LMessageDao + " " + lCustomer.LException });
+                return this.Json(new { Success = false, Message = "ErrorDao! " + lCustomer.LMessageDao + " " + lCustomer.LException });
             }else if (lCustomer.LNameCustomer != null)
             {
-                return Json(new { Success = true, Content = lCustomer });
+                return this.Json(new { Success = true, Content = lCustomer });
             }
             else
             {
-                return Json(new { Success = false, Message = "El cliente no existe en la base de datos." });
+                return this.Json(new { Success = false, Message = "El cliente no existe en la base de datos." });
             }
         }
 
         [HttpPost]
         public JsonResult GetInventory()
         {
-            List<Bo_Inventory> lListBoInventory = new List<Bo_Inventory>();
-            lListBoInventory = Bll_Inventory.bll_GetAllInventory();
-            return Json(Models.MInventory.MListInventory(lListBoInventory));
+            var lListBoInventory = this.LInventory.bll_GetAllInventory();
+            return this.Json(MInventory.MListInventory(lListBoInventory));
         }
 
         [HttpPost]
         public JsonResult GetTypeIdentification()
         {
-            List<Bo_TypeIdentification> lListTypeIdentification = new List<Bo_TypeIdentification>();
-            lListTypeIdentification = Bll_TypeIdentification.bll_getListTypeIdentification();
-            return Json(Models.MTypeIdentification.MListAllTypeIdentification(lListTypeIdentification));
+            var lListTypeIdentification = Bll_TypeIdentification.bll_getListTypeIdentification();
+            return this.Json(MTypeIdentification.MListAllTypeIdentification(lListTypeIdentification));
         }
 
         [HttpPost]
@@ -66,39 +87,27 @@ namespace Project_BusinessManagement.Controllers
         {
             try
             {
-                Bo_Product lProduct = new Bo_Product();
-                lProduct = Bll_Product.bll_GetProductById(idProduct);
+                var lProduct = this.LiProduct.bll_GetProductById(idProduct);
                 if(lProduct.LException != null)
-                {
-                    
-                    return Json(new { Success = false, Message = "ErrorDao! " + lProduct.LMessageDao + " " + lProduct.LException});
+                {                   
+                    return this.Json(new { Success = false, Message = "ErrorDao! " + lProduct.LMessageDao + " " + lProduct.LException});
                 }
-                if (lProduct.LCdProduct != null)
-                {
-                    return Json(new { Success = true, Content = Models.MProduct.MProductById(lProduct) });
-                }
-                else
-                {
-                    return Json(new { Success = false, Message = "El Producto no existe en la base de datos." });
-                }
+                return lProduct.LCdProduct != null ? this.Json(new { Success = true, Content = MProduct.MProductById(lProduct) }) : this.Json(new { Success = false, Message = "El Producto no existe en la base de datos." });
             }catch(Exception e)
             {
-                return Json(new { Success = false, Message = "Error! " + e.Message });
+                return this.Json(new { Success = false, Message = "Error! " + e.Message });
             }
             
             
         }
 
-        // GET: Order/Details/5
-        public ActionResult Details(int id)
-        {
-            return View();
-        }
+        
 
+        [ConfigurationApp(pParameter: "CreateOrder")]
         // GET: Order/Create
         public ActionResult Create()
         {
-            return View();
+            return this.View();
         }
 
         // POST: Order/Create
@@ -106,72 +115,25 @@ namespace Project_BusinessManagement.Controllers
         public JsonResult Create(Bo_Order pOrder)
         {
             try
-            {              
-                var lResult = Bll_Order.bll_InsertOrder(pOrder.LInventory.LIdInventory, pOrder.LCustomer.LIdCustomer, Bll_UtilsLib.bll_GetObjectByName(MGlobalVariables.LNameObjectOrder).LIdObject, Bll_UtilsLib.bll_getStatusApproByObject(Bll_UtilsLib.bll_GetObjectByName(MGlobalVariables.LNameObjectOrder).LIdObject).LIdStatus, pOrder.LListOrderItem, Bll_UtilsLib.bll_GetObjectByName(MGlobalVariables.LNameObjectOrderItem).LIdObject, Bll_UtilsLib.bll_getStatusApproByObject(Bll_UtilsLib.bll_GetObjectByName(MGlobalVariables.LNameObjectOrderItem).LIdObject).LIdStatus);
-                int lIdOrder = 0;
+            {                      
+                var lResult = this.LOrder.bll_InsertOrder(pOrder.LInventory.LIdInventory, pOrder.LCustomer.LIdCustomer, Bll_UtilsLib.bll_GetObjectByName(MGlobalVariables.LNameObjectOrder).LIdObject, Bll_UtilsLib.bll_getStatusApproByObject(Bll_UtilsLib.bll_GetObjectByName(MGlobalVariables.LNameObjectOrder).LIdObject).LIdStatus, pOrder.LListOrderItem, this.lParameter.lIsModuleInventory, Bll_UtilsLib.bll_GetObjectByName(MGlobalVariables.LNameObjectOrderItem).LIdObject, Bll_UtilsLib.bll_getStatusApproByObject(Bll_UtilsLib.bll_GetObjectByName(MGlobalVariables.LNameObjectOrderItem).LIdObject).LIdStatus);
+                var lIdOrder = 0;
                 if(int.TryParse(lResult, out lIdOrder))
                 {
-                    int lIdInvoice = 0;
-                    List<Bo_InvoiceItem> lListInvoiceItem = Bll_InvoiceItem.bll_ChangeOrderItemToInvoiceItem(pOrder.LListOrderItem, Bll_UtilsLib.bll_GetObjectByName(MGlobalVariables.LNameObjectInvoiceItem));
-                    lResult = Bll_Invoice.bll_InsertInvoiceAll(pOrder.LCustomer.LIdCustomer, lIdOrder, Bll_UtilsLib.bll_GetObjectByName(MGlobalVariables.LNameObjectInvoice).LIdObject, lListInvoiceItem);
-                    if(int.TryParse(lResult, out lIdInvoice))
-                        return Json(new { Success = true, Content = lIdInvoice });
-                    else
-                        return Json(new { Success = false, Content = lResult });
+                    var lIdInvoice = 0;
+                    var lListInvoiceItem = this.LInvoiceItem.bll_ChangeOrderItemToInvoiceItem(pOrder.LListOrderItem, Bll_UtilsLib.bll_GetObjectByName(MGlobalVariables.LNameObjectInvoiceItem));
+                    lResult = this.LInvoice.bll_InsertInvoiceAll(pOrder.LCustomer.LIdCustomer, lIdOrder, Bll_UtilsLib.bll_GetObjectByName(MGlobalVariables.LNameObjectInvoice).LIdObject, lListInvoiceItem);
+                    return int.TryParse(lResult, out lIdInvoice) ? this.Json(new { Success = true, Content = lIdInvoice }) : this.Json(new { Success = false, Content = lResult });
                 }
                 else
                 {
-                    return Json(new { Success = false, Content = lResult });
+                    return this.Json(new { Success = false, Content = lResult });
                 }                
             }
             catch (Exception e)
             {
-                return Json(new { Success = false, Message = "Error! " + e.Message });
+                return this.Json(new { Success = false, Message = "Error! " + e.Message });
             }
-        }
-
-        // GET: Order/Edit/5
-        public ActionResult Edit(int id)
-        {
-            return View();
-        }
-
-        // POST: Order/Edit/5
-        [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
-        {
-            try
-            {
-                // TODO: Add update logic here
-
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
-        }
-
-        // GET: Order/Delete/5
-        public ActionResult Delete(int id)
-        {
-            return View();
-        }
-
-        // POST: Order/Delete/5
-        [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
-        {
-            try
-            {
-                // TODO: Add delete logic here
-
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
-        }
+        }      
     }
 }

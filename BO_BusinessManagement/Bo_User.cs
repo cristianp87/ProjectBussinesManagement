@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace BO_BusinessManagement
 {
@@ -17,8 +13,11 @@ namespace BO_BusinessManagement
         private DateTime lBirthDate;
         private string lUser;
         private string lPassword;
+        private string lNoIdentification;
+        private Bo_TypeIdentification lTypeIdentification;
         private Bo_Object lObject;
         private Bo_Status lStatus;
+        private Bo_Role lRole;
 
         public int LIdUser
         {
@@ -160,6 +159,45 @@ namespace BO_BusinessManagement
             set
             {
                 lStatus = value;
+            }
+        }
+
+        public string LNoIdentification
+        {
+            get
+            {
+                return lNoIdentification;
+            }
+
+            set
+            {
+                lNoIdentification = value;
+            }
+        }
+
+        public Bo_TypeIdentification LTypeIdentification
+        {
+            get
+            {
+                return lTypeIdentification;
+            }
+
+            set
+            {
+                lTypeIdentification = value;
+            }
+        }
+
+        public Bo_Role LRole
+        {
+            get
+            {
+                return lRole;
+            }
+
+            set
+            {
+                lRole = value;
             }
         }
     }

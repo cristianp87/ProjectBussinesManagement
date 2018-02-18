@@ -1,65 +1,78 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
-using Bll_Business;
+﻿using Bll_Business;
 using BO_BusinessManagement;
+using Project_BusinessManagement.Filters;
+using System;
+using System.Collections.Generic;
+using System.Web.Mvc;
+using IBusiness.Common;
+using IBusiness.Management;
+using Project_BusinessManagement.Models;
 
 namespace Project_BusinessManagement.Controllers
 {
+    [Authorize(Roles = "Administrador")]
+    [ConfigurationApp(pParameter: "IsInventory")]
     public class InventoryItemController : Controller
     {
+        #region Variables and Constants
+        public IInventory LInventory =
+        FacadeProvider.Resolver<IInventory>();
+
+        public IInventoryItem LInventoryItem =
+        FacadeProvider.Resolver<IInventoryItem>();
+
+        public static IProduct LiProduct =
+        FacadeProvider.Resolver<IProduct>();
+        #endregion
         // GET: InventoryItem
         public ActionResult Index(int id)
         {
-            List<Bo_InventoryItem> lListInventoryItem = new List<Bo_InventoryItem>();
-            lListInventoryItem = Bll_InventoryItem.bll_GetInventoryItemsByIdInventory(id);
-            ViewData["LIdInventory"] = id;
-            return View(Models.MInventoryItem.MListInventoryItem(lListInventoryItem));
+            var lListInventoryItem = this.LInventoryItem.bll_GetInventoryItemsByIdInventory(id);
+            this.ViewData["LIdInventory"] = id;
+            return this.View(MInventoryItem.MListInventoryItem(lListInventoryItem));
         }
 
         // GET: InventoryItem/Details/5
         public ActionResult Details(int id)
         {
-            Bo_InventoryItem lOInventoryItem = new Bo_InventoryItem();
-            lOInventoryItem = Bll_InventoryItem.bll_GetInventoryItemById(id);
-            return View(Models.MInventoryItem.MInventoryItemById(lOInventoryItem));
+            Bo_InventoryItem lOInventoryItem = this.LInventoryItem.bll_GetInventoryItemById(id);
+            return this.View(MInventoryItem.MInventoryItemById(lOInventoryItem));
         }
 
+        [ConfigurationApp(pParameter: "CreateInventory")]
         // GET: InventoryItem/Create
         public ActionResult Create(int idInventory)
         {         
-            return View(Models.MInventoryItem.MInventoryEmpty(idInventory));
+            return this.View(MInventoryItem.MInventoryEmpty(idInventory));
         }
 
         // POST: InventoryItem/Create
         [HttpPost]
-        public ActionResult Create(int idInventory, Models.MInventoryItem pMInventoryItem)
+        public ActionResult Create(int idInventory, MInventoryItem pMInventoryItem)
         {
             try
             {
-                ModelState.Remove("LProduct.LNameProduct");
-                ModelState.Remove("LProduct.LCdProduct");
-                if (ModelState.IsValid)
+                this.ModelState.Remove("LProduct.LNameProduct");
+                this.ModelState.Remove("LProduct.LCdProduct");
+                if (this.ModelState.IsValid)
                 {
-                    string lMessage = Bll_InventoryItem.bll_InsertInventoryItem(idInventory, Convert.ToInt32(Request.Form["LProduct.LIdProduct"].ToString()), Convert.ToInt32(Request.Form["LObject.LIdObject"].ToString()), Request.Form["LStatus.LIdStatus"].ToString(), Convert.ToDecimal(Request.Form["LQtySellable"].ToString()), Convert.ToDecimal(Request.Form["LQtyNonSellable"].ToString()));
+                    var lMessage = this.LInventoryItem.bll_InsertInventoryItem(idInventory, Convert.ToInt32(this.Request.Form["LProduct.LIdProduct"].ToString()), Convert.ToInt32(this.Request.Form["LObject.LIdObject"].ToString()), this.Request.Form["LStatus.LIdStatus"].ToString(), Convert.ToDecimal(this.Request.Form["LQtySellable"].ToString()), Convert.ToDecimal(this.Request.Form["LQtyNonSellable"].ToString()));
                     if (lMessage == null)
                     {
-                        return RedirectToAction("Index", new { id = idInventory});
+                        return this.RedirectToAction("Index", new { id = idInventory});
                     }
                     else
                     {
                         EmptyInventoryItem(pMInventoryItem);
                         pMInventoryItem.LMessageException = lMessage;
-                        return View(pMInventoryItem);
+                        return this.View(pMInventoryItem);
                     }
 
                 }
                 else
                 {
                     EmptyInventoryItem(pMInventoryItem);
-                    return View(pMInventoryItem);
+                    return this.View(pMInventoryItem);
                 }
 
             }
@@ -67,107 +80,109 @@ namespace Project_BusinessManagement.Controllers
             {
                 EmptyInventoryItem(pMInventoryItem);
                 pMInventoryItem.LMessageException = e.Message;
-                return View(pMInventoryItem);
+                return this.View(pMInventoryItem);
             }
         }
 
-        
 
+        [ConfigurationApp(pParameter: "EditInventory")]
         // GET: InventoryItem/Edit/5
         public ActionResult Edit(int id)
         {
-            Bo_InventoryItem lOInventoryItem = new Bo_InventoryItem();
-            lOInventoryItem = Bll_InventoryItem.bll_GetInventoryItemById(id);
-            return View(Models.MInventoryItem.MInventoryItemById(lOInventoryItem));
+            var lOInventoryItem = this.LInventoryItem.bll_GetInventoryItemById(id);
+            return this.View(MInventoryItem.MInventoryItemById(lOInventoryItem));
         }
 
         // POST: InventoryItem/Edit/5
         [HttpPost]
-        public ActionResult Edit(int id, Models.MInventoryItem pMInventoryItem)
+        public ActionResult Edit(int id, MInventoryItem pMInventoryItem)
         {
             try
             {
-                Models.MInventoryItem lInventoryItem = new Models.MInventoryItem();
-                ModelState.Remove("LProduct.LNameProduct");
-                ModelState.Remove("LProduct.LCdProduct");
-                if (ModelState.IsValid)
+                MInventoryItem lInventoryItem = new MInventoryItem();
+                this.ModelState.Remove("LProduct.LNameProduct");
+                this.ModelState.Remove("LProduct.LCdProduct");
+                if (this.ModelState.IsValid)
                 {
-                    string lMessage = Bll_InventoryItem.bll_UpdateInventoryITem(id, Convert.ToInt32(Request.Form["LInventory.LIdInventory"].ToString()), Convert.ToInt32(Request.Form["LProduct.LIdProduct"].ToString()), Convert.ToDecimal(Request.Form["LQtySellable"].ToString()), Convert.ToDecimal(Request.Form["LQtyNonSellable"].ToString()), Convert.ToInt32(Request.Form["LObject.LIdObject"].ToString()), Request.Form["LStatus.LIdStatus"].ToString());
+                    string lMessage = this.LInventoryItem.bll_UpdateInventoryITem(id, Convert.ToInt32(this.Request.Form["LInventory.LIdInventory"].ToString()), Convert.ToInt32(this.Request.Form["LProduct.LIdProduct"].ToString()), Convert.ToDecimal(this.Request.Form["LQtySellable"].ToString()), Convert.ToDecimal(this.Request.Form["LQtyNonSellable"].ToString()), Convert.ToInt32(this.Request.Form["LObject.LIdObject"].ToString()), this.Request.Form["LStatus.LIdStatus"].ToString());
                     if (lMessage == null)
                     {
-                        return RedirectToAction("Index", new { id = pMInventoryItem.LInventory.LIdInventory });
+                        return this.RedirectToAction("Index", new { id = pMInventoryItem.LInventory.LIdInventory });
                     }
                     else
                     {                       
-                        return View(CurrentInventoryItem(lInventoryItem, pMInventoryItem, id, lMessage, pMInventoryItem.LInventory.LIdInventory));
+                        return this.View(this.CurrentInventoryItem(lInventoryItem, pMInventoryItem, id, lMessage, pMInventoryItem.LInventory.LIdInventory));
                     }
 
                 }
                 else
                 {                   
-                    return View(CurrentInventoryItem(lInventoryItem, pMInventoryItem, id, "Debe completar los campos obligatorios", pMInventoryItem.LInventory.LIdInventory));
+                    return this.View(this.CurrentInventoryItem(lInventoryItem, pMInventoryItem, id, "Debe completar los campos obligatorios", pMInventoryItem.LInventory.LIdInventory));
                 }
 
             }
             catch (Exception e)
             {
-                Models.MInventoryItem lInventoryItemExc = new Models.MInventoryItem();              
-                return View(CurrentInventoryItem(lInventoryItemExc, pMInventoryItem, id, e.Message, pMInventoryItem.LInventory.LIdInventory));
+                MInventoryItem lInventoryItemExc = new MInventoryItem();              
+                return this.View(this.CurrentInventoryItem(lInventoryItemExc, pMInventoryItem, id, e.Message, pMInventoryItem.LInventory.LIdInventory));
             }
         }
 
+        [ConfigurationApp(pParameter: "DeleteInventory")]
         // GET: InventoryItem/Delete/5
         public ActionResult Delete(int id)
         {
-            Bo_InventoryItem lOInventoryItem = new Bo_InventoryItem();
-            lOInventoryItem = Bll_InventoryItem.bll_GetInventoryItemById(id);
-            return View(Models.MInventoryItem.MInventoryItemById(lOInventoryItem));
+            var lOInventoryItem = this.LInventoryItem.bll_GetInventoryItemById(id);
+            return this.View(MInventoryItem.MInventoryItemById(lOInventoryItem));
         }
 
         // POST: InventoryItem/Delete/5
         [HttpPost]
-        public ActionResult Delete(int id, Models.MInventoryItem pMInventoryItem)
+        public ActionResult Delete(int id, MInventoryItem pMInventoryItem)
         {
             try
             {
-                string lMessage = Bll_InventoryItem.bll_DeleteInventoryItem(id);
+                string lMessage = this.LInventoryItem.bll_DeleteInventoryItem(id);
                 if(lMessage == null)
                 {
-                    return RedirectToAction("Index", new { id = pMInventoryItem.LInventory.LIdInventory });
+                    return this.RedirectToAction("Index", new { id = pMInventoryItem.LInventory.LIdInventory });
                 }
                 else
                 {
                     pMInventoryItem.LMessageException = lMessage;
-                    return View(pMInventoryItem);
+                    return this.View(pMInventoryItem);
                 }
                 
             }
             catch(Exception e)
             {
                 pMInventoryItem.LMessageException = e.Message;
-                return View();
+                return this.View();
             }
         }
 
-        private static Models.MInventoryItem EmptyInventoryItem(Models.MInventoryItem pMInventoryItem)
+        private static MInventoryItem EmptyInventoryItem(MInventoryItem pMInventoryItem)
         {
             pMInventoryItem.LListStatus = new List<SelectListItem>();
             pMInventoryItem.LListProduct = new List<SelectListItem>();
-            pMInventoryItem.LListStatus = Models.MStatus.MListAllStatus(Bll_Status.Bll_getListStatusByIdObject(pMInventoryItem.LObject.LIdObject));
-            pMInventoryItem.LListProduct = Models.MProduct.MListAllProduct(Bll_Product.bll_GetAllProduct());
+            pMInventoryItem.LListStatus = MStatus.MListAllStatus(Bll_Status.Bll_getListStatusByIdObject(pMInventoryItem.LObject.LIdObject));
+            pMInventoryItem.LListProduct = MProduct.MListAllProduct(LiProduct.bll_GetAllProduct());
             return pMInventoryItem;
         }
 
-        private static Models.MInventoryItem CurrentInventoryItem(Models.MInventoryItem pMInventoryItem, Models.MInventoryItem pMInventoryOldItem, int id, string pMessageException, int pIdInventory)
+        private  MInventoryItem CurrentInventoryItem(MInventoryItem pMInventoryItem, MInventoryItem pMInventoryOldItem, int id, string pMessageException, int pIdInventory)
         {
+            if (pMInventoryItem == null)
+            {
+                throw new ArgumentNullException(nameof(pMInventoryItem));
+            }
             pMInventoryItem = pMInventoryOldItem;
-            Bo_Inventory lObInventory = new Bo_Inventory();
             pMInventoryItem.LListStatus = new List<SelectListItem>();
             pMInventoryItem.LListProduct = new List<SelectListItem>();
-            pMInventoryItem.LListStatus = Models.MStatus.MListAllStatus(Bll_Status.Bll_getListStatusByIdObject(pMInventoryItem.LObject.LIdObject));
-            pMInventoryItem.LListProduct = Models.MProduct.MListAllProduct(Bll_Product.bll_GetAllProduct());
-            pMInventoryItem.LInventory = new Models.MInventory();
-            lObInventory = Bll_Inventory.bll_GetInventoryById(pIdInventory);
+            pMInventoryItem.LListStatus = MStatus.MListAllStatus(Bll_Status.Bll_getListStatusByIdObject(pMInventoryItem.LObject.LIdObject));
+            pMInventoryItem.LListProduct = MProduct.MListAllProduct(LiProduct.bll_GetAllProduct());
+            pMInventoryItem.LInventory = new MInventory();
+            var lObInventory = this.LInventory.bll_GetInventoryById(pIdInventory);
             pMInventoryItem.LInventory.LIdInventory = lObInventory.LIdInventory;
             pMInventoryItem.LInventory.LNameInventory = lObInventory.LNameInventory;
             pMInventoryItem.LMessageException = pMessageException;
