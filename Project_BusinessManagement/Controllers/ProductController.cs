@@ -20,6 +20,15 @@ namespace Project_BusinessManagement.Controllers
 
         public static ISupplier LiSupplier =
         FacadeProvider.Resolver<ISupplier>();
+
+        public static IStatus LStatus =
+        FacadeProvider.Resolver<BllStatus>();
+
+        public static ITaxe LiTaxe =
+        FacadeProvider.Resolver<BllTaxe>();
+
+        public IUtilsLib LiUtilsLib =
+        FacadeProvider.Resolver<BllUtilsLib>();
         #endregion
         // GET: Product
         public ActionResult Index()
@@ -195,16 +204,16 @@ namespace Project_BusinessManagement.Controllers
             }
         }
 
-        private static void ListEmptyProduct(MProduct pMProduct)
+        private void ListEmptyProduct(MProduct pMProduct)
         {
             pMProduct.LListSupplier = new List<SelectListItem>();
             pMProduct.LListSupplier = Models.MSupplier.MListAllSupplierWithSelect(LiSupplier.bll_GetAllSupplier());
             pMProduct.LListUnit = new List<SelectListItem>();
-            pMProduct.LListUnit = Models.MUnit.MListAllUnitWithSelect(Bll_UtilsLib.bll_GetAllUnit());
+            pMProduct.LListUnit = Models.MUnit.MListAllUnitWithSelect(this.LiUtilsLib.bll_GetAllUnit());
             pMProduct.LListStatus = new List<SelectListItem>();
-            pMProduct.LListStatus = Models.MStatus.MListAllStatus(Bll_Status.Bll_getListStatusByIdObject(pMProduct.LObject.LIdObject));
+            pMProduct.LListStatus = Models.MStatus.MListAllStatus(LStatus.Bll_getListStatusByIdObject(pMProduct.LObject.LIdObject));
             pMProduct.LListSelectTaxe = new List<SelectListItem>();
-            pMProduct.LListSelectTaxe = Models.MTaxe.MListTaxesWithSelect(Bll_Taxe.bll_GetListTaxes());
+            pMProduct.LListSelectTaxe = Models.MTaxe.MListTaxesWithSelect(LiTaxe.bll_GetListTaxes());
         }
 
         private static Models.MProduct CurrentProduct(MProduct pMProduct, MProduct pMProductOld, int id, string pMessageException)

@@ -17,6 +17,9 @@ namespace Project_BusinessManagement.Controllers
         #region Variables and Constants
         public IInventory LInventory =
         FacadeProvider.Resolver<IInventory>();
+
+        public IStatus LStatus =
+        FacadeProvider.Resolver<BllStatus>();
         #endregion
         // GET: Inventory
         public ActionResult Index()
@@ -78,7 +81,7 @@ namespace Project_BusinessManagement.Controllers
         private void ListEmptyInventory(MInventory pMInventory)
         {
             pMInventory.LListStatus = new List<SelectListItem>();
-            pMInventory.LListStatus = Models.MStatus.MListAllStatus(Bll_Status.Bll_getListStatusByIdObject(pMInventory.LObject.LIdObject));
+            pMInventory.LListStatus = Models.MStatus.MListAllStatus(this.LStatus.Bll_getListStatusByIdObject(pMInventory.LObject.LIdObject));
         }
 
         [ConfigurationApp(pParameter: "EditInventory")]

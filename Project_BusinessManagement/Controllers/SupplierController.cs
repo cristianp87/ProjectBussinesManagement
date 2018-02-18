@@ -16,6 +16,9 @@ namespace Project_BusinessManagement.Views.Supplier
         #region Variables and Constants
         public ISupplier LiSupplier =
         FacadeProvider.Resolver<ISupplier>();
+
+        public static ITypeIdentification LiTypeIdentification =
+        FacadeProvider.Resolver<BllTypeIdentification>();
         #endregion
 
         // GET: Supplier
@@ -79,7 +82,7 @@ namespace Project_BusinessManagement.Views.Supplier
         private static void ListEmptySupplier(Models.MSupplier pMsupplier)
         {
             pMsupplier.LListTypeIdentification = new List<SelectListItem>();
-            pMsupplier.LListTypeIdentification = Models.MTypeIdentification.MListAllTypeIdentification(Bll_TypeIdentification.bll_getListTypeIdentification());
+            pMsupplier.LListTypeIdentification = Models.MTypeIdentification.MListAllTypeIdentification(LiTypeIdentification.bll_getListTypeIdentification());
             pMsupplier.LListStatus = new List<SelectListItem>();
             //pMsupplier.LListStatus = Models.MStatus.MListAllStatus(Bll_Status.Bll_getListStatusByIdObject(pMsupplier.LObject.LIdObject));
         }

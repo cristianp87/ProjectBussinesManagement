@@ -1,22 +1,24 @@
 ﻿using BO_BusinessManagement;
 using Dao_BussinessManagement;
+using IBusiness.Management;
+
 namespace Bll_Business
 {
-    public static class Bll_User
+    public class BllUser : IBusinessUser
     {
-        public static Bo_User bll_GetUserByUser(string pUser)
+        public Bo_User bll_GetUserByUser(string pUser)
         {
             var lUser = new Dao_User();
             return lUser.Dao_getUserByUser(pUser);
         }
 
-        public static Bo_User bll_GetUserById(int pIdUser)
+        public Bo_User bll_GetUserById(int pIdUser)
         {
             var lUser = new Dao_User();
             return lUser.Dao_getUserById(pIdUser);
         }
 
-        public static string bll_InsertUser(Bo_User pUser)
+        public string bll_InsertUser(Bo_User pUser)
         {
             var lUser = new Dao_User();
             return lUser.Dao_InsertUser(pUser);

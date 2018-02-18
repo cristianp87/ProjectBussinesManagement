@@ -5,6 +5,7 @@ using System.ComponentModel;
 using System.Web.Mvc;
 using IBusiness.Common;
 using IBusiness.Management;
+using Bll_Business;
 
 namespace Project_BusinessManagement.Models
 {
@@ -16,6 +17,12 @@ namespace Project_BusinessManagement.Models
 
         public static IProduct LiProduct =
         FacadeProvider.Resolver<IProduct>();
+
+        public static IStatus LiStatus =
+        FacadeProvider.Resolver<BllStatus>();
+
+        public static IUtilsLib LiUtilsLib =
+        FacadeProvider.Resolver<BllUtilsLib>();
         #endregion
         private int lIdInventoryItem;
         private MProduct lProduct = null;
@@ -234,7 +241,7 @@ namespace Project_BusinessManagement.Models
                     LNameObject = oBInventoryItem.LObject.LNameObject
                 }
             };
-            oMInventoryItem.LListStatus = MStatus.MListAllStatus(Bll_Business.Bll_Status.Bll_getListStatusByIdObject(oMInventoryItem.LObject.LIdObject));
+            oMInventoryItem.LListStatus = MStatus.MListAllStatus(LiStatus.Bll_getListStatusByIdObject(oMInventoryItem.LObject.LIdObject));
             oMInventoryItem.LListProduct = MProduct.MListAllProduct(LiProduct.bll_GetAllProduct());
             return oMInventoryItem;
         }
@@ -242,7 +249,7 @@ namespace Project_BusinessManagement.Models
         public static MInventoryItem MInventoryEmpty(int pIdInventory)
         {          
             var obInventory = LInventoryTInventory.bll_GetInventoryById(pIdInventory);
-            var oObject = Bll_Business.Bll_UtilsLib.bll_GetObjectByName(MGlobalVariables.LNameObjectInventoryItem);
+            var oObject = LiUtilsLib.bll_GetObjectByName(MGlobalVariables.LNameObjectInventoryItem);
             var oMInventoryItem = new MInventoryItem
             {
                 LObject = new MObject(),
@@ -268,7 +275,7 @@ namespace Project_BusinessManagement.Models
                     LNameObject = oObject.LNameObject
                 }
             };
-            oMInventoryItem.LListStatus = MStatus.MListStatusWithSelect(Bll_Business.Bll_Status.Bll_getListStatusByIdObject(oMInventoryItem.LObject.LIdObject));
+            oMInventoryItem.LListStatus = MStatus.MListStatusWithSelect(LiStatus.Bll_getListStatusByIdObject(oMInventoryItem.LObject.LIdObject));
             oMInventoryItem.LListProduct = MProduct.MListAllProductwithSelect(LiProduct.bll_GetAllProduct());
             return oMInventoryItem;
         }

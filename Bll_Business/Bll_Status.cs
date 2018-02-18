@@ -1,11 +1,12 @@
 ﻿using BO_BusinessManagement;
 using Dao_BussinessManagement;
+using IBusiness.Management;
 using System.Collections.Generic;
 namespace Bll_Business
 {
-    public class Bll_Status
+    public class BllStatus : IStatus
     {
-        public static List<Bo_Status>  Bll_getListStatusByIdObject(int pIdObject)
+        public List<Bo_Status>  Bll_getListStatusByIdObject(int pIdObject)
         {
             Dao_Status oDaoStatus = new Dao_Status();
             return oDaoStatus.Dao_getListStatusByIdObject(pIdObject);

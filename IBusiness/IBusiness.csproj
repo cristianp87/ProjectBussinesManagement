@@ -84,7 +84,13 @@
     <Compile Include="Management\IOrder.cs" />
     <Compile Include="Management\IOrderItem.cs" />
     <Compile Include="Management\IProduct.cs" />
+    <Compile Include="Management\IRole.cs" />
+    <Compile Include="Management\IStatus.cs" />
     <Compile Include="Management\ISupplier.cs" />
+    <Compile Include="Management\ITaxe.cs" />
+    <Compile Include="Management\ITypeIdentification.cs" />
+    <Compile Include="Management\IUser.cs" />
+    <Compile Include="Management\IUtilsLib.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
