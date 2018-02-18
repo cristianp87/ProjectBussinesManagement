@@ -1,0 +1,9 @@
+C:\Users\CristianPc\Documents\Projects\ProjectBussinesManagement\Bll_Business\bin\Release\Bll_Business.dll
+C:\Users\CristianPc\Documents\Projects\ProjectBussinesManagement\Bll_Business\bin\Release\Bll_Business.pdb
+C:\Users\CristianPc\Documents\Projects\ProjectBussinesManagement\Bll_Business\bin\Release\BO_BusinessManagement.dll
+C:\Users\CristianPc\Documents\Projects\ProjectBussinesManagement\Bll_Business\bin\Release\Dao_BussinessManagement.dll
+C:\Users\CristianPc\Documents\Projects\ProjectBussinesManagement\Bll_Business\bin\Release\BO_BusinessManagement.pdb
+C:\Users\CristianPc\Documents\Projects\ProjectBussinesManagement\Bll_Business\bin\Release\Dao_BussinessManagement.pdb
+C:\Users\CristianPc\Documents\Projects\ProjectBussinesManagement\Bll_Business\obj\Release\Bll_Business.csprojResolveAssemblyReference.cache
+C:\Users\CristianPc\Documents\Projects\ProjectBussinesManagement\Bll_Business\obj\Release\Bll_Business.dll
+C:\Users\CristianPc\Documents\Projects\ProjectBussinesManagement\Bll_Business\obj\Release\Bll_Business.pdb

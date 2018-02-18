@@ -1,0 +1,39 @@
+﻿@model Project_BusinessManagement.Models.MProduct
+
+@using (Html.BeginForm())
+{
+    <input type="submit" value="Agregar impuesto" class="btn btn-success" />
+    @Html.DropDownListFor(model => model.LTaxe.LIdTaxe, Model.LListSelectTaxe, new { htmlAttributes = new { @class = "form-control" } })
+    @Html.ValidationMessageFor(model => model.LTaxe.LIdTaxe, "", new { @class = "text-danger" })
+    <table>
+        <thead>
+            <tr>
+                <td>
+                    Nombre Impuesto
+                </td>
+                <td>
+                    Valor Impuesto
+                </td>
+            </tr>
+        </thead>
+
+
+        <tbody>
+            @foreach (var item in Model.LListTaxe)
+            {
+                <tr>
+                    <td>
+                        @item.LIdTaxe
+                    </td>
+                    @*<td>
+                            @item.LValueTaxe
+                        </td>*@
+                </tr>
+
+            }
+        </tbody>
+    </table>
+    @Html.HiddenFor(model => model.LListIdsTaxe, new { htmlAttributes = new { @class = "form-control" } })
+}
+
+

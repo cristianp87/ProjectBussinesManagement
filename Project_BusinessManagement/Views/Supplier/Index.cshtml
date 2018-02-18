@@ -1,0 +1,79 @@
+﻿@model IList<Project_BusinessManagement.Models.MSupplier>
+
+@{
+    ViewBag.Title = "Proveedores";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<h2>Proveedores</h2>
+
+<p>
+    @Html.ActionLink("Crear Nuevo Proveedor", "Create")
+</p>
+<div class="table-responsive">
+    <table class="tablesorter">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.First().LIdSupplier)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.First().LNameSupplier)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.First().LNoIdentification)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.First().LCreationDate)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        @foreach (var item in Model)
+        {
+            <tbody>
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.LIdSupplier)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.LNameSupplier)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.LNoIdentification)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.LCreationDate)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Editar", "Edit", new {  id= item.LIdSupplier  }) |
+                        @Html.ActionLink("Detalle", "Details", new { id = item.LIdSupplier }) |
+                        @Html.ActionLink("Eliminar", "Delete", new {  id= item.LIdSupplier })
+                    </td>
+                </tr>
+            </tbody>
+        }
+
+    </table>
+    <div id="pager" class="pager">
+        <form>
+            <a href="#"><img src="~/Images/Icons/IFirst.png" class="first" alt="Primero" title="Primero" /></a>
+            <a href="#"><img src="~/Images/Icons/IPrev.png" class="prev" alt="Anterior" title="Anterior" /></a>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <!-- the "pagedisplay" can be any element, including an input -->
+                <span class="pagedisplay" data-pager-output-filtered="{startRow:input} &ndash; {endRow} / {filteredRows} of {totalRows} total rows"></span>
+            <a href="#"><img src="~/Images/Icons/INext.png" class="next" alt="Siguiente" title="Siguiente" /></a>
+            <a href="#"><img src="~/Images/Icons/ILast.png" class="last" alt="Ultimo" title="Ultimo" /></a>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <select class="pagesize">
+                    <option value="10" selected="selected">10</option>
+                    <option value="50">50</option>
+                    <option value="100">100</option>
+                    <option value="500">500</option>
+                    <option value="1000">1000</option>
+                </select>
+        </form>
+    </div>
+</div>
+

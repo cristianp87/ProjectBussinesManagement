@@ -1,0 +1,45 @@
+﻿@model IEnumerable<Project_BusinessManagement.Models.MInvoice>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.LIdInvoice)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.LCdInvoice)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.LCreationDate)
+        </th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.LIdInvoice)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.LCdInvoice)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.LCreationDate)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Detalle", "Details", new {  id=item.LIdInvoice  }) |
+            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+        </td>
+    </tr>
+}
+
+</table>
