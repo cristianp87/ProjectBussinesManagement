@@ -16,6 +16,10 @@ namespace Project_BusinessManagement.Controllers
         #region Variables and Constants
         public ICustomer LCustomerFacade =
         FacadeProvider.Resolver<ICustomer>();
+
+        public static ITypeIdentification LiTypeIdentification =
+        FacadeProvider.Resolver<BllTypeIdentification>();
+        
         #endregion
         // GET: Customer
         public ActionResult Index()
@@ -125,7 +129,7 @@ namespace Project_BusinessManagement.Controllers
         private static void ListEmptyCustomer(Models.MCustomer pMCustomer)
         {
             pMCustomer.LListTypeIdentification = new List<SelectListItem>();
-            pMCustomer.LListTypeIdentification = Models.MTypeIdentification.MListAllTypeIdentification(Bll_TypeIdentification.bll_getListTypeIdentification());
+            pMCustomer.LListTypeIdentification = Models.MTypeIdentification.MListAllTypeIdentification(LiTypeIdentification.bll_getListTypeIdentification());
             pMCustomer.LListStatus = new List<SelectListItem>();
         }
 

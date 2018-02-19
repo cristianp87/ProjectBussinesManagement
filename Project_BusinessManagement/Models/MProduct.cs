@@ -6,6 +6,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Web.Mvc;
 using IBusiness.Common;
 using IBusiness.Management;
+using Bll_Business;
 
 namespace Project_BusinessManagement.Models
 {
@@ -14,6 +15,15 @@ namespace Project_BusinessManagement.Models
         #region Variables and Constants
         public static ISupplier LiSupplier =
         FacadeProvider.Resolver<ISupplier>();
+
+        public static IStatus LiStatus =
+        FacadeProvider.Resolver<BllStatus>();
+
+        public static ITaxe LiTaxe =
+        FacadeProvider.Resolver<BllTaxe>();
+
+        public static IUtilsLib LiUtilsLib =
+        FacadeProvider.Resolver<BllUtilsLib>();
         #endregion
 
         [UIHint("LIdProduct")]
@@ -159,15 +169,15 @@ namespace Project_BusinessManagement.Models
                 LValueSupplier = oBProduct.LValueSupplier
             };
             oMProduct.LListSupplier = MSupplier.MListAllSupplier(LiSupplier.bll_GetAllSupplier());
-            oMProduct.LListStatus = MStatus.MListAllStatus(Bll_Business.Bll_Status.Bll_getListStatusByIdObject(oBProduct.LObject.LIdObject));
-            oMProduct.LListUnit = MUnit.MListAllUnitWithSelect(Bll_Business.Bll_UtilsLib.bll_GetAllUnit());
-            oMProduct.LListTaxe = MTaxe.MListAllTaxesXProduct(Bll_Business.Bll_Taxe.bll_GetListallTaxesXProduct(oBProduct.LIdProduct), null);
+            oMProduct.LListStatus = MStatus.MListAllStatus(LiStatus.Bll_getListStatusByIdObject(oBProduct.LObject.LIdObject));
+            oMProduct.LListUnit = MUnit.MListAllUnitWithSelect(LiUtilsLib.bll_GetAllUnit());
+            oMProduct.LListTaxe = MTaxe.MListAllTaxesXProduct(LiTaxe.bll_GetListallTaxesXProduct(oBProduct.LIdProduct), null);
             return oMProduct;
         }
 
         public static MProduct MProductEmpty(Bo_Product oBProduct)
         {          
-            var oObject = Bll_Business.Bll_UtilsLib.bll_GetObjectByName(MGlobalVariables.LNameObjectProduct);
+            var oObject = LiUtilsLib.bll_GetObjectByName(MGlobalVariables.LNameObjectProduct);
             var oMProduct = new MProduct
             {
                 LObject = new MObject
@@ -195,10 +205,10 @@ namespace Project_BusinessManagement.Models
                 LCreationDate = new DateTime()
             };
 
-            oMProduct.LListStatus = MStatus.MListStatusWithSelect(Bll_Business.Bll_Status.Bll_getListStatusByIdObject(oMProduct.LObject.LIdObject));
+            oMProduct.LListStatus = MStatus.MListStatusWithSelect(LiStatus.Bll_getListStatusByIdObject(oMProduct.LObject.LIdObject));
             oMProduct.LListSupplier = MSupplier.MListAllSupplierWithSelect(LiSupplier.bll_GetAllSupplier());
-            oMProduct.LListUnit = MUnit.MListAllUnitWithSelect(Bll_Business.Bll_UtilsLib.bll_GetAllUnit());
-            oMProduct.LListSelectTaxe = MTaxe.MListTaxesWithSelect(Bll_Business.Bll_Taxe.bll_GetListTaxes());
+            oMProduct.LListUnit = MUnit.MListAllUnitWithSelect(LiUtilsLib.bll_GetAllUnit());
+            oMProduct.LListSelectTaxe = MTaxe.MListTaxesWithSelect(LiTaxe.bll_GetListTaxes());
             return oMProduct;
         }
     }

@@ -1,4 +1,7 @@
-﻿using BO_BusinessManagement;
+﻿using Bll_Business;
+using BO_BusinessManagement;
+using IBusiness.Common;
+using IBusiness.Management;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -9,6 +12,16 @@ namespace Project_BusinessManagement.Models
 {
     public class MSupplier
     {
+        #region Variables and constants
+        public static IStatus LiStatus =
+        FacadeProvider.Resolver<BllStatus>();
+
+        public static ITypeIdentification LiTypeIdentification =
+        FacadeProvider.Resolver<BllTypeIdentification>();
+
+        public static IUtilsLib LiUtilsLib =
+        FacadeProvider.Resolver<BllUtilsLib>();
+        #endregion
 
         private int lIdSupplier;
         private string lNameSupplier;
@@ -197,7 +210,7 @@ namespace Project_BusinessManagement.Models
             oMSupplier.LTypeIdentification = new MTypeIdentification();
             oMSupplier.LListTypeIdentification = new List<SelectListItem>();
             oMSupplier.LListStatus = new List<SelectListItem>();
-            oMSupplier.LListTypeIdentification = MTypeIdentification.MListAllTypeIdentification(Bll_Business.Bll_TypeIdentification.bll_getListTypeIdentification());
+            oMSupplier.LListTypeIdentification = MTypeIdentification.MListAllTypeIdentification(LiTypeIdentification.bll_getListTypeIdentification());
             oMSupplier.LNameSupplier = oBSupplier.LNameSupplier;
             oMSupplier.LNoIdentification = oBSupplier.LNoIdentification;
             oMSupplier.LIdSupplier = oBSupplier.LIdSupplier;
@@ -209,7 +222,7 @@ namespace Project_BusinessManagement.Models
             oMSupplier.LStatus.LDsEstado = oBSupplier.LStatus.LDsEstado;
             oMSupplier.LStatus.LIdStatus = oBSupplier.LStatus.LIdStatus;
             oMSupplier.lModificationDate = oBSupplier.LModificationDate;
-            oMSupplier.LListStatus = MStatus.MListAllStatus(Bll_Business.Bll_Status.Bll_getListStatusByIdObject(oBSupplier.LObject.LIdObject));
+            oMSupplier.LListStatus = MStatus.MListAllStatus(LiStatus.Bll_getListStatusByIdObject(oBSupplier.LObject.LIdObject));
 
             return oMSupplier;
         }
@@ -218,13 +231,13 @@ namespace Project_BusinessManagement.Models
         {
             MSupplier oMSupplier = new MSupplier();
             Bo_Object oObject = new Bo_Object();
-            oObject = Bll_Business.Bll_UtilsLib.bll_GetObjectByName(MGlobalVariables.LNameObjectSupplier);
+            oObject = LiUtilsLib.bll_GetObjectByName(MGlobalVariables.LNameObjectSupplier);
             oMSupplier.LObject = new MObject();
             oMSupplier.LStatus = new MStatus();
             oMSupplier.LTypeIdentification = new MTypeIdentification();
             oMSupplier.LListTypeIdentification = new List<SelectListItem>();
             oMSupplier.LListStatus = new List<SelectListItem>();
-            oMSupplier.LListTypeIdentification = MTypeIdentification.MListAllTypeIdentificationWithSelect(Bll_Business.Bll_TypeIdentification.bll_getListTypeIdentification());
+            oMSupplier.LListTypeIdentification = MTypeIdentification.MListAllTypeIdentificationWithSelect(LiTypeIdentification.bll_getListTypeIdentification());
             oMSupplier.LNameSupplier = null;
             oMSupplier.LNoIdentification = null;
             oMSupplier.LIdSupplier = 0;
@@ -236,7 +249,7 @@ namespace Project_BusinessManagement.Models
             oMSupplier.LStatus.LDsEstado = null;
             oMSupplier.LStatus.LIdStatus = null;
             oMSupplier.lModificationDate = new DateTime();
-            oMSupplier.LListStatus = MStatus.MListStatusWithSelect(Bll_Business.Bll_Status.Bll_getListStatusByIdObject(oMSupplier.LObject.LIdObject));
+            oMSupplier.LListStatus = MStatus.MListStatusWithSelect(LiStatus.Bll_getListStatusByIdObject(oMSupplier.LObject.LIdObject));
 
             return oMSupplier;
         }
