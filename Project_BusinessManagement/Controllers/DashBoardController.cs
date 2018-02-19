@@ -15,7 +15,7 @@ namespace Project_BusinessManagement.Controllers
     {
         #region properties
 
-        public IDashBoard LBoard = FacadeProvider.Resolver<IDashBoard>();
+        public IDashBoard LBoard = FacadeProvider.Resolver<BllDashBoard>();
         #endregion
         // GET: DashBoard
         public ActionResult Index()

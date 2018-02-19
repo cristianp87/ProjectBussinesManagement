@@ -15,7 +15,7 @@ namespace Project_BusinessManagement.Controllers
     {
         #region Variables and Constants
         public ICustomer LCustomerFacade =
-        FacadeProvider.Resolver<ICustomer>();
+        FacadeProvider.Resolver<BllCustomer>();
 
         public static ITypeIdentification LiTypeIdentification =
         FacadeProvider.Resolver<BllTypeIdentification>();
@@ -33,8 +33,7 @@ namespace Project_BusinessManagement.Controllers
         // GET: Customer/Details/5
         public ActionResult Details(int id)
         {
-            Bo_Customer oBCustomer = new Bo_Customer();
-            oBCustomer = this.LCustomerFacade.bll_GetCustomerById(id);
+            var oBCustomer = this.LCustomerFacade.bll_GetCustomerById(id);
             return View(Models.MCustomer.MCustomerById(oBCustomer));
         }
 
@@ -42,7 +41,7 @@ namespace Project_BusinessManagement.Controllers
         // GET: Customer/Create
         public ActionResult Create()
         {
-            Bo_Customer oBCustomer= new Bo_Customer();
+            var oBCustomer= new Bo_Customer();
             return View(Models.MCustomer.MCustomerEmpty(oBCustomer));
         }
 
@@ -52,7 +51,7 @@ namespace Project_BusinessManagement.Controllers
         {
             try
             {
-                if (ModelState.IsValid)
+                if (this.ModelState.IsValid)
                 {
                     string lMessage = this.LCustomerFacade.bll_InsertCustomer(Request.Form["LNameCustomer"].ToString(), Request.Form["LLastNameCustomer"].ToString(), Request.Form["LNoIdentification"].ToString(), Convert.ToInt32(Request.Form["LTypeIdentification.LIdTypeIdentification"].ToString()), Convert.ToInt32(Request.Form["LObject.LIdObject"].ToString()), Request.Form["LStatus.LIdStatus"].ToString());
                     if (lMessage == null)
@@ -86,8 +85,7 @@ namespace Project_BusinessManagement.Controllers
         // GET: Customer/Edit/5
         public ActionResult Edit(int id)
         {
-            Bo_Customer oBCustomer = new Bo_Customer();
-            oBCustomer = this.LCustomerFacade.bll_GetCustomerById(id);
+            var oBCustomer = this.LCustomerFacade.bll_GetCustomerById(id);
             return View(Models.MCustomer.MCustomerById(oBCustomer));
         }
 
@@ -97,9 +95,9 @@ namespace Project_BusinessManagement.Controllers
         {
             try
             {
-                if (ModelState.IsValid)
+                if (this.ModelState.IsValid)
                 {
-                    var lMessage = this.LCustomerFacade.bll_UpdateCustomer(id, Request.Form["LNameCustomer"].ToString(), Request.Form["LLastNameCustomer"].ToString(), Request.Form["LNoIdentification"].ToString(), Convert.ToInt32(Request.Form["LTypeIdentification.LIdTypeIdentification"].ToString()), Convert.ToInt32(Request.Form["LObject.LIdObject"].ToString()), Request.Form["LStatus.LIdStatus"].ToString());
+                    var lMessage = this.LCustomerFacade.bll_UpdateCustomer(id, this.Request.Form["LNameCustomer"].ToString(), Request.Form["LLastNameCustomer"].ToString(), this.Request.Form["LNoIdentification"].ToString(), Convert.ToInt32(this.Request.Form["LTypeIdentification.LIdTypeIdentification"].ToString()), Convert.ToInt32(this.Request.Form["LObject.LIdObject"].ToString()), this.Request.Form["LStatus.LIdStatus"].ToString());
                     if (lMessage == null)
                     {
                         return RedirectToAction("Index");
@@ -139,8 +137,7 @@ namespace Project_BusinessManagement.Controllers
         // GET: Customer/Delete/5
         public ActionResult Delete(int id)
         {
-            Bo_Customer oBCustomer = new Bo_Customer();
-            oBCustomer = this.LCustomerFacade.bll_GetCustomerById(id);
+            var oBCustomer = this.LCustomerFacade.bll_GetCustomerById(id);
             return View(Models.MCustomer.MCustomerById(oBCustomer));
         }
 

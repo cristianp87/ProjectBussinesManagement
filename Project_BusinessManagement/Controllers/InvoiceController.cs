@@ -12,7 +12,7 @@ namespace Project_BusinessManagement.Controllers
     {
         #region Variables and Constants
         public IInvoice LInvoice =
-        FacadeProvider.Resolver<IInvoice>();
+        FacadeProvider.Resolver<BllInvoice>();
 
 
         #endregion

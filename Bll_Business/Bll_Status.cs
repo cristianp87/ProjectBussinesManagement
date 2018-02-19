@@ -8,7 +8,7 @@ namespace Bll_Business
     {
         public List<Bo_Status>  Bll_getListStatusByIdObject(int pIdObject)
         {
-            Dao_Status oDaoStatus = new Dao_Status();
+            var oDaoStatus = new Dao_Status();
             return oDaoStatus.Dao_getListStatusByIdObject(pIdObject);
         }
     }

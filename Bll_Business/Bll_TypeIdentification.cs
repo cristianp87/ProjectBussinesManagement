@@ -9,7 +9,7 @@ namespace Bll_Business
     {
         public List<Bo_TypeIdentification>  bll_getListTypeIdentification()
         {
-            Dao_TypeIdentification oTypeIdentification = new Dao_TypeIdentification();
+            var oTypeIdentification = new Dao_TypeIdentification();
             return oTypeIdentification.Dao_getListAllTypeIdentification();
         }
     }

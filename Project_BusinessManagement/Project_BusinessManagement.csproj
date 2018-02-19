@@ -354,6 +354,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Infrastructure\HandleErrorAttribute.cs" />
+    <Compile Include="Models\ECodesError.cs" />
     <Compile Include="Models\MCustomer.cs" />
     <Compile Include="Models\MGlobalVariables.cs" />
     <Compile Include="Models\MInventory.cs" />

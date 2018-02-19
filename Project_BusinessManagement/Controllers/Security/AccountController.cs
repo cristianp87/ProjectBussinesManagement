@@ -112,7 +112,7 @@ namespace Project_BusinessManagement.Controllers.Security
                 LNoIdentification = pUser.LNoIdentification,
                 LObject = bo_Object,
                 LPassword = pUser.LPasswordHash,
-                LSLastName = pUser.LSLastName,
+                LSLastName = pUser.LsLastName,
                 LSNameUser = pUser.LSecondName,
                 LStatus = bo_Status,
                 LTypeIdentification = bo_TypeIdentification,

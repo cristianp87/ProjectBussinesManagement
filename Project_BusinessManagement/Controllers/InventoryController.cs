@@ -16,7 +16,7 @@ namespace Project_BusinessManagement.Controllers
     {
         #region Variables and Constants
         public IInventory LInventory =
-        FacadeProvider.Resolver<IInventory>();
+        FacadeProvider.Resolver<BllInventory>();
 
         public IStatus LStatus =
         FacadeProvider.Resolver<BllStatus>();

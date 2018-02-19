@@ -14,7 +14,7 @@ namespace Project_BusinessManagement.Controllers
     {
         #region Variables and Constants
         public IProduct LiProduct =
-        FacadeProvider.Resolver<IProduct>();
+        FacadeProvider.Resolver<BllProduct>();
 
         public ITaxe LiTaxe =
         FacadeProvider.Resolver<BllTaxe>();

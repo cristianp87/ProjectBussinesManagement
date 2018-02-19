@@ -8,78 +8,34 @@ namespace Project_BusinessManagement.Models
 {
     public class MUnit
     {
-        private int lIdUnit;
-        private string lNameUnit;
-        private string lCdUnit;
-        private bool lFlActive;
-
         [RegularExpression("^([1-9]{0,11})$", ErrorMessage = "No es valido la selección")]
-        public int LIdUnit
-        {
-            get
-            {
-                return lIdUnit;
-            }
+        public int LIdUnit { get; set; }
 
-            set
-            {
-                lIdUnit = value;
-            }
-        }
         [DisplayName("Nombre de Unidad")]
-        public string LNameUnit
+        public string LNameUnit { get; set; }
+
+        public string LCdUnit { get; set; }
+
+        public bool LFlActive { get; set; }
+
+        public static List<SelectListItem> MListAllUnitWithSelect(List<Bo_Unit> pBoListUnit)
         {
-            get
+            var lMListUnit = new List<SelectListItem>();
+            var lListItemSelect = new SelectListItem
             {
-                return lNameUnit;
-            }
-
-            set
-            {
-                lNameUnit = value;
-            }
-        }
-
-        public string LCdUnit
-        {
-            get
-            {
-                return lCdUnit;
-            }
-
-            set
-            {
-                lCdUnit = value;
-            }
-        }
-
-        public bool LFlActive
-        {
-            get
-            {
-                return lFlActive;
-            }
-
-            set
-            {
-                lFlActive = value;
-            }
-        }
-
-        public static List<SelectListItem> MListAllUnitWithSelect(List<Bo_Unit> oListUnit)
-        {
-            List<SelectListItem> oMListUnit = new List<SelectListItem>();
-            SelectListItem oListItemSelect = new SelectListItem();
-            oListItemSelect.Text = "Seleccione...";
-            oListItemSelect.Value = "0";
-            oMListUnit.Add(oListItemSelect);
-            oListUnit.ForEach(x => {
-                SelectListItem oListItem = new SelectListItem();
-                oListItem.Value = x.LIdUnit.ToString();
-                oListItem.Text = x.LNameUnit;
-                oMListUnit.Add(oListItem);
+                Text = "Seleccione...",
+                Value = "0"
+            };
+            lMListUnit.Add(lListItemSelect);
+            pBoListUnit.ForEach(x => {
+                                       var oListItem = new SelectListItem
+                                       {
+                                           Value = x.LIdUnit.ToString(),
+                                           Text = x.LNameUnit
+                                       };
+                                       lMListUnit.Add(oListItem);
             });
-            return oMListUnit;
+            return lMListUnit;
         }
     }
 }

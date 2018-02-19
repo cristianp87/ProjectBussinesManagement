@@ -16,10 +16,10 @@ namespace Project_BusinessManagement.Controllers
     {
         #region Variables and Constants
         public static IProduct LiProduct =
-        FacadeProvider.Resolver<IProduct>();
+        FacadeProvider.Resolver<BllProduct>();
 
         public static ISupplier LiSupplier =
-        FacadeProvider.Resolver<ISupplier>();
+        FacadeProvider.Resolver<BllSupplier>();
 
         public static IStatus LStatus =
         FacadeProvider.Resolver<BllStatus>();
