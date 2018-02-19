@@ -1,9 +1,16 @@
 ﻿using Bll_Business;
+using IBusiness.Common;
+using IBusiness.Management;
 
 namespace Project_BusinessManagement.Models
 {
     public class MParameter
     {
+        #region Variables and constants
+
+        public static IUtilsLib LiUtilsLib =
+        FacadeProvider.Resolver<BllUtilsLib>();
+        #endregion
         string lResult;
         bool lBool;
         int lInt;
@@ -17,7 +24,7 @@ namespace Project_BusinessManagement.Models
         {
             get
             {
-                lResult = Bll_UtilsLib.bll_GetValueParameter("create", "moduleCustomer");
+                lResult = LiUtilsLib.bll_GetValueParameter("create", "moduleCustomer");
                 if (bool.TryParse(lResult, out lBool))
                     return lBool;
                 else
@@ -28,7 +35,7 @@ namespace Project_BusinessManagement.Models
         {
             get
             {
-                lResult = Bll_UtilsLib.bll_GetValueParameter("Edit", "moduleCustomer");
+                lResult = LiUtilsLib.bll_GetValueParameter("Edit", "moduleCustomer");
                 if (bool.TryParse(lResult, out lBool))
                     return lBool;
                 else
@@ -40,7 +47,7 @@ namespace Project_BusinessManagement.Models
         {
             get
             {
-                lResult = Bll_UtilsLib.bll_GetValueParameter("Delete", "moduleCustomer");
+                lResult = LiUtilsLib.bll_GetValueParameter("Delete", "moduleCustomer");
                 if (bool.TryParse(lResult, out lBool))
                     return lBool;
                 else
@@ -52,7 +59,7 @@ namespace Project_BusinessManagement.Models
         {
             get
             {
-                lResult = Bll_UtilsLib.bll_GetValueParameter("create", "moduleSupplier");
+                lResult = LiUtilsLib.bll_GetValueParameter("create", "moduleSupplier");
                 if (bool.TryParse(lResult, out lBool))
                     return lBool;
                 else
@@ -63,7 +70,7 @@ namespace Project_BusinessManagement.Models
         {
             get
             {
-                lResult = Bll_UtilsLib.bll_GetValueParameter("Edit", "moduleSupplier");
+                lResult = LiUtilsLib.bll_GetValueParameter("Edit", "moduleSupplier");
                 if (bool.TryParse(lResult, out lBool))
                     return lBool;
                 else
@@ -75,7 +82,7 @@ namespace Project_BusinessManagement.Models
         {
             get
             {
-                lResult = Bll_UtilsLib.bll_GetValueParameter("Delete", "moduleSupplier");
+                lResult = LiUtilsLib.bll_GetValueParameter("Delete", "moduleSupplier");
                 if (bool.TryParse(lResult, out lBool))
                     return lBool;
                 else
@@ -87,7 +94,7 @@ namespace Project_BusinessManagement.Models
         {
             get
             {
-                lResult = Bll_UtilsLib.bll_GetValueParameter("create", "moduleDashBoard");
+                lResult = LiUtilsLib.bll_GetValueParameter("create", "moduleDashBoard");
                 if (bool.TryParse(lResult, out lBool))
                     return lBool;
                 else
@@ -98,7 +105,7 @@ namespace Project_BusinessManagement.Models
         {
             get
             {
-                lResult = Bll_UtilsLib.bll_GetValueParameter("Edit", "moduleDashBoard");
+                lResult = LiUtilsLib.bll_GetValueParameter("Edit", "moduleDashBoard");
                 if (bool.TryParse(lResult, out lBool))
                     return lBool;
                 else
@@ -110,7 +117,7 @@ namespace Project_BusinessManagement.Models
         {
             get
             {
-                lResult = Bll_UtilsLib.bll_GetValueParameter("Delete", "moduleDashBoard");
+                lResult = LiUtilsLib.bll_GetValueParameter("Delete", "moduleDashBoard");
                 if (bool.TryParse(lResult, out lBool))
                     return lBool;
                 else
@@ -122,7 +129,7 @@ namespace Project_BusinessManagement.Models
         {
             get
             {
-                lResult = Bll_UtilsLib.bll_GetValueParameter("create", "moduleInventory");
+                lResult = LiUtilsLib.bll_GetValueParameter("create", "moduleInventory");
                 if (bool.TryParse(lResult, out lBool))
                     return lBool;
                 else
@@ -133,7 +140,7 @@ namespace Project_BusinessManagement.Models
         {
             get
             {
-                lResult = Bll_UtilsLib.bll_GetValueParameter("Edit", "moduleInventory");
+                lResult = LiUtilsLib.bll_GetValueParameter("Edit", "moduleInventory");
                 if (bool.TryParse(lResult, out lBool))
                     return lBool;
                 else
@@ -145,7 +152,7 @@ namespace Project_BusinessManagement.Models
         {
             get
             {
-                lResult = Bll_UtilsLib.bll_GetValueParameter("Delete", "moduleInventory");
+                lResult = LiUtilsLib.bll_GetValueParameter("Delete", "moduleInventory");
                 if (bool.TryParse(lResult, out lBool))
                     return lBool;
                 else
@@ -157,7 +164,7 @@ namespace Project_BusinessManagement.Models
         {
             get
             {
-                lResult = Bll_UtilsLib.bll_GetValueParameter("create", "moduleProduct");
+                lResult = LiUtilsLib.bll_GetValueParameter("create", "moduleProduct");
                 if (bool.TryParse(lResult, out lBool))
                     return lBool;
                 else
@@ -168,7 +175,7 @@ namespace Project_BusinessManagement.Models
         {
             get
             {
-                lResult = Bll_UtilsLib.bll_GetValueParameter("Edit", "moduleProduct");
+                lResult = LiUtilsLib.bll_GetValueParameter("Edit", "moduleProduct");
                 if (bool.TryParse(lResult, out lBool))
                     return lBool;
                 else
@@ -180,7 +187,7 @@ namespace Project_BusinessManagement.Models
         {
             get
             {
-                lResult = Bll_UtilsLib.bll_GetValueParameter("Delete", "moduleProduct");
+                lResult = LiUtilsLib.bll_GetValueParameter("Delete", "moduleProduct");
                 if (bool.TryParse(lResult, out lBool))
                     return lBool;
                 else
@@ -192,7 +199,7 @@ namespace Project_BusinessManagement.Models
         {
             get
             {
-                lResult = Bll_UtilsLib.bll_GetValueParameter("moduleProduct", true);
+                lResult = LiUtilsLib.bll_GetValueParameter("moduleProduct", true);
                 if (bool.TryParse(lResult, out lBool))
                     return lBool;
                 else
@@ -204,7 +211,7 @@ namespace Project_BusinessManagement.Models
         {
             get
             {
-                lResult = Bll_UtilsLib.bll_GetValueParameter("moduleRealizeOrder", true);
+                lResult = LiUtilsLib.bll_GetValueParameter("moduleRealizeOrder", true);
                 if (bool.TryParse(lResult, out lBool))
                     return lBool;
                 else
@@ -216,7 +223,7 @@ namespace Project_BusinessManagement.Models
         {
             get
             {
-                lResult = Bll_UtilsLib.bll_GetValueParameter("moduleInventory", true);
+                lResult = LiUtilsLib.bll_GetValueParameter("moduleInventory", true);
                 if (bool.TryParse(lResult, out lBool))
                     return lBool;
                 else
@@ -228,7 +235,7 @@ namespace Project_BusinessManagement.Models
         {
             get
             {
-                lResult = Bll_UtilsLib.bll_GetValueParameter("moduleDashBoard", true);
+                lResult = LiUtilsLib.bll_GetValueParameter("moduleDashBoard", true);
                 if (bool.TryParse(lResult, out lBool))
                     return lBool;
                 else
@@ -240,7 +247,7 @@ namespace Project_BusinessManagement.Models
         {
             get
             {
-                lResult = Bll_UtilsLib.bll_GetValueParameter("moduleSupplier", true);
+                lResult = LiUtilsLib.bll_GetValueParameter("moduleSupplier", true);
                 if (bool.TryParse(lResult, out lBool))
                     return lBool;
                 else
@@ -252,7 +259,7 @@ namespace Project_BusinessManagement.Models
         {
             get
             {
-                lResult = Bll_UtilsLib.bll_GetValueParameter("moduleCustomer", true);
+                lResult = LiUtilsLib.bll_GetValueParameter("moduleCustomer", true);
 
                 if (bool.TryParse(lResult, out lBool))
                     return lBool;
@@ -265,7 +272,7 @@ namespace Project_BusinessManagement.Models
         {
             get
             {
-                lResult = Bll_UtilsLib.bll_GetValueParameter("moduleInvoice", true);
+                lResult = LiUtilsLib.bll_GetValueParameter("moduleInvoice", true);
                 if (bool.TryParse(lResult, out lBool))
                     return lBool;
                 else
@@ -277,7 +284,7 @@ namespace Project_BusinessManagement.Models
         {
             get
             {
-                lResult = Bll_UtilsLib.bll_GetValueParameter("StartNumberInvoice", "moduleInvoice");
+                lResult = LiUtilsLib.bll_GetValueParameter("StartNumberInvoice", "moduleInvoice");
                 if (int.TryParse(lResult, out lInt))
                     return lInt;
                 else
@@ -289,7 +296,7 @@ namespace Project_BusinessManagement.Models
         {
             get
             {
-                lResult = Bll_UtilsLib.bll_GetValueParameter("PrefixInvoice", "moduleInvoice");
+                lResult = LiUtilsLib.bll_GetValueParameter("PrefixInvoice", "moduleInvoice");
                 return lResult;
             }
         }

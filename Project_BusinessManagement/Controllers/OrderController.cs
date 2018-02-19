@@ -35,6 +35,12 @@ namespace Project_BusinessManagement.Controllers
 
         public IProduct LiProduct =
         FacadeProvider.Resolver<IProduct>();
+
+        public ITypeIdentification LiTypeIdentification=
+        FacadeProvider.Resolver<BllTypeIdentification>();
+
+        public IUtilsLib LiUtilsLib =
+        FacadeProvider.Resolver<BllUtilsLib>();
         #endregion
 
         // GET: Order
@@ -78,7 +84,7 @@ namespace Project_BusinessManagement.Controllers
         [HttpPost]
         public JsonResult GetTypeIdentification()
         {
-            var lListTypeIdentification = Bll_TypeIdentification.bll_getListTypeIdentification();
+            var lListTypeIdentification = this.LiTypeIdentification.bll_getListTypeIdentification();
             return this.Json(MTypeIdentification.MListAllTypeIdentification(lListTypeIdentification));
         }
 
@@ -116,13 +122,13 @@ namespace Project_BusinessManagement.Controllers
         {
             try
             {                      
-                var lResult = this.LOrder.bll_InsertOrder(pOrder.LInventory.LIdInventory, pOrder.LCustomer.LIdCustomer, Bll_UtilsLib.bll_GetObjectByName(MGlobalVariables.LNameObjectOrder).LIdObject, Bll_UtilsLib.bll_getStatusApproByObject(Bll_UtilsLib.bll_GetObjectByName(MGlobalVariables.LNameObjectOrder).LIdObject).LIdStatus, pOrder.LListOrderItem, this.lParameter.lIsModuleInventory, Bll_UtilsLib.bll_GetObjectByName(MGlobalVariables.LNameObjectOrderItem).LIdObject, Bll_UtilsLib.bll_getStatusApproByObject(Bll_UtilsLib.bll_GetObjectByName(MGlobalVariables.LNameObjectOrderItem).LIdObject).LIdStatus);
+                var lResult = this.LOrder.bll_InsertOrder(pOrder.LInventory.LIdInventory, pOrder.LCustomer.LIdCustomer, this.LiUtilsLib.bll_GetObjectByName(MGlobalVariables.LNameObjectOrder).LIdObject, this.LiUtilsLib.bll_getStatusApproByObject(this.LiUtilsLib.bll_GetObjectByName(MGlobalVariables.LNameObjectOrder).LIdObject).LIdStatus, pOrder.LListOrderItem, this.lParameter.lIsModuleInventory, this.LiUtilsLib.bll_GetObjectByName(MGlobalVariables.LNameObjectOrderItem).LIdObject, this.LiUtilsLib.bll_getStatusApproByObject(this.LiUtilsLib.bll_GetObjectByName(MGlobalVariables.LNameObjectOrderItem).LIdObject).LIdStatus);
                 var lIdOrder = 0;
                 if(int.TryParse(lResult, out lIdOrder))
                 {
                     var lIdInvoice = 0;
-                    var lListInvoiceItem = this.LInvoiceItem.bll_ChangeOrderItemToInvoiceItem(pOrder.LListOrderItem, Bll_UtilsLib.bll_GetObjectByName(MGlobalVariables.LNameObjectInvoiceItem));
-                    lResult = this.LInvoice.bll_InsertInvoiceAll(pOrder.LCustomer.LIdCustomer, lIdOrder, Bll_UtilsLib.bll_GetObjectByName(MGlobalVariables.LNameObjectInvoice).LIdObject, lListInvoiceItem);
+                    var lListInvoiceItem = this.LInvoiceItem.bll_ChangeOrderItemToInvoiceItem(pOrder.LListOrderItem, this.LiUtilsLib.bll_GetObjectByName(MGlobalVariables.LNameObjectInvoiceItem));
+                    lResult = this.LInvoice.bll_InsertInvoiceAll(pOrder.LCustomer.LIdCustomer, lIdOrder, this.LiUtilsLib.bll_GetObjectByName(MGlobalVariables.LNameObjectInvoice).LIdObject, lListInvoiceItem);
                     return int.TryParse(lResult, out lIdInvoice) ? this.Json(new { Success = true, Content = lIdInvoice }) : this.Json(new { Success = false, Content = lResult });
                 }
                 else

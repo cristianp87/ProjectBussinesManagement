@@ -1,4 +1,7 @@
-﻿using BO_BusinessManagement;
+﻿using Bll_Business;
+using BO_BusinessManagement;
+using IBusiness.Common;
+using IBusiness.Management;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -9,6 +12,16 @@ namespace Project_BusinessManagement.Models
 {
     public class MCustomer
     {
+        #region Variables and constants
+        public static IStatus LiStatus =
+        FacadeProvider.Resolver<BllStatus>();
+
+        public static ITypeIdentification LiTypeIdentification =
+        FacadeProvider.Resolver<BllTypeIdentification>();
+
+        public static IUtilsLib LiUtilsLib =
+        FacadeProvider.Resolver<BllUtilsLib>();
+        #endregion
         private int lIdCustomer;
         private string lNameCustomer;
         private string lLastNameCustomer;
@@ -209,7 +222,7 @@ namespace Project_BusinessManagement.Models
             oMCustomer.LTypeIdentification = new MTypeIdentification();
             oMCustomer.LListTypeIdentification = new List<SelectListItem>();
             oMCustomer.LListStatus = new List<SelectListItem>();
-            oMCustomer.LListTypeIdentification = MTypeIdentification.MListAllTypeIdentification(Bll_Business.Bll_TypeIdentification.bll_getListTypeIdentification());
+            oMCustomer.LListTypeIdentification = MTypeIdentification.MListAllTypeIdentification(LiTypeIdentification.bll_getListTypeIdentification());
             oMCustomer.lNameCustomer = oBCustomer.LNameCustomer;
             oMCustomer.LLastNameCustomer = oBCustomer.LLastNameCustomer;
             oMCustomer.LNoIdentification = oBCustomer.LNoIdentification;
@@ -222,7 +235,7 @@ namespace Project_BusinessManagement.Models
             oMCustomer.LStatus.LDsEstado = oBCustomer.LStatus.LDsEstado;
             oMCustomer.LStatus.LIdStatus = oBCustomer.LStatus.LIdStatus;
             oMCustomer.LModificationDate = oBCustomer.LModificationDate;
-            oMCustomer.LListStatus = MStatus.MListAllStatus(Bll_Business.Bll_Status.Bll_getListStatusByIdObject(oBCustomer.LObject.LIdObject));
+            oMCustomer.LListStatus = MStatus.MListAllStatus(LiStatus.Bll_getListStatusByIdObject(oBCustomer.LObject.LIdObject));
 
             return oMCustomer;
         }
@@ -231,13 +244,13 @@ namespace Project_BusinessManagement.Models
         {
             MCustomer oMCustomer = new MCustomer();
             Bo_Object oObject = new Bo_Object();
-            oObject = Bll_Business.Bll_UtilsLib.bll_GetObjectByName(MGlobalVariables.LNameObjectCustomer);
+            oObject = LiUtilsLib.bll_GetObjectByName(MGlobalVariables.LNameObjectCustomer);
             oMCustomer.LObject = new MObject();
             oMCustomer.LStatus = new MStatus();
             oMCustomer.LTypeIdentification = new MTypeIdentification();
             oMCustomer.LListTypeIdentification = new List<SelectListItem>();
             oMCustomer.LListStatus = new List<SelectListItem>();
-            oMCustomer.LListTypeIdentification = MTypeIdentification.MListAllTypeIdentificationWithSelect(Bll_Business.Bll_TypeIdentification.bll_getListTypeIdentification());
+            oMCustomer.LListTypeIdentification = MTypeIdentification.MListAllTypeIdentificationWithSelect(LiTypeIdentification.bll_getListTypeIdentification());
             oMCustomer.lNameCustomer = null;
             oMCustomer.LLastNameCustomer = null;
             oMCustomer.LNoIdentification = null;
@@ -250,7 +263,7 @@ namespace Project_BusinessManagement.Models
             oMCustomer.LStatus.LDsEstado = null;
             oMCustomer.LStatus.LIdStatus = null;
             oMCustomer.lModificationDate = new DateTime();
-            oMCustomer.LListStatus = MStatus.MListStatusWithSelect(Bll_Business.Bll_Status.Bll_getListStatusByIdObject(oMCustomer.LObject.LIdObject));
+            oMCustomer.LListStatus = MStatus.MListStatusWithSelect(LiStatus.Bll_getListStatusByIdObject(oMCustomer.LObject.LIdObject));
 
             return oMCustomer;
         }

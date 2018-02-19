@@ -10,9 +10,11 @@ namespace Bll_Business
     {
         public static IInventoryItem LItem;
 
+        public static IUtilsLib LiUtilsLib;
         public BllOrderItem()
         {
             LItem = new BllInventoryItem();
+            LiUtilsLib = new BllUtilsLib();
         }
         public List<Bo_OrderItem> bll_GetOrderItem(int pIdOrder)
         {
@@ -22,7 +24,7 @@ namespace Bll_Business
 
         public string bll_InsertListOrderItem(int pIdOrder,int pIdInventory, List<Bo_OrderItem> pListOrderItem, bool pIsInventory)
         {
-            var lObject = Bll_UtilsLib.bll_GetObjectByName("ORDITEM");
+            var lObject = LiUtilsLib.bll_GetObjectByName("ORDITEM");
             string lResult = "";
             pListOrderItem.ForEach(x =>
             {
@@ -30,7 +32,7 @@ namespace Bll_Business
                 {
                     LObject = new Bo_Object {LIdObject = lObject.LIdObject},
                     LStatus =
-                        new Bo_Status {LIdStatus = Bll_UtilsLib.bll_getStatusApproByObject(lObject.LIdObject).LIdStatus},
+                        new Bo_Status {LIdStatus = LiUtilsLib.bll_getStatusApproByObject(lObject.LIdObject).LIdStatus},
                     LProduct = new Bo_Product {LCdProduct = x.LProduct.LCdProduct},
                     LOrder = new Bo_Order {LIdOrder = pIdOrder},
                     LValueProduct = x.LValueProduct,

@@ -8,10 +8,12 @@ namespace Bll_Business
     public class BllInvoice : IInvoice
     {
         public IInvoiceItem LInvoiceItem;
+        public IUtilsLib LUtilsLib;
 
         public BllInvoice()
         {
             this.LInvoiceItem = new BllInvoiceItem();
+            this.LUtilsLib = new BllUtilsLib();
         }
         public Bo_Invoice bll_GetInvoiceById(int pIdInvoice)
         {
@@ -29,11 +31,11 @@ namespace Bll_Business
         {
             var lResult = "";
             var lIdInvoice = 0;
-            lResult = this.bll_InsertInvoice(this.bll_GetcdInvoice(),pIdCustomer, pIdOrder, pIdObjectInvoice, Bll_UtilsLib.bll_getStatusApproByObject(pIdObjectInvoice).LIdStatus);
+            lResult = this.bll_InsertInvoice(this.bll_GetcdInvoice(),pIdCustomer, pIdOrder, pIdObjectInvoice, this.LUtilsLib.bll_getStatusApproByObject(pIdObjectInvoice).LIdStatus);
             if(int.TryParse(lResult,out lIdInvoice))
             {
                 lResult = "";
-                var lStatusItem = Bll_UtilsLib.bll_getStatusApproByObject(lListInvoiceItem[0].LObject.LIdObject).LIdStatus;
+                var lStatusItem = this.LUtilsLib.bll_getStatusApproByObject(lListInvoiceItem[0].LObject.LIdObject).LIdStatus;
                 lListInvoiceItem.ForEach(x => {
                    lResult += this.LInvoiceItem.bll_InsertInvoiceItem(lIdInvoice, x.LQuantity, x.LValueProd, x.LValueSupplier, x.LValueTaxes, x.LValueDesc, x.LProduct.LIdProduct, x.LObject.LIdObject, lStatusItem);
                });
