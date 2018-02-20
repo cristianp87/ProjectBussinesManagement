@@ -6,11 +6,12 @@ using System;
 using System.Collections.Generic;
 using System.Web.Mvc;
 using IBusiness.Common;
+using static Project_BusinessManagement.Models.MCustomer;
 
 namespace Project_BusinessManagement.Controllers
 {
     [Authorize(Roles = "Administrador, Cajero")]
-    [ConfigurationApp( pParameter:"IsCustomer")]
+    [ConfigurationApp( "IsCustomer")]
     public class CustomerController : Controller
     {
         #region Variables and Constants
@@ -24,17 +25,15 @@ namespace Project_BusinessManagement.Controllers
         // GET: Customer
         public ActionResult Index()
         {
-            List<Bo_Customer> oBListCustomer = new List<Bo_Customer>();
-            oBListCustomer = this.LCustomerFacade.bll_GetAllCustomer();
-
-            return View(Models.MCustomer.MListCustomer(oBListCustomer));
+            var lBoListCustomer = this.LCustomerFacade.bll_GetAllCustomer();
+            return this.View(MListCustomer(lBoListCustomer));
         }
 
         // GET: Customer/Details/5
         public ActionResult Details(int id)
         {
-            var oBCustomer = this.LCustomerFacade.bll_GetCustomerById(id);
-            return View(Models.MCustomer.MCustomerById(oBCustomer));
+            var lBoCustomer = this.LCustomerFacade.bll_GetCustomerById(id);
+            return this.View(MCustomerById(lBoCustomer));
         }
 
         [ConfigurationApp(pParameter: "CreateCustomer")]
@@ -42,7 +41,7 @@ namespace Project_BusinessManagement.Controllers
         public ActionResult Create()
         {
             var oBCustomer= new Bo_Customer();
-            return View(Models.MCustomer.MCustomerEmpty(oBCustomer));
+            return this.View(MCustomerEmpty(oBCustomer));
         }
 
         // POST: Customer/Create
@@ -53,23 +52,23 @@ namespace Project_BusinessManagement.Controllers
             {
                 if (this.ModelState.IsValid)
                 {
-                    string lMessage = this.LCustomerFacade.bll_InsertCustomer(Request.Form["LNameCustomer"].ToString(), Request.Form["LLastNameCustomer"].ToString(), Request.Form["LNoIdentification"].ToString(), Convert.ToInt32(Request.Form["LTypeIdentification.LIdTypeIdentification"].ToString()), Convert.ToInt32(Request.Form["LObject.LIdObject"].ToString()), Request.Form["LStatus.LIdStatus"].ToString());
+                    var lMessage = this.LCustomerFacade.bll_InsertCustomer(this.Request.Form["LNameCustomer"], this.Request.Form["LLastNameCustomer"], this.Request.Form["LNoIdentification"], Convert.ToInt32(this.Request.Form["LTypeIdentification.LIdTypeIdentification"]), Convert.ToInt32(this.Request.Form["LObject.LIdObject"]), this.Request.Form["LStatus.LIdStatus"]);
                     if (lMessage == null)
                     {
-                        return RedirectToAction("Index");
+                        return this.RedirectToAction("Index");
                     }
                     else
                     {
                         pMCustomer.LMessageException = lMessage;
                         ListEmptyCustomer(pMCustomer);
-                        return View(pMCustomer);
+                        return this.View(pMCustomer);
                     }
 
                 }
                 else
                 {
                     ListEmptyCustomer(pMCustomer);
-                    return View(pMCustomer);
+                    return this.View(pMCustomer);
                 }
 
             }
@@ -77,16 +76,16 @@ namespace Project_BusinessManagement.Controllers
             {
                 pMCustomer.LMessageException = e.Message;
                 ListEmptyCustomer(pMCustomer);
-                return View(pMCustomer);
+                return this.View(pMCustomer);
             }
         }
 
-        [ConfigurationApp(pParameter: "EditCustomer")]
+        [ConfigurationApp("EditCustomer")]
         // GET: Customer/Edit/5
         public ActionResult Edit(int id)
         {
             var oBCustomer = this.LCustomerFacade.bll_GetCustomerById(id);
-            return View(Models.MCustomer.MCustomerById(oBCustomer));
+            return this.View(MCustomerById(oBCustomer));
         }
 
         // POST: Customer/Edit/5
@@ -97,22 +96,22 @@ namespace Project_BusinessManagement.Controllers
             {
                 if (this.ModelState.IsValid)
                 {
-                    var lMessage = this.LCustomerFacade.bll_UpdateCustomer(id, this.Request.Form["LNameCustomer"].ToString(), Request.Form["LLastNameCustomer"].ToString(), this.Request.Form["LNoIdentification"].ToString(), Convert.ToInt32(this.Request.Form["LTypeIdentification.LIdTypeIdentification"].ToString()), Convert.ToInt32(this.Request.Form["LObject.LIdObject"].ToString()), this.Request.Form["LStatus.LIdStatus"].ToString());
+                    var lMessage = this.LCustomerFacade.bll_UpdateCustomer(id, this.Request.Form["LNameCustomer"].ToString(), this.Request.Form["LLastNameCustomer"].ToString(), this.Request.Form["LNoIdentification"].ToString(), Convert.ToInt32(this.Request.Form["LTypeIdentification.LIdTypeIdentification"].ToString()), Convert.ToInt32(this.Request.Form["LObject.LIdObject"].ToString()), this.Request.Form["LStatus.LIdStatus"].ToString());
                     if (lMessage == null)
                     {
-                        return RedirectToAction("Index");
+                        return this.RedirectToAction("Index");
                     }
                     else
                     {
                         pMCustomer.LMessageException = lMessage;
                         ListEmptyCustomer(pMCustomer);
-                        return View(pMCustomer);
+                        return this.View(pMCustomer);
                     }
                 }
                 else
                 {
                     ListEmptyCustomer(pMCustomer);
-                    return View(pMCustomer);
+                    return this.View(pMCustomer);
                 }
 
             }
@@ -120,7 +119,7 @@ namespace Project_BusinessManagement.Controllers
             {
                 pMCustomer.LMessageException = e.Message;
                 ListEmptyCustomer(pMCustomer);
-                return View(pMCustomer);
+                return this.View(pMCustomer);
             }
         }
 
@@ -133,12 +132,12 @@ namespace Project_BusinessManagement.Controllers
 
 
 
-        [ConfigurationApp(pParameter: "DeleteCustomer")]
+        [ConfigurationApp("DeleteCustomer")]
         // GET: Customer/Delete/5
         public ActionResult Delete(int id)
         {
             var oBCustomer = this.LCustomerFacade.bll_GetCustomerById(id);
-            return View(Models.MCustomer.MCustomerById(oBCustomer));
+            return this.View(MCustomerById(oBCustomer));
         }
 
         // POST: Customer/Delete/5
@@ -150,19 +149,19 @@ namespace Project_BusinessManagement.Controllers
                 var lMessage = this.LCustomerFacade.bll_DeleteCustomer(id);
                 if (lMessage == null)
                 {                   
-                    return RedirectToAction("Index");
+                    return this.RedirectToAction("Index");
                 }
                 else
                 {
                     pMCustomer.LMessageException = lMessage;
-                    return View(pMCustomer);
+                    return this.View(pMCustomer);
                 }
 
             }
             catch (Exception e)
             {
                 pMCustomer.LMessageException = e.Message;
-                return View(pMCustomer);
+                return this.View(pMCustomer);
             }
         }
     }

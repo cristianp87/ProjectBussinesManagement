@@ -26,7 +26,6 @@ namespace Project_BusinessManagement.Models
         FacadeProvider.Resolver<BllUtilsLib>();
         #endregion
 
-        [UIHint("LIdProduct")]
         [DisplayName("IDProducto")]
         public int LIdProduct { get; set; }
 

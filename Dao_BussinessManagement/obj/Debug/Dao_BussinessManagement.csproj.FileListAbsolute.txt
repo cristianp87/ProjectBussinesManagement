@@ -22,3 +22,5 @@ C:\Users\cripac\Documents\GitHub\ProjectBussinesManagement\Dao_BussinessManageme
 C:\Users\cripac\Documents\GitHub\ProjectBussinesManagement\Dao_BussinessManagement\obj\Debug\Dao_BussinessManagement.csprojResolveAssemblyReference.cache
 C:\Users\cripac\Documents\GitHub\ProjectBussinesManagement\Dao_BussinessManagement\obj\Debug\Dao_BussinessManagement.dll
 C:\Users\cripac\Documents\GitHub\ProjectBussinesManagement\Dao_BussinessManagement\obj\Debug\Dao_BussinessManagement.pdb
+C:\Users\cripac\Documents\GitHub\ProjectBussinesManagement\Dao_BussinessManagement\bin\Debug\IDaoBusiness.dll
+C:\Users\cripac\Documents\GitHub\ProjectBussinesManagement\Dao_BussinessManagement\bin\Debug\IDaoBusiness.pdb

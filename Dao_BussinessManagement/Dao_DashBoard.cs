@@ -3,14 +3,13 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
+using IDaoBusiness.Business;
 
 namespace Dao_BussinessManagement
 {
-    public class Dao_DashBoard
+    
+    public class DaoDashBoard : IDaoDashBoard
     {
-
-        List<SqlParameter> lListParam = new List<SqlParameter>();
-
         public List<Bo_DashBoard> Dao_getProductSellToday()
         {
             using (SqlConnection lConex = Dao_UtilsLib.Dao_SqlConnection(lConex))
@@ -18,22 +17,24 @@ namespace Dao_BussinessManagement
 
                 try
                 {
-                    SqlCommand lCommand = new SqlCommand();
-                    lCommand.CommandText = "spr_dsbProductSellToday";
-                    lCommand.CommandTimeout = 30;
-                    lCommand.CommandType = CommandType.StoredProcedure;
-                    lCommand.Connection = lConex;
+                    var lCommand = new SqlCommand
+                    {
+                        CommandText = "spr_dsbProductSellToday",
+                        CommandTimeout = 30,
+                        CommandType = CommandType.StoredProcedure,
+                        Connection = lConex
+                    };
                     var lReader = lCommand.ExecuteReader();
-                    List<Bo_DashBoard> lListDashBoard = new List<Bo_DashBoard>();
+                    var lListDashBoard = new List<Bo_DashBoard>();
                     if (lReader.HasRows)
                     {
                         while (lReader.Read())
                         {
-                            Bo_DashBoard lDashBoard = new Bo_DashBoard();
-
-                            lDashBoard.Xstring = lReader["x"].ToString();
-                            lDashBoard.Yint = Convert.ToInt32(lReader["y"].ToString());
-
+                            var lDashBoard = new Bo_DashBoard
+                            {
+                                Xstring = lReader["x"].ToString(),
+                                Yint = Convert.ToInt32(lReader["y"].ToString())
+                            };
                             lListDashBoard.Add(lDashBoard);
                         }
 
@@ -44,9 +45,8 @@ namespace Dao_BussinessManagement
                 }
                 catch (Exception e)
                 {
-                    List<Bo_DashBoard> lListDashBoard = new List<Bo_DashBoard>();
-                    Bo_DashBoard lDashBoard = new Bo_DashBoard();
-                    lDashBoard.LException = e.Message;
+                    var lListDashBoard = new List<Bo_DashBoard>();
+                    var lDashBoard = new Bo_DashBoard {LException = e.Message};
                     if (e.InnerException != null)
                         lDashBoard.LInnerException = e.InnerException.ToString();
                     lDashBoard.LMessageDao = "Hubo un problema en la consulta, contacte al administrador.";

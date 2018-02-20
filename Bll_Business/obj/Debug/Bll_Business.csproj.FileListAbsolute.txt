@@ -61,3 +61,5 @@ C:\Users\cripac\Documents\GitHub\ProjectBussinesManagement\Bll_Business\bin\Debu
 C:\Users\cripac\Documents\GitHub\ProjectBussinesManagement\Bll_Business\obj\Debug\Bll_Business.csprojResolveAssemblyReference.cache
 C:\Users\cripac\Documents\GitHub\ProjectBussinesManagement\Bll_Business\obj\Debug\Bll_Business.dll
 C:\Users\cripac\Documents\GitHub\ProjectBussinesManagement\Bll_Business\obj\Debug\Bll_Business.pdb
+C:\Users\cripac\Documents\GitHub\ProjectBussinesManagement\Bll_Business\bin\Debug\IDaoBusiness.dll
+C:\Users\cripac\Documents\GitHub\ProjectBussinesManagement\Bll_Business\bin\Debug\IDaoBusiness.pdb

@@ -3,16 +3,20 @@ using Dao_BussinessManagement;
 using System;
 using System.Collections.Generic;
 using IBusiness.Management;
+using IDaoBusiness.Business;
 
 namespace Bll_Business
 {
     public class BllOrder:IOrder
     {
-        private IOrderItem LOrderItem;
+        public IOrderItem LOrderItem { get; }
+
+        public IDaoOrder LiDaoOrder { get; set; }
 
         public BllOrder()
         {
             this.LOrderItem = new BllOrderItem();
+            this.LiDaoOrder = new DaoOrder();
         }
         public string bll_InsertOrder(int pIdInventory, int pIdCustomer, int pIdObject, string pIdStatus, List<Bo_OrderItem> pListOrderItem, bool pIsInventory, int pIdObjectOI,string pIdStatusOI)
         {
@@ -25,9 +29,8 @@ namespace Bll_Business
                 LInventory = new Bo_Inventory {LIdInventory = pIdInventory},
                 LCreationDate = new DateTime()
             };
-            var lDaoOrder = new Dao_Order();
             var lIdOrder = 0;
-            var lstrIdOrder = lDaoOrder.Dao_InsertOrder(lOrder);
+            var lstrIdOrder = this.LiDaoOrder.Dao_InsertOrder(lOrder);
             if (int.TryParse(lstrIdOrder, out lIdOrder))
             {
                 lResul = this.LOrderItem.bll_InsertListOrderItem(lIdOrder,pIdInventory, pListOrderItem, pIsInventory);
@@ -45,8 +48,7 @@ namespace Bll_Business
 
         public List<Bo_Order> bll_GetListOrderByCustomer(int pIdCustomer)
         {
-            var lDaoOrder = new Dao_Order();
-            return lDaoOrder.Dao_getListOrderByCustomer(pIdCustomer);
+            return this.LiDaoOrder.Dao_getListOrderByCustomer(pIdCustomer);
         }
     }
 }

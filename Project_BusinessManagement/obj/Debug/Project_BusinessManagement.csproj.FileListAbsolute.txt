@@ -244,3 +244,5 @@ C:\Users\cripac\Documents\GitHub\ProjectBussinesManagement\Project_BusinessManag
 C:\Users\cripac\Documents\GitHub\ProjectBussinesManagement\Project_BusinessManagement\obj\Debug\Project_BusinessManagement.csprojResolveAssemblyReference.cache
 C:\Users\cripac\Documents\GitHub\ProjectBussinesManagement\Project_BusinessManagement\obj\Debug\Project_BusinessManagement.dll
 C:\Users\cripac\Documents\GitHub\ProjectBussinesManagement\Project_BusinessManagement\obj\Debug\Project_BusinessManagement.pdb
+C:\Users\cripac\Documents\GitHub\ProjectBussinesManagement\Project_BusinessManagement\bin\IDaoBusiness.dll
+C:\Users\cripac\Documents\GitHub\ProjectBussinesManagement\Project_BusinessManagement\bin\IDaoBusiness.pdb
