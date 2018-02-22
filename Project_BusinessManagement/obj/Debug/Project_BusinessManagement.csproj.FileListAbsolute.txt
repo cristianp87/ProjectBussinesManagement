@@ -181,7 +181,6 @@ C:\Users\cripac\Documents\GitHub\ProjectBussinesManagement\Project_BusinessManag
 C:\Users\cripac\Documents\GitHub\ProjectBussinesManagement\Project_BusinessManagement\bin\Project_BusinessManagement.dll
 C:\Users\cripac\Documents\GitHub\ProjectBussinesManagement\Project_BusinessManagement\bin\Project_BusinessManagement.pdb
 C:\Users\cripac\Documents\GitHub\ProjectBussinesManagement\Project_BusinessManagement\bin\Antlr3.Runtime.dll
-C:\Users\cripac\Documents\GitHub\ProjectBussinesManagement\Project_BusinessManagement\bin\Bll_Business.dll
 C:\Users\cripac\Documents\GitHub\ProjectBussinesManagement\Project_BusinessManagement\bin\BO_BusinessManagement.dll
 C:\Users\cripac\Documents\GitHub\ProjectBussinesManagement\Project_BusinessManagement\bin\CommonServiceLocator.dll
 C:\Users\cripac\Documents\GitHub\ProjectBussinesManagement\Project_BusinessManagement\bin\IBusiness.dll
@@ -211,8 +210,6 @@ C:\Users\cripac\Documents\GitHub\ProjectBussinesManagement\Project_BusinessManag
 C:\Users\cripac\Documents\GitHub\ProjectBussinesManagement\Project_BusinessManagement\bin\Unity.RegistrationByConvention.dll
 C:\Users\cripac\Documents\GitHub\ProjectBussinesManagement\Project_BusinessManagement\bin\Unity.ServiceLocation.dll
 C:\Users\cripac\Documents\GitHub\ProjectBussinesManagement\Project_BusinessManagement\bin\WebGrease.dll
-C:\Users\cripac\Documents\GitHub\ProjectBussinesManagement\Project_BusinessManagement\bin\Dao_BussinessManagement.dll
-C:\Users\cripac\Documents\GitHub\ProjectBussinesManagement\Project_BusinessManagement\bin\Bll_Business.pdb
 C:\Users\cripac\Documents\GitHub\ProjectBussinesManagement\Project_BusinessManagement\bin\BO_BusinessManagement.pdb
 C:\Users\cripac\Documents\GitHub\ProjectBussinesManagement\Project_BusinessManagement\bin\IBusiness.pdb
 C:\Users\cripac\Documents\GitHub\ProjectBussinesManagement\Project_BusinessManagement\bin\Antlr3.Runtime.pdb
@@ -240,9 +237,14 @@ C:\Users\cripac\Documents\GitHub\ProjectBussinesManagement\Project_BusinessManag
 C:\Users\cripac\Documents\GitHub\ProjectBussinesManagement\Project_BusinessManagement\bin\Unity.Interception.Configuration.pdb
 C:\Users\cripac\Documents\GitHub\ProjectBussinesManagement\Project_BusinessManagement\bin\Unity.RegistrationByConvention.pdb
 C:\Users\cripac\Documents\GitHub\ProjectBussinesManagement\Project_BusinessManagement\bin\Unity.ServiceLocation.pdb
-C:\Users\cripac\Documents\GitHub\ProjectBussinesManagement\Project_BusinessManagement\bin\Dao_BussinessManagement.pdb
 C:\Users\cripac\Documents\GitHub\ProjectBussinesManagement\Project_BusinessManagement\obj\Debug\Project_BusinessManagement.csprojResolveAssemblyReference.cache
 C:\Users\cripac\Documents\GitHub\ProjectBussinesManagement\Project_BusinessManagement\obj\Debug\Project_BusinessManagement.dll
 C:\Users\cripac\Documents\GitHub\ProjectBussinesManagement\Project_BusinessManagement\obj\Debug\Project_BusinessManagement.pdb
+C:\Users\cripac\Documents\GitHub\ProjectBussinesManagement\Project_BusinessManagement\bin\Bll_Business.dll
 C:\Users\cripac\Documents\GitHub\ProjectBussinesManagement\Project_BusinessManagement\bin\IDaoBusiness.dll
+C:\Users\cripac\Documents\GitHub\ProjectBussinesManagement\Project_BusinessManagement\bin\Dao_BussinessManagement.dll
+C:\Users\cripac\Documents\GitHub\ProjectBussinesManagement\Project_BusinessManagement\bin\Bll_Business.pdb
 C:\Users\cripac\Documents\GitHub\ProjectBussinesManagement\Project_BusinessManagement\bin\IDaoBusiness.pdb
+C:\Users\cripac\Documents\GitHub\ProjectBussinesManagement\Project_BusinessManagement\bin\Dao_BussinessManagement.pdb
+C:\Users\cripac\Documents\GitHub\ProjectBussinesManagement\Project_BusinessManagement\bin\InstancesBll.dll
+C:\Users\cripac\Documents\GitHub\ProjectBussinesManagement\Project_BusinessManagement\bin\InstancesBll.pdb

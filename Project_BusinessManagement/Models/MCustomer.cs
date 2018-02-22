@@ -1,5 +1,4 @@
-﻿using Bll_Business;
-using BO_BusinessManagement;
+﻿using BO_BusinessManagement;
 using IBusiness.Common;
 using IBusiness.Management;
 using System;
@@ -14,13 +13,13 @@ namespace Project_BusinessManagement.Models
     {
         #region Variables and constants
         public static IStatus LiStatus =
-        FacadeProvider.Resolver<BllStatus>();
+        FacadeProvider.Resolver<IStatus>();
 
         public static ITypeIdentification LiTypeIdentification =
-        FacadeProvider.Resolver<BllTypeIdentification>();
+        FacadeProvider.Resolver<ITypeIdentification>();
 
         public static IUtilsLib LiUtilsLib =
-        FacadeProvider.Resolver<BllUtilsLib>();
+        FacadeProvider.Resolver<IUtilsLib>();
         #endregion
 
         [DisplayName("Id CLiente")]

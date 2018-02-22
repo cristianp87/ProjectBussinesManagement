@@ -29,7 +29,7 @@ namespace Bll_Business
         public string bll_InsertListOrderItem(int pIdOrder,int pIdInventory, List<Bo_OrderItem> pListOrderItem, bool pIsInventory)
         {
             var lObject = LiUtilsLib.bll_GetObjectByName("ORDITEM");
-            string lResult = "";
+            var lResult = "";
             pListOrderItem.ForEach(x =>
             {
                 var lOrderItem = new Bo_OrderItem

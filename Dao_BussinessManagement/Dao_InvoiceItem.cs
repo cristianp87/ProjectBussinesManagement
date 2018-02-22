@@ -77,12 +77,12 @@ namespace Dao_BussinessManagement
             this.LListParam = new List<SqlParameter>();
             dao_Addparameters(this.LListParam, SqlDbType.Int, "@IdInvoice", pInvoiceItem.LIdInvoice.ToString());
             dao_Addparameters(this.LListParam, SqlDbType.Int, "@IdProduct", pInvoiceItem.LProduct.LIdProduct.ToString());
-            dao_Addparameters(this.LListParam, SqlDbType.Decimal, "@Qty", pInvoiceItem.LQuantity.ToString(CultureInfo.InvariantCulture));
-            dao_Addparameters(this.LListParam, SqlDbType.Decimal, "@ValueProduct", pInvoiceItem.LValueProd.ToString(CultureInfo.InvariantCulture));
-            dao_Addparameters(this.LListParam, SqlDbType.Decimal, "@ValueDesc", pInvoiceItem.LValueDesc.ToString(CultureInfo.InvariantCulture));
-            dao_Addparameters(this.LListParam, SqlDbType.Decimal, "@ValueSupplier", pInvoiceItem.LValueSupplier.ToString(CultureInfo.InvariantCulture));
-            dao_Addparameters(this.LListParam, SqlDbType.Decimal, "@ValueTaxes", pInvoiceItem.LValueTaxes.ToString(CultureInfo.InvariantCulture));
-            dao_Addparameters(this.LListParam, SqlDbType.Decimal, "@ValueTotal", pInvoiceItem.LValueTotal.ToString(CultureInfo.InvariantCulture));
+            dao_Addparameters(this.LListParam, SqlDbType.Decimal, "@Qty", pInvoiceItem.LQuantity.ToString(CultureInfo.CurrentCulture));
+            dao_Addparameters(this.LListParam, SqlDbType.Decimal, "@ValueProduct", pInvoiceItem.LValueProd.ToString(CultureInfo.CurrentCulture));
+            dao_Addparameters(this.LListParam, SqlDbType.Decimal, "@ValueDesc", pInvoiceItem.LValueDesc.ToString(CultureInfo.CurrentCulture));
+            dao_Addparameters(this.LListParam, SqlDbType.Decimal, "@ValueSupplier", pInvoiceItem.LValueSupplier.ToString(CultureInfo.CurrentCulture));
+            dao_Addparameters(this.LListParam, SqlDbType.Decimal, "@ValueTaxes", pInvoiceItem.LValueTaxes.ToString(CultureInfo.CurrentCulture));
+            dao_Addparameters(this.LListParam, SqlDbType.Decimal, "@ValueTotal", pInvoiceItem.LValueTotal.ToString(CultureInfo.CurrentCulture));
             dao_Addparameters(this.LListParam, SqlDbType.VarChar, "@IdStatus", pInvoiceItem.LStatus.LIdStatus);
             dao_Addparameters(this.LListParam, SqlDbType.Int, "@IdObject", pInvoiceItem.LObject.LIdObject.ToString());
             return Dao_executeSqlTransactionWithProcedement(this.LListParam, "LTranInsertInvoiceItem", "spr_CreateInvoiceItem");

@@ -1,5 +1,4 @@
-﻿using Bll_Business;
-using BO_BusinessManagement;
+﻿using BO_BusinessManagement;
 using Project_BusinessManagement.Filters;
 using System;
 using System.Collections.Generic;
@@ -15,13 +14,13 @@ namespace Project_BusinessManagement.Views.Supplier
     {
         #region Variables and Constants
         public ISupplier LiSupplier =
-        FacadeProvider.Resolver<BllSupplier>();
+        FacadeProvider.Resolver<ISupplier>();
 
         public static ITypeIdentification LiTypeIdentification =
-        FacadeProvider.Resolver<BllTypeIdentification>();
+        FacadeProvider.Resolver<ITypeIdentification>();
 
         public static IStatus LiStatus =
-        FacadeProvider.Resolver<BllStatus>();
+        FacadeProvider.Resolver<IStatus>();
         #endregion
 
         // GET: Supplier

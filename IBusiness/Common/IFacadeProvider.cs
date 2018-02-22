@@ -9,6 +9,8 @@ namespace IBusiness.Common
 
         T Resolver<T>() where T : IFacade ;
 
+        IFacadeProvider RegisterFacadeProvider();
+
         #endregion
     }
 }

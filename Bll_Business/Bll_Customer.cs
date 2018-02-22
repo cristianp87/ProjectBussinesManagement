@@ -63,8 +63,6 @@ namespace Bll_Business
         {
             var oCustomer = new Bo_Customer {LIdCustomer = pIdCustomer};
             return this.LiCustomer.Dao_DeleteCustomer(oCustomer);
-        }
-
-        
+        }      
     }
 }

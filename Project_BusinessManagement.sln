@@ -15,6 +15,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IBusiness", "IBusiness\IBus
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IDaoBusiness", "IDaoBusiness\IDaoBusiness.csproj", "{7A150096-8EF4-416E-B578-6C8F8D93D47C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InstancesBll", "InstancesBll\InstancesBll.csproj", "{86CB5BC0-AD8D-4BBB-99D9-008372B1B327}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -45,6 +47,10 @@ Global
 		{7A150096-8EF4-416E-B578-6C8F8D93D47C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7A150096-8EF4-416E-B578-6C8F8D93D47C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7A150096-8EF4-416E-B578-6C8F8D93D47C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{86CB5BC0-AD8D-4BBB-99D9-008372B1B327}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{86CB5BC0-AD8D-4BBB-99D9-008372B1B327}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{86CB5BC0-AD8D-4BBB-99D9-008372B1B327}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{86CB5BC0-AD8D-4BBB-99D9-008372B1B327}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

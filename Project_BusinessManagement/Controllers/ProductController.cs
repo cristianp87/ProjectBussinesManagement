@@ -1,5 +1,4 @@
-﻿using Bll_Business;
-using BO_BusinessManagement;
+﻿using BO_BusinessManagement;
 using Project_BusinessManagement.Filters;
 using System;
 using System.Collections.Generic;
@@ -16,19 +15,19 @@ namespace Project_BusinessManagement.Controllers
     {
         #region Variables and Constants
         public static IProduct LiProduct =
-        FacadeProvider.Resolver<BllProduct>();
+        FacadeProvider.Resolver<IProduct>();
 
         public static ISupplier LiSupplier =
-        FacadeProvider.Resolver<BllSupplier>();
+        FacadeProvider.Resolver<ISupplier>();
 
         public static IStatus LStatus =
-        FacadeProvider.Resolver<BllStatus>();
+        FacadeProvider.Resolver<IStatus>();
 
         public static ITaxe LiTaxe =
-        FacadeProvider.Resolver<BllTaxe>();
+        FacadeProvider.Resolver<ITaxe>();
 
         public IUtilsLib LiUtilsLib =
-        FacadeProvider.Resolver<BllUtilsLib>();
+        FacadeProvider.Resolver<IUtilsLib>();
         #endregion
         // GET: Product
         public ActionResult Index()

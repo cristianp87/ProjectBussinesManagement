@@ -1,9 +1,7 @@
-﻿using Bll_Business;
-using BO_BusinessManagement;
+﻿using BO_BusinessManagement;
 using Project_BusinessManagement.Filters;
 using Project_BusinessManagement.Models;
 using System;
-using System.Collections.Generic;
 using System.Web.Mvc;
 using IBusiness.Common;
 using IBusiness.Management;
@@ -17,30 +15,30 @@ namespace Project_BusinessManagement.Controllers
         #region Variables and Constants
 
         public ICustomer LCustomerFacade =
-        FacadeProvider.Resolver<BllCustomer>();
+        FacadeProvider.Resolver<ICustomer>();
 
         public IInventory LInventory =
-        FacadeProvider.Resolver<BllInventory>();
+        FacadeProvider.Resolver<IInventory>();
 
         public readonly MParameter LParameter = new MParameter();
 
         public IOrder LOrder =
-        FacadeProvider.Resolver<BllOrder>();
+        FacadeProvider.Resolver<IOrder>();
 
         public IInvoiceItem LInvoiceItem =
-        FacadeProvider.Resolver<BllInvoiceItem>();
+        FacadeProvider.Resolver<IInvoiceItem>();
 
         public IInvoice LInvoice =
-        FacadeProvider.Resolver<BllInvoice>();
+        FacadeProvider.Resolver<IInvoice>();
 
         public IProduct LiProduct =
-        FacadeProvider.Resolver<BllProduct>();
+        FacadeProvider.Resolver<IProduct>();
 
         public ITypeIdentification LiTypeIdentification=
-        FacadeProvider.Resolver<BllTypeIdentification>();
+        FacadeProvider.Resolver<ITypeIdentification>();
 
         public IUtilsLib LiUtilsLib =
-        FacadeProvider.Resolver<BllUtilsLib>();
+        FacadeProvider.Resolver<IUtilsLib>();
         #endregion
 
         // GET: Order

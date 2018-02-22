@@ -1,5 +1,4 @@
-﻿using Bll_Business;
-using BO_BusinessManagement;
+﻿using BO_BusinessManagement;
 using IBusiness.Management;
 using Project_BusinessManagement.Filters;
 using System;
@@ -16,10 +15,10 @@ namespace Project_BusinessManagement.Controllers
     {
         #region Variables and Constants
         public ICustomer LCustomerFacade =
-        FacadeProvider.Resolver<BllCustomer>();
+        FacadeProvider.Resolver<ICustomer>();
 
         public static ITypeIdentification LiTypeIdentification =
-        FacadeProvider.Resolver<BllTypeIdentification>();
+        FacadeProvider.Resolver<ITypeIdentification>();
         
         #endregion
         // GET: Customer

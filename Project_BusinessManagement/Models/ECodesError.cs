@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using iTextSharp.text.io;
-
-namespace Project_BusinessManagement.Models
+﻿namespace Project_BusinessManagement.Models
 {   
     public static class CodesError
     {

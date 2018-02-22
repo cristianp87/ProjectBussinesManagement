@@ -5,7 +5,6 @@ using System.ComponentModel;
 using System.Web.Mvc;
 using IBusiness.Common;
 using IBusiness.Management;
-using Bll_Business;
 
 namespace Project_BusinessManagement.Models
 {
@@ -13,16 +12,16 @@ namespace Project_BusinessManagement.Models
     {
         #region Variables and Constants
         public static IInventory LInventoryTInventory =
-        FacadeProvider.Resolver<BllInventory>();
+        FacadeProvider.Resolver<IInventory>();
 
         public static IProduct LiProduct =
-        FacadeProvider.Resolver<BllProduct>();
+        FacadeProvider.Resolver<IProduct>();
 
         public static IStatus LiStatus =
-        FacadeProvider.Resolver<BllStatus>();
+        FacadeProvider.Resolver<IStatus>();
 
         public static IUtilsLib LiUtilsLib =
-        FacadeProvider.Resolver<BllUtilsLib>();
+        FacadeProvider.Resolver<IUtilsLib>();
         #endregion
 
         [DisplayName("Id Item")]

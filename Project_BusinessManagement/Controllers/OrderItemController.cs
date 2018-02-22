@@ -1,5 +1,4 @@
 ﻿using System.Web.Mvc;
-using Bll_Business;
 using IBusiness.Common;
 using IBusiness.Management;
 
@@ -9,7 +8,7 @@ namespace Project_BusinessManagement.Controllers
     public class OrderItemController : Controller
     {
         public IOrderItem LOrderItem =
-           FacadeProvider.Resolver<BllOrderItem>();
+           FacadeProvider.Resolver<IOrderItem>();
         // GET: OrderItem
         public ActionResult Index(int pIdOrder)
         {

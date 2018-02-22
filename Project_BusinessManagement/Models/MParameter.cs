@@ -1,5 +1,4 @@
-﻿using Bll_Business;
-using IBusiness.Common;
+﻿using IBusiness.Common;
 using IBusiness.Management;
 
 namespace Project_BusinessManagement.Models
@@ -9,7 +8,7 @@ namespace Project_BusinessManagement.Models
         #region Variables and constants
 
         public static IUtilsLib LiUtilsLib =
-        FacadeProvider.Resolver<BllUtilsLib>();
+        FacadeProvider.Resolver<IUtilsLib>();
         #endregion
         string myLResult;
         bool myLBool;

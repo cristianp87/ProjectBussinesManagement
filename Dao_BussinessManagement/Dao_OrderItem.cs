@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
+using System.Globalization;
 using IDaoBusiness.Business;
 using static Dao_BussinessManagement.Dao_UtilsLib;
 
@@ -85,13 +86,13 @@ namespace Dao_BussinessManagement
             this.LListParam = new List<SqlParameter>();
             dao_Addparameters(this.LListParam, SqlDbType.VarChar, "@CodProduct", pOrderItem.LProduct.LCdProduct.ToString());
             dao_Addparameters(this.LListParam, SqlDbType.Int, "@IdOrder", pOrderItem.LOrder.LIdOrder.ToString());
-            dao_Addparameters(this.LListParam, SqlDbType.Decimal, "@ValueProduct", pOrderItem.LValueProduct.ToString());
-            dao_Addparameters(this.LListParam, SqlDbType.Decimal, "@Qty", pOrderItem.LQty.ToString());
-            dao_Addparameters(this.LListParam, SqlDbType.Decimal, "@ValueSupplier", pOrderItem.LValueSupplier.ToString());
-            dao_Addparameters(this.LListParam, SqlDbType.Decimal, "@ValueTaxesProduct", pOrderItem.LValueTaxes.ToString());
-            dao_Addparameters(this.LListParam, SqlDbType.Decimal, "@ValueDescProduct", pOrderItem.LValueDesc.ToString());
-            dao_Addparameters(this.LListParam, SqlDbType.Decimal, "@ValueTotalProduct", pOrderItem.LValueTotal.ToString());
-            dao_Addparameters(this.LListParam, SqlDbType.VarChar, "@IdStatus", pOrderItem.LStatus.LIdStatus.ToString());
+            dao_Addparameters(this.LListParam, SqlDbType.Decimal, "@ValueProduct", pOrderItem.LValueProduct.ToString(CultureInfo.CurrentCulture));
+            dao_Addparameters(this.LListParam, SqlDbType.Decimal, "@Qty", pOrderItem.LQty.ToString(CultureInfo.CurrentCulture));
+            dao_Addparameters(this.LListParam, SqlDbType.Decimal, "@ValueSupplier", pOrderItem.LValueSupplier.ToString(CultureInfo.CurrentCulture));
+            dao_Addparameters(this.LListParam, SqlDbType.Decimal, "@ValueTaxesProduct", pOrderItem.LValueTaxes.ToString(CultureInfo.CurrentCulture));
+            dao_Addparameters(this.LListParam, SqlDbType.Decimal, "@ValueDescProduct", pOrderItem.LValueDesc.ToString(CultureInfo.CurrentCulture));
+            dao_Addparameters(this.LListParam, SqlDbType.Decimal, "@ValueTotalProduct", pOrderItem.LValueTotal.ToString(CultureInfo.CurrentCulture));
+            dao_Addparameters(this.LListParam, SqlDbType.VarChar, "@IdStatus", pOrderItem.LStatus.LIdStatus);
             dao_Addparameters(this.LListParam, SqlDbType.Int, "@IdObject", pOrderItem.LObject.LIdObject.ToString());
             return Dao_executeSqlTransactionWithProcedement(this.LListParam, "LTranInsertOrder", "spr_CreateOrderItem");
         }

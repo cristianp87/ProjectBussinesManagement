@@ -2,45 +2,46 @@
 using Dao_BussinessManagement;
 using IBusiness.Management;
 using System.Collections.Generic;
+using IDaoBusiness.Business;
 
 namespace Bll_Business
 {
     public class BllTaxe : ITaxe
     {
+        public IDaoTaxe LiDaoTaxe { get; set; }
+
+        public BllTaxe()
+        {
+            this.LiDaoTaxe = new DaoTaxe();
+        }
         public List<Bo_Taxe>  bll_GetListallTaxesXProduct(int pIdProduct)
         {
-            var oDaoTaxe = new Dao_Taxe();
-            return oDaoTaxe.Dao_getLisAllTaxesXProduct(pIdProduct);
+            return this.LiDaoTaxe.Dao_getLisAllTaxesXProduct(pIdProduct);
         }
 
         public List<Bo_Taxe> bll_GetListTaxes()
         {
-            var oDaoTaxe = new Dao_Taxe();
-            return oDaoTaxe.Dao_getLisTaxes();
+            return this.LiDaoTaxe.Dao_getLisTaxes();
         }
 
         public List<Bo_Taxe> bll_GetListTaxesWithOutProduct(int pIdProduct)
         {
-            var oDaoTaxe = new Dao_Taxe();
-            return oDaoTaxe.Dao_getLisAllTaxesWithOutProduct(pIdProduct);
+            return this.LiDaoTaxe.Dao_getLisAllTaxesWithOutProduct(pIdProduct);
         }
 
         public string bll_AssociateTaxeXProduct(int pIdProduct, int pIdTaxe)
         {
-            var lDaoTaxe = new Dao_Taxe();
-            return lDaoTaxe.Dao_InsertTaxeXProduct(pIdProduct, pIdTaxe);
+            return this.LiDaoTaxe.Dao_InsertTaxeXProduct(pIdProduct, pIdTaxe);
         }
 
         public Bo_Taxe bll_GetTaxe(int pIdTaxe)
         {
-            var lDaoTaxe = new Dao_Taxe();
-            return lDaoTaxe.Dao_getTaxeById(pIdTaxe);
+            return this.LiDaoTaxe.Dao_getTaxeById(pIdTaxe);
         }
 
         public string bll_DeleteTaxeXProduct(int pIdProduct, int pIdTaxe)
         {
-            Dao_Taxe lDaoTaxe = new Dao_Taxe();
-            return lDaoTaxe.Dao_DeleteTaxeXProduct(pIdProduct, pIdTaxe);
+            return this.LiDaoTaxe.Dao_DeleteTaxeXProduct(pIdProduct, pIdTaxe);
         }
     }
 }

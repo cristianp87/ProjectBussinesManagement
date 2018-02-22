@@ -3,142 +3,171 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
+using IDaoBusiness.Business;
+using static Dao_BussinessManagement.Dao_UtilsLib;
 
 namespace Dao_BussinessManagement
 {
-    public class Dao_Supplier
+    public class DaoSupplier : IDaoSupplier
     {
-        List<SqlParameter> lListParam = new List<SqlParameter>();
+        private List<SqlParameter> LListParam { get; set; }
 
         public Bo_Supplier Dao_getSupplierById(int pIdSupplier)
         {
-            using (SqlConnection lConex = Dao_UtilsLib.Dao_SqlConnection(lConex))
+            using (SqlConnection lConex = Dao_SqlConnection(lConex))
             {
+                var lSupplier = new Bo_Supplier();
                 try
                 {
-                    SqlCommand lCommand = new SqlCommand();
-                    lCommand.CommandText = "spr_GetSupplier";
-                    lCommand.CommandTimeout = 30;
-                    lCommand.CommandType = CommandType.StoredProcedure;
-                    lCommand.Connection = lConex;
+                    var lCommand = new SqlCommand
+                    {
+                        CommandText = "spr_GetSupplier",
+                        CommandTimeout = 30,
+                        CommandType = CommandType.StoredProcedure,
+                        Connection = lConex
+                    };
                     lCommand.Parameters.Add(new SqlParameter("IdSupplier", pIdSupplier));
 
                     var lReader = lCommand.ExecuteReader();
-                    Bo_Supplier oSupplier = new Bo_Supplier();
+                    
                     if (lReader.HasRows)
                     {
                         while (lReader.Read())
-                        {
-                            oSupplier.LStatus = new Bo_Status();
-                            oSupplier.LObject = new Bo_Object();
-                            oSupplier.LTypeIdentification = new Bo_TypeIdentification();
-                            oSupplier.LIdSupplier = Convert.ToInt32(lReader["IdSupplier"].ToString());
-                            oSupplier.LNameSupplier = lReader["NameSupplier"].ToString();
-                            oSupplier.LTypeIdentification.LIdTypeIdentification = Convert.ToInt32(lReader["IdTypeIdentification"].ToString());
-                            oSupplier.LTypeIdentification.LTypeIdentification = lReader["TypeIdentification"].ToString();
-                            oSupplier.LNoIdentification = lReader["NoIdentification"].ToString();
-                            oSupplier.LCreationDate = Convert.ToDateTime(lReader["CreationDate"].ToString());
-                            oSupplier.LStatus.LIdStatus = lReader["IdStatus"].ToString();
-                            oSupplier.LStatus.LDsEstado = lReader["DsEstado"].ToString();
-                            oSupplier.LObject.LIdObject = Convert.ToInt32(lReader["IdObject"].ToString());
-                            oSupplier.LObject.LNameObject = lReader["NameObject"].ToString();
-                            oSupplier.LModificationDate = Convert.ToDateTime(lReader["ModificationDate"]);
+                        {                           
+                            lSupplier.LTypeIdentification = new Bo_TypeIdentification();
+                            lSupplier.LIdSupplier = Convert.ToInt32(lReader["IdSupplier"].ToString());
+                            lSupplier.LNameSupplier = lReader["NameSupplier"].ToString();
+                            lSupplier.LTypeIdentification.LIdTypeIdentification = Convert.ToInt32(lReader["IdTypeIdentification"].ToString());
+                            lSupplier.LTypeIdentification.LTypeIdentification = lReader["TypeIdentification"].ToString();
+                            lSupplier.LNoIdentification = lReader["NoIdentification"].ToString();
+                            lSupplier.LCreationDate = Convert.ToDateTime(lReader["CreationDate"].ToString());
+                            lSupplier.LStatus = new Bo_Status
+                            {
+                                LIdStatus = lReader["IdStatus"].ToString(),
+                                LDsEstado = lReader["DsEstado"].ToString()
+                            };
+                            lSupplier.LObject = new Bo_Object
+                            {
+                                LIdObject = Convert.ToInt32(lReader["IdObject"].ToString()),
+                                LNameObject = lReader["NameObject"].ToString()
+                            };
+                            lSupplier.LModificationDate = Convert.ToDateTime(lReader["ModificationDate"]);
                         }
                     }
-                    Dao_UtilsLib.Dao_CloseSqlconnection(lConex);
-                    return oSupplier;
+                    Dao_CloseSqlconnection(lConex);
+                    return lSupplier;
                 }
                 catch (Exception e)
                 {
-                    Bo_Supplier oSupplier = new Bo_Supplier();
-                    oSupplier.LException = e.Message;
+                    lSupplier = new Bo_Supplier
+                    {
+                        LException = e.Message,
+                        LMessageDao = "Hubo un problema en la consulta, contacte al administrador."
+                    };
                     if (e.InnerException != null)
-                        oSupplier.LInnerException = e.InnerException.ToString();
-                    oSupplier.LMessageDao = "Hubo un problema en la consulta, contacte al administrador.";
-                    Dao_UtilsLib.Dao_CloseSqlconnection(lConex);
-                    return oSupplier;
+                        lSupplier.LInnerException = e.InnerException.ToString();                  
+                    Dao_CloseSqlconnection(lConex);
+                    return lSupplier;
                 }
             }
         }
 
         public List<Bo_Supplier> Dao_getSupplierListAll()
         {
-            using (SqlConnection lConex = Dao_UtilsLib.Dao_SqlConnection(lConex))
+            using (SqlConnection lConex = Dao_SqlConnection(lConex))
             {
+                var lListSupplier = new List<Bo_Supplier>();
                 try
                 {
-                    SqlCommand lCommand = new SqlCommand();
-                    lCommand.CommandText = "spr_GetListAllSupplier";
-                    lCommand.CommandTimeout = 30;
-                    lCommand.CommandType = CommandType.StoredProcedure;
-                    lCommand.Connection = lConex;
+                    var lCommand = new SqlCommand
+                    {
+                        CommandText = "spr_GetListAllSupplier",
+                        CommandTimeout = 30,
+                        CommandType = CommandType.StoredProcedure,
+                        Connection = lConex
+                    };
                     var lReader = lCommand.ExecuteReader();
-                    List<Bo_Supplier> oListSupplier = new List<Bo_Supplier>();
+                    
                     if (lReader.HasRows)
                     {
                         while (lReader.Read())
                         {
-                            Bo_Supplier oSupplier = new Bo_Supplier();
-                            oSupplier.LStatus = new Bo_Status();
-                            oSupplier.LObject = new Bo_Object();
-                            oSupplier.LTypeIdentification = new Bo_TypeIdentification();
-                            oSupplier.LIdSupplier = Convert.ToInt32(lReader["IdSupplier"].ToString());
-                            oSupplier.LNameSupplier = lReader["NameSupplier"].ToString();
-                            oSupplier.LTypeIdentification.LIdTypeIdentification = Convert.ToInt32(lReader["IdTypeIdentification"].ToString());
-                            oSupplier.LTypeIdentification.LTypeIdentification = lReader["TypeIdentification"].ToString();
-                            oSupplier.LNoIdentification = lReader["NoIdentification"].ToString();
-                            oSupplier.LCreationDate = Convert.ToDateTime(lReader["CreationDate"].ToString());
-                            oSupplier.LStatus.LIdStatus = lReader["IdStatus"].ToString();
-                            oSupplier.LStatus.LDsEstado = lReader["DsEstado"].ToString();
-                            oSupplier.LObject.LIdObject = Convert.ToInt32(lReader["IdObject"].ToString());
-                            oSupplier.LObject.LNameObject = lReader["NameObject"].ToString();
-                            oSupplier.LModificationDate = Convert.ToDateTime(lReader["ModificationDate"]);
-                            oListSupplier.Add(oSupplier);
+                            var oSupplier = new Bo_Supplier
+                            {
+                                LTypeIdentification =
+                                    new Bo_TypeIdentification
+                                    {
+                                        LIdTypeIdentification =
+                                            Convert.ToInt32(lReader["IdTypeIdentification"].ToString()),
+                                        LTypeIdentification = lReader["TypeIdentification"].ToString()
+                                    },
+                                LIdSupplier = Convert.ToInt32(lReader["IdSupplier"].ToString()),
+                                LNameSupplier = lReader["NameSupplier"].ToString(),
+                                LNoIdentification = lReader["NoIdentification"].ToString(),
+                                LCreationDate = Convert.ToDateTime(lReader["CreationDate"].ToString()),
+                                LStatus = new Bo_Status
+                                {
+                                    LIdStatus = lReader["IdStatus"].ToString(),
+                                    LDsEstado = lReader["DsEstado"].ToString()
+                                },
+                                LObject = new Bo_Object
+                                {
+                                    LIdObject = Convert.ToInt32(lReader["IdObject"].ToString()),
+                                    LNameObject = lReader["NameObject"].ToString()
+                                },
+                                LModificationDate = Convert.ToDateTime(lReader["ModificationDate"])
+                            };
+                            lListSupplier.Add(oSupplier);
                         }
                     }
-                    Dao_UtilsLib.Dao_CloseSqlconnection(lConex);
-                    return oListSupplier;
+                    Dao_CloseSqlconnection(lConex);
+                    return lListSupplier;
                 }
                 catch (Exception e)
                 {
-                    List<Bo_Supplier> oListSupplier = new List<Bo_Supplier>();
-                    Bo_Supplier oSupplier = new Bo_Supplier();
-                    oSupplier.LException = e.Message;
+                    lListSupplier = new List<Bo_Supplier>();
+                    var oSupplier = new Bo_Supplier
+                    {
+                        LException = e.Message,
+                        LMessageDao = "Hubo un problema en la consulta, contacte al administrador."
+                    };
                     if (e.InnerException != null)
-                        oSupplier.LInnerException = e.InnerException.ToString();
-                    oSupplier.LMessageDao = "Hubo un problema en la consulta, contacte al administrador.";
-                    Dao_UtilsLib.Dao_CloseSqlconnection(lConex);
-                    oListSupplier.Add(oSupplier);
-                    return oListSupplier;
+                        oSupplier.LInnerException = e.InnerException.ToString();                   
+                    Dao_CloseSqlconnection(lConex);
+                    lListSupplier.Add(oSupplier);
+                    return lListSupplier;
                 }
             }
         }
 
         public string Dao_InsertSupplier(Bo_Supplier pSupplier)
         {
-            Dao_UtilsLib.dao_Addparameters(lListParam, SqlDbType.VarChar, "@NameSupplier", pSupplier.LNameSupplier);
-            Dao_UtilsLib.dao_Addparameters(lListParam, SqlDbType.Int, "@IdTypeIdentification", pSupplier.LTypeIdentification.LIdTypeIdentification.ToString());
-            Dao_UtilsLib.dao_Addparameters(lListParam, SqlDbType.VarChar, "@NoIdentification", pSupplier.LNoIdentification.ToString());
-            Dao_UtilsLib.dao_Addparameters(lListParam, SqlDbType.VarChar, "@IdStatus", pSupplier.LStatus.LIdStatus.ToString());
-            Dao_UtilsLib.dao_Addparameters(lListParam, SqlDbType.Int, "@IdObject", pSupplier.LObject.LIdObject.ToString());
-            return Dao_UtilsLib.Dao_executeSqlTransactionWithProcedement(lListParam, "LTranInsertSupplier", "spr_CreateSupplier");
+            this.LListParam = new List<SqlParameter>();
+            dao_Addparameters(this.LListParam, SqlDbType.VarChar, "@NameSupplier", pSupplier.LNameSupplier);
+            dao_Addparameters(this.LListParam, SqlDbType.Int, "@IdTypeIdentification", pSupplier.LTypeIdentification.LIdTypeIdentification.ToString());
+            dao_Addparameters(this.LListParam, SqlDbType.VarChar, "@NoIdentification", pSupplier.LNoIdentification);
+            dao_Addparameters(this.LListParam, SqlDbType.VarChar, "@IdStatus", pSupplier.LStatus.LIdStatus);
+            dao_Addparameters(this.LListParam, SqlDbType.Int, "@IdObject", pSupplier.LObject.LIdObject.ToString());
+            return Dao_executeSqlTransactionWithProcedement(this.LListParam, "LTranInsertSupplier", "spr_CreateSupplier");
         }
 
         public string Dao_UpdateSupplier(Bo_Supplier pSupplier)
         {
-            Dao_UtilsLib.dao_Addparameters(lListParam, SqlDbType.Int, "@IdSupplier", pSupplier.LIdSupplier.ToString());
-            Dao_UtilsLib.dao_Addparameters(lListParam, SqlDbType.VarChar, "@NameSupplier", pSupplier.LNameSupplier);
-            Dao_UtilsLib.dao_Addparameters(lListParam, SqlDbType.Int, "@IdTypeIdentification", pSupplier.LTypeIdentification.LIdTypeIdentification.ToString());
-            Dao_UtilsLib.dao_Addparameters(lListParam, SqlDbType.VarChar, "@NoIdentification", pSupplier.LNoIdentification.ToString());
-            Dao_UtilsLib.dao_Addparameters(lListParam, SqlDbType.VarChar, "@IdStatus", pSupplier.LStatus.LIdStatus.ToString());
-            Dao_UtilsLib.dao_Addparameters(lListParam, SqlDbType.Int, "@IdObject", pSupplier.LObject.LIdObject.ToString());
-            return Dao_UtilsLib.Dao_executeSqlTransactionWithProcedement(lListParam, "LTranUpdateSupplier", "spr_UpdateSupplier");
+            this.LListParam = new List<SqlParameter>();
+            dao_Addparameters(this.LListParam, SqlDbType.Int, "@IdSupplier", pSupplier.LIdSupplier.ToString());
+            dao_Addparameters(this.LListParam, SqlDbType.VarChar, "@NameSupplier", pSupplier.LNameSupplier);
+            dao_Addparameters(this.LListParam, SqlDbType.Int, "@IdTypeIdentification", pSupplier.LTypeIdentification.LIdTypeIdentification.ToString());
+            dao_Addparameters(this.LListParam, SqlDbType.VarChar, "@NoIdentification", pSupplier.LNoIdentification);
+            dao_Addparameters(this.LListParam, SqlDbType.VarChar, "@IdStatus", pSupplier.LStatus.LIdStatus);
+            dao_Addparameters(this.LListParam, SqlDbType.Int, "@IdObject", pSupplier.LObject.LIdObject.ToString());
+            return Dao_executeSqlTransactionWithProcedement(this.LListParam, "LTranUpdateSupplier", "spr_UpdateSupplier");
         }
 
         public string Dao_DeleteSupplier(Bo_Supplier pSupplier)
         {
-            Dao_UtilsLib.dao_Addparameters(lListParam, SqlDbType.Int, "@IdSupplier", pSupplier.LIdSupplier.ToString());
-            return Dao_UtilsLib.Dao_executeSqlTransactionWithProcedement(lListParam, "LTranDeleteSupplier", "spr_DeleteSupplier");
+            this.LListParam = new List<SqlParameter>();
+            dao_Addparameters(this.LListParam, SqlDbType.Int, "@IdSupplier", pSupplier.LIdSupplier.ToString());
+            return Dao_executeSqlTransactionWithProcedement(this.LListParam, "LTranDeleteSupplier", "spr_DeleteSupplier");
         }
     }
 }

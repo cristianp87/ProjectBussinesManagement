@@ -2,15 +2,21 @@
 using Dao_BussinessManagement;
 using IBusiness.Management;
 using System.Collections.Generic;
+using IDaoBusiness.Business;
 
 namespace Bll_Business
 {
     public class BllTypeIdentification : ITypeIdentification
     {
+        public IDaoTypeIdentification LiDaoTypeIdentification { get; set; }
+
+        public BllTypeIdentification()
+        {
+            this.LiDaoTypeIdentification = new DaoTypeIdentification();
+        }
         public List<Bo_TypeIdentification>  bll_getListTypeIdentification()
         {
-            var oTypeIdentification = new Dao_TypeIdentification();
-            return oTypeIdentification.Dao_getListAllTypeIdentification();
+            return this.LiDaoTypeIdentification.Dao_getListAllTypeIdentification();
         }
     }
 }

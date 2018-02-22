@@ -49,6 +49,12 @@
     <Compile Include="Business\IDaoOrder.cs" />
     <Compile Include="Business\IDaoOrderItem.cs" />
     <Compile Include="Business\IDaoProduct.cs" />
+    <Compile Include="Business\IDaoRole.cs" />
+    <Compile Include="Business\IDaoStatus.cs" />
+    <Compile Include="Business\IDaoSupplier.cs" />
+    <Compile Include="Business\IDaoTaxe.cs" />
+    <Compile Include="Business\IDaoTypeIdentification.cs" />
+    <Compile Include="Business\IDaoUser.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
