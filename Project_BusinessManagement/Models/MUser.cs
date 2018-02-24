@@ -16,7 +16,7 @@ namespace Project_BusinessManagement.Models
         public string LFirstName { get; set; }
         public string LSecondName { get; set; }
         public string LLastName { get; set; }
-        public string LSLastName { get; set; }
+        public string LsLastName { get; set; }
         public int LIdTypeIdentification { get; set; }
         public string LNoIdentification { get; set; }
         public int LIdObject { get; set; }
@@ -27,17 +27,14 @@ namespace Project_BusinessManagement.Models
         public string LEmail { get; set; }
         public MUser()
         {
-            LModificationDate = DateTime.Now;
+            this.LModificationDate = DateTime.Now;
         }
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(
     UserManager<MUser> manager)
         {
-            // Note the authenticationType must match the one 
-            // defined in CookieAuthenticationOptions.AuthenticationType
             var lUserIdentity =
                 await manager.CreateIdentityAsync(this,
                     DefaultAuthenticationTypes.ApplicationCookie);
-            // Add custom user claims here
             return lUserIdentity;
         }
     }

@@ -3,54 +3,61 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
+using IDaoBusiness.Business;
+using static Dao_BussinessManagement.Dao_UtilsLib;
 
 namespace Dao_BussinessManagement
 {
-    public class Dao_Status
+    public class DaoStatus : IDaoStatus
     {
         public List<Bo_Status> Dao_getListStatusByIdObject(int pIdObject)
         {
-            using (SqlConnection lConex = Dao_UtilsLib.Dao_SqlConnection(lConex))
+            using (SqlConnection lConex = Dao_SqlConnection(lConex))
             {
-
+                var lListStatus = new List<Bo_Status>();
                 try
                 {
-                    SqlCommand lCommand = new SqlCommand();
-                    lCommand.CommandText = "spr_GetListStatusByObject";
-                    lCommand.CommandTimeout = 30;
-                    lCommand.CommandType = CommandType.StoredProcedure;
-                    lCommand.Connection = lConex;
+                    var lCommand = new SqlCommand
+                    {
+                        CommandText = "spr_GetListStatusByObject",
+                        CommandTimeout = 30,
+                        CommandType = CommandType.StoredProcedure,
+                        Connection = lConex
+                    };
                     lCommand.Parameters.Add(new SqlParameter("IdObject", pIdObject));
                     var lReader = lCommand.ExecuteReader();
-                    List<Bo_Status> oListStatus = new List<Bo_Status>();
+                    
                     if (lReader.HasRows)
                     {
                         while (lReader.Read())
                         {
-                            Bo_Status oStatus= new Bo_Status();
-                            oStatus.LIdStatus = lReader["IdStatus"].ToString();
-                            oStatus.LDsEstado = lReader["DsEstado"].ToString();
-                            oStatus.LCreationDate = Convert.ToDateTime(lReader["CreationDate"].ToString());
-                            oStatus.LFlActive = Convert.ToBoolean(lReader["flActive"].ToString());
-                            oListStatus.Add(oStatus);
+                            var lStatus= new Bo_Status();
+                            lStatus.LIdStatus = lReader["IdStatus"].ToString();
+                            lStatus.LDsEstado = lReader["DsEstado"].ToString();
+                            lStatus.LCreationDate = Convert.ToDateTime(lReader["CreationDate"].ToString());
+                            lStatus.LFlActive = Convert.ToBoolean(lReader["flActive"].ToString());
+                            lListStatus.Add(lStatus);
                         }
 
 
                     }
-                    Dao_UtilsLib.Dao_CloseSqlconnection(lConex);
-                    return oListStatus;
+                    Dao_CloseSqlconnection(lConex);
+                    return lListStatus;
                 }
                 catch (Exception e)
                 {
-                    List<Bo_Status> oListStatus = new List<Bo_Status>();
-                    Bo_Status oStatus = new Bo_Status();
-                    oStatus.LException = e.Message;
+                    lListStatus = new List<Bo_Status>();
+                    var lStatus = new Bo_Status
+                    {
+                        LException = e.Message,
+                        LMessageDao = "Hubo un problema en la consulta, contacte al administrador."
+                    };
+
                     if (e.InnerException != null)
-                        oStatus.LInnerException = e.InnerException.ToString();
-                    oStatus.LMessageDao = "Hubo un problema en la consulta, contacte al administrador.";
-                    oListStatus.Add(oStatus);
-                    Dao_UtilsLib.Dao_CloseSqlconnection(lConex);
-                    return oListStatus;
+                        lStatus.LInnerException = e.InnerException.ToString();
+                    lListStatus.Add(lStatus);
+                    Dao_CloseSqlconnection(lConex);
+                    return lListStatus;
                 }
 
             }

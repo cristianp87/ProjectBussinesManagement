@@ -7,209 +7,61 @@ namespace Project_BusinessManagement.Models
 {
     public class MOrderItem
     {
-        private int lIdOrderItem;
-        private MProduct lProduct = null;
-        private DateTime lCreationDate;
-        private MStatus lStatus;
-        private MObject lObject;
-        private MOrder lOrder;
-        private decimal lQty;
-        private decimal lValueProduct;
-        private decimal lValueSupplier;
-        private decimal lValueTaxes;
-        private decimal lValueDesc;
-        private decimal lValueTotal;
-        private string lMessageException;
+        public int LIdOrderItem { get; set; }
 
-        public int LIdOrderItem
-        {
-            get
-            {
-                return lIdOrderItem;
-            }
+        public MProduct LProduct { get; set; } = null;
 
-            set
-            {
-                lIdOrderItem = value;
-            }
-        }
-
-        public MProduct LProduct
-        {
-            get
-            {
-                return lProduct;
-            }
-
-            set
-            {
-                lProduct = value;
-            }
-        }
         [DisplayName("Fecha De Creación")]
-        public DateTime LCreationDate
-        {
-            get
-            {
-                return lCreationDate;
-            }
+        public DateTime LCreationDate { get; set; }
 
-            set
-            {
-                lCreationDate = value;
-            }
-        }
+        public MStatus LStatus { get; set; }
 
-        public MStatus LStatus
-        {
-            get
-            {
-                return lStatus;
-            }
+        public MObject LObject { get; set; }
 
-            set
-            {
-                lStatus = value;
-            }
-        }
+        public MOrder LOrder { get; set; }
 
-        public MObject LObject
-        {
-            get
-            {
-                return lObject;
-            }
-
-            set
-            {
-                lObject = value;
-            }
-        }
-
-        public MOrder LOrder
-        {
-            get
-            {
-                return lOrder;
-            }
-
-            set
-            {
-                lOrder = value;
-            }
-        }
         [DisplayName("Valor de Producto")]
-        public decimal LValueProduct
-        {
-            get
-            {
-                return lValueProduct;
-            }
+        public decimal LValueProduct { get; set; }
 
-            set
-            {
-                lValueProduct = value;
-            }
-        }
         [DisplayName("Valoe de Proveedor")]
-        public decimal LValueSupplier
-        {
-            get
-            {
-                return lValueSupplier;
-            }
-
-            set
-            {
-                lValueSupplier = value;
-            }
-        }
+        public decimal LValueSupplier { get; set; }
 
         [DisplayName("Valor De Impuestos")]
-        public decimal LValueTaxes
-        {
-            get
-            {
-                return lValueTaxes;
-            }
+        public decimal LValueTaxes { get; set; }
 
-            set
-            {
-                lValueTaxes = value;
-            }
-        }
         [DisplayName("Valor de Descuento")]
-        public decimal LValueDesc
-        {
-            get
-            {
-                return lValueDesc;
-            }
+        public decimal LValueDesc { get; set; }
 
-            set
-            {
-                lValueDesc = value;
-            }
-        }
         [DisplayName("Valor Total")]
-        public decimal LValueTotal
-        {
-            get
-            {
-                return lValueTotal;
-            }
+        public decimal LValueTotal { get; set; }
 
-            set
-            {
-                lValueTotal = value;
-            }
-        }
+        public string LMessageException { get; set; }
 
-        public string LMessageException
-        {
-            get
-            {
-                return lMessageException;
-            }
-
-            set
-            {
-                lMessageException = value;
-            }
-        }
         [DisplayName("Cantidad")]
-        public decimal LQty
-        {
-            get
-            {
-                return lQty;
-            }
-
-            set
-            {
-                lQty = value;
-            }
-        }
+        public decimal LQty { get; set; }
 
         public static List<MOrderItem> MListOrder(List<Bo_OrderItem> pListOrderItem)
         {
-            List<MOrderItem> lListOrderItem = new List<MOrderItem>();
+            var lListOrderItem = new List<MOrderItem>();
             pListOrderItem.ForEach(x => {
-                MOrderItem lMOrderItem = new MOrderItem();
-                lMOrderItem.LProduct = new MProduct();
-                lMOrderItem.lOrder = new MOrder();
-                lMOrderItem.LIdOrderItem = x.LIdOrderItem;
-                lMOrderItem.LProduct.LNameProduct = x.LProduct.LNameProduct;
-                lMOrderItem.LProduct.LIdProduct = x.LProduct.LIdProduct;
-                lMOrderItem.LOrder.LIdOrder = x.LOrder.LIdOrder;
-                lMOrderItem.LQty = x.LQty;
-                lMOrderItem.LValueProduct = x.LValueProduct;
-                lMOrderItem.LValueSupplier = x.LValueSupplier;
-                lMOrderItem.LValueTaxes = x.LValueTaxes;
-                lMOrderItem.LValueDesc = x.LValueDesc;
-                lMOrderItem.LCreationDate = x.LCreationDate;
-                lMOrderItem.LValueTotal = x.LValueTotal;
-                lListOrderItem.Add(lMOrderItem);
+                                            var lMOrderItem = new MOrderItem
+                                            {
+                                                LProduct = new MProduct
+                                                {
+                                                    LNameProduct = x.LProduct.LNameProduct,
+                                                    LIdProduct = x.LProduct.LIdProduct
+                                                },
+                                                LOrder = new MOrder {LIdOrder = x.LOrder.LIdOrder},
+                                                LIdOrderItem = x.LIdOrderItem,
+                                                LQty = x.LQty,
+                                                LValueProduct = x.LValueProduct,
+                                                LValueSupplier = x.LValueSupplier,
+                                                LValueTaxes = x.LValueTaxes,
+                                                LValueDesc = x.LValueDesc,
+                                                LCreationDate = x.LCreationDate,
+                                                LValueTotal = x.LValueTotal
+                                            };
+                                            lListOrderItem.Add(lMOrderItem);
             });
             return lListOrderItem;
         }

@@ -4,22 +4,22 @@ namespace Project_BusinessManagement.Models
 {
     public static class MGlobalVariables
     {
-        private static string lNameObjectSupplier;
-        private static string lNameObjectCustomer;
-        private static string lNameObjectProduct;
-        private static string lNameObjectInventory;
-        private static string lNameObjectInventoryItem;
-        private static string lNameObjectOrder;
-        private static string lNameObjectOrderItem;
-        private static string lNameObjectInvoice;
-        private static string lNameObjectInvoiceItem;
+        private static string _lNameObjectSupplier;
+        private static string _lNameObjectCustomer;
+        private static string _lNameObjectProduct;
+        private static string _lNameObjectInventory;
+        private static string _lNameObjectInventoryItem;
+        private static string _lNameObjectOrder;
+        private static string _lNameObjectOrderItem;
+        private static string _lNameObjectInvoice;
+        private static string _lNameObjectInvoiceItem;
 
         public static string LNameObjectSupplier
         {
             get
             {
-                lNameObjectSupplier = ConfigurationManager.AppSettings["objectSupplier"].ToString() ;
-                return lNameObjectSupplier;
+                _lNameObjectSupplier = ConfigurationManager.AppSettings["objectSupplier"].ToString() ;
+                return _lNameObjectSupplier;
             }
         }
 
@@ -27,8 +27,8 @@ namespace Project_BusinessManagement.Models
         {
             get
             {
-                lNameObjectCustomer = ConfigurationManager.AppSettings["objectCustomer"].ToString();
-                return lNameObjectCustomer;
+                _lNameObjectCustomer = ConfigurationManager.AppSettings["objectCustomer"].ToString();
+                return _lNameObjectCustomer;
             }
         }
 
@@ -36,8 +36,8 @@ namespace Project_BusinessManagement.Models
         {
             get
             {
-                lNameObjectProduct = ConfigurationManager.AppSettings["objectProduct"].ToString();
-                return lNameObjectProduct;
+                _lNameObjectProduct = ConfigurationManager.AppSettings["objectProduct"].ToString();
+                return _lNameObjectProduct;
             }
         }
 
@@ -45,8 +45,8 @@ namespace Project_BusinessManagement.Models
         {
             get
             {
-                lNameObjectInventory= ConfigurationManager.AppSettings["objectInventory"].ToString();
-                return lNameObjectInventory;
+                _lNameObjectInventory= ConfigurationManager.AppSettings["objectInventory"].ToString();
+                return _lNameObjectInventory;
             }
         }
 
@@ -54,8 +54,8 @@ namespace Project_BusinessManagement.Models
         {
             get
             {
-                lNameObjectInventoryItem = ConfigurationManager.AppSettings["objectInvenItem"].ToString();
-                return lNameObjectInventoryItem;
+                _lNameObjectInventoryItem = ConfigurationManager.AppSettings["objectInvenItem"].ToString();
+                return _lNameObjectInventoryItem;
             }
         }
 
@@ -63,8 +63,8 @@ namespace Project_BusinessManagement.Models
         {
             get
             {
-                lNameObjectOrder = ConfigurationManager.AppSettings["objectOrder"].ToString();
-                return lNameObjectOrder;
+                _lNameObjectOrder = ConfigurationManager.AppSettings["objectOrder"].ToString();
+                return _lNameObjectOrder;
             }
         }
 
@@ -72,8 +72,8 @@ namespace Project_BusinessManagement.Models
         {
             get
             {
-                lNameObjectOrderItem = ConfigurationManager.AppSettings["objectOrderItem"].ToString();
-                return lNameObjectOrderItem;
+                _lNameObjectOrderItem = ConfigurationManager.AppSettings["objectOrderItem"].ToString();
+                return _lNameObjectOrderItem;
             }
         }
 
@@ -81,8 +81,8 @@ namespace Project_BusinessManagement.Models
         {
             get
             {
-                lNameObjectInvoice = ConfigurationManager.AppSettings["objectInvoice"].ToString();
-                return lNameObjectInvoice;
+                _lNameObjectInvoice = ConfigurationManager.AppSettings["objectInvoice"].ToString();
+                return _lNameObjectInvoice;
             }
 
         }
@@ -91,8 +91,8 @@ namespace Project_BusinessManagement.Models
         {
             get
             {
-                lNameObjectInvoiceItem = ConfigurationManager.AppSettings["objectInvoiceItem"].ToString();
-                return lNameObjectInvoiceItem;
+                _lNameObjectInvoiceItem = ConfigurationManager.AppSettings["objectInvoiceItem"].ToString();
+                return _lNameObjectInvoiceItem;
             }
 
         }

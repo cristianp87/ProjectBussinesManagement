@@ -1,5 +1,4 @@
-﻿using Bll_Business;
-using IBusiness.Common;
+﻿using IBusiness.Common;
 using IBusiness.Management;
 using Microsoft.AspNet.Identity;
 using Microsoft.Owin.Security;
@@ -17,7 +16,7 @@ namespace Project_BusinessManagement.Controllers.Security
         #region Variables and Constants
 
         public static IBusinessUser LiUser =
-        FacadeProvider.Resolver<BllUser>();
+        FacadeProvider.Resolver<IBusinessUser>();
         #endregion
         #region Propierties
         public CustomUserManager PCustomUserManager { get; private set; }
@@ -112,7 +111,7 @@ namespace Project_BusinessManagement.Controllers.Security
                 LNoIdentification = pUser.LNoIdentification,
                 LObject = bo_Object,
                 LPassword = pUser.LPasswordHash,
-                LSLastName = pUser.LSLastName,
+                LSLastName = pUser.LsLastName,
                 LSNameUser = pUser.LSecondName,
                 LStatus = bo_Status,
                 LTypeIdentification = bo_TypeIdentification,

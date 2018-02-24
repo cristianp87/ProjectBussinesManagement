@@ -1,7 +1,4 @@
-﻿using Bll_Business;
-using BO_BusinessManagement;
-using System;
-using System.Collections.Generic;
+﻿using System;
 using System.Web.Mvc;
 using IBusiness.Common;
 using IBusiness.Management;
@@ -17,7 +14,7 @@ namespace Project_BusinessManagement.Controllers
         FacadeProvider.Resolver<IProduct>();
 
         public ITaxe LiTaxe =
-        FacadeProvider.Resolver<BllTaxe>();
+        FacadeProvider.Resolver<ITaxe>();
         #endregion
         // GET: Taxe
         public ActionResult Index(int pIdProduct)

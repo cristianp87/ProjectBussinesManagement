@@ -1,9 +1,7 @@
-﻿using Bll_Business;
-using BO_BusinessManagement;
+﻿using BO_BusinessManagement;
 using Project_BusinessManagement.Filters;
 using Project_BusinessManagement.Models;
 using System;
-using System.Collections.Generic;
 using System.Web.Mvc;
 using IBusiness.Common;
 using IBusiness.Management;
@@ -22,7 +20,7 @@ namespace Project_BusinessManagement.Controllers
         public IInventory LInventory =
         FacadeProvider.Resolver<IInventory>();
 
-        public readonly MParameter lParameter = new MParameter();
+        public readonly MParameter LParameter = new MParameter();
 
         public IOrder LOrder =
         FacadeProvider.Resolver<IOrder>();
@@ -37,10 +35,10 @@ namespace Project_BusinessManagement.Controllers
         FacadeProvider.Resolver<IProduct>();
 
         public ITypeIdentification LiTypeIdentification=
-        FacadeProvider.Resolver<BllTypeIdentification>();
+        FacadeProvider.Resolver<ITypeIdentification>();
 
         public IUtilsLib LiUtilsLib =
-        FacadeProvider.Resolver<BllUtilsLib>();
+        FacadeProvider.Resolver<IUtilsLib>();
         #endregion
 
         // GET: Order
@@ -122,7 +120,7 @@ namespace Project_BusinessManagement.Controllers
         {
             try
             {                      
-                var lResult = this.LOrder.bll_InsertOrder(pOrder.LInventory.LIdInventory, pOrder.LCustomer.LIdCustomer, this.LiUtilsLib.bll_GetObjectByName(MGlobalVariables.LNameObjectOrder).LIdObject, this.LiUtilsLib.bll_getStatusApproByObject(this.LiUtilsLib.bll_GetObjectByName(MGlobalVariables.LNameObjectOrder).LIdObject).LIdStatus, pOrder.LListOrderItem, this.lParameter.lIsModuleInventory, this.LiUtilsLib.bll_GetObjectByName(MGlobalVariables.LNameObjectOrderItem).LIdObject, this.LiUtilsLib.bll_getStatusApproByObject(this.LiUtilsLib.bll_GetObjectByName(MGlobalVariables.LNameObjectOrderItem).LIdObject).LIdStatus);
+                var lResult = this.LOrder.bll_InsertOrder(pOrder.LInventory.LIdInventory, pOrder.LCustomer.LIdCustomer, this.LiUtilsLib.bll_GetObjectByName(MGlobalVariables.LNameObjectOrder).LIdObject, this.LiUtilsLib.bll_getStatusApproByObject(this.LiUtilsLib.bll_GetObjectByName(MGlobalVariables.LNameObjectOrder).LIdObject).LIdStatus, pOrder.LListOrderItem, this.LParameter.LIsModuleInventory, this.LiUtilsLib.bll_GetObjectByName(MGlobalVariables.LNameObjectOrderItem).LIdObject, this.LiUtilsLib.bll_getStatusApproByObject(this.LiUtilsLib.bll_GetObjectByName(MGlobalVariables.LNameObjectOrderItem).LIdObject).LIdStatus);
                 var lIdOrder = 0;
                 if(int.TryParse(lResult, out lIdOrder))
                 {

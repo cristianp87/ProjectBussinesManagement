@@ -6,14 +6,6 @@ C:\Users\CristianPc\Documents\Visual Studio 2015\Projects\Project_BusinessManage
 C:\Users\CristianPc\Documents\Visual Studio 2015\Projects\Project_BusinessManagement\Dao_BussinessManagement\obj\Debug\Dao_BussinessManagement.csprojResolveAssemblyReference.cache
 C:\Users\CristianPc\Documents\Visual Studio 2015\Projects\Project_BusinessManagement\Dao_BussinessManagement\obj\Debug\Dao_BussinessManagement.dll
 C:\Users\CristianPc\Documents\Visual Studio 2015\Projects\Project_BusinessManagement\Dao_BussinessManagement\obj\Debug\Dao_BussinessManagement.pdb
-C:\Users\cripac\Documents\GitHub\ProjectBussinesManagement\Dao_BussinessManagement\bin\Debug\Dao_BussinessManagement.dll.config
-C:\Users\cripac\Documents\GitHub\ProjectBussinesManagement\Dao_BussinessManagement\bin\Debug\Dao_BussinessManagement.dll
-C:\Users\cripac\Documents\GitHub\ProjectBussinesManagement\Dao_BussinessManagement\bin\Debug\Dao_BussinessManagement.pdb
-C:\Users\cripac\Documents\GitHub\ProjectBussinesManagement\Dao_BussinessManagement\bin\Debug\BO_BusinessManagement.dll
-C:\Users\cripac\Documents\GitHub\ProjectBussinesManagement\Dao_BussinessManagement\bin\Debug\BO_BusinessManagement.pdb
-C:\Users\cripac\Documents\GitHub\ProjectBussinesManagement\Dao_BussinessManagement\obj\Debug\Dao_BussinessManagement.csprojResolveAssemblyReference.cache
-C:\Users\cripac\Documents\GitHub\ProjectBussinesManagement\Dao_BussinessManagement\obj\Debug\Dao_BussinessManagement.dll
-C:\Users\cripac\Documents\GitHub\ProjectBussinesManagement\Dao_BussinessManagement\obj\Debug\Dao_BussinessManagement.pdb
 C:\Users\CristianPc\Documents\Projects\ProjectBussinesManagement\Dao_BussinessManagement\bin\Debug\Dao_BussinessManagement.dll.config
 C:\Users\CristianPc\Documents\Projects\ProjectBussinesManagement\Dao_BussinessManagement\bin\Debug\Dao_BussinessManagement.dll
 C:\Users\CristianPc\Documents\Projects\ProjectBussinesManagement\Dao_BussinessManagement\bin\Debug\Dao_BussinessManagement.pdb
@@ -22,3 +14,13 @@ C:\Users\CristianPc\Documents\Projects\ProjectBussinesManagement\Dao_BussinessMa
 C:\Users\CristianPc\Documents\Projects\ProjectBussinesManagement\Dao_BussinessManagement\obj\Debug\Dao_BussinessManagement.csprojResolveAssemblyReference.cache
 C:\Users\CristianPc\Documents\Projects\ProjectBussinesManagement\Dao_BussinessManagement\obj\Debug\Dao_BussinessManagement.dll
 C:\Users\CristianPc\Documents\Projects\ProjectBussinesManagement\Dao_BussinessManagement\obj\Debug\Dao_BussinessManagement.pdb
+C:\Users\cripac\Documents\GitHub\ProjectBussinesManagement\Dao_BussinessManagement\bin\Debug\Dao_BussinessManagement.dll.config
+C:\Users\cripac\Documents\GitHub\ProjectBussinesManagement\Dao_BussinessManagement\bin\Debug\Dao_BussinessManagement.dll
+C:\Users\cripac\Documents\GitHub\ProjectBussinesManagement\Dao_BussinessManagement\bin\Debug\Dao_BussinessManagement.pdb
+C:\Users\cripac\Documents\GitHub\ProjectBussinesManagement\Dao_BussinessManagement\bin\Debug\BO_BusinessManagement.dll
+C:\Users\cripac\Documents\GitHub\ProjectBussinesManagement\Dao_BussinessManagement\bin\Debug\BO_BusinessManagement.pdb
+C:\Users\cripac\Documents\GitHub\ProjectBussinesManagement\Dao_BussinessManagement\obj\Debug\Dao_BussinessManagement.csprojResolveAssemblyReference.cache
+C:\Users\cripac\Documents\GitHub\ProjectBussinesManagement\Dao_BussinessManagement\obj\Debug\Dao_BussinessManagement.dll
+C:\Users\cripac\Documents\GitHub\ProjectBussinesManagement\Dao_BussinessManagement\obj\Debug\Dao_BussinessManagement.pdb
+C:\Users\cripac\Documents\GitHub\ProjectBussinesManagement\Dao_BussinessManagement\bin\Debug\IDaoBusiness.dll
+C:\Users\cripac\Documents\GitHub\ProjectBussinesManagement\Dao_BussinessManagement\bin\Debug\IDaoBusiness.pdb

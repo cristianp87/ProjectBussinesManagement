@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using Project_BusinessManagement.Models;
@@ -29,90 +27,90 @@ namespace Project_BusinessManagement.Filters
             var lResult = false;
             if (lParameterStr.Equals("IsCustomer"))
             {
-                lResult = lParam.lIsModuleCustomer;
+                lResult = lParam.LIsModuleCustomer;
             };
             if (lParameterStr.Equals("IsInvoice"))
             {
-                lResult = lParam.lIsModuleInvoice;
+                lResult = lParam.LIsModuleInvoice;
             };
             if (lParameterStr.Equals("IsProduct"))
             {
-                lResult = lParam.lIsModuleProduct;
+                lResult = lParam.LIsModuleProduct;
             };
             if (lParameterStr.Equals("IsRealizeOrder"))
             {
-                lResult = lParam.lIsModuleRealizeOrder;
+                lResult = lParam.LIsModuleRealizeOrder;
             };
             if (lParameterStr.Equals("IsDashBoard"))
             {
-                lResult = lParam.lIsModuleDashBoard;
+                lResult = lParam.LIsModuleDashBoard;
             };
             if (lParameterStr.Equals("IsInventory"))
             {
-                lResult = lParam.lIsModuleInventory;
+                lResult = lParam.LIsModuleInventory;
             };
             if (lParameterStr.Equals("IsSupplier"))
             {
-                lResult = lParam.lIsModuleSupplier;
+                lResult = lParam.LIsModuleSupplier;
             };
             if (lParameterStr.Equals("CreateCustomer")) {
-                lResult = lParam.lCreateCustomer;
+                lResult = lParam.LCreateCustomer;
             };
             if (lParameterStr.Equals("EditCustomer"))
             {
-                lResult = lParam.lEditCustomer;
+                lResult = lParam.LEditCustomer;
             };
             if (lParameterStr.Equals("DeleteCustomer"))
             {
-                lResult = lParam.lDeleteCustomer;
+                lResult = lParam.LDeleteCustomer;
             };
             if (lParameterStr.Equals("CreateSupplier"))
             {
-                lResult = lParam.lCreateSupplier;
+                lResult = lParam.LCreateSupplier;
             };
             if (lParameterStr.Equals("EditSupplier"))
             {
-                lResult = lParam.lEditSupplier;
+                lResult = lParam.LEditSupplier;
             };
             if (lParameterStr.Equals("DeleteSupplier"))
             {
-                lResult = lParam.lDeleteSupplier;
+                lResult = lParam.LDeleteSupplier;
             };
             if (lParameterStr.Equals("CreateDashBoard"))
             {
-                lResult = lParam.lCreateDashBoard;
+                lResult = lParam.LCreateDashBoard;
             };
             if (lParameterStr.Equals("EditDashBoard"))
             {
-                lResult = lParam.lEditDashBoard;
+                lResult = lParam.LEditDashBoard;
             };
             if (lParameterStr.Equals("DeleteDashBoard"))
             {
-                lResult = lParam.lDeleteDashBoard;
+                lResult = lParam.LDeleteDashBoard;
             };
             if (lParameterStr.Equals("CreateInventory"))
             {
-                lResult = lParam.lCreateInventory;
+                lResult = lParam.LCreateInventory;
             };
             if (lParameterStr.Equals("EditInventory"))
             {
-                lResult = lParam.lEditInventory;
+                lResult = lParam.LEditInventory;
             };
             if (lParameterStr.Equals("DeleteInventory"))
             {
-                lResult = lParam.lDeleteInventory;
+                lResult = lParam.LDeleteInventory;
             };
             if (lParameterStr.Equals("CreateProduct"))
             {
-                lResult = lParam.lCreateProduct;
+                lResult = lParam.LCreateProduct;
             };
             if (lParameterStr.Equals("EditProduct"))
             {
-                lResult = lParam.lEditProduct;
+                lResult = lParam.LEditProduct;
             };
             if (lParameterStr.Equals("DeleteProduct"))
             {
-                lResult = lParam.lDeleteProduct;
+                lResult = lParam.LDeleteProduct;
             };
             return lResult;
         }

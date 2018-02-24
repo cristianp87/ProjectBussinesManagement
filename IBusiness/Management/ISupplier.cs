@@ -10,6 +10,7 @@ namespace IBusiness.Management
 {
     public interface ISupplier : IFacade
     {
+        #region Methods
         Bo_Supplier bll_GetSupplierById(int pIdSupplier);
 
         List<Bo_Supplier> bll_GetAllSupplier();
@@ -28,6 +29,6 @@ namespace IBusiness.Management
             string pIdStatus);
 
         string bll_DeleteSupplier(int pIdSupplier);
-
+    #endregion
     }
 }
