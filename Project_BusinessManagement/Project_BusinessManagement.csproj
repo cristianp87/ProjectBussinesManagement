@@ -354,6 +354,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Infrastructure\HandleErrorAttribute.cs" />
+    <Compile Include="Models\ECodesError.cs" />
     <Compile Include="Models\MCustomer.cs" />
     <Compile Include="Models\MGlobalVariables.cs" />
     <Compile Include="Models\MInventory.cs" />
@@ -384,10 +385,6 @@
     <Folder Include="Views\InvoiceItem\" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Bll_Business\Bll_Business.csproj">
-      <Project>{e270b63e-1209-4094-a270-40d6f59fc1ea}</Project>
-      <Name>Bll_Business</Name>
-    </ProjectReference>
     <ProjectReference Include="..\BO_BusinessManagement\BO_BusinessManagement.csproj">
       <Project>{1287fc76-f226-4d34-bbe7-3468934459ee}</Project>
       <Name>BO_BusinessManagement</Name>
@@ -395,6 +392,10 @@
     <ProjectReference Include="..\IBusiness\IBusiness.csproj">
       <Project>{A09DD1D3-90FB-419A-B840-2F51B6645C25}</Project>
       <Name>IBusiness</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\InstancesBll\InstancesBll.csproj">
+      <Project>{86cb5bc0-ad8d-4bbb-99d9-008372b1b327}</Project>
+      <Name>InstancesBll</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

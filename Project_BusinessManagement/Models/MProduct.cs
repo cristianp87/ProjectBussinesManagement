@@ -14,9 +14,17 @@ namespace Project_BusinessManagement.Models
         #region Variables and Constants
         public static ISupplier LiSupplier =
         FacadeProvider.Resolver<ISupplier>();
+
+        public static IStatus LiStatus =
+        FacadeProvider.Resolver<IStatus>();
+
+        public static ITaxe LiTaxe =
+        FacadeProvider.Resolver<ITaxe>();
+
+        public static IUtilsLib LiUtilsLib =
+        FacadeProvider.Resolver<IUtilsLib>();
         #endregion
 
-        [UIHint("LIdProduct")]
         [DisplayName("IDProducto")]
         public int LIdProduct { get; set; }
 
@@ -37,7 +45,7 @@ namespace Project_BusinessManagement.Models
 
         public MSupplier LSupplier { get; set; }
 
-        [Required(ErrorMessage = "El valor del proveedor es requerido.")]
+        [Required(ErrorMessage = CodesError.LMsgValidateValueSupplier)]
         [DisplayName("Valor del Proveedor")]
         public decimal LValueSupplier { get; set; }
 
@@ -58,7 +66,7 @@ namespace Project_BusinessManagement.Models
         public string LMessageException { get; set; }
 
         [DisplayName("Codigo Producto")]
-        [Required(ErrorMessage = "El valor del proveedor es requerido.")]
+        [Required(ErrorMessage = CodesError.LMsgValidateCodeProduct)]
         public string LCdProduct { get; set; }
 
         public List<MTaxe> LListTaxe { get; set; }
@@ -69,10 +77,10 @@ namespace Project_BusinessManagement.Models
 
         public string LListIdsTaxe { get; set; }
 
-        public static List<MProduct> MListProduct(List<Bo_Product> oBListProduct)
+        public static List<MProduct> MListProduct(List<Bo_Product> pBoListProduct)
         {
-            List<MProduct> oMListProduct = new List<MProduct>();
-            oBListProduct.ForEach(x => {
+            var lMListProduct = new List<MProduct>();
+            pBoListProduct.ForEach(x => {
                                            var oMProduct = new MProduct
                                            {
                                                LIdProduct = x.LIdProduct,
@@ -82,98 +90,98 @@ namespace Project_BusinessManagement.Models
                                                LValueSupplier = x.LValueSupplier,
                                                LCreationDate = x.LCreationDate
                                            };
-                                           oMListProduct.Add(oMProduct);
+                                           lMListProduct.Add(oMProduct);
             });
-            return oMListProduct;
+            return lMListProduct;
         }
 
-        public static List<SelectListItem> MListAllProduct(List<Bo_Product> oBListProduct)
+        public static List<SelectListItem> MListAllProduct(List<Bo_Product> pBoListProduct)
         {
-            var oMListProduct = new List<SelectListItem>();
-            oBListProduct.ForEach(x => {
+            var lMListProduct = new List<SelectListItem>();
+            pBoListProduct.ForEach(x => {
                                            var oListItem = new SelectListItem
                                            {
                                                Value = x.LIdProduct.ToString(),
                                                Text = x.LNameProduct
                                            };
-                                           oMListProduct.Add(oListItem);
+                                           lMListProduct.Add(oListItem);
             });
-            return oMListProduct;
+            return lMListProduct;
         }
 
-        public static List<SelectListItem> MListAllProductwithSelect(List<Bo_Product> oBListProduct)
+        public static List<SelectListItem> MListAllProductwithSelect(List<Bo_Product> pBoListProduct)
         {
-            var oMListProduct = new List<SelectListItem>();
-            var oListItemSelect = new SelectListItem
+            var lMListProduct = new List<SelectListItem>();
+            var lListItemSelect = new SelectListItem
             {
                 Text = "Seleccione...",
                 Value = "0"
             };
-            oMListProduct.Add(oListItemSelect);
-            oBListProduct.ForEach(x => {
+            lMListProduct.Add(lListItemSelect);
+            pBoListProduct.ForEach(x => {
                                            var oListItem = new SelectListItem
                                            {
                                                Value = x.LIdProduct.ToString(),
                                                Text = x.LNameProduct
                                            };
-                                           oMListProduct.Add(oListItem);
+                                           lMListProduct.Add(oListItem);
             });
-            return oMListProduct;
+            return lMListProduct;
         }
 
-        public static MProduct MProductById(Bo_Product oBProduct)
+        public static MProduct MProductById(Bo_Product pBoProduct)
         {
-            var oMProduct = new MProduct
+            var lMProduct = new MProduct
             {
                 LObject = new MObject
                 {
-                    LIdObject = oBProduct.LObject.LIdObject,
-                    LNameObject = oBProduct.LObject.LNameObject
+                    LIdObject = pBoProduct.LObject.LIdObject,
+                    LNameObject = pBoProduct.LObject.LNameObject
                 },
                 LStatus = new MStatus
                 {
-                    LDsEstado = oBProduct.LStatus.LDsEstado,
-                    LIdStatus = oBProduct.LStatus.LIdStatus
+                    LDsEstado = pBoProduct.LStatus.LDsEstado,
+                    LIdStatus = pBoProduct.LStatus.LIdStatus
                 },
                 LUnit = new MUnit
                 {
-                    LIdUnit = oBProduct.LUnit.LIdUnit,
-                    LNameUnit = oBProduct.LUnit.LNameUnit,
-                    LCdUnit = oBProduct.LUnit.LCdUnit,
-                    LFlActive = oBProduct.LUnit.LFlActive
+                    LIdUnit = pBoProduct.LUnit.LIdUnit,
+                    LNameUnit = pBoProduct.LUnit.LNameUnit,
+                    LCdUnit = pBoProduct.LUnit.LCdUnit,
+                    LFlActive = pBoProduct.LUnit.LFlActive
                 },
                 LListStatus = new List<SelectListItem>(),
                 LSupplier = new MSupplier
                 {
-                    LIdSupplier = oBProduct.LSupplier.LIdSupplier,
-                    LNameSupplier = oBProduct.LSupplier.LNameSupplier
+                    LIdSupplier = pBoProduct.LSupplier.LIdSupplier,
+                    LNameSupplier = pBoProduct.LSupplier.LNameSupplier
                 },
                 LListSupplier = new List<SelectListItem>(),
                 LListTaxe = new List<MTaxe>(),
                 LListUnit = new List<SelectListItem>(),
-                LNameProduct = oBProduct.LNameProduct,
-                LCdProduct = oBProduct.LCdProduct,
-                LIdProduct = oBProduct.LIdProduct,
-                LCreationDate = oBProduct.LCreationDate,
-                LValue = oBProduct.LValue,
-                LValueSupplier = oBProduct.LValueSupplier
+                LNameProduct = pBoProduct.LNameProduct,
+                LCdProduct = pBoProduct.LCdProduct,
+                LIdProduct = pBoProduct.LIdProduct,
+                LCreationDate = pBoProduct.LCreationDate,
+                LValue = pBoProduct.LValue,
+                LValueSupplier = pBoProduct.LValueSupplier
             };
-            oMProduct.LListSupplier = MSupplier.MListAllSupplier(LiSupplier.bll_GetAllSupplier());
-            oMProduct.LListStatus = MStatus.MListAllStatus(Bll_Business.Bll_Status.Bll_getListStatusByIdObject(oBProduct.LObject.LIdObject));
-            oMProduct.LListUnit = MUnit.MListAllUnitWithSelect(Bll_Business.Bll_UtilsLib.bll_GetAllUnit());
-            oMProduct.LListTaxe = MTaxe.MListAllTaxesXProduct(Bll_Business.Bll_Taxe.bll_GetListallTaxesXProduct(oBProduct.LIdProduct), null);
-            return oMProduct;
+            lMProduct.LListSupplier = MSupplier.MListAllSupplier(LiSupplier.bll_GetAllSupplier());
+            lMProduct.LListStatus = MStatus.MListAllStatus(LiStatus.Bll_getListStatusByIdObject(pBoProduct.LObject.LIdObject));
+            lMProduct.LListUnit = MUnit.MListAllUnitWithSelect(LiUtilsLib.bll_GetAllUnit());
+            lMProduct.LListTaxe = MTaxe.MListAllTaxesXProduct(LiTaxe.bll_GetListallTaxesXProduct(pBoProduct.LIdProduct), null);
+            return lMProduct;
         }
 
-        public static MProduct MProductEmpty(Bo_Product oBProduct)
+        public static MProduct MProductEmpty(Bo_Product pBoProduct)
         {          
-            var oObject = Bll_Business.Bll_UtilsLib.bll_GetObjectByName(MGlobalVariables.LNameObjectProduct);
-            var oMProduct = new MProduct
+            var lObject = LiUtilsLib.bll_GetObjectByName(MGlobalVariables.LNameObjectProduct);
+            var lMProduct = new MProduct
             {
                 LObject = new MObject
                 {
-                    LIdObject = oObject.LIdObject,
-                    LNameObject = oObject.LNameObject
+                    LIdObject = lObject.LIdObject,
+                    LNameObject = lObject.LNameObject
                 },
                 LStatus = new MStatus
                 {
@@ -194,12 +202,11 @@ namespace Project_BusinessManagement.Models
                 LValueSupplier = 0,
                 LCreationDate = new DateTime()
             };
-
-            oMProduct.LListStatus = MStatus.MListStatusWithSelect(Bll_Business.Bll_Status.Bll_getListStatusByIdObject(oMProduct.LObject.LIdObject));
-            oMProduct.LListSupplier = MSupplier.MListAllSupplierWithSelect(LiSupplier.bll_GetAllSupplier());
-            oMProduct.LListUnit = MUnit.MListAllUnitWithSelect(Bll_Business.Bll_UtilsLib.bll_GetAllUnit());
-            oMProduct.LListSelectTaxe = MTaxe.MListTaxesWithSelect(Bll_Business.Bll_Taxe.bll_GetListTaxes());
-            return oMProduct;
+            lMProduct.LListStatus = MStatus.MListStatusWithSelect(LiStatus.Bll_getListStatusByIdObject(lMProduct.LObject.LIdObject));
+            lMProduct.LListSupplier = MSupplier.MListAllSupplierWithSelect(LiSupplier.bll_GetAllSupplier());
+            lMProduct.LListUnit = MUnit.MListAllUnitWithSelect(LiUtilsLib.bll_GetAllUnit());
+            lMProduct.LListSelectTaxe = MTaxe.MListTaxesWithSelect(LiTaxe.bll_GetListTaxes());
+            return lMProduct;
         }
     }
 }

@@ -1,5 +1,6 @@
-﻿using Bll_Business;
-using BO_BusinessManagement;
+﻿using BO_BusinessManagement;
+using IBusiness.Common;
+using IBusiness.Management;
 using Microsoft.AspNet.Identity;
 using Project_BusinessManagement.Models;
 using System;
@@ -11,6 +12,14 @@ namespace Project_BusinessManagement.Security
 {
     public class CustoMUserStore : IUserStore<MUser>, IUserRoleStore<MUser>
     {
+        #region Variables and Constants
+        public IBusinessRole LRoleFacade =
+        FacadeProvider.Resolver<IBusinessRole>();
+
+        public IBusinessUser LiUser =
+        FacadeProvider.Resolver<IBusinessUser>();
+        #endregion
+
         public Task CreateAsync(MUser user)
         {
             //Create /Register New User 
@@ -29,7 +38,7 @@ namespace Project_BusinessManagement.Security
             var lIdUser = 0;
             if (int.TryParse(userId, out lIdUser))
             {
-                lUser = Bll_User.bll_GetUserById(Convert.ToInt32(userId));
+                lUser = LiUser.bll_GetUserById(Convert.ToInt32(userId));
                 if (string.IsNullOrEmpty(lUser.LException))
                 {
 
@@ -59,7 +68,7 @@ namespace Project_BusinessManagement.Security
         public Task<MUser> FindByNameAsync(string userName)
         {
             Bo_User lUser = new Bo_User();
-            lUser = Bll_User.bll_GetUserByUser(userName);
+            lUser = LiUser.bll_GetUserByUser(userName);
             if (string.IsNullOrEmpty(lUser.LException))
             {
 
@@ -114,7 +123,7 @@ namespace Project_BusinessManagement.Security
         public Task<IList<string>> GetRolesAsync(MUser user)
         {
             IList<Bo_Role> lRole;
-            lRole = Bll_Role.GetRolesByUser(Convert.ToInt32(user.Id));
+            lRole = this.LRoleFacade.GetRolesByUser(Convert.ToInt32(user.Id));
             IList<string> lListApprole = new List<string>();
 
             if (string.IsNullOrEmpty(lRole.First().LException))

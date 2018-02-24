@@ -1,5 +1,4 @@
-﻿using Bll_Business;
-using BO_BusinessManagement;
+﻿using BO_BusinessManagement;
 using Project_BusinessManagement.Filters;
 using System;
 using System.Collections.Generic;
@@ -23,6 +22,9 @@ namespace Project_BusinessManagement.Controllers
 
         public static IProduct LiProduct =
         FacadeProvider.Resolver<IProduct>();
+
+        public static IStatus LStatus =
+        FacadeProvider.Resolver<IStatus>();
         #endregion
         // GET: InventoryItem
         public ActionResult Index(int id)
@@ -165,7 +167,7 @@ namespace Project_BusinessManagement.Controllers
         {
             pMInventoryItem.LListStatus = new List<SelectListItem>();
             pMInventoryItem.LListProduct = new List<SelectListItem>();
-            pMInventoryItem.LListStatus = MStatus.MListAllStatus(Bll_Status.Bll_getListStatusByIdObject(pMInventoryItem.LObject.LIdObject));
+            pMInventoryItem.LListStatus = MStatus.MListAllStatus(LStatus.Bll_getListStatusByIdObject(pMInventoryItem.LObject.LIdObject));
             pMInventoryItem.LListProduct = MProduct.MListAllProduct(LiProduct.bll_GetAllProduct());
             return pMInventoryItem;
         }
@@ -179,7 +181,7 @@ namespace Project_BusinessManagement.Controllers
             pMInventoryItem = pMInventoryOldItem;
             pMInventoryItem.LListStatus = new List<SelectListItem>();
             pMInventoryItem.LListProduct = new List<SelectListItem>();
-            pMInventoryItem.LListStatus = MStatus.MListAllStatus(Bll_Status.Bll_getListStatusByIdObject(pMInventoryItem.LObject.LIdObject));
+            pMInventoryItem.LListStatus = MStatus.MListAllStatus(LStatus.Bll_getListStatusByIdObject(pMInventoryItem.LObject.LIdObject));
             pMInventoryItem.LListProduct = MProduct.MListAllProduct(LiProduct.bll_GetAllProduct());
             pMInventoryItem.LInventory = new MInventory();
             var lObInventory = this.LInventory.bll_GetInventoryById(pIdInventory);

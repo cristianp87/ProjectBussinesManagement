@@ -1,25 +1,32 @@
 ﻿using BO_BusinessManagement;
 using Dao_BussinessManagement;
+using IBusiness.Management;
+using IDaoBusiness.Business;
+
 namespace Bll_Business
 {
-    public static class Bll_User
+    public class BllUser : IBusinessUser
     {
-        public static Bo_User bll_GetUserByUser(string pUser)
+        public IDaoUser LiDaoUser { get; set; }
+
+        public BllUser()
         {
-            var lUser = new Dao_User();
-            return lUser.Dao_getUserByUser(pUser);
+            this.LiDaoUser = new DaoUser();
         }
 
-        public static Bo_User bll_GetUserById(int pIdUser)
+        public Bo_User bll_GetUserByUser(string pUser)
         {
-            var lUser = new Dao_User();
-            return lUser.Dao_getUserById(pIdUser);
+            return this.LiDaoUser.Dao_getUserByUser(pUser);
         }
 
-        public static string bll_InsertUser(Bo_User pUser)
+        public Bo_User bll_GetUserById(int pIdUser)
         {
-            var lUser = new Dao_User();
-            return lUser.Dao_InsertUser(pUser);
+            return this.LiDaoUser.Dao_getUserById(pIdUser);
+        }
+
+        public string bll_InsertUser(Bo_User pUser)
+        {
+            return this.LiDaoUser.Dao_InsertUser(pUser);
         }
     }
 }

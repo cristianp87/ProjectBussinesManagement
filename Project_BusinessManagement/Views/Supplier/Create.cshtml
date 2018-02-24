@@ -42,7 +42,7 @@
             @Html.LabelFor(model => model.LTypeIdentification.LTypeIdentification, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.DropDownListFor(model => model.LTypeIdentification.LIdTypeIdentification, Model.LListTypeIdentification, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.LIdSupplier, "", new { @class = "text-danger" })
+                @Html.ValidationMessageFor(model => model.LTypeIdentification.LIdTypeIdentification, "", new { @class = "text-danger" })
             </div>
         </div>
 

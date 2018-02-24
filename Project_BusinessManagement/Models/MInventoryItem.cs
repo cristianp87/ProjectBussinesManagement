@@ -16,164 +16,39 @@ namespace Project_BusinessManagement.Models
 
         public static IProduct LiProduct =
         FacadeProvider.Resolver<IProduct>();
+
+        public static IStatus LiStatus =
+        FacadeProvider.Resolver<IStatus>();
+
+        public static IUtilsLib LiUtilsLib =
+        FacadeProvider.Resolver<IUtilsLib>();
         #endregion
-        private int lIdInventoryItem;
-        private MProduct lProduct = null;
-        private DateTime lCreationDate;
-        private MStatus lStatus;
-        private MObject lObject;
-        private decimal lQtySellable;
-        private decimal lQtyNonSellable;
-        private MInventory lInventory;
-        private List<SelectListItem> lListStatus;
-        private List<SelectListItem> lListProduct;
-        private string lMessageException;
 
         [DisplayName("Id Item")]
-        public int LIdInventoryItem
-        {
-            get
-            {
-                return lIdInventoryItem;
-            }
+        public int LIdInventoryItem { get; set; }
 
-            set
-            {
-                lIdInventoryItem = value;
-            }
-        }
-
-        public MProduct LProduct
-        {
-            get
-            {
-                return lProduct;
-            }
-
-            set
-            {
-                lProduct = value;
-            }
-        }
+        public MProduct LProduct { get; set; } = null;
 
         [DisplayName("Fecha De Creación")]
-        public DateTime LCreationDate
-        {
-            get
-            {
-                return lCreationDate;
-            }
+        public DateTime LCreationDate { get; set; }
 
-            set
-            {
-                lCreationDate = value;
-            }
-        }
+        public MStatus LStatus { get; set; }
 
-        public MStatus LStatus
-        {
-            get
-            {
-                return lStatus;
-            }
-
-            set
-            {
-                lStatus = value;
-            }
-        }
-
-        public MObject LObject
-        {
-            get
-            {
-                return lObject;
-            }
-
-            set
-            {
-                lObject = value;
-            }
-        }
+        public MObject LObject { get; set; }
 
         [DisplayName("Cantidad Vendible")]
-        public decimal LQtySellable
-        {
-            get
-            {
-                return lQtySellable;
-            }
+        public decimal LQtySellable { get; set; }
 
-            set
-            {
-                lQtySellable = value;
-            }
-        }
         [DisplayName("Cantidad No Vendible")]
-        public decimal LQtyNonSellable
-        {
-            get
-            {
-                return lQtyNonSellable;
-            }
+        public decimal LQtyNonSellable { get; set; }
 
-            set
-            {
-                lQtyNonSellable = value;
-            }
-        }
+        public List<SelectListItem> LListStatus { get; set; }
 
-        public List<SelectListItem> LListStatus
-        {
-            get
-            {
-                return lListStatus;
-            }
+        public List<SelectListItem> LListProduct { get; set; }
 
-            set
-            {
-                lListStatus = value;
-            }
-        }
+        public string LMessageException { get; set; }
 
-        public List<SelectListItem> LListProduct
-        {
-            get
-            {
-                return lListProduct;
-            }
-
-            set
-            {
-                lListProduct = value;
-            }
-        }
-
-        public string LMessageException
-        {
-            get
-            {
-                return lMessageException;
-            }
-
-            set
-            {
-                lMessageException = value;
-            }
-        }
-
-        public MInventory LInventory
-        {
-            get
-            {
-                return lInventory;
-            }
-
-            set
-            {
-                lInventory = value;
-            }
-        }
+        public MInventory LInventory { get; set; }
 
         public static List<MInventoryItem> MListInventoryItem(List<Bo_InventoryItem> oBListInventoryItem)
         {
@@ -192,7 +67,7 @@ namespace Project_BusinessManagement.Models
                                                          LNameInventory = x.LInventory.LNameInventory
                                                      },
                                                      LIdInventoryItem = x.LIdInventoryItem,
-                                                     lQtySellable = x.LQtySellable,
+                                                     LQtySellable = x.LQtySellable,
                                                      LQtyNonSellable = x.LQtyNonSellable,
                                                      LCreationDate = x.LCreationDate
                                                  };
@@ -201,40 +76,38 @@ namespace Project_BusinessManagement.Models
             return oMListInventoryItem;
         }
 
-        public static MInventoryItem MInventoryItemById(Bo_InventoryItem oBInventoryItem)
+        public static MInventoryItem MInventoryItemById(Bo_InventoryItem pInventoryItem)
         {
             var oMInventoryItem = new MInventoryItem
             {
-                LObject = new MObject(),
                 LStatus = new MStatus
                 {
-                    LIdStatus = oBInventoryItem.LStatus.LIdStatus,
-                    LDsEstado = oBInventoryItem.LStatus.LDsEstado
+                    LIdStatus = pInventoryItem.LStatus.LIdStatus,
+                    LDsEstado = pInventoryItem.LStatus.LDsEstado
                 },
                 LListStatus = new List<SelectListItem>(),
                 LListProduct = new List<SelectListItem>(),
                 LProduct = new MProduct
                 {
-                    LIdProduct = oBInventoryItem.LProduct.LIdProduct,
-                    LNameProduct = oBInventoryItem.LProduct.LNameProduct
+                    LIdProduct = pInventoryItem.LProduct.LIdProduct,
+                    LNameProduct = pInventoryItem.LProduct.LNameProduct
                 },
-                LInventory = new MInventory(),
-                LIdInventoryItem = oBInventoryItem.LIdInventoryItem,
-                lInventory =
+                LIdInventoryItem = pInventoryItem.LIdInventoryItem,
+                LInventory = new MInventory
                 {
-                    LIdInventory = oBInventoryItem.LInventory.LIdInventory,
-                    LNameInventory = oBInventoryItem.LInventory.LNameInventory
+                    LIdInventory = pInventoryItem.LInventory.LIdInventory,
+                    LNameInventory = pInventoryItem.LInventory.LNameInventory
                 },
-                lQtySellable = oBInventoryItem.LQtySellable,
-                LQtyNonSellable = oBInventoryItem.LQtyNonSellable,
-                LCreationDate = oBInventoryItem.LCreationDate,
-                lObject =
+                LQtySellable = pInventoryItem.LQtySellable,
+                LQtyNonSellable = pInventoryItem.LQtyNonSellable,
+                LCreationDate = pInventoryItem.LCreationDate,
+                LObject = new MObject
                 {
-                    LIdObject = oBInventoryItem.LObject.LIdObject,
-                    LNameObject = oBInventoryItem.LObject.LNameObject
+                    LIdObject = pInventoryItem.LObject.LIdObject,
+                    LNameObject = pInventoryItem.LObject.LNameObject
                 }
             };
-            oMInventoryItem.LListStatus = MStatus.MListAllStatus(Bll_Business.Bll_Status.Bll_getListStatusByIdObject(oMInventoryItem.LObject.LIdObject));
+            oMInventoryItem.LListStatus = MStatus.MListAllStatus(LiStatus.Bll_getListStatusByIdObject(oMInventoryItem.LObject.LIdObject));
             oMInventoryItem.LListProduct = MProduct.MListAllProduct(LiProduct.bll_GetAllProduct());
             return oMInventoryItem;
         }
@@ -242,10 +115,9 @@ namespace Project_BusinessManagement.Models
         public static MInventoryItem MInventoryEmpty(int pIdInventory)
         {          
             var obInventory = LInventoryTInventory.bll_GetInventoryById(pIdInventory);
-            var oObject = Bll_Business.Bll_UtilsLib.bll_GetObjectByName(MGlobalVariables.LNameObjectInventoryItem);
+            var oObject = LiUtilsLib.bll_GetObjectByName(MGlobalVariables.LNameObjectInventoryItem);
             var oMInventoryItem = new MInventoryItem
-            {
-                LObject = new MObject(),
+            { 
                 LStatus = new MStatus
                 {
                     LDsEstado = null,
@@ -259,16 +131,16 @@ namespace Project_BusinessManagement.Models
                     LIdInventory = obInventory.LIdInventory,
                     LNameInventory = obInventory.LNameInventory
                 },
-                lQtySellable = 0,
+                LQtySellable = 0,
                 LQtyNonSellable = 0,
                 LCreationDate = new DateTime(),
-                lObject =
+                LObject = new MObject
                 {
                     LIdObject = oObject.LIdObject,
                     LNameObject = oObject.LNameObject
                 }
             };
-            oMInventoryItem.LListStatus = MStatus.MListStatusWithSelect(Bll_Business.Bll_Status.Bll_getListStatusByIdObject(oMInventoryItem.LObject.LIdObject));
+            oMInventoryItem.LListStatus = MStatus.MListStatusWithSelect(LiStatus.Bll_getListStatusByIdObject(oMInventoryItem.LObject.LIdObject));
             oMInventoryItem.LListProduct = MProduct.MListAllProductwithSelect(LiProduct.bll_GetAllProduct());
             return oMInventoryItem;
         }

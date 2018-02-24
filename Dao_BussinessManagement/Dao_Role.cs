@@ -3,50 +3,53 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
+using IDaoBusiness.Business;
+using static Dao_BussinessManagement.Dao_UtilsLib;
 
 namespace Dao_BussinessManagement
 {
-    public class Dao_Role
+    public class DaoRole : IDaoRole
     {
         public List<Bo_Role> Dao_getRolesByUser(int pUserId)
         {
-            using (SqlConnection lConex = Dao_UtilsLib.Dao_SqlConnection(lConex))
+            using (SqlConnection lConex = Dao_SqlConnection(lConex))
             {
+                var lRoles = new List<Bo_Role>();
                 try
                 {
-                    SqlCommand lCommand = new SqlCommand();
-                    lCommand.CommandText = "spr_GetRolesByUser";
-                    lCommand.CommandTimeout = 30;
-                    lCommand.CommandType = CommandType.StoredProcedure;
-                    lCommand.Connection = lConex;
+                    var lCommand = new SqlCommand
+                    {
+                        CommandText = "spr_GetRolesByUser",
+                        CommandTimeout = 30,
+                        CommandType = CommandType.StoredProcedure,
+                        Connection = lConex
+                    };
                     lCommand.Parameters.Add(new SqlParameter("IdUser", pUserId));
 
                     var lReader = lCommand.ExecuteReader();
-                    List<Bo_Role> lRoles = new List<Bo_Role>();
                     if (lReader.HasRows)
                     {
                         while (lReader.Read())
                         {
-                            Bo_Role lRole = new Bo_Role();
-                            lRole.LIdRole = Convert.ToInt32(lReader["IdRole"].ToString());
-                            lRole.LNameRole = lReader["NameRole"].ToString();
-                            lRole.LFlActive = Convert.ToBoolean(lReader["flActive"].ToString());
+                            var lRole = new Bo_Role
+                            {
+                                LIdRole = Convert.ToInt32(lReader["IdRole"].ToString()),
+                                LNameRole = lReader["NameRole"].ToString(),
+                                LFlActive = Convert.ToBoolean(lReader["flActive"].ToString())
+                            };
                             lRoles.Add(lRole);
                         }
                     }
-                    Dao_UtilsLib.Dao_CloseSqlconnection(lConex);
+                    Dao_CloseSqlconnection(lConex);
                     return lRoles;
                 }
                 catch (Exception e)
                 {
-                    List<Bo_Role> lRoles = new List<Bo_Role>();
-                    Bo_Role lRole = new Bo_Role();
-                    lRole.LException = e.Message;
+                    var lRole = new Bo_Role {LException = e.Message, LMessageDao = "Hubo un problema en la consulta, contacte al administrador." };
                     if (e.InnerException != null)
                         lRole.LInnerException = e.InnerException.ToString();
-                    lRole.LMessageDao = "Hubo un problema en la consulta, contacte al administrador.";
                     lRoles.Add(lRole);
-                    Dao_UtilsLib.Dao_CloseSqlconnection(lConex);
+                    Dao_CloseSqlconnection(lConex);
                     return lRoles;
                 }
             }

@@ -24,6 +24,13 @@ namespace IBusiness.Common
             return FacadeProviderInstance.Resolver<T>();
         }
 
+        public static void RegisterFacadeProvider()
+        {
+            FacadeProviderInstance.RegisterFacadeProvider();
+        }
+
+
+
         #endregion
     }
 }

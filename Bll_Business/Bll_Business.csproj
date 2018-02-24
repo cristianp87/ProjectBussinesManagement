@@ -104,6 +104,10 @@
       <Project>{A09DD1D3-90FB-419A-B840-2F51B6645C25}</Project>
       <Name>IBusiness</Name>
     </ProjectReference>
+    <ProjectReference Include="..\IDaoBusiness\IDaoBusiness.csproj">
+      <Project>{7A150096-8EF4-416E-B578-6C8F8D93D47C}</Project>
+      <Name>IDaoBusiness</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

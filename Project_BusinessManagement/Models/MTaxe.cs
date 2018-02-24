@@ -10,203 +10,106 @@ namespace Project_BusinessManagement.Models
 {
     public class MTaxe
     {
-        private int lIdTaxe;
-        private string lNameTaxe;
-        private decimal lValueTaxe;
-        private bool lIsPercent;
-        private DateTime lCreationDate;
-        private MStatus lStatus;
-        private MObject lObject;
-        private int lIdProduct;
-        private string lMessageException;
-
         [UIHint("LIdTaxe")]
         [DisplayName("Id Impuesto")]
-        public int LIdTaxe
-        {
-            get
-            {
-                return lIdTaxe;
-            }
-
-            set
-            {
-                lIdTaxe = value;
-            }
-        }
+        public int LIdTaxe { get; set; }
 
         [DisplayName("Nombre")]
-        public string LNameTaxe
-        {
-            get
-            {
-                return lNameTaxe;
-            }
-
-            set
-            {
-                lNameTaxe = value;
-            }
-        }
+        public string LNameTaxe { get; set; }
 
         [DisplayName("Valor")]
-        public decimal LValueTaxe
-        {
-            get
-            {
-                return lValueTaxe;
-            }
-
-            set
-            {
-                lValueTaxe = value;
-            }
-        }
+        public decimal LValueTaxe { get; set; }
 
         [DisplayName("Porcentaje")]
-        public bool LIsPercent
-        {
-            get
-            {
-                return lIsPercent;
-            }
-
-            set
-            {
-                lIsPercent = value;
-            }
-        }
+        public bool LIsPercent { get; set; }
 
         [DisplayName("Fecha Creacion")]
-        public DateTime LCreationDate
-        {
-            get
-            {
-                return lCreationDate;
-            }
+        public DateTime LCreationDate { get; set; }
 
-            set
-            {
-                lCreationDate = value;
-            }
-        }
+        public MStatus LStatus { get; set; }
 
-        public MStatus LStatus
-        {
-            get
-            {
-                return lStatus;
-            }
+        public MObject LObject { get; set; }
 
-            set
-            {
-                lStatus = value;
-            }
-        }
+        public int LIdProduct { get; set; }
 
-        public MObject LObject
-        {
-            get
-            {
-                return lObject;
-            }
-
-            set
-            {
-                lObject = value;
-            }
-        }
-
-        public int LIdProduct
-        {
-            get
-            {
-                return lIdProduct;
-            }
-
-            set
-            {
-                lIdProduct = value;
-            }
-        }
-
-        public string LMessageException
-        {
-            get
-            {
-                return lMessageException;
-            }
-
-            set
-            {
-                lMessageException = value;
-            }
-        }
+        public string LMessageException { get; set; }
 
         public static List<MTaxe> MListAllTaxesXProduct(List<Bo_Taxe> oListTaxe, int? pIdProducto)
         {
-            List<MTaxe> oMListTaxe = new List<MTaxe>();
+            var lMListTaxe = new List<MTaxe>();
             
             oListTaxe.ForEach(x => {
-                MTaxe lTaxe = new MTaxe();
-                lTaxe.LStatus = new MStatus();
-                lTaxe.lObject = new MObject();
-                lTaxe.LIdTaxe = x.LIdTaxe;
-                lTaxe.lNameTaxe = x.LNameTaxe;
-                lTaxe.LIsPercent = x.LIsPercent;
-                lTaxe.LValueTaxe = x.LValueTaxe;
-                lTaxe.LStatus.LIdStatus = x.LStatus.LIdStatus;
-                lTaxe.lObject.LIdObject = x.LObject.LIdObject;
-                lTaxe.lIdProduct = pIdProducto==null? 0: Convert.ToInt32(pIdProducto);
-                lTaxe.LMessageException = null;
-                oMListTaxe.Add(lTaxe);
+                                       var lTaxe = new MTaxe
+                                       {
+                                           LStatus = new MStatus {LIdStatus = x.LStatus.LIdStatus},
+                                           LObject = new MObject {LIdObject = x.LObject.LIdObject},
+                                           LIdTaxe = x.LIdTaxe,
+                                           LNameTaxe = x.LNameTaxe,
+                                           LIsPercent = x.LIsPercent,
+                                           LValueTaxe = x.LValueTaxe,
+                                           LIdProduct = pIdProducto == null ? 0 : Convert.ToInt32(pIdProducto),
+                                           LMessageException = null
+                                       };
+                lMListTaxe.Add(lTaxe);
             });
 
-            if (!oMListTaxe.Any())
-            { 
-                MTaxe lTaxe = new MTaxe();
-                lTaxe.lIdProduct = pIdProducto == null ? 0 : Convert.ToInt32(pIdProducto);
-                lTaxe.LNameTaxe = "N/A";
-                lTaxe.LIsPercent = false;
-                lTaxe.LValueTaxe = 0;
-                lTaxe.LMessageException = "No tiene Impuestos";
-                oMListTaxe.Add(lTaxe);
+            if (!lMListTaxe.Any())
+            {
+                var lTaxe = new MTaxe
+                {
+                    LIdProduct = pIdProducto == null ? 0 : Convert.ToInt32(pIdProducto),
+                    LNameTaxe = "N/A",
+                    LIsPercent = false,
+                    LValueTaxe = 0,
+                    LMessageException = "No tiene Impuestos"
+                };
+                lMListTaxe.Add(lTaxe);
             }
-            return oMListTaxe;
+            return lMListTaxe;
         }
 
-        public static List<SelectListItem> MListTaxesWithSelect(List<Bo_Taxe> lListTaxe)
+        public static List<SelectListItem> MListTaxesWithSelect(List<Bo_Taxe> pBoListTaxe)
         {
-            List<SelectListItem> lListSelectTaxes = new List<SelectListItem>();
-            SelectListItem lListItemSelect = new SelectListItem();
-            lListItemSelect.Text = "Seleccione...";
-            lListItemSelect.Value = "0";
+            var lListSelectTaxes = new List<SelectListItem>();
+            var lListItemSelect = new SelectListItem
+            {
+                Text = "Seleccione...",
+                Value = "0"
+            };
             lListSelectTaxes.Add(lListItemSelect);
-            lListTaxe.ForEach(x => {
-                SelectListItem lListItem = new SelectListItem();
-                lListItem.Value = x.LIdTaxe.ToString();
-                lListItem.Text = x.LNameTaxe;
-                lListSelectTaxes.Add(lListItem);
+            pBoListTaxe.ForEach(x => {
+                                         var lListItem = new SelectListItem
+                                         {
+                                             Value = x.LIdTaxe.ToString(),
+                                             Text = x.LNameTaxe
+                                         };
+                                         lListSelectTaxes.Add(lListItem);
             });
             return lListSelectTaxes;
         }
 
         public static MTaxe GetTaxeXProduct(Bo_Taxe pTaxe, int pIdProduct)
         {
-            var lTaxe = new MTaxe();
-            lTaxe.LObject = new MObject();
-            lTaxe.LStatus = new MStatus();
-            lTaxe.LCreationDate = pTaxe.LCreationDate;
-            lTaxe.LIdProduct = pIdProduct;
-            lTaxe.LIdTaxe = pTaxe.LIdTaxe;
-            lTaxe.LIsPercent = pTaxe.LIsPercent;
-            lTaxe.LMessageException = pTaxe.LMessageDao;
-            lTaxe.LNameTaxe = pTaxe.LNameTaxe;
-            lTaxe.LObject.LIdObject = pTaxe.LObject.LIdObject;
-            lTaxe.LObject.LNameObject = pTaxe.LObject.LNameObject;
-            lTaxe.LStatus.LIdStatus = pTaxe.LStatus.LIdStatus;
-            lTaxe.LStatus.LDsEstado = pTaxe.LStatus.LDsEstado;
-            lTaxe.LValueTaxe = pTaxe.LValueTaxe;
+            var lTaxe = new MTaxe
+            {
+                LObject = new MObject
+                {
+                    LIdObject = pTaxe.LObject.LIdObject,
+                    LNameObject = pTaxe.LObject.LNameObject
+                },
+                LStatus = new MStatus
+                {
+                    LIdStatus = pTaxe.LStatus.LIdStatus,
+                    LDsEstado = pTaxe.LStatus.LDsEstado
+                },
+                LCreationDate = pTaxe.LCreationDate,
+                LIdProduct = pIdProduct,
+                LIdTaxe = pTaxe.LIdTaxe,
+                LIsPercent = pTaxe.LIsPercent,
+                LMessageException = pTaxe.LMessageDao,
+                LNameTaxe = pTaxe.LNameTaxe,
+                LValueTaxe = pTaxe.LValueTaxe
+            };
             return lTaxe;
         }
     }

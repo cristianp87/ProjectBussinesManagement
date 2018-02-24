@@ -3,60 +3,60 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
+using IDaoBusiness.Business;
 
 namespace Dao_BussinessManagement
 {
-    public class Dao_Invoice
+    public class DaoInvoice : IDaoInvoice
     {
-        List<SqlParameter> lListParam = new List<SqlParameter>();
+        List<SqlParameter> LListParam { get; set; }
 
         public Bo_Invoice Dao_getInvoiceById(int pIdInvoice)
         {
             using (SqlConnection lConex = Dao_UtilsLib.Dao_SqlConnection(lConex))
             {
+                var lInvoice = new Bo_Invoice();
                 try
                 {
-                    SqlCommand lCommand = new SqlCommand();
-                    lCommand.CommandText = "spr_GetInvoice";
-                    lCommand.CommandTimeout = 30;
-                    lCommand.CommandType = CommandType.StoredProcedure;
-                    lCommand.Connection = lConex;
+                    var lCommand = new SqlCommand
+                    {
+                        CommandText = "spr_GetInvoice",
+                        CommandTimeout = 30,
+                        CommandType = CommandType.StoredProcedure,
+                        Connection = lConex
+                    };
                     lCommand.Parameters.Add(new SqlParameter("IdInvoice", pIdInvoice));
 
                     var lReader = lCommand.ExecuteReader();
-                    Bo_Invoice oInvoice = new Bo_Invoice();
                     if (lReader.HasRows)
                     {
                         while (lReader.Read())
                         {
-                            oInvoice.LStatus = new Bo_Status();
-                            oInvoice.LObject = new Bo_Object();
-                            oInvoice.LCustomer = new Bo_Customer();
-                            oInvoice.LListInvoiceItem = new List<Bo_InvoiceItem>();
-                            oInvoice.LIdInvoice = Convert.ToInt32(lReader["IdInvoice"].ToString());
-                            oInvoice.LCdInvoice = lReader["CdInvoice"].ToString();
-                            oInvoice.LCreationDate = Convert.ToDateTime(lReader["CreationDate"].ToString());
-                            oInvoice.LCustomer.LIdCustomer = Convert.ToInt32(lReader["IdCustomer"].ToString());
-                            oInvoice.LCustomer.LNameCustomer = lReader["NameCustomer"].ToString();
-                            oInvoice.LCustomer.LLastNameCustomer = lReader["LastNameCustomer"].ToString();
-                            oInvoice.LStatus.LIdStatus = lReader["IdStatus"].ToString();
-                            oInvoice.LObject.LIdObject = Convert.ToInt32(lReader["IdObject"].ToString());
-                            Dao_InvoiceItem oLInvoiceItem = new Dao_InvoiceItem();
-                            oInvoice.LListInvoiceItem = oLInvoiceItem.Dao_getInvoiceItemByIdInvoice(oInvoice.LIdInvoice);
+                            lInvoice.LStatus = new Bo_Status();
+                            lInvoice.LObject = new Bo_Object();
+                            lInvoice.LCustomer = new Bo_Customer();
+                            lInvoice.LListInvoiceItem = new List<Bo_InvoiceItem>();
+                            lInvoice.LIdInvoice = Convert.ToInt32(lReader["IdInvoice"].ToString());
+                            lInvoice.LCdInvoice = lReader["CdInvoice"].ToString();
+                            lInvoice.LCreationDate = Convert.ToDateTime(lReader["CreationDate"].ToString());
+                            lInvoice.LCustomer.LIdCustomer = Convert.ToInt32(lReader["IdCustomer"].ToString());
+                            lInvoice.LCustomer.LNameCustomer = lReader["NameCustomer"].ToString();
+                            lInvoice.LCustomer.LLastNameCustomer = lReader["LastNameCustomer"].ToString();
+                            lInvoice.LStatus.LIdStatus = lReader["IdStatus"].ToString();
+                            lInvoice.LObject.LIdObject = Convert.ToInt32(lReader["IdObject"].ToString());                            
                         }
                     }
                     Dao_UtilsLib.Dao_CloseSqlconnection(lConex);
-                    return oInvoice;
+                    return lInvoice;
                 }
                 catch (Exception e)
                 {
-                    Bo_Invoice oInvoice = new Bo_Invoice();
-                    oInvoice.LException = e.Message;
+                    lInvoice = new Bo_Invoice {LException = e.Message};
                     if (e.InnerException != null)
-                        oInvoice.LInnerException = e.InnerException.ToString();
-                    oInvoice.LMessageDao = "Hubo un problema en la consulta, contacte al administrador.";
+                        lInvoice.LInnerException = e.InnerException.ToString();
+                    lInvoice.LMessageDao = "Hubo un problema en la consulta, contacte al administrador.";
                     Dao_UtilsLib.Dao_CloseSqlconnection(lConex);
-                    return oInvoice;
+                    return lInvoice;
                 }
             }
         }
@@ -65,49 +65,53 @@ namespace Dao_BussinessManagement
         {
             using (SqlConnection lConex = Dao_UtilsLib.Dao_SqlConnection(lConex))
             {
+                var lListInvoice = new List<Bo_Invoice>();
                 try
                 {
-                    SqlCommand lCommand = new SqlCommand();
-                    lCommand.CommandText = "spr_GetListInvoiceAll";
-                    lCommand.CommandTimeout = 30;
-                    lCommand.CommandType = CommandType.StoredProcedure;
-                    lCommand.Connection = lConex;
+                    var lCommand = new SqlCommand
+                    {
+                        CommandText = "spr_GetListInvoiceAll",
+                        CommandTimeout = 30,
+                        CommandType = CommandType.StoredProcedure,
+                        Connection = lConex
+                    };
                     lCommand.Parameters.Add(new SqlParameter("IdCustomer", pIdCustomer));
                     var lReader = lCommand.ExecuteReader();
-                    List<Bo_Invoice> oListInvoice = new List<Bo_Invoice>();
                     if (lReader.HasRows)
                     {
                         while (lReader.Read())
                         {
-                            Bo_Invoice oInvoice = new Bo_Invoice();
-                            oInvoice.LStatus = new Bo_Status();
-                            oInvoice.LObject = new Bo_Object();
-                            oInvoice.LCustomer = new Bo_Customer();
-                            oInvoice.LIdInvoice = Convert.ToInt32(lReader["IdInvoice"].ToString());
-                            oInvoice.LCdInvoice = lReader["CdInvoice"].ToString();
-                            oInvoice.LCreationDate = Convert.ToDateTime(lReader["CreationDate"].ToString());
-                            oInvoice.LCustomer.LIdCustomer = Convert.ToInt32(lReader["IdCustomer"].ToString());
-                            oInvoice.LCustomer.LNameCustomer = lReader["NameCustomer"].ToString();
-                            oInvoice.LCustomer.LLastNameCustomer = lReader["LastNameCustomer"].ToString();
-                            oInvoice.LStatus.LIdStatus = lReader["IdStatus"].ToString();
-                            oInvoice.LObject.LIdObject = Convert.ToInt32(lReader["IdObject"].ToString());
-                            oListInvoice.Add(oInvoice);
+                            var oInvoice = new Bo_Invoice
+                            {
+                                LStatus = new Bo_Status {LIdStatus = lReader["IdStatus"].ToString()},
+                                LObject = new Bo_Object {LIdObject = Convert.ToInt32(lReader["IdObject"].ToString())},
+                                LCustomer =
+                                    new Bo_Customer
+                                    {
+                                        LIdCustomer = Convert.ToInt32(lReader["IdCustomer"].ToString()),
+                                        LNameCustomer = lReader["NameCustomer"].ToString(),
+                                        LLastNameCustomer = lReader["LastNameCustomer"].ToString()
+                                    },
+                                LIdInvoice = Convert.ToInt32(lReader["IdInvoice"].ToString()),
+                                LCdInvoice = lReader["CdInvoice"].ToString(),
+                                LCreationDate = Convert.ToDateTime(lReader["CreationDate"].ToString())
+                            };
+                            lListInvoice.Add(oInvoice);
                         }
                     }
                     Dao_UtilsLib.Dao_CloseSqlconnection(lConex);
-                    return oListInvoice;
+                    return lListInvoice;
                 }
                 catch (Exception e)
                 {
-                    List<Bo_Invoice> oListInvoice = new List<Bo_Invoice>();
-                    Bo_Invoice oInvoice = new Bo_Invoice();
-                    oInvoice.LException = e.Message;
+                    lListInvoice = new List<Bo_Invoice>();
+                    var lInvoice = new Bo_Invoice {LException = e.Message};
                     if (e.InnerException != null)
-                        oInvoice.LInnerException = e.InnerException.ToString();
-                    oInvoice.LMessageDao = "Hubo un problema en la consulta, contacte al administrador.";
+                        lInvoice.LInnerException = e.InnerException.ToString();
+                    lInvoice.LMessageDao = "Hubo un problema en la consulta, contacte al administrador.";
                     Dao_UtilsLib.Dao_CloseSqlconnection(lConex);
-                    oListInvoice.Add(oInvoice);
-                    return oListInvoice;
+                    lListInvoice.Add(lInvoice);
+                    return lListInvoice;
                 }
             }
         }
@@ -118,13 +122,15 @@ namespace Dao_BussinessManagement
             {
                 try
                 {
-                    SqlCommand lCommand = new SqlCommand();
-                    lCommand.CommandText = "spr_GetCdInvoice";
-                    lCommand.CommandTimeout = 30;
-                    lCommand.CommandType = CommandType.StoredProcedure;
-                    lCommand.Connection = lConex;
+                    var lCommand = new SqlCommand
+                    {
+                        CommandText = "spr_GetCdInvoice",
+                        CommandTimeout = 30,
+                        CommandType = CommandType.StoredProcedure,
+                        Connection = lConex
+                    };
                     var lReader = lCommand.ExecuteReader();
-                    string lResult = "";
+                    var lResult = "";
                     if (lReader.HasRows)
                     {
                         while (lReader.Read())
@@ -144,27 +150,30 @@ namespace Dao_BussinessManagement
 
         public string Dao_InsertInvoice(Bo_Invoice pInvoice)
         {
-            Dao_UtilsLib.dao_Addparameters(lListParam, SqlDbType.VarChar, "@CdInvoice", pInvoice.LCdInvoice);
-            Dao_UtilsLib.dao_Addparameters(lListParam, SqlDbType.Int, "@IdCustomer", pInvoice.LCustomer.LIdCustomer.ToString());
-            Dao_UtilsLib.dao_Addparameters(lListParam, SqlDbType.Int, "@IdOrder", pInvoice.LOrder.LIdOrder.ToString());
-            Dao_UtilsLib.dao_Addparameters(lListParam, SqlDbType.VarChar, "@IdStatus", pInvoice.LStatus.LIdStatus.ToString());
-            Dao_UtilsLib.dao_Addparameters(lListParam, SqlDbType.Int, "@IdObject", pInvoice.LObject.LIdObject.ToString());
-            return Dao_UtilsLib.Dao_executeSqlScalarWithProcedement(lListParam, "LTranInsertInvoice", "spr_CreateInvoice");
+            this.LListParam = new List<SqlParameter>();
+            Dao_UtilsLib.dao_Addparameters(this.LListParam, SqlDbType.VarChar, "@CdInvoice", pInvoice.LCdInvoice);
+            Dao_UtilsLib.dao_Addparameters(this.LListParam, SqlDbType.Int, "@IdCustomer", pInvoice.LCustomer.LIdCustomer.ToString());
+            Dao_UtilsLib.dao_Addparameters(this.LListParam, SqlDbType.Int, "@IdOrder", pInvoice.LOrder.LIdOrder.ToString());
+            Dao_UtilsLib.dao_Addparameters(this.LListParam, SqlDbType.VarChar, "@IdStatus", pInvoice.LStatus.LIdStatus.ToString());
+            Dao_UtilsLib.dao_Addparameters(this.LListParam, SqlDbType.Int, "@IdObject", pInvoice.LObject.LIdObject.ToString());
+            return Dao_UtilsLib.Dao_executeSqlScalarWithProcedement(this.LListParam, "LTranInsertInvoice", "spr_CreateInvoice");
         }
 
         public string Dao_UpdateInvoice(Bo_Invoice pInvoice)
         {
-            Dao_UtilsLib.dao_Addparameters(lListParam, SqlDbType.Int, "@IdInvoice", pInvoice.LCustomer.LIdCustomer.ToString());
-            Dao_UtilsLib.dao_Addparameters(lListParam, SqlDbType.VarChar, "@CdInvoice", pInvoice.LCdInvoice);
-            Dao_UtilsLib.dao_Addparameters(lListParam, SqlDbType.Int, "@IdCustomer", pInvoice.LCustomer.LIdCustomer.ToString());
-            Dao_UtilsLib.dao_Addparameters(lListParam, SqlDbType.VarChar, "@IdStatus", pInvoice.LStatus.LIdStatus.ToString());
-            return Dao_UtilsLib.Dao_executeSqlTransactionWithProcedement(lListParam, "LTranUpdateInvoice", "spr_UpdateInvoice");
+            this.LListParam = new List<SqlParameter>();
+            Dao_UtilsLib.dao_Addparameters(this.LListParam, SqlDbType.Int, "@IdInvoice", pInvoice.LCustomer.LIdCustomer.ToString());
+            Dao_UtilsLib.dao_Addparameters(this.LListParam, SqlDbType.VarChar, "@CdInvoice", pInvoice.LCdInvoice);
+            Dao_UtilsLib.dao_Addparameters(this.LListParam, SqlDbType.Int, "@IdCustomer", pInvoice.LCustomer.LIdCustomer.ToString());
+            Dao_UtilsLib.dao_Addparameters(this.LListParam, SqlDbType.VarChar, "@IdStatus", pInvoice.LStatus.LIdStatus.ToString());
+            return Dao_UtilsLib.Dao_executeSqlTransactionWithProcedement(this.LListParam, "LTranUpdateInvoice", "spr_UpdateInvoice");
         }
 
         public string Dao_DeleteInvoice(Bo_Invoice pInvoice)
         {
-            Dao_UtilsLib.dao_Addparameters(lListParam, SqlDbType.Int, "@IdInvoice", pInvoice.LIdInvoice.ToString());
-            return Dao_UtilsLib.Dao_executeSqlTransactionWithProcedement(lListParam, "LTranDeleteInvoice", "spr_DeleteInvoice");
+            this.LListParam = new List<SqlParameter>();
+            Dao_UtilsLib.dao_Addparameters(this.LListParam, SqlDbType.Int, "@IdInvoice", pInvoice.LIdInvoice.ToString());
+            return Dao_UtilsLib.Dao_executeSqlTransactionWithProcedement(this.LListParam, "LTranDeleteInvoice", "spr_DeleteInvoice");
         }
     }
 }

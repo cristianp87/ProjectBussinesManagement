@@ -1,15 +1,21 @@
 ﻿using BO_BusinessManagement;
 using Dao_BussinessManagement;
+using IBusiness.Management;
 using System.Collections.Generic;
+using IDaoBusiness.Business;
 
 namespace Bll_Business
 {
-    public static class Bll_Role
+    public class BllRole : IBusinessRole
     {
-        public static IList<Bo_Role> GetRolesByUser(int pIdUser)
+        public IDaoRole LiDaoRole { get; set; }
+        public BllRole()
         {
-            Dao_Role lrole = new Dao_Role();
-            return lrole.Dao_getRolesByUser(pIdUser);
+            this.LiDaoRole = new DaoRole();
+        }
+        public IList<Bo_Role> GetRolesByUser(int pIdUser)
+        {
+            return this.LiDaoRole.Dao_getRolesByUser(pIdUser);
         }
     }
 }

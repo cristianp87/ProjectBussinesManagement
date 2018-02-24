@@ -1,7 +1,4 @@
-﻿using Bll_Business;
-using BO_BusinessManagement;
-using System;
-using System.Collections.Generic;
+﻿using System;
 using System.Web.Mvc;
 using IBusiness.Common;
 using IBusiness.Management;
@@ -15,11 +12,14 @@ namespace Project_BusinessManagement.Controllers
         #region Variables and Constants
         public IProduct LiProduct =
         FacadeProvider.Resolver<IProduct>();
+
+        public ITaxe LiTaxe =
+        FacadeProvider.Resolver<ITaxe>();
         #endregion
         // GET: Taxe
         public ActionResult Index(int pIdProduct)
         {
-            var lListTaxes = Bll_Taxe.bll_GetListallTaxesXProduct(pIdProduct);
+            var lListTaxes = this.LiTaxe.bll_GetListallTaxesXProduct(pIdProduct);
             return this.View(MTaxe.MListAllTaxesXProduct(lListTaxes, pIdProduct));
         }
 
@@ -34,7 +34,7 @@ namespace Project_BusinessManagement.Controllers
         {
             var lProduct = this.LiProduct.bll_GetProductById(pIdProduct);
             var lMProduct = MProduct.MProductById(lProduct);
-            lMProduct.LListSelectTaxe = MTaxe.MListTaxesWithSelect(Bll_Taxe.bll_GetListTaxesWithOutProduct(pIdProduct));
+            lMProduct.LListSelectTaxe = MTaxe.MListTaxesWithSelect(this.LiTaxe.bll_GetListTaxesWithOutProduct(pIdProduct));
             return this.View(lMProduct);
         }
 
@@ -44,7 +44,7 @@ namespace Project_BusinessManagement.Controllers
         {
             try
             {
-                var result = Bll_Taxe.bll_AssociateTaxeXProduct(pMProduct.LIdProduct, pMProduct.LTaxe.LIdTaxe);
+                var result = this.LiTaxe.bll_AssociateTaxeXProduct(pMProduct.LIdProduct, pMProduct.LTaxe.LIdTaxe);
                 if (string.IsNullOrEmpty(result))
                 {
                     return this.RedirectToAction("Index", new { pIdProduct = pMProduct.LIdProduct});
@@ -67,7 +67,7 @@ namespace Project_BusinessManagement.Controllers
         // GET: Taxe/Delete/5
         public ActionResult Delete(int pIdTaxe, int pIdProduct)
         {
-            var lTaxe = Bll_Taxe.bll_GetTaxe(pIdTaxe);
+            var lTaxe = this.LiTaxe.bll_GetTaxe(pIdTaxe);
             var lMTaxe = MTaxe.GetTaxeXProduct(lTaxe, pIdProduct);
             return this.View(lMTaxe);
         }
@@ -78,7 +78,7 @@ namespace Project_BusinessManagement.Controllers
         {
             try
             {
-                var lMessage = Bll_Taxe.bll_DeleteTaxeXProduct(pIdProduct, pIdTaxe);
+                var lMessage = this.LiTaxe.bll_DeleteTaxeXProduct(pIdProduct, pIdTaxe);
                 if (string.IsNullOrEmpty(lMessage))
                 {
                     return this.RedirectToAction("Index", new { pIdProduct = pIdProduct});
@@ -98,7 +98,7 @@ namespace Project_BusinessManagement.Controllers
 
         public MProduct ListsEmptyViewProduct(MProduct pMProduct)
         {
-            pMProduct.LListSelectTaxe = MTaxe.MListTaxesWithSelect(Bll_Taxe.bll_GetListTaxes());
+            pMProduct.LListSelectTaxe = MTaxe.MListTaxesWithSelect(this.LiTaxe.bll_GetListTaxes());
             return pMProduct;
         }
     }

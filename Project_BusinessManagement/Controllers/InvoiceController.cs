@@ -1,7 +1,4 @@
-﻿using Bll_Business;
-using BO_BusinessManagement;
-using System.Collections.Generic;
-using System.Web.Mvc;
+﻿using System.Web.Mvc;
 using IBusiness.Common;
 using IBusiness.Management;
 

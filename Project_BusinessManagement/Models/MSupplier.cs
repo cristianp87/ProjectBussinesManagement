@@ -1,4 +1,6 @@
 ﻿using BO_BusinessManagement;
+using IBusiness.Common;
+using IBusiness.Management;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -9,264 +11,170 @@ namespace Project_BusinessManagement.Models
 {
     public class MSupplier
     {
+        #region Variables and constants
+        public static IStatus LiStatus =
+        FacadeProvider.Resolver<IStatus>();
 
-        private int lIdSupplier;
-        private string lNameSupplier;
-        private MTypeIdentification lTypeIdentification;
-        private List<SelectListItem> lListTypeIdentification;
-        private string lNoIdentification;
-        private DateTime lCreationDate;
-        private MStatus lStatus;
-        private List<SelectListItem> lListStatus;
-        private MObject lObject;
-        private DateTime lModificationDate;
-        private string lMessageException;
+        public static ITypeIdentification LiTypeIdentification =
+        FacadeProvider.Resolver<ITypeIdentification>();
 
-        [UIHint("LIdSupplier")]
+        public static IUtilsLib LiUtilsLib =
+        FacadeProvider.Resolver<IUtilsLib>();
+        #endregion
+
         [DisplayName("IDProveedores")]
-        [RegularExpression("^([1-9][0-9]{0,11})$", ErrorMessage = "No es valido la selección")]
-        public int LIdSupplier
-        {
-            get
-            {
-                return lIdSupplier;
-            }
+        [RegularExpression("^([1-9][0-9]{0,11})$", ErrorMessage = CodesError.LMsgValidateDdl)]
+        public int LIdSupplier { get; set; }
 
-            set
-            {
-                lIdSupplier = value;
-            }
-        }
         [DisplayName("Nombre Proveedor")]
-        [Required(AllowEmptyStrings = true, ErrorMessage = "El nombre proveedor es requerido")]
-        public string LNameSupplier
-        {
-            get
-            {
-                return lNameSupplier;
-            }
+        [Required(AllowEmptyStrings = true, ErrorMessage = CodesError.LMsgValidateName)]
+        public string LNameSupplier { get; set; }
 
-            set
-            {
-                lNameSupplier = value;
-            }
-        }
-
-        public MTypeIdentification LTypeIdentification
-        {
-            get
-            {
-                return lTypeIdentification;
-            }
-
-            set
-            {
-                lTypeIdentification = value;
-            }
-        }
+        public MTypeIdentification LTypeIdentification { get; set; }
 
         [DisplayName("Numero Identificacion")]
-        [Required(AllowEmptyStrings = true, ErrorMessage = "El Numero de Identificación es requerido")]
-        public string LNoIdentification
-        {
-            get
-            {
-                return lNoIdentification;
-            }
-
-            set
-            {
-                lNoIdentification = value;
-            }
-        }
+        [Required(AllowEmptyStrings = true, ErrorMessage = CodesError.LMsgValidateNoIdentification)]
+        public string LNoIdentification { get; set; }
 
         [DisplayName("Fecha De Creacion")]
-        [DataType(DataType.DateTime,ErrorMessage = "Formato de fecha invalido")]
-        public DateTime LCreationDate
-        {
-            get
-            {
-                return lCreationDate;
-            }
-
-            set
-            {
-                lCreationDate = value;
-            }
-        }
+        [DataType(DataType.DateTime,ErrorMessage = CodesError.LMsgValidateFormatDatetime)]
+        public DateTime LCreationDate { get; set; }
 
         [DisplayName("Estado")]
-        public MStatus LStatus
-        {
-            get
-            {
-                return lStatus;
-            }
+        public MStatus LStatus { get; set; }
 
-            set
-            {
-                lStatus = value;
-            }
-        }
-
-        public MObject LObject
-        {
-            get
-            {
-                return lObject;
-            }
-
-            set
-            {
-                lObject = value;
-            }
-        }
+        public MObject LObject { get; set; }
 
         [DisplayName("Tipo De Identificación")]
-        public List<SelectListItem> LListTypeIdentification
-        {
-            get
-            {
-                return lListTypeIdentification;
-            }
+        public List<SelectListItem> LListTypeIdentification { get; set; }
 
-            set
-            {
-                lListTypeIdentification = value;
-            }
-        }
         [DisplayName("Estado")]
-        public List<SelectListItem> LListStatus
-        {
-            get
-            {
-                return lListStatus;
-            }
+        public List<SelectListItem> LListStatus { get; set; }
 
-            set
-            {
-                lListStatus = value;
-            }
-        }
         [DisplayName("Fecha De Modificacion")]
-        public DateTime LModificationDate
-        {
-            get
-            {
-                return lModificationDate;
-            }
+        public DateTime LModificationDate { get; set; }
 
-            set
-            {
-                lModificationDate = value;
-            }
-        }
-
-        public string LMessageException
-        {
-            get
-            {
-                return lMessageException;
-            }
-
-            set
-            {
-                lMessageException = value;
-            }
-        }
+        public string LMessageException { get; set; }
 
         public static List<MSupplier> MListSupplier(List<Bo_Supplier> oBListSupplier)
         {
-            List<MSupplier> oMListSupplier = new List<MSupplier>();        
+            var oMListSupplier = new List<MSupplier>();        
             oBListSupplier.ForEach(x => {
-                MSupplier oMSupplier = new Models.MSupplier();
-                oMSupplier.LNameSupplier = x.LNameSupplier;
-                oMSupplier.LNoIdentification = x.LNoIdentification;
-                oMSupplier.LIdSupplier = x.LIdSupplier;
-                oMSupplier.LCreationDate = x.LCreationDate;
-                oMListSupplier.Add(oMSupplier);
+                                            var oMSupplier = new Models.MSupplier
+                                            {
+                                                LNameSupplier = x.LNameSupplier,
+                                                LNoIdentification = x.LNoIdentification,
+                                                LIdSupplier = x.LIdSupplier,
+                                                LCreationDate = x.LCreationDate
+                                            };
+                                            oMListSupplier.Add(oMSupplier);
             });
             return oMListSupplier;
         }
 
-        public static MSupplier MSupplierById(Bo_Supplier oBSupplier)
+        public static MSupplier MSupplierById(Bo_Supplier pBoSupplier)
         {
-            MSupplier oMSupplier = new MSupplier();
-            oMSupplier.LObject = new MObject();
-            oMSupplier.LStatus = new MStatus();
-            oMSupplier.LTypeIdentification = new MTypeIdentification();
-            oMSupplier.LListTypeIdentification = new List<SelectListItem>();
-            oMSupplier.LListStatus = new List<SelectListItem>();
-            oMSupplier.LListTypeIdentification = MTypeIdentification.MListAllTypeIdentification(Bll_Business.Bll_TypeIdentification.bll_getListTypeIdentification());
-            oMSupplier.LNameSupplier = oBSupplier.LNameSupplier;
-            oMSupplier.LNoIdentification = oBSupplier.LNoIdentification;
-            oMSupplier.LIdSupplier = oBSupplier.LIdSupplier;
-            oMSupplier.LCreationDate = oBSupplier.LCreationDate;
-            oMSupplier.LTypeIdentification.LIdTypeIdentification = oBSupplier.LTypeIdentification.LIdTypeIdentification;
-            oMSupplier.lTypeIdentification.LTypeIdentification = oBSupplier.LTypeIdentification.LTypeIdentification;
-            oMSupplier.lObject.LIdObject = oBSupplier.LObject.LIdObject;
-            oMSupplier.LObject.LNameObject = oBSupplier.LObject.LNameObject;
-            oMSupplier.LStatus.LDsEstado = oBSupplier.LStatus.LDsEstado;
-            oMSupplier.LStatus.LIdStatus = oBSupplier.LStatus.LIdStatus;
-            oMSupplier.lModificationDate = oBSupplier.LModificationDate;
-            oMSupplier.LListStatus = MStatus.MListAllStatus(Bll_Business.Bll_Status.Bll_getListStatusByIdObject(oBSupplier.LObject.LIdObject));
+            var lMSupplier = new MSupplier
+            {
+                LObject = new MObject
+                {
+                    LIdObject = pBoSupplier.LObject.LIdObject,
+                    LNameObject = pBoSupplier.LObject.LNameObject
+                },
+                LStatus = new MStatus
+                {
+                    LDsEstado = pBoSupplier.LStatus.LDsEstado,
+                    LIdStatus = pBoSupplier.LStatus.LIdStatus
+                },
+                LTypeIdentification =
+                    new MTypeIdentification
+                    {
+                        LIdTypeIdentification = pBoSupplier.LTypeIdentification.LIdTypeIdentification,
+                        LTypeIdentification = pBoSupplier.LTypeIdentification.LTypeIdentification
+                    },
+                LListTypeIdentification = new List<SelectListItem>(),
+                LListStatus = new List<SelectListItem>(),
+                LNameSupplier = pBoSupplier.LNameSupplier,
+                LNoIdentification = pBoSupplier.LNoIdentification,
+                LIdSupplier = pBoSupplier.LIdSupplier,
+                LCreationDate = pBoSupplier.LCreationDate,
+                LModificationDate = pBoSupplier.LModificationDate
+            };
+            lMSupplier.LListTypeIdentification =
+                MTypeIdentification.MListAllTypeIdentification(LiTypeIdentification.bll_getListTypeIdentification());
+            lMSupplier.LListStatus = MStatus.MListAllStatus(LiStatus.Bll_getListStatusByIdObject(pBoSupplier.LObject.LIdObject));
 
-            return oMSupplier;
+            return lMSupplier;
         }
 
         public static MSupplier MSupplierEmpty(Bo_Supplier oBSupplier)
         {
-            MSupplier oMSupplier = new MSupplier();
-            Bo_Object oObject = new Bo_Object();
-            oObject = Bll_Business.Bll_UtilsLib.bll_GetObjectByName(MGlobalVariables.LNameObjectSupplier);
-            oMSupplier.LObject = new MObject();
-            oMSupplier.LStatus = new MStatus();
-            oMSupplier.LTypeIdentification = new MTypeIdentification();
-            oMSupplier.LListTypeIdentification = new List<SelectListItem>();
-            oMSupplier.LListStatus = new List<SelectListItem>();
-            oMSupplier.LListTypeIdentification = MTypeIdentification.MListAllTypeIdentificationWithSelect(Bll_Business.Bll_TypeIdentification.bll_getListTypeIdentification());
-            oMSupplier.LNameSupplier = null;
-            oMSupplier.LNoIdentification = null;
-            oMSupplier.LIdSupplier = 0;
-            oMSupplier.LCreationDate = new DateTime();
-            oMSupplier.LTypeIdentification.LIdTypeIdentification = 0;
-            oMSupplier.lTypeIdentification.LTypeIdentification = null;
-            oMSupplier.lObject.LIdObject = oObject.LIdObject;
-            oMSupplier.lObject.LNameObject = oObject.LNameObject;
-            oMSupplier.LStatus.LDsEstado = null;
-            oMSupplier.LStatus.LIdStatus = null;
-            oMSupplier.lModificationDate = new DateTime();
-            oMSupplier.LListStatus = MStatus.MListStatusWithSelect(Bll_Business.Bll_Status.Bll_getListStatusByIdObject(oMSupplier.LObject.LIdObject));
+            var oObject = LiUtilsLib.bll_GetObjectByName(MGlobalVariables.LNameObjectSupplier);
+            var oMSupplier = new MSupplier
+            {
+                LObject = new MObject
+                {
+                    LIdObject = oObject.LIdObject,
+                    LNameObject = oObject.LNameObject
+                },
+                LStatus = new MStatus
+                {
+                    LDsEstado = null,
+                    LIdStatus = null
+                },
+                LTypeIdentification = new MTypeIdentification
+                {
+                    LIdTypeIdentification = 0,
+                    LTypeIdentification = null
+                },
+                LListTypeIdentification = new List<SelectListItem>(),
+                LListStatus = new List<SelectListItem>(),
+                LNameSupplier = null,
+                LNoIdentification = null,
+                LIdSupplier = 0,
+                LCreationDate = new DateTime(),
+                LModificationDate = new DateTime()
+            };
+            oMSupplier.LListTypeIdentification =
+                MTypeIdentification.MListAllTypeIdentificationWithSelect(
+                    LiTypeIdentification.bll_getListTypeIdentification());
+            oMSupplier.LListStatus = MStatus.MListStatusWithSelect(LiStatus.Bll_getListStatusByIdObject(oMSupplier.LObject.LIdObject));
 
             return oMSupplier;
         }
 
-        public static List<SelectListItem> MListAllSupplierWithSelect(List<Bo_Supplier> oListSupplier)
+        public static List<SelectListItem> MListAllSupplierWithSelect(List<Bo_Supplier> pBoListSupplier)
         {
-            List<SelectListItem> oMListSupplier = new List<SelectListItem>();
-            SelectListItem oListItemSelect = new SelectListItem();
-            oListItemSelect.Text = "Seleccione...";
-            oListItemSelect.Value = "0";
-            oMListSupplier.Add(oListItemSelect);
-            oListSupplier.ForEach(x => {
-                SelectListItem oListItem = new SelectListItem();
-                oListItem.Value = x.LIdSupplier.ToString();
-                oListItem.Text = x.LNameSupplier;
-                oMListSupplier.Add(oListItem);
+            var lMListSupplier = new List<SelectListItem>();
+            var lListItemSelect = new SelectListItem
+            {
+                Text = "Seleccione...",
+                Value = "0"
+            };
+            lMListSupplier.Add(lListItemSelect);
+            pBoListSupplier.ForEach(x => {
+                                             var oListItem = new SelectListItem
+                                             {
+                                                 Value = x.LIdSupplier.ToString(),
+                                                 Text = x.LNameSupplier
+                                             };
+                                             lMListSupplier.Add(oListItem);
             });
-            return oMListSupplier;
+            return lMListSupplier;
         }
 
-        public static List<SelectListItem> MListAllSupplier(List<Bo_Supplier> oListSupplier)
+        public static List<SelectListItem> MListAllSupplier(List<Bo_Supplier> pBoListSupplier)
         {
-            List<SelectListItem> oMListSupplier = new List<SelectListItem>();
-            oListSupplier.ForEach(x => {
-                SelectListItem oListItem = new SelectListItem();
-                oListItem.Value = x.LIdSupplier.ToString();
-                oListItem.Text = x.LNameSupplier;
-                oMListSupplier.Add(oListItem);
+            var lMListSupplier = new List<SelectListItem>();
+            pBoListSupplier.ForEach(x => {
+                                             var oListItem = new SelectListItem
+                                             {
+                                                 Value = x.LIdSupplier.ToString(),
+                                                 Text = x.LNameSupplier
+                                             };
+                                             lMListSupplier.Add(oListItem);
             });
-            return oMListSupplier;
+            return lMListSupplier;
         }
     }
 }

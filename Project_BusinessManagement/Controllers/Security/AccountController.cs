@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNet.Identity;
+﻿using IBusiness.Common;
+using IBusiness.Management;
+using Microsoft.AspNet.Identity;
 using Microsoft.Owin.Security;
 using Project_BusinessManagement.Models;
 using Project_BusinessManagement.Security;
@@ -11,8 +13,14 @@ namespace Project_BusinessManagement.Controllers.Security
     [Authorize]
     public class AccountController : Controller
     {
-        public CustomUserManager PCustomUserManager { get; private set; }
+        #region Variables and Constants
 
+        public static IBusinessUser LiUser =
+        FacadeProvider.Resolver<IBusinessUser>();
+        #endregion
+        #region Propierties
+        public CustomUserManager PCustomUserManager { get; private set; }
+        #endregion
         public AccountController() : this(new CustomUserManager())
         {
         }
@@ -103,7 +111,7 @@ namespace Project_BusinessManagement.Controllers.Security
                 LNoIdentification = pUser.LNoIdentification,
                 LObject = bo_Object,
                 LPassword = pUser.LPasswordHash,
-                LSLastName = pUser.LSLastName,
+                LSLastName = pUser.LsLastName,
                 LSNameUser = pUser.LSecondName,
                 LStatus = bo_Status,
                 LTypeIdentification = bo_TypeIdentification,
@@ -111,7 +119,7 @@ namespace Project_BusinessManagement.Controllers.Security
                 LRole = bo_Role
             };
 
-            var lResult = Bll_Business.Bll_User.bll_InsertUser(bo_User);
+            var lResult = LiUser.bll_InsertUser(bo_User);
             if (string.IsNullOrEmpty(lResult))
             {
                 return View("Login");

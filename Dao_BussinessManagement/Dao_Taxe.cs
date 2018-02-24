@@ -3,205 +3,241 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
+using IDaoBusiness.Business;
+using static Dao_BussinessManagement.Dao_UtilsLib;
 
 namespace Dao_BussinessManagement
 {
-    public class Dao_Taxe
+    public class DaoTaxe : IDaoTaxe
     {
-        List<SqlParameter> lListParam = new List<SqlParameter>();
+        private List<SqlParameter> LListParam { get; set; }
         public List<Bo_Taxe> Dao_getLisAllTaxesXProduct(int idProduct)
         {
-            using (SqlConnection lConex = Dao_UtilsLib.Dao_SqlConnection(lConex))
+            using (SqlConnection lConex = Dao_SqlConnection(lConex))
             {
+                var lListTaxe = new List<Bo_Taxe>();
                 try
                 {
-                    SqlCommand lCommand = new SqlCommand();
-                    lCommand.CommandText = "spr_GetListAllTaxesXProduct";
-                    lCommand.CommandTimeout = 30;
-                    lCommand.CommandType = CommandType.StoredProcedure;
-                    lCommand.Connection = lConex;
+                    var lCommand = new SqlCommand
+                    {
+                        CommandText = "spr_GetListAllTaxesXProduct",
+                        CommandTimeout = 30,
+                        CommandType = CommandType.StoredProcedure,
+                        Connection = lConex
+                    };
                     lCommand.Parameters.Add("idProduct", SqlDbType.Int).Value = idProduct;
-                    var lReader = lCommand.ExecuteReader();
-                    List<Bo_Taxe> oListTaxe = new List<Bo_Taxe>();
+                    var lReader = lCommand.ExecuteReader();                  
                     if (lReader.HasRows)
                     {
                         while (lReader.Read())
                         {
-                            Bo_Taxe oTaxe = new Bo_Taxe();
-                            oTaxe.LStatus = new Bo_Status();
-                            oTaxe.LObject = new Bo_Object();
-                            oTaxe.LIdTaxe = Convert.ToInt32(lReader["IdTax"].ToString());
-                            oTaxe.LNameTaxe = lReader["NameTax"].ToString();
-                            oTaxe.LIsPercent = Convert.ToBoolean(lReader["IsPercent"].ToString());
-                            oTaxe.LCreationDate = Convert.ToDateTime(lReader["CreationDate"].ToString());
-                            oTaxe.LValueTaxe = Convert.ToDecimal(lReader["ValueTax"].ToString());
-                            oTaxe.LStatus.LIdStatus = lReader["IdStatus"].ToString();
-                            oTaxe.LStatus.LDsEstado = lReader["DsEstado"].ToString();
-                            oTaxe.LObject.LIdObject = Convert.ToInt32(lReader["IdObject"].ToString());
-                            oTaxe.LObject.LNameObject = lReader["NameObject"].ToString();
-                            oListTaxe.Add(oTaxe);
+                            var lTaxe = new Bo_Taxe
+                            {
+                                LStatus = new Bo_Status
+                                {
+                                    LIdStatus = lReader["IdStatus"].ToString(),
+                                    LDsEstado = lReader["DsEstado"].ToString()
+                                },
+                                LObject = new Bo_Object
+                                {
+                                    LIdObject = Convert.ToInt32(lReader["IdObject"].ToString()),
+                                    LNameObject = lReader["NameObject"].ToString()
+                                },
+                                LIdTaxe = Convert.ToInt32(lReader["IdTax"].ToString()),
+                                LNameTaxe = lReader["NameTax"].ToString(),
+                                LIsPercent = Convert.ToBoolean(lReader["IsPercent"].ToString()),
+                                LCreationDate = Convert.ToDateTime(lReader["CreationDate"].ToString()),
+                                LValueTaxe = Convert.ToDecimal(lReader["ValueTax"].ToString())
+                            };
+                            lListTaxe.Add(lTaxe);
                         }
                     }
-                    Dao_UtilsLib.Dao_CloseSqlconnection(lConex);
-                    return oListTaxe;
+                    Dao_CloseSqlconnection(lConex);
+                    return lListTaxe;
                 }
                 catch (Exception e)
                 {
-                    List<Bo_Taxe> oListTaxe = new List<Bo_Taxe>();
-                    Bo_Taxe oTaxe = new Bo_Taxe();
-                    oTaxe.LException = e.Message;
+                    lListTaxe = new List<Bo_Taxe>();
+                    var lTaxe = new Bo_Taxe
+                    {
+                        LException = e.Message,
+                        LMessageDao = "Hubo un problema en la consulta, contacte al administrador."
+                    };
                     if (e.InnerException != null)
-                        oTaxe.LInnerException = e.InnerException.ToString();
-                    oTaxe.LMessageDao = "Hubo un problema en la consulta, contacte al administrador.";
-                    Dao_UtilsLib.Dao_CloseSqlconnection(lConex);
-                    oListTaxe.Add(oTaxe);
-                    return oListTaxe;
+                        lTaxe.LInnerException = e.InnerException.ToString();                  
+                    Dao_CloseSqlconnection(lConex);
+                    lListTaxe.Add(lTaxe);
+                    return lListTaxe;
                 }
             }
         }
 
         public List<Bo_Taxe> Dao_getLisTaxes()
         {
-            using (SqlConnection lConex = Dao_UtilsLib.Dao_SqlConnection(lConex))
+            using (SqlConnection lConex = Dao_SqlConnection(lConex))
             {
+                var lListTaxe = new List<Bo_Taxe>();
                 try
                 {
-                    SqlCommand lCommand = new SqlCommand();
-                    lCommand.CommandText = "spr_GetListTaxes";
-                    lCommand.CommandTimeout = 30;
-                    lCommand.CommandType = CommandType.StoredProcedure;
-                    lCommand.Connection = lConex;
+                    var lCommand = new SqlCommand
+                    {
+                        CommandText = "spr_GetListTaxes",
+                        CommandTimeout = 30,
+                        CommandType = CommandType.StoredProcedure,
+                        Connection = lConex
+                    };
                     var lReader = lCommand.ExecuteReader();
-                    List<Bo_Taxe> oListTaxe = new List<Bo_Taxe>();
+                    
                     if (lReader.HasRows)
                     {
                         while (lReader.Read())
                         {
-                            Bo_Taxe oTaxe = new Bo_Taxe();
-                            oTaxe.LStatus = new Bo_Status();
-                            oTaxe.LObject = new Bo_Object();
-                            oTaxe.LIdTaxe = Convert.ToInt32(lReader["IdTax"].ToString());
-                            oTaxe.LNameTaxe = lReader["NameTax"].ToString();
-                            oTaxe.LIsPercent = Convert.ToBoolean(lReader["IsPercent"].ToString());
-                            oTaxe.LCreationDate = Convert.ToDateTime(lReader["CreationDate"].ToString());
-                            oTaxe.LValueTaxe = Convert.ToDecimal(lReader["ValueTax"].ToString());
-                            oTaxe.LStatus.LIdStatus = lReader["IdStatus"].ToString();
-                            oTaxe.LStatus.LNameStatus = lReader["NameStatus"].ToString();
-                            oTaxe.LObject.LIdObject = Convert.ToInt32(lReader["IdObject"].ToString());
-                            oTaxe.LObject.LNameObject = lReader["NameObject"].ToString();
-                            oListTaxe.Add(oTaxe);
+                            var lTaxe = new Bo_Taxe
+                            {
+                                LStatus = new Bo_Status
+                                {
+                                    LIdStatus = lReader["IdStatus"].ToString(),
+                                    LNameStatus = lReader["NameStatus"].ToString()
+                                },
+                                LObject = new Bo_Object
+                                {
+                                    LIdObject = Convert.ToInt32(lReader["IdObject"].ToString()),
+                                    LNameObject = lReader["NameObject"].ToString()
+                                },
+                                LIdTaxe = Convert.ToInt32(lReader["IdTax"].ToString()),
+                                LNameTaxe = lReader["NameTax"].ToString(),
+                                LIsPercent = Convert.ToBoolean(lReader["IsPercent"].ToString()),
+                                LCreationDate = Convert.ToDateTime(lReader["CreationDate"].ToString()),
+                                LValueTaxe = Convert.ToDecimal(lReader["ValueTax"].ToString())
+                            };
+                            lListTaxe.Add(lTaxe);
                         }
                     }
-                    Dao_UtilsLib.Dao_CloseSqlconnection(lConex);
-                    return oListTaxe;
+                    Dao_CloseSqlconnection(lConex);
+                    return lListTaxe;
                 }
                 catch (Exception e)
                 {
-                    List<Bo_Taxe> oListTaxe = new List<Bo_Taxe>();
-                    Bo_Taxe oTaxe = new Bo_Taxe();
-                    oTaxe.LException = e.Message;
+                    lListTaxe = new List<Bo_Taxe>();
+                    var lTaxe = new Bo_Taxe
+                    {
+                        LException = e.Message,
+                        LMessageDao = "Hubo un problema en la consulta, contacte al administrador."
+                    };
                     if (e.InnerException != null)
-                        oTaxe.LInnerException = e.InnerException.ToString();
-                    oTaxe.LMessageDao = "Hubo un problema en la consulta, contacte al administrador.";
-                    Dao_UtilsLib.Dao_CloseSqlconnection(lConex);
-                    oListTaxe.Add(oTaxe);
-                    return oListTaxe;
+                        lTaxe.LInnerException = e.InnerException.ToString();                    
+                    Dao_CloseSqlconnection(lConex);
+                    lListTaxe.Add(lTaxe);
+                    return lListTaxe;
                 }
             }
         }
 
         public List<Bo_Taxe> Dao_getLisAllTaxesWithOutProduct(int pIdProduct)
         {
-            using (SqlConnection lConex = Dao_UtilsLib.Dao_SqlConnection(lConex))
+            using (SqlConnection lConex = Dao_SqlConnection(lConex))
             {
+                var lListTaxe = new List<Bo_Taxe>();
                 try
                 {
-                    SqlCommand lCommand = new SqlCommand();
-                    lCommand.CommandText = "spr_GetListTaxesWithOutProduct";
-                    lCommand.CommandTimeout = 30;
-                    lCommand.CommandType = CommandType.StoredProcedure;
-                    lCommand.Connection = lConex;
+                    var lCommand = new SqlCommand
+                    {
+                        CommandText = "spr_GetListTaxesWithOutProduct",
+                        CommandTimeout = 30,
+                        CommandType = CommandType.StoredProcedure,
+                        Connection = lConex
+                    };
                     lCommand.Parameters.Add("IdProduct", SqlDbType.Int).Value = pIdProduct;
-                    var lReader = lCommand.ExecuteReader();
-                    List<Bo_Taxe> oListTaxe = new List<Bo_Taxe>();
+                    var lReader = lCommand.ExecuteReader();                   
                     if (lReader.HasRows)
                     {
                         while (lReader.Read())
                         {
-                            Bo_Taxe oTaxe = new Bo_Taxe();
-                            oTaxe.LStatus = new Bo_Status();
-                            oTaxe.LObject = new Bo_Object();
-                            oTaxe.LIdTaxe = Convert.ToInt32(lReader["IdTax"].ToString());
-                            oTaxe.LNameTaxe = lReader["NameTax"].ToString();
-                            oTaxe.LIsPercent = Convert.ToBoolean(lReader["IsPercent"].ToString());
-                            oTaxe.LCreationDate = Convert.ToDateTime(lReader["CreationDate"].ToString());
-                            oTaxe.LValueTaxe = Convert.ToDecimal(lReader["ValueTax"].ToString());
-                            oTaxe.LStatus.LIdStatus = lReader["IdStatus"].ToString();
-                            oTaxe.LStatus.LDsEstado = lReader["NameStatus"].ToString();
-                            oTaxe.LObject.LIdObject = Convert.ToInt32(lReader["IdObject"].ToString());
-                            oTaxe.LObject.LNameObject = lReader["NameObject"].ToString();
-                            oListTaxe.Add(oTaxe);
+                            var lTaxe = new Bo_Taxe
+                            {
+                                LStatus = new Bo_Status
+                                {
+                                    LIdStatus = lReader["IdStatus"].ToString(),
+                                    LDsEstado = lReader["NameStatus"].ToString()
+                                },
+                                LObject = new Bo_Object
+                                {
+                                    LIdObject = Convert.ToInt32(lReader["IdObject"].ToString()),
+                                    LNameObject = lReader["NameObject"].ToString()
+                                },
+                                LIdTaxe = Convert.ToInt32(lReader["IdTax"].ToString()),
+                                LNameTaxe = lReader["NameTax"].ToString(),
+                                LIsPercent = Convert.ToBoolean(lReader["IsPercent"].ToString()),
+                                LCreationDate = Convert.ToDateTime(lReader["CreationDate"].ToString()),
+                                LValueTaxe = Convert.ToDecimal(lReader["ValueTax"].ToString())
+                            };
+                            lListTaxe.Add(lTaxe);
                         }
                     }
-                    Dao_UtilsLib.Dao_CloseSqlconnection(lConex);
-                    return oListTaxe;
+                    Dao_CloseSqlconnection(lConex);
+                    return lListTaxe;
                 }
                 catch (Exception e)
                 {
-                    List<Bo_Taxe> oListTaxe = new List<Bo_Taxe>();
-                    Bo_Taxe oTaxe = new Bo_Taxe();
-                    oTaxe.LException = e.Message;
+                    lListTaxe = new List<Bo_Taxe>();
+                    var lTaxe = new Bo_Taxe
+                    {
+                        LException = e.Message,
+                        LMessageDao = "Hubo un problema en la consulta, contacte al administrador."
+                    };
                     if (e.InnerException != null)
-                        oTaxe.LInnerException = e.InnerException.ToString();
-                    oTaxe.LMessageDao = "Hubo un problema en la consulta, contacte al administrador.";
-                    Dao_UtilsLib.Dao_CloseSqlconnection(lConex);
-                    oListTaxe.Add(oTaxe);
-                    return oListTaxe;
+                        lTaxe.LInnerException = e.InnerException.ToString();                   
+                    Dao_CloseSqlconnection(lConex);
+                    lListTaxe.Add(lTaxe);
+                    return lListTaxe;
                 }
             }
         }
 
         public Bo_Taxe Dao_getTaxeById(int pIdTaxe)
         {
-            using (SqlConnection lConex = Dao_UtilsLib.Dao_SqlConnection(lConex))
+            using (SqlConnection lConex = Dao_SqlConnection(lConex))
             {
+                var lTaxe = new Bo_Taxe();
                 try
                 {
-                    SqlCommand lCommand = new SqlCommand();
-                    lCommand.CommandText = "spr_GetTaxeById";
-                    lCommand.CommandTimeout = 30;
-                    lCommand.CommandType = CommandType.StoredProcedure;
-                    lCommand.Connection = lConex;
+                    var lCommand = new SqlCommand
+                    {
+                        CommandText = "spr_GetTaxeById",
+                        CommandTimeout = 30,
+                        CommandType = CommandType.StoredProcedure,
+                        Connection = lConex
+                    };
                     lCommand.Parameters.Add(new SqlParameter("IdTaxe", pIdTaxe));
-
                     var lReader = lCommand.ExecuteReader();
-                    Bo_Taxe lTaxe = new Bo_Taxe();
+                    
                     if (lReader.HasRows)
                     {
                         while (lReader.Read())
-                        {
-                            lTaxe.LStatus = new Bo_Status();
-                            lTaxe.LObject = new Bo_Object();
+                        {                            
                             lTaxe.LIdTaxe = Convert.ToInt32(lReader["IdTax"].ToString());
                             lTaxe.LNameTaxe = lReader["NameTax"].ToString();
                             lTaxe.LCreationDate = Convert.ToDateTime(lReader["CreationDate"].ToString());
                             lTaxe.LValueTaxe = Convert.ToDecimal(lReader["ValueTax"].ToString());
                             lTaxe.LIsPercent = Convert.ToBoolean(lReader["IsPercent"].ToString());
-                            lTaxe.LStatus.LIdStatus = lReader["IdStatus"].ToString();
-                            lTaxe.LObject.LIdObject = Convert.ToInt32(lReader["IdObject"].ToString());
+                            lTaxe.LStatus = new Bo_Status {LIdStatus = lReader["IdStatus"].ToString()};
+                            lTaxe.LObject = new Bo_Object {LIdObject = Convert.ToInt32(lReader["IdObject"].ToString())};
                         }
                     }
-                    Dao_UtilsLib.Dao_CloseSqlconnection(lConex);
+                    Dao_CloseSqlconnection(lConex);
                     return lTaxe;
                 }
                 catch (Exception e)
                 {
-                    Bo_Taxe lTaxe = new Bo_Taxe();
-                    lTaxe.LException = e.Message;
+                    lTaxe = new Bo_Taxe
+                    {
+                        LException = e.Message,
+                        LMessageDao = "Hubo un problema en la consulta, contacte al administrador."
+                    };
                     if (e.InnerException != null)
                         lTaxe.LInnerException = e.InnerException.ToString();
-                    lTaxe.LMessageDao = "Hubo un problema en la consulta, contacte al administrador.";
-                    Dao_UtilsLib.Dao_CloseSqlconnection(lConex);
+                    
+                    Dao_CloseSqlconnection(lConex);
                     return lTaxe;
                 }
             }
@@ -209,16 +245,18 @@ namespace Dao_BussinessManagement
 
         public string Dao_InsertTaxeXProduct(int pIdProduct, int pIdTaxe)
         {
-            Dao_UtilsLib.dao_Addparameters(lListParam, SqlDbType.Int, "@IdProduct", pIdProduct.ToString());
-            Dao_UtilsLib.dao_Addparameters(lListParam, SqlDbType.Int, "@IdTaxe", pIdTaxe.ToString());
-            return Dao_UtilsLib.Dao_executeSqlTransactionWithProcedement(lListParam, "LTranInsertTaxeXProduct", "spr_CreateTaxeXProduct");
+            this.LListParam = new List<SqlParameter>();
+            dao_Addparameters(this.LListParam, SqlDbType.Int, "@IdProduct", pIdProduct.ToString());
+            dao_Addparameters(this.LListParam, SqlDbType.Int, "@IdTaxe", pIdTaxe.ToString());
+            return Dao_executeSqlTransactionWithProcedement(this.LListParam, "LTranInsertTaxeXProduct", "spr_CreateTaxeXProduct");
         }
 
         public string Dao_DeleteTaxeXProduct(int pIdProduct, int pIdTaxe)
         {
-            Dao_UtilsLib.dao_Addparameters(lListParam, SqlDbType.Int, "@IdProduct", pIdProduct.ToString());
-            Dao_UtilsLib.dao_Addparameters(lListParam, SqlDbType.Int, "@IdTaxe", pIdTaxe.ToString());
-            return Dao_UtilsLib.Dao_executeSqlTransactionWithProcedement(lListParam, "LTranDeleteTaxeXProduct", "spr_DeleteTaxeXProduct");
+            this.LListParam = new List<SqlParameter>();
+            dao_Addparameters(this.LListParam, SqlDbType.Int, "@IdProduct", pIdProduct.ToString());
+            dao_Addparameters(this.LListParam, SqlDbType.Int, "@IdTaxe", pIdTaxe.ToString());
+            return Dao_executeSqlTransactionWithProcedement(this.LListParam, "LTranDeleteTaxeXProduct", "spr_DeleteTaxeXProduct");
         }
 
 
