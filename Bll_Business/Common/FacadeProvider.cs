@@ -26,6 +26,19 @@ namespace Bll_Business.Common
             UnityContainer.RegisterType<ICustomer, BllCustomer>();
             UnityContainer.RegisterType<IDashBoard, BllDashBoard>();
             UnityContainer.RegisterType<IInventory, BllInventory>();
+            UnityContainer.RegisterType<IInventoryItem, BllInventoryItem>();
+            UnityContainer.RegisterType<IInvoice, BllInvoice>();
+            UnityContainer.RegisterType<IInvoiceItem, BllInvoiceItem>();
+            UnityContainer.RegisterType<IOrder, BllOrder>();
+            UnityContainer.RegisterType<IOrderItem, BllOrderItem>();
+            UnityContainer.RegisterType<IProduct, BllProduct>();
+            UnityContainer.RegisterType<IBusinessRole, BllRole>();
+            UnityContainer.RegisterType<IStatus, BllStatus>();
+            UnityContainer.RegisterType<ISupplier, BllSupplier>();
+            UnityContainer.RegisterType<ITaxe, BllTaxe>();
+            UnityContainer.RegisterType<ITypeIdentification, BllTypeIdentification>();
+            UnityContainer.RegisterType<IBusinessUser, BllUser>();
+            UnityContainer.RegisterType<IUtilsLib, BllUtilsLib>();           
             this.myFacadesInstances = new ConcurrentDictionary<Type, IFacade>();
         }
 
@@ -48,6 +61,12 @@ namespace Bll_Business.Common
                 this.myFacadesInstances.TryAdd(typeof (T), facade);
                 return facade;
             }
+        }
+
+        public IFacadeProvider RegisterFacadeProvider()
+        {
+            UnityContainer.RegisterType<IFacadeProvider, FacadeProvider>();
+            return UnityContainer.Resolve<IFacadeProvider>();
         }
     }
 }

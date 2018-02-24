@@ -2,21 +2,24 @@
 using Dao_BussinessManagement;
 using System.Collections.Generic;
 using IBusiness.Management;
+using IDaoBusiness.Business;
 
 namespace Bll_Business
 {
     public class BllInvoiceItem: IInvoiceItem
     {
-        private readonly IProduct LiProduct;
+        public IProduct LiProduct { get; set; }
+
+        public IDaoInvoiceItem LiDaoInvoiceItem { get; set; }
 
         public BllInvoiceItem()
         {
             this.LiProduct = new BllProduct();
+            this.LiDaoInvoiceItem = new DaoInvoiceItem();
         }
         public List<Bo_InvoiceItem> bll_GetInvoiceItemsByIdInvoice(int pIdInvoice)
         {
-            var oDaoInvoiceItem = new Dao_InvoiceItem();
-            return oDaoInvoiceItem.Dao_getInvoiceItemByIdInvoice(pIdInvoice);
+            return this.LiDaoInvoiceItem.Dao_getInvoiceItemByIdInvoice(pIdInvoice);
         }
 
         public List<Bo_InvoiceItem> bll_ChangeOrderItemToInvoiceItem(List<Bo_OrderItem> lListOrderItem, Bo_Object lObjectInvoice)
@@ -43,7 +46,7 @@ namespace Bll_Business
 
         public string bll_InsertInvoiceItem(int pIdInvoice, decimal pQuantity, decimal pValueProduct, decimal pValueSupplier, decimal pValueTaxes, decimal pValueDesc, int pIdProduct, int pIdObject, string pIdStatus)
         {
-            var oInvoiceItem = new Bo_InvoiceItem
+            var lInvoiceItem = new Bo_InvoiceItem
             {
                 LObject = new Bo_Object {LIdObject = pIdObject},
                 LStatus = new Bo_Status {LIdStatus = pIdStatus},
@@ -55,13 +58,12 @@ namespace Bll_Business
                 LValueSupplier = pValueSupplier,
                 LValueTaxes = pValueTaxes
             };
-            var oDaoInvoiceItem = new Dao_InvoiceItem();
-            return oDaoInvoiceItem.Dao_InsertInvoiceItem(oInvoiceItem);
+            return this.LiDaoInvoiceItem.Dao_InsertInvoiceItem(lInvoiceItem);
         }
 
         public string bll_UpdateInvoiceTem(int pIdInvoice, int pQuantity, int pIdProduct, int pIdObject, string pIdStatus)
         {
-            var oInvoiceItem = new Bo_InvoiceItem
+            var lInvoiceItem = new Bo_InvoiceItem
             {
                 LObject = new Bo_Object {LIdObject = pIdObject},
                 LStatus = new Bo_Status {LIdStatus = pIdStatus},
@@ -69,15 +71,13 @@ namespace Bll_Business
                 LIdInvoice = pIdInvoice,
                 LQuantity = pQuantity
             };
-            var oDaoInvoiceItem = new Dao_InvoiceItem();
-            return oDaoInvoiceItem.Dao_UpdateInvoiceIem(oInvoiceItem);
+            return this.LiDaoInvoiceItem.Dao_UpdateInvoiceIem(lInvoiceItem);
         }
 
         public string bll_DeleteInvoiceItem(int pIdInvoiceItem)
         {
-            var oInvoiceItem = new Bo_InvoiceItem {LIdInvoiceItem = pIdInvoiceItem};
-            var oDaoInvoiceItem = new Dao_InvoiceItem();
-            return oDaoInvoiceItem.Dao_DeleteInvoiceItem(oInvoiceItem);
+            var lInvoiceItem = new Bo_InvoiceItem {LIdInvoiceItem = pIdInvoiceItem};
+            return this.LiDaoInvoiceItem.Dao_DeleteInvoiceItem(lInvoiceItem);
         }
     }
 }

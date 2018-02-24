@@ -7,76 +7,47 @@ namespace Project_BusinessManagement.Models
 {
     public class MTypeIdentification
     {
-        private int lIdTypeIdentification;
-        private string lTypeIdentification;
-        private bool lActive;
+        public int LIdTypeIdentification { get; set; }
 
-        public int LIdTypeIdentification
-        {
-            get
-            {
-                return lIdTypeIdentification;
-            }
-
-            set
-            {
-                lIdTypeIdentification = value;
-            }
-        }
         [DisplayName("Tipo De Identificación")]
-        public string LTypeIdentification
+        public string LTypeIdentification { get; set; }
+
+        public bool LActive { get; set; }
+
+        public static List<SelectListItem> MListAllTypeIdentification(List<Bo_TypeIdentification> pBoListTypeIdentification)
         {
-            get
-            {
-                return lTypeIdentification;
-            }
-
-            set
-            {
-                lTypeIdentification = value;
-            }
-        }
-
-        public bool LActive
-        {
-            get
-            {
-                return lActive;
-            }
-
-            set
-            {
-                lActive = value;
-            }
-        }
-
-        public static List<SelectListItem> MListAllTypeIdentification(List<Bo_TypeIdentification> oListTypeIdentification)
-        {
-            List<SelectListItem> oMListTypeIdentification = new List<SelectListItem>();
-            oListTypeIdentification.ForEach(x => {
-                SelectListItem oListItem = new SelectListItem();
-                oListItem.Value = x.LIdTypeIdentification.ToString();
-                oListItem.Text = x.LTypeIdentification;
-                oMListTypeIdentification.Add(oListItem);
+            var lMListTypeIdentification = new List<SelectListItem>();
+            pBoListTypeIdentification.ForEach(x => {
+                                                       var oListItem = new SelectListItem
+                                                       {
+                                                           Value = x.LIdTypeIdentification.ToString(),
+                                                           Text = x.LTypeIdentification
+                                                       };
+                                                       lMListTypeIdentification.Add(oListItem);
             });
 
-            return oMListTypeIdentification;
+            return lMListTypeIdentification;
         }
 
-        public static List<SelectListItem> MListAllTypeIdentificationWithSelect(List<Bo_TypeIdentification> oListTypeIdentification)
+        public static List<SelectListItem> MListAllTypeIdentificationWithSelect(List<Bo_TypeIdentification> pBoListTypeIdentification)
         {
-            List<SelectListItem> oMListTypeIdentification = new List<SelectListItem>();
-            SelectListItem oListItemSelect = new SelectListItem();
-            oListItemSelect.Text = "Seleccione...";
-            oListItemSelect.Value = "0";
-            oListTypeIdentification.ForEach(x => {
-                SelectListItem oListItem = new SelectListItem();
-                oListItem.Value = x.LIdTypeIdentification.ToString();
-                oListItem.Text = x.LTypeIdentification;
-                oMListTypeIdentification.Add(oListItem);
+            var lMListTypeIdentification = new List<SelectListItem>();
+            var lListItemSelect = new SelectListItem
+            {
+                Text = "Seleccione...",
+                Value = "0"
+            };
+            lMListTypeIdentification.Add(lListItemSelect);
+            pBoListTypeIdentification.ForEach(x => {
+                                                       var oListItem = new SelectListItem
+                                                       {
+                                                           Value = x.LIdTypeIdentification.ToString(),
+                                                           Text = x.LTypeIdentification
+                                                       };
+                                                       lMListTypeIdentification.Add(oListItem);
             });
 
-            return oMListTypeIdentification;
+            return lMListTypeIdentification;
         }
 
     }

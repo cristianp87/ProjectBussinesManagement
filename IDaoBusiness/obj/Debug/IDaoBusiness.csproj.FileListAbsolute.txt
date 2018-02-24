@@ -1,0 +1,7 @@
+C:\Users\cripac\Documents\GitHub\ProjectBussinesManagement\IDaoBusiness\bin\Debug\IDaoBusiness.dll
+C:\Users\cripac\Documents\GitHub\ProjectBussinesManagement\IDaoBusiness\bin\Debug\IDaoBusiness.pdb
+C:\Users\cripac\Documents\GitHub\ProjectBussinesManagement\IDaoBusiness\bin\Debug\BO_BusinessManagement.dll
+C:\Users\cripac\Documents\GitHub\ProjectBussinesManagement\IDaoBusiness\bin\Debug\BO_BusinessManagement.pdb
+C:\Users\cripac\Documents\GitHub\ProjectBussinesManagement\IDaoBusiness\obj\Debug\IDaoBusiness.dll
+C:\Users\cripac\Documents\GitHub\ProjectBussinesManagement\IDaoBusiness\obj\Debug\IDaoBusiness.pdb
+C:\Users\cripac\Documents\GitHub\ProjectBussinesManagement\IDaoBusiness\obj\Debug\IDaoBusiness.csprojResolveAssemblyReference.cache

@@ -1,5 +1,4 @@
-﻿using Bll_Business;
-using BO_BusinessManagement;
+﻿using BO_BusinessManagement;
 using IBusiness.Common;
 using IBusiness.Management;
 using Microsoft.AspNet.Identity;
@@ -15,10 +14,10 @@ namespace Project_BusinessManagement.Security
     {
         #region Variables and Constants
         public IBusinessRole LRoleFacade =
-        FacadeProvider.Resolver<BllRole>();
+        FacadeProvider.Resolver<IBusinessRole>();
 
         public IBusinessUser LiUser =
-        FacadeProvider.Resolver<BllUser>();
+        FacadeProvider.Resolver<IBusinessUser>();
         #endregion
 
         public Task CreateAsync(MUser user)

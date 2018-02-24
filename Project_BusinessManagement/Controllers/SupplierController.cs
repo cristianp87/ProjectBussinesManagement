@@ -1,5 +1,4 @@
-﻿using Bll_Business;
-using BO_BusinessManagement;
+﻿using BO_BusinessManagement;
 using Project_BusinessManagement.Filters;
 using System;
 using System.Collections.Generic;
@@ -18,29 +17,32 @@ namespace Project_BusinessManagement.Views.Supplier
         FacadeProvider.Resolver<ISupplier>();
 
         public static ITypeIdentification LiTypeIdentification =
-        FacadeProvider.Resolver<BllTypeIdentification>();
+        FacadeProvider.Resolver<ITypeIdentification>();
+
+        public static IStatus LiStatus =
+        FacadeProvider.Resolver<IStatus>();
         #endregion
 
         // GET: Supplier
         public ActionResult Index()
         {
-            var oBListSupplier = this.LiSupplier.bll_GetAllSupplier();
-            return this.View(Models.MSupplier.MListSupplier(oBListSupplier));
+            var lBoListSupplier = this.LiSupplier.bll_GetAllSupplier();
+            return this.View(Models.MSupplier.MListSupplier(lBoListSupplier));
         }
 
         // GET: Supplier/Details/5
         public ActionResult Details(int id)
         {
-            var oBSupplier = this.LiSupplier.bll_GetSupplierById(id);
-            return this.View(Models.MSupplier.MSupplierById(oBSupplier));
+            var lBoListSupplier = this.LiSupplier.bll_GetSupplierById(id);
+            return this.View(Models.MSupplier.MSupplierById(lBoListSupplier));
         }
 
         [ConfigurationApp(pParameter: "CreateSupplier")]
         // GET: Supplier/Create
         public ActionResult Create()
         {
-            var oBSupplier = new Bo_Supplier();
-            return this.View(Models.MSupplier.MSupplierEmpty(oBSupplier));
+            var lBoSupplier = new Bo_Supplier();
+            return this.View(Models.MSupplier.MSupplierEmpty(lBoSupplier));
         }
 
         // POST: Supplier/Create
@@ -49,6 +51,7 @@ namespace Project_BusinessManagement.Views.Supplier
         {
             try
             {
+                this.ModelState.Remove("LIdSupplier");
                 if (this.ModelState.IsValid)
                 {
                     var lMessage = this.LiSupplier.bll_InsertSupplier(this.Request.Form["LNameSupplier"].ToString(), this.Request.Form["LNoIdentification"].ToString(), Convert.ToInt32(this.Request.Form["LTypeIdentification.LIdTypeIdentification"].ToString()), Convert.ToInt32(this.Request.Form["LObject.LIdObject"].ToString()), this.Request.Form["LStatus.LIdStatus"].ToString());
@@ -84,7 +87,7 @@ namespace Project_BusinessManagement.Views.Supplier
             pMsupplier.LListTypeIdentification = new List<SelectListItem>();
             pMsupplier.LListTypeIdentification = Models.MTypeIdentification.MListAllTypeIdentification(LiTypeIdentification.bll_getListTypeIdentification());
             pMsupplier.LListStatus = new List<SelectListItem>();
-            //pMsupplier.LListStatus = Models.MStatus.MListAllStatus(Bll_Status.Bll_getListStatusByIdObject(pMsupplier.LObject.LIdObject));
+            pMsupplier.LListStatus = Models.MStatus.MListAllStatus(LiStatus.Bll_getListStatusByIdObject(pMsupplier.LObject.LIdObject));
         }
 
         [ConfigurationApp(pParameter: "EditSupplier")]

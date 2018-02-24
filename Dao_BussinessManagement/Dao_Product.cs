@@ -3,62 +3,72 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
+using System.Globalization;
+using IDaoBusiness.Business;
 
 namespace Dao_BussinessManagement
 {
-    public class Dao_Product
+    public class DaoProduct : IDaoProduct
     {
-        List<SqlParameter> lListParam = new List<SqlParameter>();
+        private List<SqlParameter> LListParam { get; set; }
 
         public Bo_Product Dao_getProductById(int pIdProduct)
         {
             using (SqlConnection lConex = Dao_UtilsLib.Dao_SqlConnection(lConex))
             {
+                var lProduct = new Bo_Product();
                 try
                 {
-                    SqlCommand lCommand = new SqlCommand();
-                    lCommand.CommandText = "spr_GetProduct";
-                    lCommand.CommandTimeout = 30;
-                    lCommand.CommandType = CommandType.StoredProcedure;
-                    lCommand.Connection = lConex;
+                    var lCommand = new SqlCommand
+                    {
+                        CommandText = "spr_GetProduct",
+                        CommandTimeout = 30,
+                        CommandType = CommandType.StoredProcedure,
+                        Connection = lConex
+                    };
                     lCommand.Parameters.Add(new SqlParameter("IdProduct", pIdProduct));
 
                     var lReader = lCommand.ExecuteReader();
-                    Bo_Product oProduct = new Bo_Product();
                     if (lReader.HasRows)
                     {
                         while (lReader.Read())
-                        {
-                            oProduct.LStatus = new Bo_Status();
-                            oProduct.LObject = new Bo_Object();
-                            oProduct.LUnit = new Bo_Unit();
-                            oProduct.LSupplier = new Bo_Supplier();
-                            oProduct.LIdProduct = Convert.ToInt32(lReader["IdProduct"].ToString());
-                            oProduct.LNameProduct = lReader["NameProduct"].ToString();
-                            oProduct.LCdProduct = lReader["CdProduct"].ToString();
-                            oProduct.LCreationDate = Convert.ToDateTime(lReader["CreationDate"].ToString());
-                            oProduct.LUnit.LIdUnit = Convert.ToInt32(lReader["IdUnit"].ToString());
-                            oProduct.LValue = Convert.ToDecimal(lReader["Price"].ToString());
-                            oProduct.LSupplier.LIdSupplier = Convert.ToInt32(lReader["IdSupplier"].ToString());
-                            oProduct.LValueSupplier = Convert.ToDecimal(lReader["PriceSupplier"].ToString());
-                            oProduct.LStatus.LIdStatus = lReader["IdStatus"].ToString();
-                            oProduct.LStatus.LDsEstado = lReader["DsEstado"].ToString();
-                            oProduct.LObject.LIdObject = Convert.ToInt32(lReader["IdObject"].ToString());
-                            oProduct.LObject.LNameObject = lReader["NameObject"].ToString();
+                        {                           
+                            
+                            
+                            
+                            lProduct.LIdProduct = Convert.ToInt32(lReader["IdProduct"].ToString());
+                            lProduct.LNameProduct = lReader["NameProduct"].ToString();
+                            lProduct.LCdProduct = lReader["CdProduct"].ToString();
+                            lProduct.LCreationDate = Convert.ToDateTime(lReader["CreationDate"].ToString());
+                            lProduct.LUnit = new Bo_Unit {LIdUnit = Convert.ToInt32(lReader["IdUnit"].ToString())};
+                            lProduct.LValue = Convert.ToDecimal(lReader["Price"].ToString());
+                            lProduct.LSupplier = new Bo_Supplier
+                            {
+                                LIdSupplier = Convert.ToInt32(lReader["IdSupplier"].ToString())
+                            };
+                            lProduct.LValueSupplier = Convert.ToDecimal(lReader["PriceSupplier"].ToString());
+                            lProduct.LStatus = new Bo_Status
+                            {
+                                LIdStatus = lReader["IdStatus"].ToString(),
+                                LDsEstado = lReader["DsEstado"].ToString()
+                            };
+                            lProduct.LObject = new Bo_Object
+                            {
+                                LIdObject = Convert.ToInt32(lReader["IdObject"].ToString()),
+                                LNameObject = lReader["NameObject"].ToString()
+                            };
                         }
                     }
                     Dao_UtilsLib.Dao_CloseSqlconnection(lConex);
-                    return oProduct;
+                    return lProduct;
                 }
                 catch (Exception e)
                 {
-                    Bo_Product oProduct = new Bo_Product();
-                    oProduct.LException = e.Message;
+                    lProduct = new Bo_Product {LException = e.Message, LMessageDao = "Hubo un problema en la consulta, contacte al administrador."};
                     if (e.InnerException != null)
-                        oProduct.LInnerException = e.InnerException.ToString();
-                    oProduct.LMessageDao = "Hubo un problema en la consulta, contacte al administrador.";
+                        lProduct.LInnerException = e.InnerException.ToString();
                     Dao_UtilsLib.Dao_CloseSqlconnection(lConex);
-                    return oProduct;
+                    return lProduct;
                 }
             }
         }
@@ -67,51 +77,56 @@ namespace Dao_BussinessManagement
         {
             using (SqlConnection lConex = Dao_UtilsLib.Dao_SqlConnection(lConex))
             {
+                var lProduct = new Bo_Product();
                 try
                 {
-                    SqlCommand lCommand = new SqlCommand();
-                    lCommand.CommandText = "spr_GetProductByCode";
-                    lCommand.CommandTimeout = 30;
-                    lCommand.CommandType = CommandType.StoredProcedure;
-                    lCommand.Connection = lConex;
+                    var lCommand = new SqlCommand
+                    {
+                        CommandText = "spr_GetProductByCode",
+                        CommandTimeout = 30,
+                        CommandType = CommandType.StoredProcedure,
+                        Connection = lConex
+                    };
                     lCommand.Parameters.Add(new SqlParameter("CdProduct", pCdProduct));
 
                     var lReader = lCommand.ExecuteReader();
-                    Bo_Product oProduct = new Bo_Product();
                     if (lReader.HasRows)
                     {
                         while (lReader.Read())
-                        {
-                            oProduct.LStatus = new Bo_Status();
-                            oProduct.LObject = new Bo_Object();
-                            oProduct.LUnit = new Bo_Unit();
-                            oProduct.LSupplier = new Bo_Supplier();
-                            oProduct.LIdProduct = Convert.ToInt32(lReader["IdProduct"].ToString());
-                            oProduct.LNameProduct = lReader["NameProduct"].ToString();
-                            oProduct.LCdProduct = lReader["CdProduct"].ToString();
-                            oProduct.LCreationDate = Convert.ToDateTime(lReader["CreationDate"].ToString());
-                            oProduct.LUnit.LIdUnit = Convert.ToInt32(lReader["IdUnit"].ToString());
-                            oProduct.LValue = Convert.ToDecimal(lReader["Price"].ToString());
-                            oProduct.LSupplier.LIdSupplier = Convert.ToInt32(lReader["IdSupplier"].ToString());
-                            oProduct.LValueSupplier = Convert.ToDecimal(lReader["PriceSupplier"].ToString());
-                            oProduct.LStatus.LIdStatus = lReader["IdStatus"].ToString();
-                            oProduct.LStatus.LDsEstado = lReader["DsEstado"].ToString();
-                            oProduct.LObject.LIdObject = Convert.ToInt32(lReader["IdObject"].ToString());
-                            oProduct.LObject.LNameObject = lReader["NameObject"].ToString();
+                        {                            
+                            lProduct.LIdProduct = Convert.ToInt32(lReader["IdProduct"].ToString());
+                            lProduct.LNameProduct = lReader["NameProduct"].ToString();
+                            lProduct.LCdProduct = lReader["CdProduct"].ToString();
+                            lProduct.LCreationDate = Convert.ToDateTime(lReader["CreationDate"].ToString());
+                            lProduct.LUnit = new Bo_Unit {LIdUnit = Convert.ToInt32(lReader["IdUnit"].ToString())};
+                            lProduct.LValue = Convert.ToDecimal(lReader["Price"].ToString());
+                            lProduct.LSupplier = new Bo_Supplier
+                            {
+                                LIdSupplier = Convert.ToInt32(lReader["IdSupplier"].ToString())
+                            };
+                            lProduct.LValueSupplier = Convert.ToDecimal(lReader["PriceSupplier"].ToString());
+                            lProduct.LStatus = new Bo_Status
+                            {
+                                LIdStatus = lReader["IdStatus"].ToString(),
+                                LDsEstado = lReader["DsEstado"].ToString()
+                            };
+                            lProduct.LObject = new Bo_Object
+                            {
+                                LIdObject = Convert.ToInt32(lReader["IdObject"].ToString()),
+                                LNameObject = lReader["NameObject"].ToString()
+                            };
                         }
                     }
                     Dao_UtilsLib.Dao_CloseSqlconnection(lConex);
-                    return oProduct;
+                    return lProduct;
                 }
                 catch (Exception e)
                 {
-                    Bo_Product oProduct = new Bo_Product();
-                    oProduct.LException = e.Message;
+                    lProduct = new Bo_Product {LException = e.Message, LMessageDao = "Hubo un problema en la consulta, contacte al administrador." };
                     if (e.InnerException != null)
-                        oProduct.LInnerException = e.InnerException.ToString();
-                    oProduct.LMessageDao = "Hubo un problema en la consulta, contacte al administrador.";
+                        lProduct.LInnerException = e.InnerException.ToString();
                     Dao_UtilsLib.Dao_CloseSqlconnection(lConex);
-                    return oProduct;
+                    return lProduct;
                 }
             }
         }
@@ -120,88 +135,96 @@ namespace Dao_BussinessManagement
         {
             using (SqlConnection lConex = Dao_UtilsLib.Dao_SqlConnection(lConex))
             {
+                var lListProduct = new List<Bo_Product>();
                 try
                 {
-                    SqlCommand lCommand = new SqlCommand();
-                    lCommand.CommandText = "spr_GetListAllProduct";
-                    lCommand.CommandTimeout = 30;
-                    lCommand.CommandType = CommandType.StoredProcedure;
-                    lCommand.Connection = lConex;
+                    var lCommand = new SqlCommand
+                    {
+                        CommandText = "spr_GetListAllProduct",
+                        CommandTimeout = 30,
+                        CommandType = CommandType.StoredProcedure,
+                        Connection = lConex
+                    };
                     var lReader = lCommand.ExecuteReader();
-                    List<Bo_Product> oListProduct = new List<Bo_Product>();
                     if (lReader.HasRows)
                     {
                         while (lReader.Read())
                         {
-                            Bo_Product oProduct = new Bo_Product();
-                            oProduct.LStatus = new Bo_Status();
-                            oProduct.LObject = new Bo_Object();
-                            oProduct.LUnit = new Bo_Unit();
-                            oProduct.LSupplier = new Bo_Supplier();
-                            oProduct.LIdProduct = Convert.ToInt32(lReader["IdProduct"].ToString());
-                            oProduct.LNameProduct = lReader["NameProduct"].ToString();
-                            oProduct.LCdProduct = lReader["CdProduct"].ToString();
-                            oProduct.LCreationDate = Convert.ToDateTime(lReader["CreationDate"].ToString());
-                            oProduct.LUnit.LIdUnit = Convert.ToInt32(lReader["IdUnit"].ToString());
-                            oProduct.LValue = Convert.ToDecimal(lReader["Price"].ToString());
-                            oProduct.LSupplier.LIdSupplier = Convert.ToInt32(lReader["IdSupplier"].ToString());
-                            oProduct.LValueSupplier = Convert.ToDecimal(lReader["PriceSupplier"].ToString());
-                            oProduct.LStatus.LIdStatus = lReader["IdStatus"].ToString();
-                            oProduct.LStatus.LDsEstado = lReader["DsEstado"].ToString();
-                            oProduct.LObject.LIdObject = Convert.ToInt32(lReader["IdObject"].ToString());
-                            oProduct.LObject.LNameObject = lReader["NameObject"].ToString();
-                            oListProduct.Add(oProduct);
+                            var oProduct = new Bo_Product
+                            {
+                                LStatus = new Bo_Status
+                                {
+                                    LIdStatus = lReader["IdStatus"].ToString(),
+                                    LDsEstado = lReader["DsEstado"].ToString()
+                                },
+                                LObject = new Bo_Object
+                                {
+                                    LIdObject = Convert.ToInt32(lReader["IdObject"].ToString()),
+                                    LNameObject = lReader["NameObject"].ToString()
+                                },
+                                LUnit = new Bo_Unit {LIdUnit = Convert.ToInt32(lReader["IdUnit"].ToString())},
+                                LSupplier =
+                                    new Bo_Supplier {LIdSupplier = Convert.ToInt32(lReader["IdSupplier"].ToString())},
+                                LIdProduct = Convert.ToInt32(lReader["IdProduct"].ToString()),
+                                LNameProduct = lReader["NameProduct"].ToString(),
+                                LCdProduct = lReader["CdProduct"].ToString(),
+                                LCreationDate = Convert.ToDateTime(lReader["CreationDate"].ToString()),
+                                LValue = Convert.ToDecimal(lReader["Price"].ToString()),
+                                LValueSupplier = Convert.ToDecimal(lReader["PriceSupplier"].ToString())
+                            };
+                            lListProduct.Add(oProduct);
                         }
                     }
                     Dao_UtilsLib.Dao_CloseSqlconnection(lConex);
-                    return oListProduct;
+                    return lListProduct;
                 }
                 catch (Exception e)
                 {
-                    List<Bo_Product> oListProduct = new List<Bo_Product>();
-                    Bo_Product oProduct = new Bo_Product();
-                    oProduct.LException = e.Message;
+                    lListProduct = new List<Bo_Product>();
+                    var oProduct = new Bo_Product {LException = e.Message, LMessageDao = "Hubo un problema en la consulta, contacte al administrador." };
                     if (e.InnerException != null)
                         oProduct.LInnerException = e.InnerException.ToString();
-                    oProduct.LMessageDao = "Hubo un problema en la consulta, contacte al administrador.";
                     Dao_UtilsLib.Dao_CloseSqlconnection(lConex);
-                    oListProduct.Add(oProduct);
-                    return oListProduct;
+                    lListProduct.Add(oProduct);
+                    return lListProduct;
                 }
             }
         }
 
         public string Dao_InsertProduct(Bo_Product pProduct)
         {
-            Dao_UtilsLib.dao_Addparameters(lListParam, SqlDbType.VarChar, "@NameProduct", pProduct.LNameProduct);
-            Dao_UtilsLib.dao_Addparameters(lListParam, SqlDbType.VarChar, "@CdProduct", pProduct.LCdProduct);
-            Dao_UtilsLib.dao_Addparameters(lListParam, SqlDbType.Int, "@IdUnit", pProduct.LUnit.LIdUnit.ToString());
-            Dao_UtilsLib.dao_Addparameters(lListParam, SqlDbType.Decimal, "@Price", pProduct.LValue.ToString());
-            Dao_UtilsLib.dao_Addparameters(lListParam, SqlDbType.Int, "@IdSupplier", pProduct.LSupplier.LIdSupplier.ToString());
-            Dao_UtilsLib.dao_Addparameters(lListParam, SqlDbType.Decimal, "@PriceSupplier", pProduct.LValue.ToString());
-            Dao_UtilsLib.dao_Addparameters(lListParam, SqlDbType.VarChar, "@IdStatus", pProduct.LStatus.LIdStatus.ToString());
-            Dao_UtilsLib.dao_Addparameters(lListParam, SqlDbType.Int, "@IdObject", pProduct.LObject.LIdObject.ToString());
-            return Dao_UtilsLib.Dao_executeSqlTransactionWithProcedement(lListParam, "LTranInsertProduct", "spr_CreateProduct");
+            this.LListParam = new List<SqlParameter>();
+            Dao_UtilsLib.dao_Addparameters(this.LListParam, SqlDbType.VarChar, "@NameProduct", pProduct.LNameProduct);
+            Dao_UtilsLib.dao_Addparameters(this.LListParam, SqlDbType.VarChar, "@CdProduct", pProduct.LCdProduct);
+            Dao_UtilsLib.dao_Addparameters(this.LListParam, SqlDbType.Int, "@IdUnit", pProduct.LUnit.LIdUnit.ToString());
+            Dao_UtilsLib.dao_Addparameters(this.LListParam, SqlDbType.Decimal, "@Price", pProduct.LValue.ToString());
+            Dao_UtilsLib.dao_Addparameters(this.LListParam, SqlDbType.Int, "@IdSupplier", pProduct.LSupplier.LIdSupplier.ToString());
+            Dao_UtilsLib.dao_Addparameters(this.LListParam, SqlDbType.Decimal, "@PriceSupplier", pProduct.LValue.ToString());
+            Dao_UtilsLib.dao_Addparameters(this.LListParam, SqlDbType.VarChar, "@IdStatus", pProduct.LStatus.LIdStatus.ToString());
+            Dao_UtilsLib.dao_Addparameters(this.LListParam, SqlDbType.Int, "@IdObject", pProduct.LObject.LIdObject.ToString());
+            return Dao_UtilsLib.Dao_executeSqlTransactionWithProcedement(this.LListParam, "LTranInsertProduct", "spr_CreateProduct");
         }
 
         public string Dao_UpdateProduct(Bo_Product pProduct)
         {
-            Dao_UtilsLib.dao_Addparameters(lListParam, SqlDbType.Int, "@IdProduct", pProduct.LIdProduct.ToString());
-            Dao_UtilsLib.dao_Addparameters(lListParam, SqlDbType.VarChar, "@NameProduct", pProduct.LNameProduct);
-            Dao_UtilsLib.dao_Addparameters(lListParam, SqlDbType.VarChar, "@CdProduct", pProduct.LCdProduct);
-            Dao_UtilsLib.dao_Addparameters(lListParam, SqlDbType.Int, "@IdUnit", pProduct.LUnit.LIdUnit.ToString());
-            Dao_UtilsLib.dao_Addparameters(lListParam, SqlDbType.Decimal, "@Price", pProduct.LValue.ToString());
-            Dao_UtilsLib.dao_Addparameters(lListParam, SqlDbType.Int, "@IdSupplier", pProduct.LSupplier.LIdSupplier.ToString());
-            Dao_UtilsLib.dao_Addparameters(lListParam, SqlDbType.Decimal, "@PriceSupplier", pProduct.LValueSupplier.ToString());
-            Dao_UtilsLib.dao_Addparameters(lListParam, SqlDbType.VarChar, "@IdStatus", pProduct.LStatus.LIdStatus.ToString());
-            Dao_UtilsLib.dao_Addparameters(lListParam, SqlDbType.Int, "@IdObject", pProduct.LObject.LIdObject.ToString());
-            return Dao_UtilsLib.Dao_executeSqlTransactionWithProcedement(lListParam, "LTranUpdateProduct", "spr_UpdateProduct");
+            this.LListParam = new List<SqlParameter>();
+            Dao_UtilsLib.dao_Addparameters(this.LListParam, SqlDbType.Int, "@IdProduct", pProduct.LIdProduct.ToString());
+            Dao_UtilsLib.dao_Addparameters(this.LListParam, SqlDbType.VarChar, "@NameProduct", pProduct.LNameProduct);
+            Dao_UtilsLib.dao_Addparameters(this.LListParam, SqlDbType.VarChar, "@CdProduct", pProduct.LCdProduct);
+            Dao_UtilsLib.dao_Addparameters(this.LListParam, SqlDbType.Int, "@IdUnit", pProduct.LUnit.LIdUnit.ToString());
+            Dao_UtilsLib.dao_Addparameters(this.LListParam, SqlDbType.Decimal, "@Price", pProduct.LValue.ToString(CultureInfo.InvariantCulture));
+            Dao_UtilsLib.dao_Addparameters(this.LListParam, SqlDbType.Int, "@IdSupplier", pProduct.LSupplier.LIdSupplier.ToString());
+            Dao_UtilsLib.dao_Addparameters(this.LListParam, SqlDbType.Decimal, "@PriceSupplier", pProduct.LValueSupplier.ToString(CultureInfo.InvariantCulture));
+            Dao_UtilsLib.dao_Addparameters(this.LListParam, SqlDbType.VarChar, "@IdStatus", pProduct.LStatus.LIdStatus);
+            Dao_UtilsLib.dao_Addparameters(this.LListParam, SqlDbType.Int, "@IdObject", pProduct.LObject.LIdObject.ToString());
+            return Dao_UtilsLib.Dao_executeSqlTransactionWithProcedement(this.LListParam, "LTranUpdateProduct", "spr_UpdateProduct");
         }
 
         public string Dao_DeleteProduct(Bo_Product pProduct)
         {
-            Dao_UtilsLib.dao_Addparameters(lListParam, SqlDbType.Int, "@IdProduct", pProduct.LIdProduct.ToString());
-            return Dao_UtilsLib.Dao_executeSqlTransactionWithProcedement(lListParam, "LTranDeleteProduct", "spr_DeleteProduct");
+            this.LListParam = new List<SqlParameter>();
+            Dao_UtilsLib.dao_Addparameters(this.LListParam, SqlDbType.Int, "@IdProduct", pProduct.LIdProduct.ToString());
+            return Dao_UtilsLib.Dao_executeSqlTransactionWithProcedement(this.LListParam, "LTranDeleteProduct", "spr_DeleteProduct");
         }
     }
 }

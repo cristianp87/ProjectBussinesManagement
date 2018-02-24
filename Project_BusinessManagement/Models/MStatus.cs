@@ -2,99 +2,56 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 using System.Web.Mvc;
 
 namespace Project_BusinessManagement.Models
 {
     public class MStatus
     {
-
-        private string lIdStatus;
-        private string lDsEstado;
-        private DateTime lCreationDate;
-
-        private bool lFlActive;
-
-        public string LIdStatus
-        {
-            get
-            {
-                return lIdStatus;
-            }
-
-            set
-            {
-                lIdStatus = value;
-            }
-        }
+        [RegularExpression("^([1-9A-Za-z]{1}[0-9A-Za-z]{0,11})$", ErrorMessage = CodesError.LMsgValidateDdl)]
+        public string LIdStatus { get; set; }
 
         [DisplayName("Estado")]
-        public string LDsEstado
+        public string LDsEstado { get; set; }
+
+        public DateTime LCreationDate { get; set; }
+
+        public bool LFlActive { get; set; }
+
+
+        public static List<SelectListItem> MListAllStatus(List<Bo_Status> pBoListStatus)
         {
-            get
-            {
-                return lDsEstado;
-            }
-
-            set
-            {
-                lDsEstado = value;
-            }
-        }
-
-        public DateTime LCreationDate
-        {
-            get
-            {
-                return lCreationDate;
-            }
-
-            set
-            {
-                lCreationDate = value;
-            }
-        }
-
-        public bool LFlActive
-        {
-            get
-            {
-                return lFlActive;
-            }
-
-            set
-            {
-                lFlActive = value;
-            }
-        }
-
-
-        public static List<SelectListItem> MListAllStatus(List<Bo_Status> oListStatus)
-        {
-            List<SelectListItem> oMListStatus = new List<SelectListItem>();
-            oListStatus.ForEach(x => {
-                SelectListItem oListItem = new SelectListItem();
-                oListItem.Value = x.LIdStatus.ToString();
-                oListItem.Text = x.LDsEstado;
-                oMListStatus.Add(oListItem);
+            var lMListStatus = new List<SelectListItem>();
+            pBoListStatus.ForEach(x => {
+                                           var oListItem = new SelectListItem
+                                           {
+                                               Value = x.LIdStatus.ToString(),
+                                               Text = x.LDsEstado
+                                           };
+                                           lMListStatus.Add(oListItem);
             });
-            return oMListStatus;
+            return lMListStatus;
         }
 
-        public static List<SelectListItem> MListStatusWithSelect(List<Bo_Status> oListStatus)
+        public static List<SelectListItem> MListStatusWithSelect(List<Bo_Status> pBoListStatus)
         {
-            List<SelectListItem> oMListStatus = new List<SelectListItem>();
-            SelectListItem oListItemSelect = new SelectListItem();
-            oListItemSelect.Text = "Seleccione...";
-            oListItemSelect.Value = "0";
-            oMListStatus.Add(oListItemSelect);
-            oListStatus.ForEach(x => {
-                SelectListItem oListItem = new SelectListItem();
-                oListItem.Value = x.LIdStatus.ToString();
-                oListItem.Text = x.LDsEstado;
-                oMListStatus.Add(oListItem);
+            var lMListStatus = new List<SelectListItem>();
+            var lListItemSelect = new SelectListItem
+            {
+                Text = "Seleccione...",
+                Value = "0"
+            };
+            lMListStatus.Add(lListItemSelect);
+            pBoListStatus.ForEach(x => {
+                                           var oListItem = new SelectListItem
+                                           {
+                                               Value = x.LIdStatus.ToString(),
+                                               Text = x.LDsEstado
+                                           };
+                                           lMListStatus.Add(oListItem);
             });
-            return oMListStatus;
+            return lMListStatus;
         }
     }
 }

@@ -3,12 +3,14 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
+using System.Globalization;
+using IDaoBusiness.Business;
 
 namespace Dao_BussinessManagement
 {
-    public class Dao_Customer
+    public class DaoCustomer : IDaoCustomer
     {
-        List<SqlParameter> lListParam = new List<SqlParameter>();
+        private List<SqlParameter> LListParams { get; set; }
 
         public Bo_Customer Dao_getCustomerById(int pIdCustomer)
         {
@@ -17,43 +19,44 @@ namespace Dao_BussinessManagement
 
                 try
                 {
-                    SqlCommand lCommand = new SqlCommand();
-                    lCommand.CommandText = "spr_GetCustomer";
-                    lCommand.CommandTimeout = 30;
-                    lCommand.CommandType = CommandType.StoredProcedure;
-                    lCommand.Connection = lConex;
+                    var lCommand = new SqlCommand
+                    {
+                        CommandText = "spr_GetCustomer",
+                        CommandTimeout = 30,
+                        CommandType = CommandType.StoredProcedure,
+                        Connection = lConex
+                    };
                     lCommand.Parameters.Add(new SqlParameter("IdCustomer", pIdCustomer));
 
                     var lReader = lCommand.ExecuteReader();
-                    Bo_Customer oCustomer = new Bo_Customer();
+                    var lCustomer = new Bo_Customer();
                     if (lReader.HasRows)
                     {
                         while (lReader.Read())
                         {
-                            oCustomer.LStatus = new Bo_Status();
-                            oCustomer.LObject = new Bo_Object();
-                            oCustomer.LTypeIdentification = new Bo_TypeIdentification();
-                            oCustomer.LIdCustomer = Convert.ToInt32(lReader["IdCustomer"].ToString());
-                            oCustomer.LTypeIdentification.LIdTypeIdentification = Convert.ToInt32(lReader["IdTypeIdentification"].ToString());
-                            oCustomer.LNoIdentification = lReader["NoIdentification"].ToString();
-                            oCustomer.LNameCustomer = lReader["NameCustomer"].ToString();
-                            oCustomer.LLastNameCustomer = lReader["LastNameCustomer"].ToString();
-                            oCustomer.LCreationDate = Convert.ToDateTime(lReader["CreationDate"].ToString());
-                            oCustomer.LModificationDate = Convert.ToDateTime(lReader["ModificationDate"].ToString());
-                            oCustomer.LStatus.LIdStatus = lReader["IdStatus"].ToString();
-                            oCustomer.LObject.LIdObject = Convert.ToInt32(lReader["IdObject"].ToString());
+                            lCustomer.LStatus = new Bo_Status();
+                            lCustomer.LObject = new Bo_Object();
+                            lCustomer.LTypeIdentification = new Bo_TypeIdentification();
+                            lCustomer.LIdCustomer = Convert.ToInt32(lReader["IdCustomer"].ToString());
+                            lCustomer.LTypeIdentification.LIdTypeIdentification = Convert.ToInt32(lReader["IdTypeIdentification"].ToString());
+                            lCustomer.LNoIdentification = lReader["NoIdentification"].ToString();
+                            lCustomer.LNameCustomer = lReader["NameCustomer"].ToString();
+                            lCustomer.LLastNameCustomer = lReader["LastNameCustomer"].ToString();
+                            lCustomer.LCreationDate = Convert.ToDateTime(lReader["CreationDate"].ToString());
+                            lCustomer.LModificationDate = Convert.ToDateTime(lReader["ModificationDate"].ToString());
+                            lCustomer.LStatus.LIdStatus = lReader["IdStatus"].ToString();
+                            lCustomer.LObject.LIdObject = Convert.ToInt32(lReader["IdObject"].ToString());
 
                         }
 
 
                     }
                     Dao_UtilsLib.Dao_CloseSqlconnection(lConex);
-                    return oCustomer;
+                    return lCustomer;
                 }
                 catch (Exception e)
                 {
-                    Bo_Customer oCustomer = new Bo_Customer();
-                    oCustomer.LException = e.Message;
+                    var oCustomer = new Bo_Customer {LException = e.Message};
                     if (e.InnerException != null)
                         oCustomer.LInnerException = e.InnerException.ToString();
                     oCustomer.LMessageDao = "Hubo un problema en la consulta, contacte al administrador.";
@@ -64,21 +67,23 @@ namespace Dao_BussinessManagement
             }
         }
 
-        public Bo_Customer Dao_getCustomerByDocument(string PNoIdentification, int PIdTypeIdentification)
+        public Bo_Customer Dao_getCustomerByDocument(string pNoIdentification, int pIdTypeIdentification)
         {
             using (SqlConnection lConex = Dao_UtilsLib.Dao_SqlConnection(lConex))
             {
                 try
                 {
-                    SqlCommand lCommand = new SqlCommand();
-                    lCommand.CommandText = "spr_GetCustomerByIdentification";
-                    lCommand.CommandTimeout = 30;
-                    lCommand.CommandType = CommandType.StoredProcedure;
-                    lCommand.Connection = lConex;
-                    lCommand.Parameters.Add(new SqlParameter("@NoIdentification", PNoIdentification));
-                    lCommand.Parameters.Add(new SqlParameter("@IdTypeIdentification", PIdTypeIdentification));
+                    var lCommand = new SqlCommand
+                    {
+                        CommandText = "spr_GetCustomerByIdentification",
+                        CommandTimeout = 30,
+                        CommandType = CommandType.StoredProcedure,
+                        Connection = lConex
+                    };
+                    lCommand.Parameters.Add(new SqlParameter("@NoIdentification", pNoIdentification));
+                    lCommand.Parameters.Add(new SqlParameter("@IdTypeIdentification", pIdTypeIdentification));
                     var lReader = lCommand.ExecuteReader();
-                    Bo_Customer oCustomer = new Bo_Customer();
+                    var oCustomer = new Bo_Customer();
                     if (lReader.HasRows)
                     {
                         while (lReader.Read())
@@ -105,8 +110,7 @@ namespace Dao_BussinessManagement
                 }
                 catch (Exception e)
                 {
-                    Bo_Customer oCustomer = new Bo_Customer();
-                    oCustomer.LException = e.Message;
+                    var oCustomer = new Bo_Customer {LException = e.Message};
                     if (e.InnerException != null)
                         oCustomer.LInnerException = e.InnerException.ToString();
                     oCustomer.LMessageDao = "Hubo un problema en la consulta, contacte al administrador.";
@@ -124,33 +128,51 @@ namespace Dao_BussinessManagement
 
                 try
                 {
-                    SqlCommand lCommand = new SqlCommand();
-                    lCommand.CommandText = "spr_GetListAllCustomer";
-                    lCommand.CommandTimeout = 30;
-                    lCommand.CommandType = CommandType.StoredProcedure;
-                    lCommand.Connection = lConex;
+                    var lCommand = new SqlCommand
+                    {
+                        CommandText = "spr_GetListAllCustomer",
+                        CommandTimeout = 30,
+                        CommandType = CommandType.StoredProcedure,
+                        Connection = lConex
+                    };
                     var lReader = lCommand.ExecuteReader();
-                    List<Bo_Customer> oListCustomer = new List<Bo_Customer>();                    
+                    var oListCustomer = new List<Bo_Customer>();                    
                     if (lReader.HasRows)
                     {
                         while (lReader.Read())
                         {
-                            Bo_Customer oCustomer = new Bo_Customer();
-                            oCustomer.LStatus = new Bo_Status();
-                            oCustomer.LObject = new Bo_Object();
-                            oCustomer.LTypeIdentification = new Bo_TypeIdentification();
-                            oCustomer.LIdCustomer = Convert.ToInt32(lReader["IdCustomer"].ToString());
-                            oCustomer.LTypeIdentification.LIdTypeIdentification = Convert.ToInt32(lReader["IdTypeIdentification"].ToString());
-                            oCustomer.LTypeIdentification.LTypeIdentification = lReader["TypeIdentification"].ToString();
-                            oCustomer.LNoIdentification = lReader["NoIdentification"].ToString();
-                            oCustomer.LNameCustomer = lReader["NameCustomer"].ToString();
-                            oCustomer.LLastNameCustomer = lReader["LastNameCustomer"].ToString();
-                            oCustomer.LCreationDate = Convert.ToDateTime(lReader["CreationDate"].ToString() == "" ? new DateTime().ToString(): lReader["CreationDate"].ToString());
-                            oCustomer.LModificationDate = Convert.ToDateTime(lReader["ModificationDate"].ToString() == "" ? new DateTime().ToString() : lReader["ModificationDate"].ToString());
-                            oCustomer.LStatus.LIdStatus = lReader["IdStatus"].ToString();
-                            oCustomer.LStatus.LDsEstado = lReader["DsEstado"].ToString();
-                            oCustomer.LObject.LIdObject = Convert.ToInt32(lReader["IdObject"].ToString());
-                            oCustomer.LObject.LNameObject = lReader["NameObject"].ToString();
+                            var oCustomer = new Bo_Customer
+                            {
+                                LStatus = new Bo_Status
+                                {
+                                    LIdStatus = lReader["IdStatus"].ToString(),
+                                    LDsEstado = lReader["DsEstado"].ToString()
+                                },
+                                LObject = new Bo_Object
+                                {
+                                    LIdObject = Convert.ToInt32(lReader["IdObject"].ToString()),
+                                    LNameObject = lReader["NameObject"].ToString()
+                                },
+                                LTypeIdentification =
+                                    new Bo_TypeIdentification
+                                    {
+                                        LIdTypeIdentification =
+                                            Convert.ToInt32(lReader["IdTypeIdentification"].ToString()),
+                                        LTypeIdentification = lReader["TypeIdentification"].ToString()
+                                    },
+                                LIdCustomer = Convert.ToInt32(lReader["IdCustomer"].ToString()),
+                                LNoIdentification = lReader["NoIdentification"].ToString(),
+                                LNameCustomer = lReader["NameCustomer"].ToString(),
+                                LLastNameCustomer = lReader["LastNameCustomer"].ToString(),
+                                LCreationDate =
+                                    Convert.ToDateTime(lReader["CreationDate"].ToString() == ""
+                                        ? new DateTime().ToString(CultureInfo.InvariantCulture)
+                                        : lReader["CreationDate"].ToString()),
+                                LModificationDate =
+                                    Convert.ToDateTime(lReader["ModificationDate"].ToString() == ""
+                                        ? new DateTime().ToString(CultureInfo.InvariantCulture)
+                                        : lReader["ModificationDate"].ToString())
+                            };
                             oListCustomer.Add(oCustomer);
                         }
 
@@ -161,9 +183,8 @@ namespace Dao_BussinessManagement
                 }
                 catch (Exception e)
                 {
-                    List<Bo_Customer> oListCustomer = new List<Bo_Customer>();
-                    Bo_Customer oCustomer = new Bo_Customer();
-                    oCustomer.LException = e.Message;
+                    var oListCustomer = new List<Bo_Customer>();
+                    var oCustomer = new Bo_Customer {LException = e.Message};
                     if (e.InnerException != null)
                         oCustomer.LInnerException = e.InnerException.ToString();
                     oCustomer.LMessageDao = "Hubo un problema en la consulta, contacte al administrador.";
@@ -177,30 +198,33 @@ namespace Dao_BussinessManagement
 
         public string Dao_InsertCustomer(Bo_Customer pCustomer)
         {
-            Dao_UtilsLib.dao_Addparameters(lListParam, SqlDbType.VarChar, "@NameCustomer", pCustomer.LNameCustomer);
-            Dao_UtilsLib.dao_Addparameters(lListParam, SqlDbType.VarChar, "@LastNameCustomer", pCustomer.LNameCustomer);
-            Dao_UtilsLib.dao_Addparameters(lListParam, SqlDbType.VarChar, "@IdTypeIdentification", pCustomer.LTypeIdentification.LIdTypeIdentification.ToString());
-            Dao_UtilsLib.dao_Addparameters(lListParam, SqlDbType.VarChar, "@NoIdentification", pCustomer.LNoIdentification);
-            Dao_UtilsLib.dao_Addparameters(lListParam, SqlDbType.VarChar, "@IdStatus", pCustomer.LStatus.LIdStatus.ToString());
-            Dao_UtilsLib.dao_Addparameters(lListParam, SqlDbType.Int, "@IdObject", pCustomer.LObject.LIdObject.ToString());
-            return Dao_UtilsLib.Dao_executeSqlTransactionWithProcedement(lListParam, "LTranInsertCustomer", "spr_CreateCustomer");
+            this.LListParams = new List<SqlParameter>();
+            Dao_UtilsLib.dao_Addparameters(this.LListParams, SqlDbType.VarChar, "@NameCustomer", pCustomer.LNameCustomer);
+            Dao_UtilsLib.dao_Addparameters(this.LListParams, SqlDbType.VarChar, "@LastNameCustomer", pCustomer.LLastNameCustomer);
+            Dao_UtilsLib.dao_Addparameters(this.LListParams, SqlDbType.VarChar, "@IdTypeIdentification", pCustomer.LTypeIdentification.LIdTypeIdentification.ToString());
+            Dao_UtilsLib.dao_Addparameters(this.LListParams, SqlDbType.VarChar, "@NoIdentification", pCustomer.LNoIdentification);
+            Dao_UtilsLib.dao_Addparameters(this.LListParams, SqlDbType.VarChar, "@IdStatus", pCustomer.LStatus.LIdStatus);
+            Dao_UtilsLib.dao_Addparameters(this.LListParams, SqlDbType.Int, "@IdObject", pCustomer.LObject.LIdObject.ToString());
+            return Dao_UtilsLib.Dao_executeSqlTransactionWithProcedement(this.LListParams, "LTranInsertCustomer", "spr_CreateCustomer");
         }
 
-        public string Dao_UpdateInventory(Bo_Customer pCustomer)
+        public string Dao_UpdateCustomer(Bo_Customer pCustomer)
         {
-            Dao_UtilsLib.dao_Addparameters(lListParam, SqlDbType.Int, "@IdCustomer", pCustomer.LIdCustomer.ToString());
-            Dao_UtilsLib.dao_Addparameters(lListParam, SqlDbType.VarChar, "@NameCustomer", pCustomer.LNameCustomer);
-            Dao_UtilsLib.dao_Addparameters(lListParam, SqlDbType.VarChar, "@LastNameCustomer", pCustomer.LLastNameCustomer);
-            Dao_UtilsLib.dao_Addparameters(lListParam, SqlDbType.Int, "@IdTypeIdentification", pCustomer.LTypeIdentification.LIdTypeIdentification.ToString());
-            Dao_UtilsLib.dao_Addparameters(lListParam, SqlDbType.VarChar, "@NoIdentification", pCustomer.LNoIdentification);
-            Dao_UtilsLib.dao_Addparameters(lListParam, SqlDbType.VarChar, "@IdStatus", pCustomer.LStatus.LIdStatus.ToString());
-            return Dao_UtilsLib.Dao_executeSqlTransactionWithProcedement(lListParam, "LTranUpdateCustomer", "spr_UpdateCustomer");
+            this.LListParams = new List<SqlParameter>();
+            Dao_UtilsLib.dao_Addparameters(this.LListParams, SqlDbType.Int, "@IdCustomer", pCustomer.LIdCustomer.ToString());
+            Dao_UtilsLib.dao_Addparameters(this.LListParams, SqlDbType.VarChar, "@NameCustomer", pCustomer.LNameCustomer);
+            Dao_UtilsLib.dao_Addparameters(this.LListParams, SqlDbType.VarChar, "@LastNameCustomer", pCustomer.LLastNameCustomer);
+            Dao_UtilsLib.dao_Addparameters(this.LListParams, SqlDbType.Int, "@IdTypeIdentification", pCustomer.LTypeIdentification.LIdTypeIdentification.ToString());
+            Dao_UtilsLib.dao_Addparameters(this.LListParams, SqlDbType.VarChar, "@NoIdentification", pCustomer.LNoIdentification);
+            Dao_UtilsLib.dao_Addparameters(this.LListParams, SqlDbType.VarChar, "@IdStatus", pCustomer.LStatus.LIdStatus.ToString());
+            return Dao_UtilsLib.Dao_executeSqlTransactionWithProcedement(this.LListParams, "LTranUpdateCustomer", "spr_UpdateCustomer");
         }
 
-        public string Dao_DeleteInventory(Bo_Customer pCustomer)
+        public string Dao_DeleteCustomer(Bo_Customer pCustomer)
         {
-            Dao_UtilsLib.dao_Addparameters(lListParam, SqlDbType.Int, "@IdCustomer", pCustomer.LIdCustomer.ToString());
-            return Dao_UtilsLib.Dao_executeSqlTransactionWithProcedement(lListParam, "LTranDeleteCustomer", "spr_DeleteCustomer");
+            this.LListParams = new List<SqlParameter>();
+            Dao_UtilsLib.dao_Addparameters(this.LListParams, SqlDbType.Int, "@IdCustomer", pCustomer.LIdCustomer.ToString());
+            return Dao_UtilsLib.Dao_executeSqlTransactionWithProcedement(this.LListParams, "LTranDeleteCustomer", "spr_DeleteCustomer");
         }
     }
 }

@@ -1,5 +1,4 @@
-﻿using Bll_Business;
-using BO_BusinessManagement;
+﻿using BO_BusinessManagement;
 using IBusiness.Common;
 using IBusiness.Management;
 using System;
@@ -14,255 +13,136 @@ namespace Project_BusinessManagement.Models
     {
         #region Variables and constants
         public static IStatus LiStatus =
-        FacadeProvider.Resolver<BllStatus>();
+        FacadeProvider.Resolver<IStatus>();
 
         public static ITypeIdentification LiTypeIdentification =
-        FacadeProvider.Resolver<BllTypeIdentification>();
+        FacadeProvider.Resolver<ITypeIdentification>();
 
         public static IUtilsLib LiUtilsLib =
-        FacadeProvider.Resolver<BllUtilsLib>();
+        FacadeProvider.Resolver<IUtilsLib>();
         #endregion
-        private int lIdCustomer;
-        private string lNameCustomer;
-        private string lLastNameCustomer;
-        private DateTime lCreationDate;
-        private MTypeIdentification lTypeIdentification;
-        private string lNoIdentification;
-        private MStatus lStatus;
-        private MObject lObject;
-        private List<SelectListItem> lListTypeIdentification;
-        private List<SelectListItem> lListStatus;
-        private string lMessageException;
-        private DateTime lModificationDate;
 
-        [UIHint("LIdCustomer")]
         [DisplayName("Id CLiente")]
-        public int LIdCustomer
-        {
-            get
-            {
-                return lIdCustomer;
-            }
-
-            set
-            {
-                lIdCustomer = value;
-            }
-        }
+        public int LIdCustomer { get; set; }
 
         [Display(Name = "Nombre Cliente")]
-        [Required(ErrorMessage = "El nombre del cliente es requerido.")]
-        public string LNameCustomer
-        {
-            get
-            {
-                return lNameCustomer;
-            }
+        [Required(ErrorMessage = CodesError.LMsgValidateName)]
+        public string LNameCustomer { get; set; }
 
-            set
-            {
-                lNameCustomer = value;
-            }
-        }
         [DisplayName("Apellidos Cliente")]
-        [Required(ErrorMessage = "Los Apellidos del cliente es requerido.")]
-        public string LLastNameCustomer
-        {
-            get
-            {
-                return lLastNameCustomer;
-            }
-
-            set
-            {
-                lLastNameCustomer = value;
-            }
-        }
+        [Required(ErrorMessage = CodesError.LMsgValidateLastName)]
+        public string LLastNameCustomer { get; set; }
 
         [DisplayName("Fecha De Creacion")]
-        public DateTime LCreationDate
-        {
-            get
-            {
-                return lCreationDate;
-            }
+        public DateTime LCreationDate { get; set; }
 
-            set
-            {
-                lCreationDate = value;
-            }
-        }
         [DisplayName("Tipo De Identificacion")]
-        public MTypeIdentification LTypeIdentification
-        {
-            get
-            {
-                return lTypeIdentification;
-            }
+        public MTypeIdentification LTypeIdentification { get; set; }
 
-            set
-            {
-                lTypeIdentification = value;
-            }
-        }
         [Display(Name = "Numero de Identificacion")]
-        [Required(ErrorMessage = "El numero de identificacion es requerido.")]
-        public string LNoIdentification
-        {
-            get
-            {
-                return lNoIdentification;
-            }
+        [Required(ErrorMessage = CodesError.LMsgValidateNoIdentification)]
+        public string LNoIdentification { get; set; }
 
-            set
-            {
-                lNoIdentification = value;
-            }
-        }
         [DisplayName("Estado")]
-        public MStatus LStatus
-        {
-            get
-            {
-                return lStatus;
-            }
+        public MStatus LStatus { get; set; }
 
-            set
-            {
-                lStatus = value;
-            }
-        }
+        public MObject LObject { get; set; }
 
-        public MObject LObject
-        {
-            get
-            {
-                return lObject;
-            }
-
-            set
-            {
-                lObject = value;
-            }
-        }
         [DisplayName("Tipo De Identificacion")]
-        public List<SelectListItem> LListTypeIdentification
-        {
-            get
-            {
-                return lListTypeIdentification;
-            }
+        public List<SelectListItem> LListTypeIdentification { get; set; }
 
-            set
-            {
-                lListTypeIdentification = value;
-            }
-        }
         [DisplayName("Estado")]
-        public List<SelectListItem> LListStatus
-        {
-            get
-            {
-                return lListStatus;
-            }
+        public List<SelectListItem> LListStatus { get; set; }
 
-            set
-            {
-                lListStatus = value;
-            }
-        }
-
-        public string LMessageException
-        {
-            get
-            {
-                return lMessageException;
-            }
-
-            set
-            {
-                lMessageException = value;
-            }
-        }
+        public string LMessageException { get; set; }
 
         [DisplayName("Fecha De Modificacion")]
-        public DateTime LModificationDate
-        {
-            get
-            {
-                return lModificationDate;
-            }
-
-            set
-            {
-                lModificationDate = value;
-            }
-        }
+        public DateTime LModificationDate { get; set; }
 
         public static List<MCustomer> MListCustomer(List<Bo_Customer> oBListCustomer)
         {
-            List<MCustomer> oMListCustomer = new List<MCustomer>();
+            var oMListCustomer = new List<MCustomer>();
             oBListCustomer.ForEach(x => {
-                MCustomer oMCustomer = new Models.MCustomer();
-                oMCustomer.LNameCustomer = x.LNameCustomer;
-                oMCustomer.LNoIdentification = x.LNoIdentification;
-                oMCustomer.lIdCustomer = x.LIdCustomer;
-                oMCustomer.LCreationDate = x.LCreationDate;
-                oMCustomer.LLastNameCustomer = x.LLastNameCustomer;
-                oMListCustomer.Add(oMCustomer);
+                                            var oMCustomer = new MCustomer
+                                            {
+                                                LNameCustomer = x.LNameCustomer,
+                                                LNoIdentification = x.LNoIdentification,
+                                                LIdCustomer = x.LIdCustomer,
+                                                LCreationDate = x.LCreationDate,
+                                                LLastNameCustomer = x.LLastNameCustomer
+                                            };
+                                            oMListCustomer.Add(oMCustomer);
             });
             return oMListCustomer;
         }
 
         public static MCustomer MCustomerById(Bo_Customer oBCustomer)
         {
-            MCustomer oMCustomer = new MCustomer();
-            oMCustomer.LObject = new MObject();
-            oMCustomer.LStatus = new MStatus();
-            oMCustomer.LTypeIdentification = new MTypeIdentification();
-            oMCustomer.LListTypeIdentification = new List<SelectListItem>();
-            oMCustomer.LListStatus = new List<SelectListItem>();
-            oMCustomer.LListTypeIdentification = MTypeIdentification.MListAllTypeIdentification(LiTypeIdentification.bll_getListTypeIdentification());
-            oMCustomer.lNameCustomer = oBCustomer.LNameCustomer;
-            oMCustomer.LLastNameCustomer = oBCustomer.LLastNameCustomer;
-            oMCustomer.LNoIdentification = oBCustomer.LNoIdentification;
-            oMCustomer.lIdCustomer = oBCustomer.LIdCustomer;
-            oMCustomer.LCreationDate = oBCustomer.LCreationDate;
-            oMCustomer.LTypeIdentification.LIdTypeIdentification = oBCustomer.LTypeIdentification.LIdTypeIdentification;
-            oMCustomer.lTypeIdentification.LTypeIdentification = oBCustomer.LTypeIdentification.LTypeIdentification;
-            oMCustomer.lObject.LIdObject = oBCustomer.LObject.LIdObject;
-            oMCustomer.LObject.LNameObject = oBCustomer.LObject.LNameObject;
-            oMCustomer.LStatus.LDsEstado = oBCustomer.LStatus.LDsEstado;
-            oMCustomer.LStatus.LIdStatus = oBCustomer.LStatus.LIdStatus;
-            oMCustomer.LModificationDate = oBCustomer.LModificationDate;
+            var oMCustomer = new MCustomer
+            {
+                LObject = new MObject
+                {
+                    LIdObject = oBCustomer.LObject.LIdObject,
+                    LNameObject = oBCustomer.LObject.LNameObject
+                },
+                LStatus = new MStatus
+                {
+                    LDsEstado = oBCustomer.LStatus.LDsEstado,
+                    LIdStatus = oBCustomer.LStatus.LIdStatus
+                },
+                LTypeIdentification =
+                    new MTypeIdentification
+                    {
+                        LIdTypeIdentification = oBCustomer.LTypeIdentification.LIdTypeIdentification,
+                        LTypeIdentification = oBCustomer.LTypeIdentification.LTypeIdentification
+                    },
+                LListTypeIdentification = new List<SelectListItem>(),
+                LListStatus = new List<SelectListItem>(),
+                LNameCustomer = oBCustomer.LNameCustomer,
+                LLastNameCustomer = oBCustomer.LLastNameCustomer,
+                LNoIdentification = oBCustomer.LNoIdentification,
+                LIdCustomer = oBCustomer.LIdCustomer,
+                LCreationDate = oBCustomer.LCreationDate,
+                LModificationDate = oBCustomer.LModificationDate
+            };
+            oMCustomer.LListTypeIdentification =
+                MTypeIdentification.MListAllTypeIdentification(LiTypeIdentification.bll_getListTypeIdentification());
             oMCustomer.LListStatus = MStatus.MListAllStatus(LiStatus.Bll_getListStatusByIdObject(oBCustomer.LObject.LIdObject));
-
             return oMCustomer;
         }
 
         public static MCustomer MCustomerEmpty(Bo_Customer oBCustomer)
         {
-            MCustomer oMCustomer = new MCustomer();
-            Bo_Object oObject = new Bo_Object();
-            oObject = LiUtilsLib.bll_GetObjectByName(MGlobalVariables.LNameObjectCustomer);
-            oMCustomer.LObject = new MObject();
-            oMCustomer.LStatus = new MStatus();
-            oMCustomer.LTypeIdentification = new MTypeIdentification();
-            oMCustomer.LListTypeIdentification = new List<SelectListItem>();
-            oMCustomer.LListStatus = new List<SelectListItem>();
-            oMCustomer.LListTypeIdentification = MTypeIdentification.MListAllTypeIdentificationWithSelect(LiTypeIdentification.bll_getListTypeIdentification());
-            oMCustomer.lNameCustomer = null;
-            oMCustomer.LLastNameCustomer = null;
-            oMCustomer.LNoIdentification = null;
-            oMCustomer.lIdCustomer = 0;
-            oMCustomer.LCreationDate = new DateTime();
-            oMCustomer.LTypeIdentification.LIdTypeIdentification = 0;
-            oMCustomer.lTypeIdentification.LTypeIdentification = null;
-            oMCustomer.lObject.LIdObject = oObject.LIdObject;
-            oMCustomer.lObject.LNameObject = oObject.LNameObject;
-            oMCustomer.LStatus.LDsEstado = null;
-            oMCustomer.LStatus.LIdStatus = null;
-            oMCustomer.lModificationDate = new DateTime();
+            var oObject = LiUtilsLib.bll_GetObjectByName(MGlobalVariables.LNameObjectCustomer);
+            var oMCustomer = new MCustomer
+            {
+                LObject = new MObject
+                {
+                    LIdObject = oObject.LIdObject,
+                    LNameObject = oObject.LNameObject
+                },
+                LStatus = new MStatus
+                {
+                    LDsEstado = null,
+                    LIdStatus = null
+                },
+                LTypeIdentification = new MTypeIdentification
+                {
+                    LIdTypeIdentification = 0,
+                    LTypeIdentification = null
+                },
+                LListTypeIdentification = new List<SelectListItem>(),
+                LListStatus = new List<SelectListItem>(),
+                LNameCustomer = null,
+                LLastNameCustomer = null,
+                LNoIdentification = null,
+                LIdCustomer = 0,
+                LCreationDate = new DateTime(),
+                LModificationDate = new DateTime()
+            };
+            oMCustomer.LListTypeIdentification =
+                MTypeIdentification.MListAllTypeIdentificationWithSelect(
+                    LiTypeIdentification.bll_getListTypeIdentification());
             oMCustomer.LListStatus = MStatus.MListStatusWithSelect(LiStatus.Bll_getListStatusByIdObject(oMCustomer.LObject.LIdObject));
 
             return oMCustomer;

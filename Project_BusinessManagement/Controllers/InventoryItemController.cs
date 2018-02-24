@@ -1,5 +1,4 @@
-﻿using Bll_Business;
-using BO_BusinessManagement;
+﻿using BO_BusinessManagement;
 using Project_BusinessManagement.Filters;
 using System;
 using System.Collections.Generic;
@@ -25,7 +24,7 @@ namespace Project_BusinessManagement.Controllers
         FacadeProvider.Resolver<IProduct>();
 
         public static IStatus LStatus =
-        FacadeProvider.Resolver<BllStatus>();
+        FacadeProvider.Resolver<IStatus>();
         #endregion
         // GET: InventoryItem
         public ActionResult Index(int id)

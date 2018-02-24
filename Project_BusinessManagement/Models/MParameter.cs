@@ -1,5 +1,4 @@
-﻿using Bll_Business;
-using IBusiness.Common;
+﻿using IBusiness.Common;
 using IBusiness.Management;
 
 namespace Project_BusinessManagement.Models
@@ -9,295 +8,226 @@ namespace Project_BusinessManagement.Models
         #region Variables and constants
 
         public static IUtilsLib LiUtilsLib =
-        FacadeProvider.Resolver<BllUtilsLib>();
+        FacadeProvider.Resolver<IUtilsLib>();
         #endregion
-        string lResult;
-        bool lBool;
-        int lInt;
+        string myLResult;
+        bool myLBool;
+        int myLInt;
         public MParameter()
         {
-            lResult = null;
-            lBool = false;
-            lInt = 0;
+            this.myLResult = null;
+            this.myLBool = false;
+            this.myLInt = 0;
         }
-        public bool lCreateCustomer
+        public bool LCreateCustomer
         {
             get
             {
-                lResult = LiUtilsLib.bll_GetValueParameter("create", "moduleCustomer");
-                if (bool.TryParse(lResult, out lBool))
-                    return lBool;
-                else
-                    return lBool;
+                this.myLResult = LiUtilsLib.bll_GetValueParameter("create", "moduleCustomer");
+                return bool.TryParse(this.myLResult, out this.myLBool) ? this.myLBool : this.myLBool;
             }
         }
-        public bool lEditCustomer
+        public bool LEditCustomer
         {
             get
             {
-                lResult = LiUtilsLib.bll_GetValueParameter("Edit", "moduleCustomer");
-                if (bool.TryParse(lResult, out lBool))
-                    return lBool;
-                else
-                    return lBool;
+                this.myLResult = LiUtilsLib.bll_GetValueParameter("Edit", "moduleCustomer");
+                return bool.TryParse(this.myLResult, out this.myLBool) ? this.myLBool : this.myLBool;
             }
         }
 
-        public bool lDeleteCustomer
+        public bool LDeleteCustomer
         {
             get
             {
-                lResult = LiUtilsLib.bll_GetValueParameter("Delete", "moduleCustomer");
-                if (bool.TryParse(lResult, out lBool))
-                    return lBool;
-                else
-                    return lBool;
+                this.myLResult = LiUtilsLib.bll_GetValueParameter("Delete", "moduleCustomer");
+                return bool.TryParse(this.myLResult, out this.myLBool) ? this.myLBool : this.myLBool;
             }
         }
 
-        public bool lCreateSupplier
+        public bool LCreateSupplier
         {
             get
             {
-                lResult = LiUtilsLib.bll_GetValueParameter("create", "moduleSupplier");
-                if (bool.TryParse(lResult, out lBool))
-                    return lBool;
-                else
-                    return lBool;
+                this.myLResult = LiUtilsLib.bll_GetValueParameter("create", "moduleSupplier");
+                return bool.TryParse(this.myLResult, out this.myLBool) ? this.myLBool : this.myLBool;
             }
         }
-        public bool lEditSupplier
+        public bool LEditSupplier
         {
             get
             {
-                lResult = LiUtilsLib.bll_GetValueParameter("Edit", "moduleSupplier");
-                if (bool.TryParse(lResult, out lBool))
-                    return lBool;
-                else
-                    return lBool;
+                this.myLResult = LiUtilsLib.bll_GetValueParameter("Edit", "moduleSupplier");
+                return bool.TryParse(this.myLResult, out this.myLBool) ? this.myLBool : this.myLBool;
             }
         }
 
-        public bool lDeleteSupplier
+        public bool LDeleteSupplier
         {
             get
             {
-                lResult = LiUtilsLib.bll_GetValueParameter("Delete", "moduleSupplier");
-                if (bool.TryParse(lResult, out lBool))
-                    return lBool;
-                else
-                    return lBool;
+                this.myLResult = LiUtilsLib.bll_GetValueParameter("Delete", "moduleSupplier");
+                return bool.TryParse(this.myLResult, out this.myLBool) ? this.myLBool : this.myLBool;
             }
         }
 
-        public bool lCreateDashBoard
+        public bool LCreateDashBoard
         {
             get
             {
-                lResult = LiUtilsLib.bll_GetValueParameter("create", "moduleDashBoard");
-                if (bool.TryParse(lResult, out lBool))
-                    return lBool;
-                else
-                    return lBool;
+                this.myLResult = LiUtilsLib.bll_GetValueParameter("create", "moduleDashBoard");
+                return bool.TryParse(this.myLResult, out this.myLBool) ? this.myLBool : this.myLBool;
             }
         }
-        public bool lEditDashBoard
+        public bool LEditDashBoard
         {
             get
             {
-                lResult = LiUtilsLib.bll_GetValueParameter("Edit", "moduleDashBoard");
-                if (bool.TryParse(lResult, out lBool))
-                    return lBool;
-                else
-                    return lBool;
+                this.myLResult = LiUtilsLib.bll_GetValueParameter("Edit", "moduleDashBoard");
+                return bool.TryParse(this.myLResult, out this.myLBool) ? this.myLBool : this.myLBool;
             }
         }
 
-        public bool lDeleteDashBoard
+        public bool LDeleteDashBoard
         {
             get
             {
-                lResult = LiUtilsLib.bll_GetValueParameter("Delete", "moduleDashBoard");
-                if (bool.TryParse(lResult, out lBool))
-                    return lBool;
-                else
-                    return lBool;
+                this.myLResult = LiUtilsLib.bll_GetValueParameter("Delete", "moduleDashBoard");
+                return bool.TryParse(this.myLResult, out this.myLBool) ? this.myLBool : this.myLBool;
             }
         }
 
-        public bool lCreateInventory
+        public bool LCreateInventory
         {
             get
             {
-                lResult = LiUtilsLib.bll_GetValueParameter("create", "moduleInventory");
-                if (bool.TryParse(lResult, out lBool))
-                    return lBool;
-                else
-                    return lBool;
+                this.myLResult = LiUtilsLib.bll_GetValueParameter("create", "moduleInventory");
+                return bool.TryParse(this.myLResult, out this.myLBool) ? this.myLBool : this.myLBool;
             }
         }
-        public bool lEditInventory
+        public bool LEditInventory
         {
             get
             {
-                lResult = LiUtilsLib.bll_GetValueParameter("Edit", "moduleInventory");
-                if (bool.TryParse(lResult, out lBool))
-                    return lBool;
-                else
-                    return lBool;
+                this.myLResult = LiUtilsLib.bll_GetValueParameter("Edit", "moduleInventory");
+                return bool.TryParse(this.myLResult, out this.myLBool) ? this.myLBool : this.myLBool;
             }
         }
 
-        public bool lDeleteInventory
+        public bool LDeleteInventory
         {
             get
             {
-                lResult = LiUtilsLib.bll_GetValueParameter("Delete", "moduleInventory");
-                if (bool.TryParse(lResult, out lBool))
-                    return lBool;
-                else
-                    return lBool;
+                this.myLResult = LiUtilsLib.bll_GetValueParameter("Delete", "moduleInventory");
+                return bool.TryParse(this.myLResult, out this.myLBool) ? this.myLBool : this.myLBool;
             }
         }
 
-        public bool lCreateProduct
+        public bool LCreateProduct
         {
             get
             {
-                lResult = LiUtilsLib.bll_GetValueParameter("create", "moduleProduct");
-                if (bool.TryParse(lResult, out lBool))
-                    return lBool;
-                else
-                    return lBool;
+                this.myLResult = LiUtilsLib.bll_GetValueParameter("create", "moduleProduct");
+                return bool.TryParse(this.myLResult, out this.myLBool) ? this.myLBool : this.myLBool;
             }
         }
-        public bool lEditProduct
+        public bool LEditProduct
         {
             get
             {
-                lResult = LiUtilsLib.bll_GetValueParameter("Edit", "moduleProduct");
-                if (bool.TryParse(lResult, out lBool))
-                    return lBool;
-                else
-                    return lBool;
+                this.myLResult = LiUtilsLib.bll_GetValueParameter("Edit", "moduleProduct");
+                return bool.TryParse(this.myLResult, out this.myLBool) ? this.myLBool : this.myLBool;
             }
         }
 
-        public bool lDeleteProduct
+        public bool LDeleteProduct
         {
             get
             {
-                lResult = LiUtilsLib.bll_GetValueParameter("Delete", "moduleProduct");
-                if (bool.TryParse(lResult, out lBool))
-                    return lBool;
-                else
-                    return lBool;
+                this.myLResult = LiUtilsLib.bll_GetValueParameter("Delete", "moduleProduct");
+                return bool.TryParse(this.myLResult, out this.myLBool) ? this.myLBool : this.myLBool;
             }
         }
 
-        public bool lIsModuleProduct
+        public bool LIsModuleProduct
         {
             get
             {
-                lResult = LiUtilsLib.bll_GetValueParameter("moduleProduct", true);
-                if (bool.TryParse(lResult, out lBool))
-                    return lBool;
-                else
-                    return lBool;
+                this.myLResult = LiUtilsLib.bll_GetValueParameter("moduleProduct", true);
+                return bool.TryParse(this.myLResult, out this.myLBool) ? this.myLBool : this.myLBool;
             }
         }
 
-        public bool lIsModuleRealizeOrder
+        public bool LIsModuleRealizeOrder
         {
             get
             {
-                lResult = LiUtilsLib.bll_GetValueParameter("moduleRealizeOrder", true);
-                if (bool.TryParse(lResult, out lBool))
-                    return lBool;
-                else
-                    return lBool;
+                this.myLResult = LiUtilsLib.bll_GetValueParameter("moduleRealizeOrder", true);
+                return bool.TryParse(this.myLResult, out this.myLBool) ? this.myLBool : this.myLBool;
             }
         }
 
-        public bool lIsModuleInventory
+        public bool LIsModuleInventory
         {
             get
             {
-                lResult = LiUtilsLib.bll_GetValueParameter("moduleInventory", true);
-                if (bool.TryParse(lResult, out lBool))
-                    return lBool;
-                else
-                    return lBool;
+                this.myLResult = LiUtilsLib.bll_GetValueParameter("moduleInventory", true);
+                return bool.TryParse(this.myLResult, out this.myLBool) ? this.myLBool : this.myLBool;
             }
         }
 
-        public bool lIsModuleDashBoard
+        public bool LIsModuleDashBoard
         {
             get
             {
-                lResult = LiUtilsLib.bll_GetValueParameter("moduleDashBoard", true);
-                if (bool.TryParse(lResult, out lBool))
-                    return lBool;
-                else
-                    return lBool;
+                this.myLResult = LiUtilsLib.bll_GetValueParameter("moduleDashBoard", true);
+                return bool.TryParse(this.myLResult, out this.myLBool) ? this.myLBool : this.myLBool;
             }
         }
 
-        public bool lIsModuleSupplier
+        public bool LIsModuleSupplier
         {
             get
             {
-                lResult = LiUtilsLib.bll_GetValueParameter("moduleSupplier", true);
-                if (bool.TryParse(lResult, out lBool))
-                    return lBool;
-                else
-                    return lBool;
+                this.myLResult = LiUtilsLib.bll_GetValueParameter("moduleSupplier", true);
+                return bool.TryParse(this.myLResult, out this.myLBool) ? this.myLBool : this.myLBool;
             }
         }
 
-        public bool lIsModuleCustomer
+        public bool LIsModuleCustomer
         {
             get
             {
-                lResult = LiUtilsLib.bll_GetValueParameter("moduleCustomer", true);
+                this.myLResult = LiUtilsLib.bll_GetValueParameter("moduleCustomer", true);
 
-                if (bool.TryParse(lResult, out lBool))
-                    return lBool;
-                else
-                    return lBool;
+                return bool.TryParse(this.myLResult, out this.myLBool) ? this.myLBool : this.myLBool;
             }
         }
 
-        public bool lIsModuleInvoice
+        public bool LIsModuleInvoice
         {
             get
             {
-                lResult = LiUtilsLib.bll_GetValueParameter("moduleInvoice", true);
-                if (bool.TryParse(lResult, out lBool))
-                    return lBool;
-                else
-                    return lBool;
+                this.myLResult = LiUtilsLib.bll_GetValueParameter("moduleInvoice", true);
+                return bool.TryParse(this.myLResult, out this.myLBool) ? this.myLBool : this.myLBool;
             }
         }
 
-        public int lStartNumberInvoice
+        public int LStartNumberInvoice
         {
             get
             {
-                lResult = LiUtilsLib.bll_GetValueParameter("StartNumberInvoice", "moduleInvoice");
-                if (int.TryParse(lResult, out lInt))
-                    return lInt;
-                else
-                    return lInt;
+                this.myLResult = LiUtilsLib.bll_GetValueParameter("StartNumberInvoice", "moduleInvoice");
+                return int.TryParse(this.myLResult, out this.myLInt) ? this.myLInt : this.myLInt;
             }
         }
 
-        public string lPrefixInvoice
+        public string LPrefixInvoice
         {
             get
             {
-                lResult = LiUtilsLib.bll_GetValueParameter("PrefixInvoice", "moduleInvoice");
-                return lResult;
+                this.myLResult = LiUtilsLib.bll_GetValueParameter("PrefixInvoice", "moduleInvoice");
+                return this.myLResult;
             }
         }
     }
