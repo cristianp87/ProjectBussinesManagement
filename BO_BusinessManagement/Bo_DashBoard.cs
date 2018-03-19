@@ -1,62 +1,13 @@
 ﻿namespace BO_BusinessManagement
 {
-    public class Bo_DashBoard:Bo_Exception
+    public class BoDashBoard:BoException
     {
-        private int xint;
-        private int yint;
-        private string xstring;
-        private string ystring;
+        public int Xint { get; set; }
 
-        public int Xint
-        {
-            get
-            {
-                return xint;
-            }
+        public int Yint { get; set; }
 
-            set
-            {
-                xint = value;
-            }
-        }
+        public string Xstring { get; set; }
 
-        public int Yint
-        {
-            get
-            {
-                return yint;
-            }
-
-            set
-            {
-                yint = value;
-            }
-        }
-
-        public string Xstring
-        {
-            get
-            {
-                return xstring;
-            }
-
-            set
-            {
-                xstring = value;
-            }
-        }
-
-        public string Ystring
-        {
-            get
-            {
-                return ystring;
-            }
-
-            set
-            {
-                ystring = value;
-            }
-        }
+        public string Ystring { get; set; }
     }
 }

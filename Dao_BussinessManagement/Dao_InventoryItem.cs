@@ -3,8 +3,10 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
+using System.Globalization;
+using BO_BusinessManagement.Enums;
 using IDaoBusiness.Business;
-using static Dao_BussinessManagement.Dao_UtilsLib;
+using static Dao_BussinessManagement.DaoUtilsLib;
 
 namespace Dao_BussinessManagement
 {
@@ -12,11 +14,11 @@ namespace Dao_BussinessManagement
     {
         private List<SqlParameter> LListParam { get; set; }
 
-        public List<Bo_InventoryItem> Dao_getListInventoryItemByIdInventory(int pIdInventory)
+        public List<BoInventoryItem> Dao_getListInventoryItemByIdInventory(int pIdInventory)
         {
             using (SqlConnection lConex = Dao_SqlConnection(lConex))
             {
-                var lListInventoryItem = new List<Bo_InventoryItem>();
+                var lListInventoryItem = new List<BoInventoryItem>();
                 try
                 {
                     var lCommand = new SqlCommand
@@ -32,18 +34,18 @@ namespace Dao_BussinessManagement
                     {
                         while (lReader.Read())
                         {
-                            var oInventoryItem = new Bo_InventoryItem
+                            var oInventoryItem = new BoInventoryItem
                             {
-                                LStatus = new Bo_Status {LIdStatus = lReader["IdStatus"].ToString()},
-                                LObject = new Bo_Object {LIdObject = Convert.ToInt32(lReader["IdObject"].ToString())},
+                                LStatus = new BoStatus {LIdStatus = lReader["IdStatus"].ToString()},
+                                LObject = new BoObject {LIdObject = Convert.ToInt32(lReader["IdObject"].ToString())},
                                 LProduct =
-                                    new Bo_Product
+                                    new BoProduct
                                     {
                                         LIdProduct = Convert.ToInt32(lReader["IdProduct"].ToString()),
                                         LNameProduct = lReader["NameProduct"].ToString()
                                     },
                                 LInventory =
-                                    new Bo_Inventory
+                                    new BoInventory
                                     {
                                         LIdInventory = Convert.ToInt32(lReader["IdInventory"].ToString()),
                                         LNameInventory = lReader["NameInventory"].ToString()
@@ -63,10 +65,10 @@ namespace Dao_BussinessManagement
                 }
                 catch (Exception e)
                 {
-                    var oInventoryItem = new Bo_InventoryItem {LException = e.Message};
+                    var oInventoryItem = new BoInventoryItem {LException = e.Message};
                     if (e.InnerException != null)
                         oInventoryItem.LInnerException = e.InnerException.ToString();
-                    oInventoryItem.LMessageDao = "Hubo un problema en la consulta, contacte al administrador.";
+                    oInventoryItem.LMessageDao = BoErrors.MsgErrorGetSql;
                     Dao_CloseSqlconnection(lConex);
                     lListInventoryItem.Add(oInventoryItem);
                     return lListInventoryItem;
@@ -74,7 +76,7 @@ namespace Dao_BussinessManagement
             }
         }
 
-        public Bo_InventoryItem Dao_getInventoryItemById(int pIdInventoryItem)
+        public BoInventoryItem Dao_getInventoryItemById(int pIdInventoryItem)
         {
             using (SqlConnection lConex = Dao_SqlConnection(lConex))
             {
@@ -91,15 +93,15 @@ namespace Dao_BussinessManagement
                     lCommand.Parameters.Add(new SqlParameter("IdInventoryItem", pIdInventoryItem));
 
                     var lReader = lCommand.ExecuteReader();
-                    var oInventoryItem = new Bo_InventoryItem();
+                    var oInventoryItem = new BoInventoryItem();
                     if (lReader.HasRows)
                     {
                         while (lReader.Read())
                         {                           
-                            oInventoryItem.LStatus = new Bo_Status();
-                            oInventoryItem.LObject = new Bo_Object();
-                            oInventoryItem.LProduct = new Bo_Product();
-                            oInventoryItem.LInventory = new Bo_Inventory();
+                            oInventoryItem.LStatus = new BoStatus();
+                            oInventoryItem.LObject = new BoObject();
+                            oInventoryItem.LProduct = new BoProduct();
+                            oInventoryItem.LInventory = new BoInventory();
                             oInventoryItem.LIdInventoryItem = Convert.ToInt32(lReader["IdInventoryItem"].ToString());
                             oInventoryItem.LInventory.LIdInventory = Convert.ToInt32(lReader["IdInventory"].ToString());
                             oInventoryItem.LInventory.LNameInventory = lReader["NameInventory"].ToString();
@@ -119,55 +121,58 @@ namespace Dao_BussinessManagement
                 }
                 catch (Exception e)
                 {
-                    var oInventoryItem = new Bo_InventoryItem();
-                    oInventoryItem.LException = e.Message;
+                    var lInventoryItem = new BoInventoryItem
+                    {
+                        LException = e.Message,
+                        LMessageDao = BoErrors.MsgErrorGetSql
+                };
                     if (e.InnerException != null)
-                        oInventoryItem.LInnerException = e.InnerException.ToString();
-                    oInventoryItem.LMessageDao = "Hubo un problema en la consulta, contacte al administrador.";
+                        lInventoryItem.LInnerException = e.InnerException.ToString();
+                    
                     Dao_CloseSqlconnection(lConex);
-                    return oInventoryItem;
+                    return lInventoryItem;
                 }
             }
         }
 
-        public string Dao_InsertInventoryItem(Bo_InventoryItem pInventoryItem)
+        public string Dao_InsertInventoryItem(BoInventoryItem pInventoryItem)
         {
             this.LListParam = new List<SqlParameter>();
             dao_Addparameters(this.LListParam, SqlDbType.Int, "@IdProduct", pInventoryItem.LProduct.LIdProduct.ToString());
             dao_Addparameters(this.LListParam, SqlDbType.Int, "@IdInventory", pInventoryItem.LInventory.LIdInventory.ToString());
-            dao_Addparameters(this.LListParam, SqlDbType.VarChar, "@IdStatus", pInventoryItem.LStatus.LIdStatus.ToString());
+            dao_Addparameters(this.LListParam, SqlDbType.VarChar, "@IdStatus", pInventoryItem.LStatus.LIdStatus);
             dao_Addparameters(this.LListParam, SqlDbType.Int, "@IdObject", pInventoryItem.LObject.LIdObject.ToString());
-            dao_Addparameters(this.LListParam, SqlDbType.Decimal, "@QtySellable", pInventoryItem.LQtySellable.ToString());
-            dao_Addparameters(this.LListParam, SqlDbType.Decimal, "@QtyNonSellable", pInventoryItem.LQtyNonSellable.ToString());
+            dao_Addparameters(this.LListParam, SqlDbType.Decimal, "@QtySellable", pInventoryItem.LQtySellable.ToString(CultureInfo.CurrentCulture));
+            dao_Addparameters(this.LListParam, SqlDbType.Decimal, "@QtyNonSellable", pInventoryItem.LQtyNonSellable.ToString(CultureInfo.CurrentCulture));
             return Dao_executeSqlTransactionWithProcedement(this.LListParam, "LTranInsertInventoryItem", "spr_CreateInventoryItem");
         }
 
-        public string Dao_UpdateInventoryItem(Bo_InventoryItem pInventoryItem)
+        public string Dao_UpdateInventoryItem(BoInventoryItem pInventoryItem)
         {
             this.LListParam = new List<SqlParameter>();
             dao_Addparameters(this.LListParam, SqlDbType.Int, "@IdInventoryItem", pInventoryItem.LIdInventoryItem.ToString());
             dao_Addparameters(this.LListParam, SqlDbType.Int, "@IdProduct", pInventoryItem.LProduct.LIdProduct.ToString());
             dao_Addparameters(this.LListParam, SqlDbType.Int, "@IdInventory", pInventoryItem.LInventory.LIdInventory.ToString());
-            dao_Addparameters(this.LListParam, SqlDbType.VarChar, "@IdStatus", pInventoryItem.LStatus.LIdStatus.ToString());
+            dao_Addparameters(this.LListParam, SqlDbType.VarChar, "@IdStatus", pInventoryItem.LStatus.LIdStatus);
             dao_Addparameters(this.LListParam, SqlDbType.Int, "@IdObject", pInventoryItem.LObject.LIdObject.ToString());
-            dao_Addparameters(this.LListParam, SqlDbType.Decimal, "@QtySellable", pInventoryItem.LQtySellable.ToString());
-            dao_Addparameters(this.LListParam, SqlDbType.Decimal, "@QtyNonSellable", pInventoryItem.LQtyNonSellable.ToString());
+            dao_Addparameters(this.LListParam, SqlDbType.Decimal, "@QtySellable", pInventoryItem.LQtySellable.ToString(CultureInfo.CurrentCulture));
+            dao_Addparameters(this.LListParam, SqlDbType.Decimal, "@QtyNonSellable", pInventoryItem.LQtyNonSellable.ToString(CultureInfo.CurrentCulture));
             return Dao_executeSqlTransactionWithProcedement(this.LListParam, "LTranUpdateInventoryItem", "spr_UpdateInventoryItem");
         }
 
-        public string Dao_DeleteInventoryItem(Bo_InventoryItem pInventoryItem)
+        public string Dao_DeleteInventoryItem(BoInventoryItem pInventoryItem)
         {
             this.LListParam = new List<SqlParameter>();
             dao_Addparameters(this.LListParam, SqlDbType.Int, "@IdInventoryItem", pInventoryItem.LIdInventoryItem.ToString());
             return Dao_executeSqlTransactionWithProcedement(this.LListParam, "LTranDeleteInventoryItem", "spr_DeleteInventoryItem");
         }
 
-        public string Dao_SubstractInventoryItem(Bo_InventoryItem pInventoryItem)
+        public string Dao_SubstractInventoryItem(BoInventoryItem pInventoryItem)
         {
             this.LListParam = new List<SqlParameter>();
             dao_Addparameters(this.LListParam, SqlDbType.Int, "@IdInventory", pInventoryItem.LInventory.LIdInventory.ToString());
-            dao_Addparameters(this.LListParam, SqlDbType.VarChar, "@CdProduct", pInventoryItem.LProduct.LCdProduct.ToString());
-            dao_Addparameters(this.LListParam, SqlDbType.Decimal, "@QtySellable", pInventoryItem.LQtySellable.ToString());
+            dao_Addparameters(this.LListParam, SqlDbType.VarChar, "@CdProduct", pInventoryItem.LProduct.LCdProduct);
+            dao_Addparameters(this.LListParam, SqlDbType.Decimal, "@QtySellable", pInventoryItem.LQtySellable.ToString(CultureInfo.CurrentCulture));
             return Dao_executeSqlScalarWithProcedement(this.LListParam, "LTranSubstractInventoryItem", "spr_substractinventory");
         }
     }

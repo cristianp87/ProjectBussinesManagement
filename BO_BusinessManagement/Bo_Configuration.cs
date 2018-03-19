@@ -2,49 +2,12 @@
 
 namespace BO_BusinessManagement
 {
-    public class Bo_ConfigurationValue:Bo_Exception
+    public class BoConfigurationValue:BoException
     {
-        private int lIdParameter = 0;
-        private string lValueParameter = null;
-        private DateTime lCreationDate = DateTime.Now;
+        public int LIdParameter { get; set; } = 0;
 
-        public int LIdParameter
-        {
-            get
-            {
-                return lIdParameter;
-            }
+        public string LValueParameter { get; set; } = null;
 
-            set
-            {
-                lIdParameter = value;
-            }
-        }
-
-        public string LValueParameter
-        {
-            get
-            {
-                return lValueParameter;
-            }
-
-            set
-            {
-                lValueParameter = value;
-            }
-        }
-
-        public DateTime LCreationDate
-        {
-            get
-            {
-                return lCreationDate;
-            }
-
-            set
-            {
-                lCreationDate = value;
-            }
-        }
+        public DateTime LCreationDate { get; set; } = DateTime.Now;
     }
 }

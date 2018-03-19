@@ -1,4 +1,5 @@
-﻿@model IList<Project_BusinessManagement.Models.MSupplier>
+﻿@using Project_BusinessManagement.Extensibles
+@model IList<Project_BusinessManagement.Models.MSupplier>
 
 @{
     ViewBag.Title = "Proveedores";
@@ -9,8 +10,29 @@
 <h2>Proveedores</h2>
 
 <p>
-    @Html.ActionLink("Crear Nuevo Proveedor", "Create")
+    @Html.ActionLink("Crear Nuevo Proveedor", "Create").IfAllowedConfiguration("CreateSupplier")
 </p>
+
+@using (Html.BeginForm())
+{
+
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <div class="form-group">
+            <div class="col-md-2">
+                @Html.Label("", "Por Nombre")
+            </div>
+            <div class="col-md-10">
+                @Html.TextBox("pSearchName")
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-10">
+                <input type="submit" value="filtrar" class="btn btn-info" />
+            </div>
+        </div>
+    </div>
 <div class="table-responsive">
     <table class="tablesorter">
         <thead>
@@ -47,33 +69,16 @@
                         @Html.DisplayFor(modelItem => item.LCreationDate)
                     </td>
                     <td>
-                        @Html.ActionLink("Editar", "Edit", new {  id= item.LIdSupplier  }) |
+                        @Html.ActionLink("Editar", "Edit", new { id = item.LIdSupplier }).IfAllowedConfiguration("EditSupplier") |
                         @Html.ActionLink("Detalle", "Details", new { id = item.LIdSupplier }) |
-                        @Html.ActionLink("Eliminar", "Delete", new {  id= item.LIdSupplier })
+                        @Html.ActionLink("Eliminar", "Delete", new { id = item.LIdSupplier }).IfAllowedConfiguration("DeleteSupplier")
                     </td>
                 </tr>
             </tbody>
         }
 
     </table>
-    <div id="pager" class="pager">
-        <form>
-            <a href="#"><img src="~/Images/Icons/IFirst.png" class="first" alt="Primero" title="Primero" /></a>
-            <a href="#"><img src="~/Images/Icons/IPrev.png" class="prev" alt="Anterior" title="Anterior" /></a>
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                <!-- the "pagedisplay" can be any element, including an input -->
-                <span class="pagedisplay" data-pager-output-filtered="{startRow:input} &ndash; {endRow} / {filteredRows} of {totalRows} total rows"></span>
-            <a href="#"><img src="~/Images/Icons/INext.png" class="next" alt="Siguiente" title="Siguiente" /></a>
-            <a href="#"><img src="~/Images/Icons/ILast.png" class="last" alt="Ultimo" title="Ultimo" /></a>
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                <select class="pagesize">
-                    <option value="10" selected="selected">10</option>
-                    <option value="50">50</option>
-                    <option value="100">100</option>
-                    <option value="500">500</option>
-                    <option value="1000">1000</option>
-                </select>
-        </form>
-    </div>
+    @Html.Partial("~/Views/Shared/_Pagination.cshtml")
 </div>
 
+}

@@ -43,7 +43,7 @@ namespace Bll_Business.Common
         }
 
         #endregion
-        public T Resolver<T>() where T : IFacade
+        public T Resolv<T>() where T : IFacade
         {
             if (this.myFacadesInstances.ContainsKey(typeof (T)))
             {

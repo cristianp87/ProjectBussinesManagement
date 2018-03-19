@@ -2,77 +2,16 @@
 
 namespace BO_BusinessManagement
 {
-    public class Bo_Status: Bo_Exception
+    public class BoStatus: BoException
     {
-        private  string lIdStatus;
-        private string lNameStatus;
-        private  string lDsEstado;
-        private  DateTime lCreationDate;
-        private  bool lFlActive;
+        public string LIdStatus { get; set; }
 
-        public string LIdStatus
-        {
-            get
-            {
-                return lIdStatus;
-            }
+        public string LDsEstado { get; set; }
 
-            set
-            {
-                lIdStatus = value;
-            }
-        }
+        public DateTime LCreationDate { get; set; }
 
-        public string LDsEstado
-        {
-            get
-            {
-                return lDsEstado;
-            }
+        public bool LFlActive { get; set; }
 
-            set
-            {
-                lDsEstado = value;
-            }
-        }
-
-        public DateTime LCreationDate
-        {
-            get
-            {
-                return lCreationDate;
-            }
-
-            set
-            {
-                lCreationDate = value;
-            }
-        }
-
-        public bool LFlActive
-        {
-            get
-            {
-                return lFlActive;
-            }
-
-            set
-            {
-                lFlActive = value;
-            }
-        }
-
-        public string LNameStatus
-        {
-            get
-            {
-                return lNameStatus;
-            }
-
-            set
-            {
-                lNameStatus = value;
-            }
-        }
+        public string LNameStatus { get; set; }
     }
 }

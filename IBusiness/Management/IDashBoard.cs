@@ -6,6 +6,6 @@ namespace IBusiness.Management
 {
     public interface IDashBoard : IFacade
     {
-        List<Bo_DashBoard> bll_GetProductSellToday();
+        List<BoDashBoard> bll_GetProductSellToday();
     }
 }

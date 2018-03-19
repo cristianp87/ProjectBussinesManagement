@@ -248,3 +248,7 @@ C:\Users\cripac\Documents\GitHub\ProjectBussinesManagement\Project_BusinessManag
 C:\Users\cripac\Documents\GitHub\ProjectBussinesManagement\Project_BusinessManagement\bin\Dao_BussinessManagement.pdb
 C:\Users\cripac\Documents\GitHub\ProjectBussinesManagement\Project_BusinessManagement\bin\InstancesBll.dll
 C:\Users\cripac\Documents\GitHub\ProjectBussinesManagement\Project_BusinessManagement\bin\InstancesBll.pdb
+C:\Users\CristianPc\Documents\Projects\ProjectBussinesManagement\Project_BusinessManagement\bin\InstancesBll.dll
+C:\Users\CristianPc\Documents\Projects\ProjectBussinesManagement\Project_BusinessManagement\bin\IDaoBusiness.dll
+C:\Users\CristianPc\Documents\Projects\ProjectBussinesManagement\Project_BusinessManagement\bin\InstancesBll.pdb
+C:\Users\CristianPc\Documents\Projects\ProjectBussinesManagement\Project_BusinessManagement\bin\IDaoBusiness.pdb

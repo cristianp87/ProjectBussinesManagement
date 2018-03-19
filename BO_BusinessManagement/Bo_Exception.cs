@@ -1,48 +1,11 @@
 ﻿namespace BO_BusinessManagement
 {
-    public class Bo_Exception
+    public class BoException
     {
-        private string lException;
-        private string lMessageDao;
-        private string lInnerException = null;
+        public string LException { get; set; }
 
-        public string LException
-        {
-            get
-            {
-                return lException;
-            }
+        public string LMessageDao { get; set; }
 
-            set
-            {
-                lException = value;
-            }
-        }
-
-        public string LMessageDao
-        {
-            get
-            {
-                return lMessageDao;
-            }
-
-            set
-            {
-                lMessageDao = value;
-            }
-        }
-
-        public string LInnerException
-        {
-            get
-            {
-                return lInnerException;
-            }
-
-            set
-            {
-                lInnerException = value;
-            }
-        }
+        public string LInnerException { get; set; } = null;
     }
 }

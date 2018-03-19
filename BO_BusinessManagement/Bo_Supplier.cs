@@ -2,120 +2,23 @@
 
 namespace BO_BusinessManagement
 {
-    public class Bo_Supplier: Bo_Exception
+    public class BoSupplier: BoException
     {
-        private int lIdSupplier;
-        private string lNameSupplier;
-        private Bo_TypeIdentification lTypeIdentification;
-        private string lNoIdentification;
-        private DateTime lCreationDate;
-        private Bo_Status lStatus;
-        private Bo_Object lObject;
-        private DateTime lModificationDate;
+        public int LIdSupplier { get; set; }
 
-        public int LIdSupplier
-        {
-            get
-            {
-                return lIdSupplier;
-            }
+        public string LNameSupplier { get; set; }
 
-            set
-            {
-                lIdSupplier = value;
-            }
-        }
+        public BoTypeIdentification LTypeIdentification { get; set; }
 
-        public string LNameSupplier
-        {
-            get
-            {
-                return lNameSupplier;
-            }
+        public string LNoIdentification { get; set; }
 
-            set
-            {
-                lNameSupplier = value;
-            }
-        }
-
-        public Bo_TypeIdentification LTypeIdentification
-        {
-            get
-            {
-                return lTypeIdentification;
-            }
-
-            set
-            {
-                lTypeIdentification = value;
-            }
-        }
-
-        public string LNoIdentification
-        {
-            get
-            {
-                return lNoIdentification;
-            }
-
-            set
-            {
-                lNoIdentification = value;
-            }
-        }
-
-        public DateTime LCreationDate
-        {
-            get
-            {
-                return lCreationDate;
-            }
-
-            set
-            {
-                lCreationDate = value;
-            }
-        }
+        public DateTime LCreationDate { get; set; }
 
 
-        public Bo_Status LStatus
-        {
-            get
-            {
-                return lStatus;
-            }
+        public BoStatus LStatus { get; set; }
 
-            set
-            {
-                lStatus = value;
-            }
-        }
+        public BoObject LObject { get; set; }
 
-        public Bo_Object LObject
-        {
-            get
-            {
-                return lObject;
-            }
-
-            set
-            {
-                lObject = value;
-            }
-        }
-
-        public DateTime LModificationDate
-        {
-            get
-            {
-                return lModificationDate;
-            }
-
-            set
-            {
-                lModificationDate = value;
-            }
-        }
+        public DateTime LModificationDate { get; set; }
     }
 }

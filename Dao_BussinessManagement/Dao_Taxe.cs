@@ -3,19 +3,20 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
+using BO_BusinessManagement.Enums;
 using IDaoBusiness.Business;
-using static Dao_BussinessManagement.Dao_UtilsLib;
+using static Dao_BussinessManagement.DaoUtilsLib;
 
 namespace Dao_BussinessManagement
 {
     public class DaoTaxe : IDaoTaxe
     {
         private List<SqlParameter> LListParam { get; set; }
-        public List<Bo_Taxe> Dao_getLisAllTaxesXProduct(int idProduct)
+        public List<BoTaxe> Dao_getLisAllTaxesXProduct(int idProduct)
         {
             using (SqlConnection lConex = Dao_SqlConnection(lConex))
             {
-                var lListTaxe = new List<Bo_Taxe>();
+                var lListTaxe = new List<BoTaxe>();
                 try
                 {
                     var lCommand = new SqlCommand
@@ -31,14 +32,14 @@ namespace Dao_BussinessManagement
                     {
                         while (lReader.Read())
                         {
-                            var lTaxe = new Bo_Taxe
+                            var lTaxe = new BoTaxe
                             {
-                                LStatus = new Bo_Status
+                                LStatus = new BoStatus
                                 {
                                     LIdStatus = lReader["IdStatus"].ToString(),
                                     LDsEstado = lReader["DsEstado"].ToString()
                                 },
-                                LObject = new Bo_Object
+                                LObject = new BoObject
                                 {
                                     LIdObject = Convert.ToInt32(lReader["IdObject"].ToString()),
                                     LNameObject = lReader["NameObject"].ToString()
@@ -57,12 +58,12 @@ namespace Dao_BussinessManagement
                 }
                 catch (Exception e)
                 {
-                    lListTaxe = new List<Bo_Taxe>();
-                    var lTaxe = new Bo_Taxe
+                    lListTaxe = new List<BoTaxe>();
+                    var lTaxe = new BoTaxe
                     {
                         LException = e.Message,
-                        LMessageDao = "Hubo un problema en la consulta, contacte al administrador."
-                    };
+                        LMessageDao = BoErrors.MsgErrorGetSql
+                };
                     if (e.InnerException != null)
                         lTaxe.LInnerException = e.InnerException.ToString();                  
                     Dao_CloseSqlconnection(lConex);
@@ -72,11 +73,11 @@ namespace Dao_BussinessManagement
             }
         }
 
-        public List<Bo_Taxe> Dao_getLisTaxes()
+        public List<BoTaxe> Dao_getLisTaxes()
         {
             using (SqlConnection lConex = Dao_SqlConnection(lConex))
             {
-                var lListTaxe = new List<Bo_Taxe>();
+                var lListTaxe = new List<BoTaxe>();
                 try
                 {
                     var lCommand = new SqlCommand
@@ -92,14 +93,14 @@ namespace Dao_BussinessManagement
                     {
                         while (lReader.Read())
                         {
-                            var lTaxe = new Bo_Taxe
+                            var lTaxe = new BoTaxe
                             {
-                                LStatus = new Bo_Status
+                                LStatus = new BoStatus
                                 {
                                     LIdStatus = lReader["IdStatus"].ToString(),
                                     LNameStatus = lReader["NameStatus"].ToString()
                                 },
-                                LObject = new Bo_Object
+                                LObject = new BoObject
                                 {
                                     LIdObject = Convert.ToInt32(lReader["IdObject"].ToString()),
                                     LNameObject = lReader["NameObject"].ToString()
@@ -118,12 +119,12 @@ namespace Dao_BussinessManagement
                 }
                 catch (Exception e)
                 {
-                    lListTaxe = new List<Bo_Taxe>();
-                    var lTaxe = new Bo_Taxe
+                    lListTaxe = new List<BoTaxe>();
+                    var lTaxe = new BoTaxe
                     {
                         LException = e.Message,
-                        LMessageDao = "Hubo un problema en la consulta, contacte al administrador."
-                    };
+                        LMessageDao = BoErrors.MsgErrorGetSql
+                };
                     if (e.InnerException != null)
                         lTaxe.LInnerException = e.InnerException.ToString();                    
                     Dao_CloseSqlconnection(lConex);
@@ -133,11 +134,11 @@ namespace Dao_BussinessManagement
             }
         }
 
-        public List<Bo_Taxe> Dao_getLisAllTaxesWithOutProduct(int pIdProduct)
+        public List<BoTaxe> Dao_getLisAllTaxesWithOutProduct(int pIdProduct)
         {
             using (SqlConnection lConex = Dao_SqlConnection(lConex))
             {
-                var lListTaxe = new List<Bo_Taxe>();
+                var lListTaxe = new List<BoTaxe>();
                 try
                 {
                     var lCommand = new SqlCommand
@@ -153,14 +154,14 @@ namespace Dao_BussinessManagement
                     {
                         while (lReader.Read())
                         {
-                            var lTaxe = new Bo_Taxe
+                            var lTaxe = new BoTaxe
                             {
-                                LStatus = new Bo_Status
+                                LStatus = new BoStatus
                                 {
                                     LIdStatus = lReader["IdStatus"].ToString(),
                                     LDsEstado = lReader["NameStatus"].ToString()
                                 },
-                                LObject = new Bo_Object
+                                LObject = new BoObject
                                 {
                                     LIdObject = Convert.ToInt32(lReader["IdObject"].ToString()),
                                     LNameObject = lReader["NameObject"].ToString()
@@ -179,12 +180,12 @@ namespace Dao_BussinessManagement
                 }
                 catch (Exception e)
                 {
-                    lListTaxe = new List<Bo_Taxe>();
-                    var lTaxe = new Bo_Taxe
+                    lListTaxe = new List<BoTaxe>();
+                    var lTaxe = new BoTaxe
                     {
                         LException = e.Message,
-                        LMessageDao = "Hubo un problema en la consulta, contacte al administrador."
-                    };
+                        LMessageDao = BoErrors.MsgErrorGetSql
+                };
                     if (e.InnerException != null)
                         lTaxe.LInnerException = e.InnerException.ToString();                   
                     Dao_CloseSqlconnection(lConex);
@@ -194,11 +195,11 @@ namespace Dao_BussinessManagement
             }
         }
 
-        public Bo_Taxe Dao_getTaxeById(int pIdTaxe)
+        public BoTaxe Dao_getTaxeById(int pIdTaxe)
         {
             using (SqlConnection lConex = Dao_SqlConnection(lConex))
             {
-                var lTaxe = new Bo_Taxe();
+                var lTaxe = new BoTaxe();
                 try
                 {
                     var lCommand = new SqlCommand
@@ -220,8 +221,8 @@ namespace Dao_BussinessManagement
                             lTaxe.LCreationDate = Convert.ToDateTime(lReader["CreationDate"].ToString());
                             lTaxe.LValueTaxe = Convert.ToDecimal(lReader["ValueTax"].ToString());
                             lTaxe.LIsPercent = Convert.ToBoolean(lReader["IsPercent"].ToString());
-                            lTaxe.LStatus = new Bo_Status {LIdStatus = lReader["IdStatus"].ToString()};
-                            lTaxe.LObject = new Bo_Object {LIdObject = Convert.ToInt32(lReader["IdObject"].ToString())};
+                            lTaxe.LStatus = new BoStatus {LIdStatus = lReader["IdStatus"].ToString()};
+                            lTaxe.LObject = new BoObject {LIdObject = Convert.ToInt32(lReader["IdObject"].ToString())};
                         }
                     }
                     Dao_CloseSqlconnection(lConex);
@@ -229,11 +230,11 @@ namespace Dao_BussinessManagement
                 }
                 catch (Exception e)
                 {
-                    lTaxe = new Bo_Taxe
+                    lTaxe = new BoTaxe
                     {
                         LException = e.Message,
-                        LMessageDao = "Hubo un problema en la consulta, contacte al administrador."
-                    };
+                        LMessageDao = BoErrors.MsgErrorGetSql
+                };
                     if (e.InnerException != null)
                         lTaxe.LInnerException = e.InnerException.ToString();
                     

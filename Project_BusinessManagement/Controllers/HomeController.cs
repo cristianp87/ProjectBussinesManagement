@@ -7,16 +7,8 @@ namespace Project_BusinessManagement.Controllers
         public ActionResult Index()
         {
 
-            return View();
-        }
-        public ActionResult About()
-        {
-            return View();
+            return this.View();
         }
 
-        public ActionResult Contact()
-        {
-            return View();
-        }
     }
 }

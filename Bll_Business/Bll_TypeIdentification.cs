@@ -14,7 +14,7 @@ namespace Bll_Business
         {
             this.LiDaoTypeIdentification = new DaoTypeIdentification();
         }
-        public List<Bo_TypeIdentification>  bll_getListTypeIdentification()
+        public List<BoTypeIdentification>  bll_getListTypeIdentification()
         {
             return this.LiDaoTypeIdentification.Dao_getListAllTypeIdentification();
         }

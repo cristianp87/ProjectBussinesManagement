@@ -1,21 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using BO_BusinessManagement;
 
 namespace IDaoBusiness.Business
 {
     public interface IDaoTaxe
     {
-        List<Bo_Taxe> Dao_getLisAllTaxesXProduct(int idProduct);
+        List<BoTaxe> Dao_getLisAllTaxesXProduct(int idProduct);
 
-        List<Bo_Taxe> Dao_getLisTaxes();
+        List<BoTaxe> Dao_getLisTaxes();
 
-        List<Bo_Taxe> Dao_getLisAllTaxesWithOutProduct(int pIdProduct);
+        List<BoTaxe> Dao_getLisAllTaxesWithOutProduct(int pIdProduct);
 
-        Bo_Taxe Dao_getTaxeById(int pIdTaxe);
+        BoTaxe Dao_getTaxeById(int pIdTaxe);
 
         string Dao_InsertTaxeXProduct(int pIdProduct, int pIdTaxe);
 

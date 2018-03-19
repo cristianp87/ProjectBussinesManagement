@@ -1,13 +1,10 @@
-﻿using System.Runtime.InteropServices.ComTypes;
-using Unity;
-
-namespace IBusiness.Common
+﻿namespace IBusiness.Common
 {
     public interface IFacadeProvider
     {
         #region Methods
 
-        T Resolver<T>() where T : IFacade ;
+        T Resolv<T>() where T : IFacade ;
 
         IFacadeProvider RegisterFacadeProvider();
 

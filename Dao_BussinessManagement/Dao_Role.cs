@@ -3,18 +3,19 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
+using BO_BusinessManagement.Enums;
 using IDaoBusiness.Business;
-using static Dao_BussinessManagement.Dao_UtilsLib;
+using static Dao_BussinessManagement.DaoUtilsLib;
 
 namespace Dao_BussinessManagement
 {
     public class DaoRole : IDaoRole
     {
-        public List<Bo_Role> Dao_getRolesByUser(int pUserId)
+        public List<BoRole> Dao_getRolesByUser(int pUserId)
         {
             using (SqlConnection lConex = Dao_SqlConnection(lConex))
             {
-                var lRoles = new List<Bo_Role>();
+                var lRoles = new List<BoRole>();
                 try
                 {
                     var lCommand = new SqlCommand
@@ -31,7 +32,7 @@ namespace Dao_BussinessManagement
                     {
                         while (lReader.Read())
                         {
-                            var lRole = new Bo_Role
+                            var lRole = new BoRole
                             {
                                 LIdRole = Convert.ToInt32(lReader["IdRole"].ToString()),
                                 LNameRole = lReader["NameRole"].ToString(),
@@ -45,7 +46,7 @@ namespace Dao_BussinessManagement
                 }
                 catch (Exception e)
                 {
-                    var lRole = new Bo_Role {LException = e.Message, LMessageDao = "Hubo un problema en la consulta, contacte al administrador." };
+                    var lRole = new BoRole {LException = e.Message, LMessageDao = BoErrors.MsgErrorGetSql};
                     if (e.InnerException != null)
                         lRole.LInnerException = e.InnerException.ToString();
                     lRoles.Add(lRole);

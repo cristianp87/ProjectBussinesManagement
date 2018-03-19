@@ -2,161 +2,28 @@
 
 namespace BO_BusinessManagement
 {
-    public class Bo_Product: Bo_Exception
+    public class BoProduct: BoException
     {
-        private int lIdProduct;
-        private string lNameProduct;
-        private DateTime lCreationDate;
-        private Bo_Unit lUnit;
-        private decimal lValue;
-        private Bo_Supplier lSupplier;
-        private decimal lValueSupplier;
-        private Bo_Object lObject;
-        private Bo_Status lStatus;
-        private Bo_Taxe lTaxe;
-        private string lCdProduct;
+        public int LIdProduct { get; set; }
 
-        public int LIdProduct
-        {
-            get
-            {
-                return lIdProduct;
-            }
+        public string LNameProduct { get; set; }
 
-            set
-            {
-                lIdProduct = value;
-            }
-        }
+        public DateTime LCreationDate { get; set; }
 
-        public string LNameProduct
-        {
-            get
-            {
-                return lNameProduct;
-            }
+        public BoUnit LUnit { get; set; }
 
-            set
-            {
-                lNameProduct = value;
-            }
-        }
+        public decimal LValue { get; set; }
 
-        public DateTime LCreationDate
-        {
-            get
-            {
-                return lCreationDate;
-            }
+        public BoSupplier LSupplier { get; set; }
 
-            set
-            {
-                lCreationDate = value;
-            }
-        }
+        public decimal LValueSupplier { get; set; }
 
-        public Bo_Unit LUnit
-        {
-            get
-            {
-                return lUnit;
-            }
+        public BoObject LObject { get; set; }
 
-            set
-            {
-                lUnit = value;
-            }
-        }
+        public BoStatus LStatus { get; set; }
 
-        public decimal LValue
-        {
-            get
-            {
-                return lValue;
-            }
+        public string LCdProduct { get; set; }
 
-            set
-            {
-                lValue = value;
-            }
-        }
-
-        public Bo_Supplier LSupplier
-        {
-            get
-            {
-                return lSupplier;
-            }
-
-            set
-            {
-                lSupplier = value;
-            }
-        }
-
-        public decimal LValueSupplier
-        {
-            get
-            {
-                return lValueSupplier;
-            }
-
-            set
-            {
-                lValueSupplier = value;
-            }
-        }
-
-        public Bo_Object LObject
-        {
-            get
-            {
-                return lObject;
-            }
-
-            set
-            {
-                lObject = value;
-            }
-        }
-
-        public Bo_Status LStatus
-        {
-            get
-            {
-                return lStatus;
-            }
-
-            set
-            {
-                lStatus = value;
-            }
-        }
-
-        public string LCdProduct
-        {
-            get
-            {
-                return lCdProduct;
-            }
-
-            set
-            {
-                lCdProduct = value;
-            }
-        }
-
-        public Bo_Taxe LTaxe
-        {
-            get
-            {
-                return lTaxe;
-            }
-
-            set
-            {
-                lTaxe = value;
-            }
-        }
+        public BoTaxe LTaxe { get; set; }
     }
 }

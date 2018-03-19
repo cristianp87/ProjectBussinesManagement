@@ -3,18 +3,19 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
+using BO_BusinessManagement.Enums;
 using IDaoBusiness.Business;
-using static Dao_BussinessManagement.Dao_UtilsLib;
+using static Dao_BussinessManagement.DaoUtilsLib;
 
 namespace Dao_BussinessManagement
 {
     public class DaoStatus : IDaoStatus
     {
-        public List<Bo_Status> Dao_getListStatusByIdObject(int pIdObject)
+        public List<BoStatus> Dao_getListStatusByIdObject(int pIdObject)
         {
             using (SqlConnection lConex = Dao_SqlConnection(lConex))
             {
-                var lListStatus = new List<Bo_Status>();
+                var lListStatus = new List<BoStatus>();
                 try
                 {
                     var lCommand = new SqlCommand
@@ -31,11 +32,13 @@ namespace Dao_BussinessManagement
                     {
                         while (lReader.Read())
                         {
-                            var lStatus= new Bo_Status();
-                            lStatus.LIdStatus = lReader["IdStatus"].ToString();
-                            lStatus.LDsEstado = lReader["DsEstado"].ToString();
-                            lStatus.LCreationDate = Convert.ToDateTime(lReader["CreationDate"].ToString());
-                            lStatus.LFlActive = Convert.ToBoolean(lReader["flActive"].ToString());
+                            var lStatus = new BoStatus
+                            {
+                                LIdStatus = lReader["IdStatus"].ToString(),
+                                LDsEstado = lReader["DsEstado"].ToString(),
+                                LCreationDate = Convert.ToDateTime(lReader["CreationDate"].ToString()),
+                                LFlActive = Convert.ToBoolean(lReader["flActive"].ToString())
+                            };
                             lListStatus.Add(lStatus);
                         }
 
@@ -46,11 +49,11 @@ namespace Dao_BussinessManagement
                 }
                 catch (Exception e)
                 {
-                    lListStatus = new List<Bo_Status>();
-                    var lStatus = new Bo_Status
+                    lListStatus = new List<BoStatus>();
+                    var lStatus = new BoStatus
                     {
                         LException = e.Message,
-                        LMessageDao = "Hubo un problema en la consulta, contacte al administrador."
+                        LMessageDao = BoErrors.MsgErrorGetSql
                     };
 
                     if (e.InnerException != null)

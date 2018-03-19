@@ -18,7 +18,7 @@ namespace Project_BusinessManagement.Models
         {
             get
             {
-                _lNameObjectSupplier = ConfigurationManager.AppSettings["objectSupplier"].ToString() ;
+                _lNameObjectSupplier = ConfigurationManager.AppSettings["objectSupplier"] ;
                 return _lNameObjectSupplier;
             }
         }
@@ -27,7 +27,7 @@ namespace Project_BusinessManagement.Models
         {
             get
             {
-                _lNameObjectCustomer = ConfigurationManager.AppSettings["objectCustomer"].ToString();
+                _lNameObjectCustomer = ConfigurationManager.AppSettings["objectCustomer"];
                 return _lNameObjectCustomer;
             }
         }
@@ -36,7 +36,7 @@ namespace Project_BusinessManagement.Models
         {
             get
             {
-                _lNameObjectProduct = ConfigurationManager.AppSettings["objectProduct"].ToString();
+                _lNameObjectProduct = ConfigurationManager.AppSettings["objectProduct"];
                 return _lNameObjectProduct;
             }
         }
@@ -45,7 +45,7 @@ namespace Project_BusinessManagement.Models
         {
             get
             {
-                _lNameObjectInventory= ConfigurationManager.AppSettings["objectInventory"].ToString();
+                _lNameObjectInventory= ConfigurationManager.AppSettings["objectInventory"];
                 return _lNameObjectInventory;
             }
         }
@@ -54,7 +54,7 @@ namespace Project_BusinessManagement.Models
         {
             get
             {
-                _lNameObjectInventoryItem = ConfigurationManager.AppSettings["objectInvenItem"].ToString();
+                _lNameObjectInventoryItem = ConfigurationManager.AppSettings["objectInvenItem"];
                 return _lNameObjectInventoryItem;
             }
         }
@@ -63,7 +63,7 @@ namespace Project_BusinessManagement.Models
         {
             get
             {
-                _lNameObjectOrder = ConfigurationManager.AppSettings["objectOrder"].ToString();
+                _lNameObjectOrder = ConfigurationManager.AppSettings["objectOrder"];
                 return _lNameObjectOrder;
             }
         }
@@ -72,7 +72,7 @@ namespace Project_BusinessManagement.Models
         {
             get
             {
-                _lNameObjectOrderItem = ConfigurationManager.AppSettings["objectOrderItem"].ToString();
+                _lNameObjectOrderItem = ConfigurationManager.AppSettings["objectOrderItem"];
                 return _lNameObjectOrderItem;
             }
         }
@@ -81,7 +81,7 @@ namespace Project_BusinessManagement.Models
         {
             get
             {
-                _lNameObjectInvoice = ConfigurationManager.AppSettings["objectInvoice"].ToString();
+                _lNameObjectInvoice = ConfigurationManager.AppSettings["objectInvoice"];
                 return _lNameObjectInvoice;
             }
 
@@ -91,10 +91,9 @@ namespace Project_BusinessManagement.Models
         {
             get
             {
-                _lNameObjectInvoiceItem = ConfigurationManager.AppSettings["objectInvoiceItem"].ToString();
+                _lNameObjectInvoiceItem = ConfigurationManager.AppSettings["objectInvoiceItem"];
                 return _lNameObjectInvoiceItem;
             }
-
         }
     }
 }

@@ -1,12 +1,11 @@
-﻿using BO_BusinessManagement;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 using IBusiness.Common;
 using IBusiness.Management;
 using Microsoft.AspNet.Identity;
 using Project_BusinessManagement.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace Project_BusinessManagement.Security
 {
@@ -14,10 +13,10 @@ namespace Project_BusinessManagement.Security
     {
         #region Variables and Constants
         public IBusinessRole LRoleFacade =
-        FacadeProvider.Resolver<IBusinessRole>();
+        FacadeProvider.Resolv<IBusinessRole>();
 
         public IBusinessUser LiUser =
-        FacadeProvider.Resolver<IBusinessUser>();
+        FacadeProvider.Resolv<IBusinessUser>();
         #endregion
 
         public Task CreateAsync(MUser user)
@@ -34,11 +33,10 @@ namespace Project_BusinessManagement.Security
 
         public Task<MUser> FindByIdAsync(string userId)
         {
-            Bo_User lUser = new Bo_User();
-            var lIdUser = 0;
+            int lIdUser;
             if (int.TryParse(userId, out lIdUser))
             {
-                lUser = LiUser.bll_GetUserById(Convert.ToInt32(userId));
+                var lUser = this.LiUser.bll_GetUserById(Convert.ToInt32(userId));
                 if (string.IsNullOrEmpty(lUser.LException))
                 {
 
@@ -49,26 +47,22 @@ namespace Project_BusinessManagement.Security
                         LCreateDate = DateTime.Now,
                         LPasswordHash = lUser.LPassword,
                         LUser = lUser.LUser,
-                        UserName = lUser.LFNameUser + " " + lUser.LFLastName,
+                        UserName = lUser.LfNameUser + " " + lUser.LfLastName,
                         LEmail = lUser.LEmail
 
                     };
 
-                    return Task.Run(() => { return lUserapp; }); //System.Threading.Tasks.Task.FromResult(lUserapp);
+                    return Task.Run(() => lUserapp); //System.Threading.Tasks.Task.FromResult(lUserapp);
                 }
-                else
-                {
-                    return null;
-                }
+                return null;
             }
-            else { return null; }
+            return null;
         }
 
 
         public Task<MUser> FindByNameAsync(string userName)
         {
-            Bo_User lUser = new Bo_User();
-            lUser = LiUser.bll_GetUserByUser(userName);
+            var lUser = this.LiUser.bll_GetUserByUser(userName);
             if (string.IsNullOrEmpty(lUser.LException))
             {
 
@@ -79,17 +73,14 @@ namespace Project_BusinessManagement.Security
                     LCreateDate = DateTime.Now,
                     LPasswordHash = lUser.LPassword,
                     LUser = lUser.LUser,
-                    UserName = lUser.LFNameUser + " " + lUser.LFLastName,
+                    UserName = lUser.LfNameUser + " " + lUser.LfLastName,
                     LEmail = lUser.LEmail
 
                 };
 
-                return Task.Run(() => { return lUserapp; }); //System.Threading.Tasks.Task.FromResult(lUserapp);
+                return Task.Run(() => lUserapp); //System.Threading.Tasks.Task.FromResult(lUserapp);
             }
-            else
-            {
-                return null;
-            }
+            return null;
         }
 
         public Task UpdateAsync(MUser user)
@@ -122,8 +113,7 @@ namespace Project_BusinessManagement.Security
 
         public Task<IList<string>> GetRolesAsync(MUser user)
         {
-            IList<Bo_Role> lRole;
-            lRole = this.LRoleFacade.GetRolesByUser(Convert.ToInt32(user.Id));
+            var lRole = this.LRoleFacade.GetRolesByUser(Convert.ToInt32(user.Id));
             IList<string> lListApprole = new List<string>();
 
             if (string.IsNullOrEmpty(lRole.First().LException))
@@ -133,12 +123,9 @@ namespace Project_BusinessManagement.Security
                     lListApprole.Add(item.LNameRole);
                 });
 
-                return Task.Run(() => { return lListApprole; }); //System.Threading.Tasks.Task.FromResult(lUserapp);
+                return Task.Run(() => lListApprole); //System.Threading.Tasks.Task.FromResult(lUserapp);
             }
-            else
-            {
-                return null;
-            }
+            return null;
         }
     }
 }

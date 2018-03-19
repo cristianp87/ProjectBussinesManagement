@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
+using BO_BusinessManagement.Enums;
 using IDaoBusiness.Business;
 
 namespace Dao_BussinessManagement
@@ -10,9 +11,9 @@ namespace Dao_BussinessManagement
     
     public class DaoDashBoard : IDaoDashBoard
     {
-        public List<Bo_DashBoard> Dao_getProductSellToday()
+        public List<BoDashBoard> Dao_getProductSellToday()
         {
-            using (SqlConnection lConex = Dao_UtilsLib.Dao_SqlConnection(lConex))
+            using (SqlConnection lConex = DaoUtilsLib.Dao_SqlConnection(lConex))
             {
 
                 try
@@ -25,12 +26,12 @@ namespace Dao_BussinessManagement
                         Connection = lConex
                     };
                     var lReader = lCommand.ExecuteReader();
-                    var lListDashBoard = new List<Bo_DashBoard>();
+                    var lListDashBoard = new List<BoDashBoard>();
                     if (lReader.HasRows)
                     {
                         while (lReader.Read())
                         {
-                            var lDashBoard = new Bo_DashBoard
+                            var lDashBoard = new BoDashBoard
                             {
                                 Xstring = lReader["x"].ToString(),
                                 Yint = Convert.ToInt32(lReader["y"].ToString())
@@ -40,18 +41,18 @@ namespace Dao_BussinessManagement
 
 
                     }
-                    Dao_UtilsLib.Dao_CloseSqlconnection(lConex);
+                    DaoUtilsLib.Dao_CloseSqlconnection(lConex);
                     return lListDashBoard;
                 }
                 catch (Exception e)
                 {
-                    var lListDashBoard = new List<Bo_DashBoard>();
-                    var lDashBoard = new Bo_DashBoard {LException = e.Message};
+                    var lListDashBoard = new List<BoDashBoard>();
+                    var lDashBoard = new BoDashBoard {LException = e.Message};
                     if (e.InnerException != null)
                         lDashBoard.LInnerException = e.InnerException.ToString();
-                    lDashBoard.LMessageDao = "Hubo un problema en la consulta, contacte al administrador.";
+                    lDashBoard.LMessageDao = BoErrors.MsgErrorGetSql;
                     lListDashBoard.Add(lDashBoard);
-                    Dao_UtilsLib.Dao_CloseSqlconnection(lConex);
+                    DaoUtilsLib.Dao_CloseSqlconnection(lConex);
                     return lListDashBoard;
                 }
 

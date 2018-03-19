@@ -15,7 +15,7 @@ namespace Bll_Business
             this.LiDashBoard = new DaoDashBoard();
         }
 
-        public List<Bo_DashBoard> bll_GetProductSellToday()
+        public List<BoDashBoard> bll_GetProductSellToday()
         {
             return this.LiDashBoard.Dao_getProductSellToday();
         }

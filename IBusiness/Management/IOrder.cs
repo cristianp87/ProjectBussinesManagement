@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using BO_BusinessManagement;
 using IBusiness.Common;
 
@@ -14,11 +10,11 @@ namespace IBusiness.Management
             int pIdCustomer,
             int pIdObject,
             string pIdStatus,
-            List<Bo_OrderItem> pListOrderItem,
+            List<BoOrderItem> pListOrderItem,
             bool pIsInventory,
             int pIdObjectOi,
             string pIdStatusOi);
 
-        List<Bo_Order> bll_GetListOrderByCustomer(int pIdCustomer);
+        List<BoOrder> bll_GetListOrderByCustomer(int pIdCustomer);
     }
 }

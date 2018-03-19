@@ -14,17 +14,17 @@ namespace Bll_Business
             this.LiDaoUser = new DaoUser();
         }
 
-        public Bo_User bll_GetUserByUser(string pUser)
+        public BoUser bll_GetUserByUser(string pUser)
         {
             return this.LiDaoUser.Dao_getUserByUser(pUser);
         }
 
-        public Bo_User bll_GetUserById(int pIdUser)
+        public BoUser bll_GetUserById(int pIdUser)
         {
             return this.LiDaoUser.Dao_getUserById(pIdUser);
         }
 
-        public string bll_InsertUser(Bo_User pUser)
+        public string bll_InsertUser(BoUser pUser)
         {
             return this.LiDaoUser.Dao_InsertUser(pUser);
         }

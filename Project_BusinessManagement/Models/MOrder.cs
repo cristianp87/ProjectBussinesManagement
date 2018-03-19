@@ -1,5 +1,4 @@
-﻿using BO_BusinessManagement;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 
@@ -24,24 +23,6 @@ namespace Project_BusinessManagement.Models
 
         public List<MOrderItem> LListOrderItem { get; set; }
 
-        public static List<MOrder> MListOrder(List<Bo_Order> pListOrder)
-        {
-            var lListOrder= new List<MOrder>();
-            pListOrder.ForEach(x => {
-                                        var lMOrder = new MOrder
-                                        {
-                                            LInventory = new MInventory {LNameInventory = x.LInventory.LNameInventory},
-                                            LCustomer = new MCustomer
-                                            {
-                                                LNameCustomer = x.LCustomer.LNameCustomer,
-                                                LLastNameCustomer = x.LCustomer.LLastNameCustomer
-                                            },
-                                            LIdOrder = x.LIdOrder,
-                                            LCreationDate = x.LCreationDate
-                                        };
-                                        lListOrder.Add(lMOrder);
-            });
-            return lListOrder;
-        }
+        
     }
 }

@@ -4,8 +4,9 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.Globalization;
+using BO_BusinessManagement.Enums;
 using IDaoBusiness.Business;
-using static Dao_BussinessManagement.Dao_UtilsLib;
+using static Dao_BussinessManagement.DaoUtilsLib;
 
 namespace Dao_BussinessManagement
 {
@@ -19,11 +20,11 @@ namespace Dao_BussinessManagement
         /// </summary>
         /// <param name="pIdOrder"></param>
         /// <returns></returns>
-        public List<Bo_OrderItem> Dao_getListOrderItem(int pIdOrder)
+        public List<BoOrderItem> Dao_getListOrderItem(int pIdOrder)
         {
             using (SqlConnection lConex = Dao_SqlConnection(lConex))
             {
-                var lListOrderItem = new List<Bo_OrderItem>();
+                var lListOrderItem = new List<BoOrderItem>();
                 try
                 {
                     var lCommand = new SqlCommand
@@ -39,12 +40,12 @@ namespace Dao_BussinessManagement
                     {
                         while (lReader.Read())
                         {
-                            var lOrderItem = new Bo_OrderItem
+                            var lOrderItem = new BoOrderItem
                             {
-                                LStatus = new Bo_Status {LIdStatus = lReader["IdStatus"].ToString()},
-                                LObject = new Bo_Object {LIdObject = Convert.ToInt32(lReader["IdObject"].ToString())},
-                                LOrder = new Bo_Order {LIdOrder = Convert.ToInt32(lReader["IdOrder"].ToString())},
-                                LProduct = new Bo_Product
+                                LStatus = new BoStatus {LIdStatus = lReader["IdStatus"].ToString()},
+                                LObject = new BoObject {LIdObject = Convert.ToInt32(lReader["IdObject"].ToString())},
+                                LOrder = new BoOrder {LIdOrder = Convert.ToInt32(lReader["IdOrder"].ToString())},
+                                LProduct = new BoProduct
                                 {
                                     LNameProduct = lReader["NameProduct"].ToString(),
                                     LIdProduct = Convert.ToInt32(lReader["IdProduct"].ToString())
@@ -65,8 +66,8 @@ namespace Dao_BussinessManagement
                 }
                 catch (Exception e)
                 {
-                    lListOrderItem = new List<Bo_OrderItem>();
-                    var lOrderItem = new Bo_OrderItem {LException = e.Message, LMessageDao = "Hubo un problema en la consulta, contacte al administrador."
+                    lListOrderItem = new List<BoOrderItem>();
+                    var lOrderItem = new BoOrderItem {LException = e.Message, LMessageDao = BoErrors.MsgErrorGetSql
                 };
                     if (e.InnerException != null)
                         lOrderItem.LInnerException = e.InnerException.ToString();
@@ -81,10 +82,10 @@ namespace Dao_BussinessManagement
         /// </summary>
         /// <param name="pOrderItem"></param>
         /// <returns></returns>
-        public string Dao_InsertOrderItem(Bo_OrderItem pOrderItem)
+        public string Dao_InsertOrderItem(BoOrderItem pOrderItem)
         {
             this.LListParam = new List<SqlParameter>();
-            dao_Addparameters(this.LListParam, SqlDbType.VarChar, "@CodProduct", pOrderItem.LProduct.LCdProduct.ToString());
+            dao_Addparameters(this.LListParam, SqlDbType.VarChar, "@CodProduct", pOrderItem.LProduct.LCdProduct);
             dao_Addparameters(this.LListParam, SqlDbType.Int, "@IdOrder", pOrderItem.LOrder.LIdOrder.ToString());
             dao_Addparameters(this.LListParam, SqlDbType.Decimal, "@ValueProduct", pOrderItem.LValueProduct.ToString(CultureInfo.CurrentCulture));
             dao_Addparameters(this.LListParam, SqlDbType.Decimal, "@Qty", pOrderItem.LQty.ToString(CultureInfo.CurrentCulture));

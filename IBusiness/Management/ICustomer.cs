@@ -8,11 +8,11 @@ namespace IBusiness.Management
     {
         #region Methods
 
-        Bo_Customer bll_GetCustomerById(int pIdCustomer);
+        BoCustomer bll_GetCustomerById(int pIdCustomer);
 
-        Bo_Customer bll_GetCustomerByIdentification(string pNoIdentification, int pIdTypeIdentification);
+        BoCustomer bll_GetCustomerByIdentification(string pNoIdentification, int pIdTypeIdentification);
 
-        List<Bo_Customer> bll_GetAllCustomer();
+        List<BoCustomer> bll_GetAllCustomer();
 
         string bll_InsertCustomer(string pNameCustomer,
             string pLastNameCustomer,

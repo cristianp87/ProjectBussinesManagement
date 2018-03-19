@@ -5,63 +5,66 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Index</h2>
+<h2>Items De Pedidos</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>>
-        <th>
-            @Html.DisplayNameFor(model => model.LCreationDate)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.LQty)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.LValueProduct)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.LValueSupplier)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.LValueTaxes)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.LValueDesc)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.LValueTotal)
-        </th>
+<div class="table-responsive">
+    <table class="tablesorter">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.LCreationDate)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.LQty)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.LValueProduct)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.LValueSupplier)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.LValueTaxes)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.LValueDesc)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.LValueTotal)
+                </th>
 
-    </tr>
+            </tr>
+        </thead>
 
-@foreach (var item in Model) {
-    <tr>
+        @foreach (var item in Model)
+        {
+            <tbody>
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.LCreationDate)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.LQty)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.LValueProduct)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.LValueSupplier)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.LValueTaxes)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.LValueDesc)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.LValueTotal)
+                    </td>
+                </tr>
+            </tbody>
+        }
 
-        <td>
-            @Html.DisplayFor(modelItem => item.LCreationDate)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.LQty)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.LValueProduct)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.LValueSupplier)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.LValueTaxes)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.LValueDesc)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.LValueTotal)
-        </td>
-               
-    </tr>
-}
-
-</table>
+    </table>
+    @Html.Partial("~/Views/Shared/_Pagination.cshtml")
+</div>

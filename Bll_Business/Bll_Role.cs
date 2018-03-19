@@ -13,7 +13,7 @@ namespace Bll_Business
         {
             this.LiDaoRole = new DaoRole();
         }
-        public IList<Bo_Role> GetRolesByUser(int pIdUser)
+        public IList<BoRole> GetRolesByUser(int pIdUser)
         {
             return this.LiDaoRole.Dao_getRolesByUser(pIdUser);
         }

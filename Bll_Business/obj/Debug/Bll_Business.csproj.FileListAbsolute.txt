@@ -63,3 +63,5 @@ C:\Users\cripac\Documents\GitHub\ProjectBussinesManagement\Bll_Business\obj\Debu
 C:\Users\cripac\Documents\GitHub\ProjectBussinesManagement\Bll_Business\obj\Debug\Bll_Business.pdb
 C:\Users\cripac\Documents\GitHub\ProjectBussinesManagement\Bll_Business\bin\Debug\IDaoBusiness.dll
 C:\Users\cripac\Documents\GitHub\ProjectBussinesManagement\Bll_Business\bin\Debug\IDaoBusiness.pdb
+C:\Users\CristianPc\Documents\Projects\ProjectBussinesManagement\Bll_Business\bin\Debug\IDaoBusiness.dll
+C:\Users\CristianPc\Documents\Projects\ProjectBussinesManagement\Bll_Business\bin\Debug\IDaoBusiness.pdb

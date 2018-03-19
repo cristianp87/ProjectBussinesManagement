@@ -59,6 +59,9 @@
     <Compile Include="Bo_Taxe.cs" />
     <Compile Include="Bo_Unit.cs" />
     <Compile Include="Bo_User.cs" />
+    <Compile Include="Enums\Bo_Errors.cs" />
+    <Compile Include="Enums\EBooleans.cs" />
+    <Compile Include="Enums\EObjects.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Bo_TypeIdentification.cs" />
   </ItemGroup>

@@ -2,170 +2,38 @@
 
 namespace BO_BusinessManagement
 {
-    public class Bo_InvoiceItem: Bo_Exception
+    public class BoInvoiceItem: BoException
     {
-        private int lIdInvoiceItem;
-        private int lIdInvoice;
-        private Bo_Product lProduct;
-        private DateTime lCreationDate;
-        private decimal lQuantity;
-        private decimal lValueTaxes;
-        private decimal lValueSupplier;
-        private decimal lValueDesc;
-        private decimal lValueProd;
-        private decimal lValueTotal;
-        private Bo_Status lStatus;
-        private Bo_Object lObject;
+        private decimal myLValueTotal;
 
-        public int LIdInvoiceItem
-        {
-            get
-            {
-                return lIdInvoiceItem;
-            }
+        public int LIdInvoiceItem { get; set; }
 
-            set
-            {
-                lIdInvoiceItem = value;
-            }
-        }
+        public int LIdInvoice { get; set; }
 
-        public int LIdInvoice
-        {
-            get
-            {
-                return lIdInvoice;
-            }
+        public BoProduct LProduct { get; set; }
 
-            set
-            {
-                lIdInvoice = value;
-            }
-        }
+        public DateTime LCreationDate { get; set; }
 
-        public Bo_Product LProduct
-        {
-            get
-            {
-                return lProduct;
-            }
+        public decimal LQuantity { get; set; }
 
-            set
-            {
-                lProduct = value;
-            }
-        }
+        public BoStatus LStatus { get; set; }
 
-        public DateTime LCreationDate
-        {
-            get
-            {
-                return lCreationDate;
-            }
+        public BoObject LObject { get; set; }
 
-            set
-            {
-                lCreationDate = value;
-            }
-        }
+        public decimal LValueTaxes { get; set; }
 
-        public decimal LQuantity
-        {
-            get
-            {
-                return lQuantity;
-            }
+        public decimal LValueSupplier { get; set; }
 
-            set
-            {
-                lQuantity = value;
-            }
-        }
+        public decimal LValueDesc { get; set; }
 
-        public Bo_Status LStatus
-        {
-            get
-            {
-                return lStatus;
-            }
-
-            set
-            {
-                lStatus = value;
-            }
-        }
-
-        public Bo_Object LObject
-        {
-            get
-            {
-                return lObject;
-            }
-
-            set
-            {
-                lObject = value;
-            }
-        }
-
-        public decimal LValueTaxes
-        {
-            get
-            {
-                return lValueTaxes;
-            }
-
-            set
-            {
-                lValueTaxes = value;
-            }
-        }
-
-        public decimal LValueSupplier
-        {
-            get
-            {
-                return lValueSupplier;
-            }
-
-            set
-            {
-                lValueSupplier = value;
-            }
-        }
-
-        public decimal LValueDesc
-        {
-            get
-            {
-                return lValueDesc;
-            }
-
-            set
-            {
-                lValueDesc = value;
-            }
-        }
-
-        public decimal LValueProd
-        {
-            get
-            {
-                return lValueProd;
-            }
-
-            set
-            {
-                lValueProd = value;
-            }
-        }
+        public decimal LValueProd { get; set; }
 
         public decimal LValueTotal
         {
             get
             {
-                lValueTotal = (((LValueProd - LValueDesc) * LQuantity) + (LValueTaxes * LQuantity));
-                return lValueTotal;
+                this.myLValueTotal = (((this.LValueProd - this.LValueDesc) *this.LQuantity) + (this.LValueTaxes *this.LQuantity));
+                return this.myLValueTotal;
             }
         }
     }

@@ -4,16 +4,17 @@ using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
+using BO_BusinessManagement.Enums;
 
 namespace Dao_BussinessManagement
 {
-    public class Dao_UtilsLib
+    public class DaoUtilsLib
     {
-        private static string lConnectionString = ConfigurationManager.ConnectionStrings["Conex_Business"].ConnectionString;
+        private static readonly string LConnectionString = ConfigurationManager.ConnectionStrings["Conex_Business"].ConnectionString;
 
         public static SqlConnection Dao_SqlConnection(SqlConnection lConn)
         {
-            lConn = new SqlConnection(lConnectionString);           
+            lConn = new SqlConnection(LConnectionString);           
             if(lConn.State == ConnectionState.Open)
             {
                 return lConn;
@@ -39,7 +40,7 @@ namespace Dao_BussinessManagement
         {
             
             string lResult = null;
-            using (SqlConnection lConex = Dao_UtilsLib.Dao_SqlConnection(lConex))
+            using (SqlConnection lConex = Dao_SqlConnection(lConex))
             {
                 using (SqlTransaction lTran = lConex.BeginTransaction(pNameTransaction))
                 {
@@ -62,7 +63,7 @@ namespace Dao_BussinessManagement
                     }
                     catch (Exception ex)
                     {
-                        lResult = "Commit Exception Type: " + ex.GetType() + "  Message: " + ex.Message;
+                        lResult = BoErrors.MsgCommitException + ex.GetType() + BoErrors.MsgMsgError + ex.Message;
 
                         try
                         {
@@ -70,7 +71,7 @@ namespace Dao_BussinessManagement
                         }
                         catch (Exception ex2)
                         {
-                            lResult += " Rollback Exception Type: " + ex2.GetType() + "  Message: " + ex2.Message;
+                            lResult += BoErrors.MsgRollbackException + ex2.GetType() + BoErrors.MsgMsgError + ex2.Message;
                         }
                     }
                     Dao_CloseSqlconnection( lConex);
@@ -106,7 +107,7 @@ namespace Dao_BussinessManagement
                     }
                     catch (Exception ex)
                     {
-                        lResult = "Commit Exception Type: " + ex.GetType() + "  Message: " + ex.Message;
+                        lResult = BoErrors.MsgCommitException+ ex.GetType() + BoErrors.MsgMsgError + ex.Message;
 
                         try
                         {
@@ -114,7 +115,7 @@ namespace Dao_BussinessManagement
                         }
                         catch (Exception ex2)
                         {
-                            lResult += " Rollback Exception Type: " + ex2.GetType() + "  Message: " + ex2.Message;
+                            lResult += BoErrors.MsgRollbackException + ex2.GetType() + BoErrors.MsgMsgError + ex2.Message;
                         }
                     }
                     Dao_CloseSqlconnection(lConex);
@@ -123,10 +124,10 @@ namespace Dao_BussinessManagement
             return lResult;
         }
 
-        public static Bo_Object DaoUtilsLib_getObject(string lNameObject){
+        public static BoObject DaoUtilsLib_getObject(string lNameObject){
             using (SqlConnection lConex = Dao_SqlConnection(lConex))
             {
-                var lObject = new Bo_Object();
+                var lObject = new BoObject();
                 try
                 {
                     var lCommand = new SqlCommand
@@ -153,10 +154,10 @@ namespace Dao_BussinessManagement
                 }
                 catch (Exception e)
                 {
-                    lObject = new Bo_Object
+                    lObject = new BoObject
                     {
                         LException = e.Message,
-                        LMessageDao = "Hubo un problema en la consulta, contacte al administrador."
+                        LMessageDao = BoErrors.MsgErrorGetSql
                     };
                     if (e.InnerException != null)
                         lObject.LInnerException = e.InnerException.ToString();                  
@@ -167,11 +168,11 @@ namespace Dao_BussinessManagement
             }
         }
 
-        public static Bo_Status DaoUtilsLib_getStatusAppro(int pIdObject)
+        public static BoStatus DaoUtilsLib_getStatusAppro(int pIdObject)
         {
             using (SqlConnection lConex = Dao_SqlConnection(lConex))
             {
-                var lStatus = new Bo_Status();
+                var lStatus = new BoStatus();
                 try
                 {
                     var lCommand = new SqlCommand
@@ -199,10 +200,10 @@ namespace Dao_BussinessManagement
                 }
                 catch (Exception e)
                 {
-                    lStatus = new Bo_Status
+                    lStatus = new BoStatus
                     {
                         LException = e.Message,
-                        LMessageDao = "Hubo un problema en la Consulta del estado, contacte al administrador."
+                        LMessageDao = BoErrors.MsgErrorGetSql
                     };
                     if (e.InnerException != null)
                         lStatus.LInnerException = e.InnerException.ToString();                   
@@ -213,11 +214,11 @@ namespace Dao_BussinessManagement
             }
         }
 
-        public static List<Bo_Unit> DaoUtilsLib_getAllUnit()
+        public static List<BoUnit> DaoUtilsLib_getAllUnit()
         {
             using (SqlConnection lConex = Dao_SqlConnection(lConex))
             {
-                var lListUnit = new List<Bo_Unit>();
+                var lListUnit = new List<BoUnit>();
                 try
                 {
                     var lCommand = new SqlCommand
@@ -233,7 +234,7 @@ namespace Dao_BussinessManagement
                     {
                         while (lReader.Read())
                         {
-                            var oUnit = new Bo_Unit
+                            var oUnit = new BoUnit
                             {
                                 LIdUnit = Convert.ToInt32(lReader["IdUnit"].ToString()),
                                 LNameUnit = lReader["NameUnit"].ToString(),
@@ -248,11 +249,11 @@ namespace Dao_BussinessManagement
                 }
                 catch (Exception e)
                 {
-                    lListUnit = new List<Bo_Unit>();
-                    var lUnit = new Bo_Unit
+                    lListUnit = new List<BoUnit>();
+                    var lUnit = new BoUnit
                     {
                         LException = e.Message,
-                        LMessageDao = "Hubo un problema en la consulta, contacte al administrador."
+                        LMessageDao = BoErrors.MsgErrorGetSql
                     };
                     if (e.InnerException != null)
                         lUnit.LInnerException = e.InnerException.ToString();                  
@@ -268,7 +269,7 @@ namespace Dao_BussinessManagement
         {
             using (SqlConnection lConex = Dao_SqlConnection(lConex))
             {
-                var lConfigurationValue = new Bo_ConfigurationValue();
+                var lConfigurationValue = new BoConfigurationValue();
                 try
                 {
                     var lCommand = new SqlCommand
@@ -295,10 +296,10 @@ namespace Dao_BussinessManagement
                 }
                 catch (Exception e)
                 {
-                    lConfigurationValue = new Bo_ConfigurationValue
+                    lConfigurationValue = new BoConfigurationValue
                     {
                         LException = e.Message,
-                        LMessageDao = "Hubo un problema en la consulta, contacte al administrador."
+                        LMessageDao = BoErrors.MsgErrorGetSql
                     };
                     if (e.InnerException != null)
                         lConfigurationValue.LInnerException = e.InnerException.ToString();                   
@@ -313,7 +314,7 @@ namespace Dao_BussinessManagement
         {
             using (SqlConnection lConex = Dao_SqlConnection(lConex))
             {
-                var lConfigurationValue = new Bo_ConfigurationValue();
+                var lConfigurationValue = new BoConfigurationValue();
                 try
                 {
                     var lCommand = new SqlCommand
@@ -341,10 +342,10 @@ namespace Dao_BussinessManagement
                 }
                 catch (Exception e)
                 {
-                    lConfigurationValue = new Bo_ConfigurationValue
+                    lConfigurationValue = new BoConfigurationValue
                     {
                         LException = e.Message,
-                        LMessageDao = "Hubo un problema en la consulta, contacte al administrador."
+                        LMessageDao = BoErrors.MsgErrorGetSql
                     };
                     if (e.InnerException != null)
                         lConfigurationValue.LInnerException = e.InnerException.ToString();                  

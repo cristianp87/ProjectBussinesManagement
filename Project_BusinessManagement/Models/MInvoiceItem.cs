@@ -1,6 +1,4 @@
-﻿using BO_BusinessManagement;
-using System;
-using System.Collections.Generic;
+﻿using System;
 
 namespace Project_BusinessManagement.Models
 {
@@ -8,15 +6,15 @@ namespace Project_BusinessManagement.Models
     {
         private decimal myLValueTotal;
 
-        public int LIdInvoiceItem { get; set; } = 0;
+        public int LIdInvoiceItem { get; set; }
 
-        public int LIdInvoice { get; set; } = 0;
+        public int LIdInvoice { get; set; }
 
         public MProduct LProduct { get; set; } = new MProduct();
 
-        public DateTime LCreationDate { get; set; } = new DateTime();
+        public DateTime LCreationDate { get; set; }
 
-        public decimal LQuantity { get; set; } = 0;
+        public decimal LQuantity { get; set; }
 
         public MStatus LStatus { get; set; } = new MStatus();
 
@@ -30,6 +28,8 @@ namespace Project_BusinessManagement.Models
 
         public decimal LValueProd { get; set; }
 
+        public string LMessageException { get; set; }
+
         public decimal LValueTotal
         {
             get
@@ -39,28 +39,6 @@ namespace Project_BusinessManagement.Models
             }
         }
 
-        public static List<MInvoiceItem> MListInvoiceItem(List<Bo_InvoiceItem> pBoListInvoiceItem)
-        {
-            var lMListInvoiceItem = new List<MInvoiceItem>();
-            pBoListInvoiceItem.ForEach(x => {
-                                               var lMInvoiceItem = new MInvoiceItem
-                                               {
-                                                   LProduct = new MProduct
-                                                   {
-                                                       LIdProduct = x.LProduct.LIdProduct,
-                                                       LCdProduct = x.LProduct.LCdProduct,
-                                                       LNameProduct = x.LProduct.LNameProduct,
-                                                       LValue = x.LProduct.LValue
-                                                   },
-                                                   LIdInvoice = x.LIdInvoice,
-                                                   LIdInvoiceItem = x.LIdInvoiceItem,
-                                                   LCreationDate = x.LCreationDate,
-                                                   LQuantity = x.LQuantity,
-                                                   LValueProd = x.LValueProd
-                                               };
-                                               lMListInvoiceItem.Add(lMInvoiceItem);
-            });
-            return lMListInvoiceItem;
-        }
+        
     }
 }

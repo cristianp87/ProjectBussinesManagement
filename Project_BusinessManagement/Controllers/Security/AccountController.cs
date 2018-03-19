@@ -16,7 +16,7 @@ namespace Project_BusinessManagement.Controllers.Security
         #region Variables and Constants
 
         public static IBusinessUser LiUser =
-        FacadeProvider.Resolver<IBusinessUser>();
+        FacadeProvider.Resolv<IBusinessUser>();
         #endregion
         #region Propierties
         public CustomUserManager PCustomUserManager { get; private set; }
@@ -80,39 +80,39 @@ namespace Project_BusinessManagement.Controllers.Security
         [ValidateAntiForgeryToken]
         public ActionResult Register(MUser pUser)
         {
-            var bo_Object = new BO_BusinessManagement.Bo_Object()
+            var bo_Object = new BO_BusinessManagement.BoObject()
             {
                 LIdObject = 3011
             };
-            var bo_Status = new BO_BusinessManagement.Bo_Status()
+            var bo_Status = new BO_BusinessManagement.BoStatus()
             {
                 LIdStatus = "APPRO"
             };
-            var bo_TypeIdentification = new BO_BusinessManagement.Bo_TypeIdentification()
+            var bo_TypeIdentification = new BO_BusinessManagement.BoTypeIdentification()
             {
                 LIdTypeIdentification = 2
             };
-            var bo_Role = new BO_BusinessManagement.Bo_Role()
+            var bo_Role = new BO_BusinessManagement.BoRole()
             {
                 LIdRole = 1
             };
             PasswordHasher lPass = new PasswordHasher();
             pUser.LPasswordHash = lPass.HashPassword(pUser.LPasswordHash); ;
-            var bo_User = new BO_BusinessManagement.Bo_User()
+            var bo_User = new BO_BusinessManagement.BoUser()
             {
                 LBirthDate = pUser.LBirthDate,
                 LEmail = "",
-                LFLastName = pUser.LLastName,
+                LfLastName = pUser.LLastName,
                 LException = "",
-                LFNameUser = pUser.LFirstName,
+                LfNameUser = pUser.LFirstName,
                 LIdUser = 0,
                 LInnerException = "",
                 LMessageDao = "",
                 LNoIdentification = pUser.LNoIdentification,
                 LObject = bo_Object,
                 LPassword = pUser.LPasswordHash,
-                LSLastName = pUser.LsLastName,
-                LSNameUser = pUser.LSecondName,
+                LsLastName = pUser.LsLastName,
+                LsNameUser = pUser.LSecondName,
                 LStatus = bo_Status,
                 LTypeIdentification = bo_TypeIdentification,
                 LUser = pUser.LUser,

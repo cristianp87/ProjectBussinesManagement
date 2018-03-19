@@ -2,203 +2,34 @@
 
 namespace BO_BusinessManagement
 {
-    public class Bo_User : Bo_Exception
+    public class BoUser : BoException
     {
-        private int lIdUser;
-        private string lFNameUser;
-        private string lSNameUser;
-        private string lFLastName;
-        private string lSLastName;
-        private string lEmail;
-        private DateTime lBirthDate;
-        private string lUser;
-        private string lPassword;
-        private string lNoIdentification;
-        private Bo_TypeIdentification lTypeIdentification;
-        private Bo_Object lObject;
-        private Bo_Status lStatus;
-        private Bo_Role lRole;
+        public int LIdUser { get; set; }
 
-        public int LIdUser
-        {
-            get
-            {
-                return lIdUser;
-            }
+        public string LfNameUser { get; set; }
 
-            set
-            {
-                lIdUser = value;
-            }
-        }
+        public string LsNameUser { get; set; }
 
-        public string LFNameUser
-        {
-            get
-            {
-                return lFNameUser;
-            }
+        public string LfLastName { get; set; }
 
-            set
-            {
-                lFNameUser = value;
-            }
-        }
+        public string LsLastName { get; set; }
 
-        public string LSNameUser
-        {
-            get
-            {
-                return lSNameUser;
-            }
+        public string LEmail { get; set; }
 
-            set
-            {
-                lSNameUser = value;
-            }
-        }
+        public DateTime LBirthDate { get; set; }
 
-        public string LFLastName
-        {
-            get
-            {
-                return lFLastName;
-            }
+        public string LUser { get; set; }
 
-            set
-            {
-                lFLastName = value;
-            }
-        }
+        public string LPassword { get; set; }
 
-        public string LSLastName
-        {
-            get
-            {
-                return lSLastName;
-            }
+        public BoObject LObject { get; set; }
 
-            set
-            {
-                lSLastName = value;
-            }
-        }
+        public BoStatus LStatus { get; set; }
 
-        public string LEmail
-        {
-            get
-            {
-                return lEmail;
-            }
+        public string LNoIdentification { get; set; }
 
-            set
-            {
-                lEmail = value;
-            }
-        }
+        public BoTypeIdentification LTypeIdentification { get; set; }
 
-        public DateTime LBirthDate
-        {
-            get
-            {
-                return lBirthDate;
-            }
-
-            set
-            {
-                lBirthDate = value;
-            }
-        }
-
-        public string LUser
-        {
-            get
-            {
-                return lUser;
-            }
-
-            set
-            {
-                lUser = value;
-            }
-        }
-
-        public string LPassword
-        {
-            get
-            {
-                return lPassword;
-            }
-
-            set
-            {
-                lPassword = value;
-            }
-        }
-
-        public Bo_Object LObject
-        {
-            get
-            {
-                return lObject;
-            }
-
-            set
-            {
-                lObject = value;
-            }
-        }
-
-        public Bo_Status LStatus
-        {
-            get
-            {
-                return lStatus;
-            }
-
-            set
-            {
-                lStatus = value;
-            }
-        }
-
-        public string LNoIdentification
-        {
-            get
-            {
-                return lNoIdentification;
-            }
-
-            set
-            {
-                lNoIdentification = value;
-            }
-        }
-
-        public Bo_TypeIdentification LTypeIdentification
-        {
-            get
-            {
-                return lTypeIdentification;
-            }
-
-            set
-            {
-                lTypeIdentification = value;
-            }
-        }
-
-        public Bo_Role LRole
-        {
-            get
-            {
-                return lRole;
-            }
-
-            set
-            {
-                lRole = value;
-            }
-        }
+        public BoRole LRole { get; set; }
     }
 }

@@ -349,12 +349,30 @@
     <Compile Include="Controllers\ProductController.cs" />
     <Compile Include="Controllers\Security\AccountController.cs" />
     <Compile Include="Controllers\TaxeController.cs" />
+    <Compile Include="Extensibles\MGlobalConfiguration.cs" />
+    <Compile Include="Extensibles\MvcViews.cs" />
     <Compile Include="Filters\ConfigurationAppAttribute.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Infrastructure\HandleErrorAttribute.cs" />
-    <Compile Include="Models\ECodesError.cs" />
+    <Compile Include="Models\Enums\ECodesError.cs" />
+    <Compile Include="Models\Enums\EFields.cs" />
+    <Compile Include="Models\Enums\EGlobalVariables.cs" />
+    <Compile Include="Models\Enums\EMessages.cs" />
+    <Compile Include="Models\Mappers\MapperCustomer.cs" />
+    <Compile Include="Models\Mappers\MapperInventory.cs" />
+    <Compile Include="Models\Mappers\MapperInventoryItem.cs" />
+    <Compile Include="Models\Mappers\MapperInvoice.cs" />
+    <Compile Include="Models\Mappers\MapperInvoiceItem.cs" />
+    <Compile Include="Models\Mappers\MapperOrder.cs" />
+    <Compile Include="Models\Mappers\MapperOrderItem.cs" />
+    <Compile Include="Models\Mappers\MapperProduct.cs" />
+    <Compile Include="Models\Mappers\MapperStatus.cs" />
+    <Compile Include="Models\Mappers\MapperSupplier.cs" />
+    <Compile Include="Models\Mappers\MapperTaxes.cs" />
+    <Compile Include="Models\Mappers\MapperTypeIdentifications.cs" />
+    <Compile Include="Models\Mappers\MapperUnits.cs" />
     <Compile Include="Models\MCustomer.cs" />
     <Compile Include="Models\MGlobalVariables.cs" />
     <Compile Include="Models\MInventory.cs" />

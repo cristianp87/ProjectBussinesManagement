@@ -1,6 +1,4 @@
-﻿using BO_BusinessManagement;
-using System;
-using System.Collections.Generic;
+﻿using System;
 using System.ComponentModel;
 
 namespace Project_BusinessManagement.Models
@@ -40,30 +38,6 @@ namespace Project_BusinessManagement.Models
         [DisplayName("Cantidad")]
         public decimal LQty { get; set; }
 
-        public static List<MOrderItem> MListOrder(List<Bo_OrderItem> pListOrderItem)
-        {
-            var lListOrderItem = new List<MOrderItem>();
-            pListOrderItem.ForEach(x => {
-                                            var lMOrderItem = new MOrderItem
-                                            {
-                                                LProduct = new MProduct
-                                                {
-                                                    LNameProduct = x.LProduct.LNameProduct,
-                                                    LIdProduct = x.LProduct.LIdProduct
-                                                },
-                                                LOrder = new MOrder {LIdOrder = x.LOrder.LIdOrder},
-                                                LIdOrderItem = x.LIdOrderItem,
-                                                LQty = x.LQty,
-                                                LValueProduct = x.LValueProduct,
-                                                LValueSupplier = x.LValueSupplier,
-                                                LValueTaxes = x.LValueTaxes,
-                                                LValueDesc = x.LValueDesc,
-                                                LCreationDate = x.LCreationDate,
-                                                LValueTotal = x.LValueTotal
-                                            };
-                                            lListOrderItem.Add(lMOrderItem);
-            });
-            return lListOrderItem;
-        }
+       
     }
 }

@@ -1,16 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using BO_BusinessManagement;
 
 namespace IDaoBusiness.Business
 {
     public interface IDaoOrderItem
     {
-        List<Bo_OrderItem> Dao_getListOrderItem(int pIdOrder);
+        List<BoOrderItem> Dao_getListOrderItem(int pIdOrder);
 
-        string Dao_InsertOrderItem(Bo_OrderItem pOrderItem);
+        string Dao_InsertOrderItem(BoOrderItem pOrderItem);
     }
 }

@@ -3,106 +3,20 @@ using System.Collections.Generic;
 
 namespace BO_BusinessManagement
 {
-    public class Bo_Order: Bo_Exception
+    public class BoOrder: BoException
     {
-        private int lIdOrder;
-        private DateTime lCreationDate;
-        private Bo_Status lStatus;
-        private Bo_Object lObject;
-        private Bo_Inventory lInventory;
-        private Bo_Customer lCustomer;
+        public int LIdOrder { get; set; }
 
-        private List<Bo_OrderItem> lListOrderItem;
+        public DateTime LCreationDate { get; set; }
 
-        public int LIdOrder
-        {
-            get
-            {
-                return lIdOrder;
-            }
+        public BoStatus LStatus { get; set; }
 
-            set
-            {
-                lIdOrder = value;
-            }
-        }
+        public BoObject LObject { get; set; }
 
-        public DateTime LCreationDate
-        {
-            get
-            {
-                return lCreationDate;
-            }
+        public BoInventory LInventory { get; set; }
 
-            set
-            {
-                lCreationDate = value;
-            }
-        }
+        public BoCustomer LCustomer { get; set; }
 
-        public Bo_Status LStatus
-        {
-            get
-            {
-                return lStatus;
-            }
-
-            set
-            {
-                lStatus = value;
-            }
-        }
-
-        public Bo_Object LObject
-        {
-            get
-            {
-                return lObject;
-            }
-
-            set
-            {
-                lObject = value;
-            }
-        }
-
-        public Bo_Inventory LInventory
-        {
-            get
-            {
-                return lInventory;
-            }
-
-            set
-            {
-                lInventory = value;
-            }
-        }
-
-        public Bo_Customer LCustomer
-        {
-            get
-            {
-                return lCustomer;
-            }
-
-            set
-            {
-                lCustomer = value;
-            }
-        }
-
-        public List<Bo_OrderItem> LListOrderItem
-        {
-            get
-            {
-                return lListOrderItem;
-            }
-
-            set
-            {
-                lListOrderItem = value;
-            }
-        }
+        public List<BoOrderItem> LListOrderItem { get; set; }
     }
 }

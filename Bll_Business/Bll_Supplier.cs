@@ -15,23 +15,23 @@ namespace Bll_Business
             this.LiDaosupplier = new DaoSupplier();
         }
 
-        public Bo_Supplier bll_GetSupplierById(int pIdSupplier)
+        public BoSupplier bll_GetSupplierById(int pIdSupplier)
         {
             return this.LiDaosupplier.Dao_getSupplierById(pIdSupplier);
         }
 
-        public List<Bo_Supplier> bll_GetAllSupplier()
+        public List<BoSupplier> bll_GetAllSupplier()
         {
             return this.LiDaosupplier.Dao_getSupplierListAll();
         }
 
         public string bll_InsertSupplier(string pNameSupplier, string pNoIdentification, int pIdTypeIdentifiction, int pIdObject, string pIdStatus)
         {
-            var lSupplier = new Bo_Supplier
+            var lSupplier = new BoSupplier
             {
-                LObject = new Bo_Object {LIdObject = pIdObject},
-                LStatus = new Bo_Status {LIdStatus = pIdStatus},
-                LTypeIdentification = new Bo_TypeIdentification {LIdTypeIdentification = pIdTypeIdentifiction},
+                LObject = new BoObject {LIdObject = pIdObject},
+                LStatus = new BoStatus {LIdStatus = pIdStatus},
+                LTypeIdentification = new BoTypeIdentification {LIdTypeIdentification = pIdTypeIdentifiction},
                 LNameSupplier = pNameSupplier,
                 LNoIdentification = pNoIdentification
             };
@@ -40,11 +40,11 @@ namespace Bll_Business
 
         public string bll_UpdateSupplier(int pIdSupplier, string pNameSupplier, string pNoIdentification, int pIdTypeIdentifiction, int pIdObject, string pIdStatus)
         {
-            var lSupplier = new Bo_Supplier
+            var lSupplier = new BoSupplier
             {
-                LObject = new Bo_Object {LIdObject = pIdObject},
-                LStatus = new Bo_Status {LIdStatus = pIdStatus},
-                LTypeIdentification = new Bo_TypeIdentification {LIdTypeIdentification = pIdTypeIdentifiction},
+                LObject = new BoObject {LIdObject = pIdObject},
+                LStatus = new BoStatus {LIdStatus = pIdStatus},
+                LTypeIdentification = new BoTypeIdentification {LIdTypeIdentification = pIdTypeIdentifiction},
                 LIdSupplier = pIdSupplier,
                 LNameSupplier = pNameSupplier,
                 LNoIdentification = pNoIdentification
@@ -54,7 +54,7 @@ namespace Bll_Business
 
         public string bll_DeleteSupplier(int pIdSupplier)
         {
-            var lSupplier = new Bo_Supplier {LIdSupplier = pIdSupplier};
+            var lSupplier = new BoSupplier {LIdSupplier = pIdSupplier};
             return this.LiDaosupplier.Dao_DeleteSupplier(lSupplier);
         }
     }

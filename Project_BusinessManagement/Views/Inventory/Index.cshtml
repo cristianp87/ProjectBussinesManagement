@@ -1,4 +1,5 @@
-﻿@model IEnumerable<Project_BusinessManagement.Models.MInventory>
+﻿@using Project_BusinessManagement.Extensibles
+@model IEnumerable<Project_BusinessManagement.Models.MInventory>
 
 @{
     ViewBag.Title = "Inventario";
@@ -6,61 +7,67 @@
 }
 
 <h2>Inventario</h2>
-
 <p>
-    @Html.ActionLink("Crear Inventario", "Create")
+    @Html.ActionLink("Crear Inventario", "Create").IfAllowedConfiguration("CreateInventory")
 </p>
-<table class="tablesorter">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.LIdInventory)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.LNameInventory)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.LCreationDate)
-        </th>
-        <th></th>
-    </tr>
+@using (Html.BeginForm())
+{
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.LIdInventory)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.LNameInventory)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.LCreationDate)
-        </td>
-        <td>
-            @Html.ActionLink("Editar", "Edit", new {  id=item.LIdInventory }) |
-            @Html.ActionLink("Eliminar", "Delete", new {  id=item.LIdInventory  }) |
-            @Html.ActionLink("Items", "../InventoryItem/Index", new { id = item.LIdInventory })
-        </td>
-    </tr>
-}
+@Html.AntiForgeryToken()
+    <div class="form-horizontal">
+        <div class="form-group">
+            <div class="col-md-2">
+                @Html.Label("", "Por Nombre")
+            </div>
+            <div class="col-md-10">
+                @Html.TextBox("pSearchhName")
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-10">
+                <input type="submit" value="Filtrar" class="btn btn-info" />
+            </div>
+        </div>
+    </div>
+<div class="table-responsive">
+    <table class="tablesorter">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.LIdInventory)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.LNameInventory)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.LCreationDate)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        @foreach (var item in Model)
+        {
+            <tbody>
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.LIdInventory)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.LNameInventory)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.LCreationDate)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Editar", "Edit", new { id = item.LIdInventory }).IfAllowedConfiguration("EditInventory") |
+                        @Html.ActionLink("Eliminar", "Delete", new { id = item.LIdInventory }).IfAllowedConfiguration("DeleteInventory") |
+                        @Html.ActionLink("Items", "Index", "InventoryItem", new { id = item.LIdInventory }, null).IfAllowedConfiguration("IsInventory")
+                    </td>
+                </tr>
+            </tbody>
+        }
 
-</table>
-
-<div id="pager" class="pager">
-    <form>
-        <a href="#"><img src="~/Images/Icons/IFirst.png" class="first" alt="Primero" title="Primero" /></a>
-        <a href="#"><img src="~/Images/Icons/IPrev.png" class="prev" alt="Anterior" title="Anterior" /></a>
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        <!-- the "pagedisplay" can be any element, including an input -->
-        <span class="pagedisplay" data-pager-output-filtered="{startRow:input} &ndash; {endRow} / {filteredRows} of {totalRows} total rows"></span>
-        <a href="#"><img src="~/Images/Icons/INext.png" class="next" alt="Siguiente" title="Siguiente" /></a>
-        <a href="#"><img src="~/Images/Icons/ILast.png" class="last" alt="Ultimo" title="Ultimo" /></a>
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        <select class="pagesize">
-            <option value="10" selected="selected">10</option>
-            <option value="50">50</option>
-            <option value="100">100</option>
-            <option value="500">500</option>
-            <option value="1000">1000</option>
-        </select>
-    </form>
+    </table>
+    @Html.Partial("~/Views/Shared/_Pagination.cshtml")
 </div>
+}

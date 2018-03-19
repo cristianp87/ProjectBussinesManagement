@@ -1,9 +1,7 @@
-﻿using BO_BusinessManagement;
-using System;
-using System.Collections.Generic;
+﻿using System;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
-using System.Web.Mvc;
+using Project_BusinessManagement.Models.Enums;
 
 namespace Project_BusinessManagement.Models
 {
@@ -18,40 +16,6 @@ namespace Project_BusinessManagement.Models
         public DateTime LCreationDate { get; set; }
 
         public bool LFlActive { get; set; }
-
-
-        public static List<SelectListItem> MListAllStatus(List<Bo_Status> pBoListStatus)
-        {
-            var lMListStatus = new List<SelectListItem>();
-            pBoListStatus.ForEach(x => {
-                                           var oListItem = new SelectListItem
-                                           {
-                                               Value = x.LIdStatus.ToString(),
-                                               Text = x.LDsEstado
-                                           };
-                                           lMListStatus.Add(oListItem);
-            });
-            return lMListStatus;
-        }
-
-        public static List<SelectListItem> MListStatusWithSelect(List<Bo_Status> pBoListStatus)
-        {
-            var lMListStatus = new List<SelectListItem>();
-            var lListItemSelect = new SelectListItem
-            {
-                Text = "Seleccione...",
-                Value = "0"
-            };
-            lMListStatus.Add(lListItemSelect);
-            pBoListStatus.ForEach(x => {
-                                           var oListItem = new SelectListItem
-                                           {
-                                               Value = x.LIdStatus.ToString(),
-                                               Text = x.LDsEstado
-                                           };
-                                           lMListStatus.Add(oListItem);
-            });
-            return lMListStatus;
-        }
+        
     }
 }

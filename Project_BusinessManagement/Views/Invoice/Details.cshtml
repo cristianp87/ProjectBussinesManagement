@@ -38,22 +38,25 @@
     </dl>
     <div class="table-responsive">
         <table class="tablesorter">
-            <tr>
-                <th>
-                    Nombre Producto
-                </th>
-                <th>
-                    Cantidad
-                </th>
-                <th>
-                    Valor Producto
-                </th>
-                <th>
-                    Valor Total
-                </th>
-            </tr>
-                @foreach (var item in Model.LListMInvoiceItem)
+            <thead>
+                <tr>
+                    <th>
+                        Nombre Producto
+                    </th>
+                    <th>
+                        Cantidad
+                    </th>
+                    <th>
+                        Valor Producto
+                    </th>
+                    <th>
+                        Valor Total
+                    </th>
+                </tr>
+            </thead>
+            @foreach (var item in Model.LListMInvoiceItem)
             {
+                <tbody>
                     <tr>
                         <td>
                             @Html.DisplayFor(modelItem => item.LProduct.LNameProduct)
@@ -68,29 +71,12 @@
                             @Html.DisplayFor(modelItem => item.LValueTotal)
                         </td>
                     </tr>
-                }
+                </tbody>
+            }
         </table>
-        <div id="pager" class="pager">
-            <form>
-                <a href="#"><img src="~/Images/Icons/IFirst.png" class="first" alt="Primero" title="Primero" /></a>
-                <a href="#"><img src="~/Images/Icons/IPrev.png" class="prev" alt="Anterior" title="Anterior" /></a>
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                <!-- the "pagedisplay" can be any element, including an input -->
-                <span class="pagedisplay" data-pager-output-filtered="{startRow:input} &ndash; {endRow} / {filteredRows} of {totalRows} total rows"></span>
-                <a href="#"><img src="~/Images/Icons/INext.png" class="next" alt="Siguiente" title="Siguiente" /></a>
-                <a href="#"><img src="~/Images/Icons/ILast.png" class="last" alt="Ultimo" title="Ultimo" /></a>
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                <select class="pagesize">
-                    <option value="10" selected="selected">10</option>
-                    <option value="50">50</option>
-                    <option value="100">100</option>
-                    <option value="500">500</option>
-                    <option value="1000">1000</option>
-                </select>
-            </form>
-        </div>
+        @Html.Partial("~/Views/Shared/_Pagination.cshtml")
         </div>
     </div>
 <p>
-    @Html.ActionLink("Ir a Pedidos", "DashBoard", "Order")
+    @Html.ActionLink("Ir a Pedidos", "DashBoardOrder", "Order")
 </p>

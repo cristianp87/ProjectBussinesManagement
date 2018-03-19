@@ -14,29 +14,29 @@ namespace Bll_Business
         {
             this.LiDaoProduct = new DaoProduct();
         }
-        public Bo_Product bll_GetProductByCode(string pCdProduct)
+        public BoProduct bll_GetProductByCode(string pCdProduct)
         {
             return this.LiDaoProduct.Dao_getProductByCode(pCdProduct);
         }
 
-        public Bo_Product bll_GetProductById(int pIdProduct)
+        public BoProduct bll_GetProductById(int pIdProduct)
         {
             return this.LiDaoProduct.Dao_getProductById(pIdProduct);
         }
 
-        public List<Bo_Product> bll_GetAllProduct()
+        public List<BoProduct> bll_GetAllProduct()
         {
             return this.LiDaoProduct.Dao_getProductListAll();
         }
 
         public string bll_InsertProduct(string pNameProduct, string pCdProduct, decimal pPrice, decimal pPriceSupplier, int pIdUnit, int pIdSupplier, int pIdObject, string pIdStatus)
         {
-            var lProduct = new Bo_Product
+            var lProduct = new BoProduct
             {
-                LObject = new Bo_Object {LIdObject = pIdObject},
-                LStatus = new Bo_Status {LIdStatus = pIdStatus},
-                LSupplier = new Bo_Supplier {LIdSupplier = pIdSupplier},
-                LUnit = new Bo_Unit {LIdUnit = pIdUnit},
+                LObject = new BoObject {LIdObject = pIdObject},
+                LStatus = new BoStatus {LIdStatus = pIdStatus},
+                LSupplier = new BoSupplier {LIdSupplier = pIdSupplier},
+                LUnit = new BoUnit {LIdUnit = pIdUnit},
                 LNameProduct = pNameProduct,
                 LCdProduct = pCdProduct,
                 LValue = pPrice,
@@ -47,12 +47,12 @@ namespace Bll_Business
 
         public string bll_UpdateProduct(int pIdProduct, string pNameProduct, string pCdProduct, decimal pPrice, decimal pPriceSupplier, int pIdUnit, int pIdSupplier, int pIdObject, string pIdStatus)
         {
-            var lProduct = new Bo_Product
+            var lProduct = new BoProduct
             {
-                LObject = new Bo_Object {LIdObject = pIdObject},
-                LStatus = new Bo_Status {LIdStatus = pIdStatus},
-                LSupplier = new Bo_Supplier {LIdSupplier = pIdSupplier},
-                LUnit = new Bo_Unit {LIdUnit = pIdUnit},
+                LObject = new BoObject {LIdObject = pIdObject},
+                LStatus = new BoStatus {LIdStatus = pIdStatus},
+                LSupplier = new BoSupplier {LIdSupplier = pIdSupplier},
+                LUnit = new BoUnit {LIdUnit = pIdUnit},
                 LIdProduct = pIdProduct,
                 LNameProduct = pNameProduct,
                 LCdProduct = pCdProduct,
@@ -64,7 +64,7 @@ namespace Bll_Business
 
         public string bll_DeleteProduct(int pIdProduct)
         {
-            var lProduct = new Bo_Product {LIdProduct = pIdProduct};
+            var lProduct = new BoProduct {LIdProduct = pIdProduct};
             return this.LiDaoProduct.Dao_DeleteProduct(lProduct);
         }
     }

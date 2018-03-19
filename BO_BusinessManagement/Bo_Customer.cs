@@ -2,133 +2,24 @@
 
 namespace BO_BusinessManagement
 {
-    public class Bo_Customer:Bo_Exception
+    public class BoCustomer:BoException
     {
-        private int lIdCustomer;
-        private string lNameCustomer;
-        private string lLastNameCustomer;
-        private DateTime lCreationDate;
-        private Bo_TypeIdentification lTypeIdentification;
-        private string lNoIdentification;
-        private Bo_Status lStatus;
-        private Bo_Object lObject;
-        private DateTime lModificationDate;
+        public int LIdCustomer { get; set; }
 
-        public int LIdCustomer
-        {
-            get
-            {
-                return lIdCustomer;
-            }
+        public string LNameCustomer { get; set; }
 
-            set
-            {
-                lIdCustomer = value;
-            }
-        }
+        public DateTime LCreationDate { get; set; }
 
-        public string LNameCustomer
-        {
-            get
-            {
-                return lNameCustomer;
-            }
+        public BoTypeIdentification LTypeIdentification { get; set; }
 
-            set
-            {
-                lNameCustomer = value;
-            }
-        }
+        public string LNoIdentification { get; set; }
 
-        public DateTime LCreationDate
-        {
-            get
-            {
-                return lCreationDate;
-            }
+        public BoStatus LStatus { get; set; }
 
-            set
-            {
-                lCreationDate = value;
-            }
-        }
+        public BoObject LObject { get; set; }
 
-        public Bo_TypeIdentification LTypeIdentification
-        {
-            get
-            {
-                return lTypeIdentification;
-            }
+        public string LLastNameCustomer { get; set; }
 
-            set
-            {
-                lTypeIdentification = value;
-            }
-        }
-
-        public string LNoIdentification
-        {
-            get
-            {
-                return lNoIdentification;
-            }
-
-            set
-            {
-                lNoIdentification = value;
-            }
-        }
-
-        public Bo_Status LStatus
-        {
-            get
-            {
-                return lStatus;
-            }
-
-            set
-            {
-                lStatus = value;
-            }
-        }
-
-        public Bo_Object LObject
-        {
-            get
-            {
-                return lObject;
-            }
-
-            set
-            {
-                lObject = value;
-            }
-        }
-
-        public string LLastNameCustomer
-        {
-            get
-            {
-                return lLastNameCustomer;
-            }
-
-            set
-            {
-                lLastNameCustomer = value;
-            }
-        }
-
-        public DateTime LModificationDate
-        {
-            get
-            {
-                return lModificationDate;
-            }
-
-            set
-            {
-                lModificationDate = value;
-            }
-        }
+        public DateTime LModificationDate { get; set; }
     }
 }
