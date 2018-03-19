@@ -8,7 +8,7 @@ namespace BO_BusinessManagement.Enums
 {
     public enum EBooleans
     {
-        Falses,
-        Trues
+        Falses = 0,
+        Trues = 1
     }
 }

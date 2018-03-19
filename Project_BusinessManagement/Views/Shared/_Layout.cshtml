@@ -110,17 +110,14 @@
                     <li class="@(ViewContext.RouteData.Values["Controller"].ToString() == "Customer" ? "active" : "")">@Html.ActionLink("Clientes", "Index", "Customer")</li>
                     <li class="@(ViewContext.RouteData.Values["Controller"].ToString() == "Order" ? "active" : "")">@Html.ActionLink("Realizar Pedido", "DashBoardOrder", "Order")</li>
                 }
-
-
-
             </ul>
         </div>
     }
     else
     {
-        <div class="col-sm-2 sidenav">
-            <ul class="nav nav-tabs nav-pills nav-stacked well">
-            </ul>
+        <div class="col-sm-2">
+            @*<ul class="nav nav-tabs nav-pills nav-stacked well">
+            </ul>*@
         </div>
     }
                 <div class="col-sm-8 text-left">
@@ -128,14 +125,21 @@
                         @RenderBody()
                     </div>
                 </div>
-                <div class="col-sm-2 sidenav">
+@if (Request.IsAuthenticated)
+{
+                <div class="col-sm-2 ">
                     <div class="well">
-                        <p></p>
+                        <p>
+                            <img src="~/Images/Publish/Publish1.jpg" />
+                        </p>
                     </div>
                     <div class="well">
-                        <p></p>
+                        <p>
+                            <img src="~/Images/Publish/publish2.jpg" />
+                        </p>
                     </div>
                 </div>
+}
         </div>
 
     </div>

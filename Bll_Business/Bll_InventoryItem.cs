@@ -70,7 +70,8 @@ namespace Bll_Business
                 LInventory = new BoInventory {LIdInventory = lIdInventory},
                 LQtySellable = pOrderItem.LQty
             };
-            return this.LiDaoInventoryItem.Dao_SubstractInventoryItem(lInventoryItem) == EBooleans.Trues.ToString() ? null : BoErrors.MsgEmptyProductWithcode.Replace(BoErrors.ReplaceInString1, pOrderItem.LProduct.LCdProduct);
+            var lResult = this.LiDaoInventoryItem.Dao_SubstractInventoryItem(lInventoryItem);
+            return lResult == EBooleans.Trues.GetHashCode().ToString() ? null : BoErrors.MsgEmptyProductWithcode.Replace(BoErrors.ReplaceInString1, pOrderItem.LProduct.LCdProduct);
         }
     }
 }

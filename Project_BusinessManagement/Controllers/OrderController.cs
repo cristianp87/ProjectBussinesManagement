@@ -77,7 +77,7 @@ namespace Project_BusinessManagement.Controllers
 
                 return this.Json(new { Success = false, Message = CodesError.LMsgErroDao + lCustomer.LMessageDao + EMessages.LSpace + lCustomer.LException });
             }
-            if (lCustomer.LNameCustomer != null && !lCustomer.LStatus.LIdStatus.ValidateStatus())
+            if (lCustomer.LNameCustomer != null && lCustomer.LStatus.LIdStatus.ValidateStatus())
             {
                 return this.Json(new { Success = true, Content = lCustomer });
             }

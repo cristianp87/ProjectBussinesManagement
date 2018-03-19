@@ -226,6 +226,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\StyleGeneral.css" />
     <Content Include="Content\StyleMaster2.css" />
     <Content Include="csJquery\JOrder\JOrderDash.js" />
     <Content Include="csJquery\JSupplier\JListSupplier.js" />
@@ -233,6 +234,9 @@
     <Content Include="Images\Icons\ILast.png" />
     <Content Include="Images\Icons\INext.png" />
     <Content Include="Images\Icons\IPrev.png" />
+    <Content Include="Images\Publish\Home1.jpg" />
+    <Content Include="Images\Publish\Publish1.jpg" />
+    <Content Include="Images\Publish\publish2.jpg" />
     <Content Include="packages.config">
       <SubType>Designer</SubType>
     </Content>
@@ -325,6 +329,7 @@
     <Content Include="Views\Shared\Layout2.cshtml" />
     <Content Include="Views\Account\Login.cshtml" />
     <Content Include="Views\Account\Register.cshtml" />
+    <Content Include="Views\Shared\_Pagination.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
