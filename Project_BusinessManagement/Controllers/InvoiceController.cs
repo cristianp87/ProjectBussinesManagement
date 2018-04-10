@@ -8,7 +8,7 @@ using Project_BusinessManagement.Models.Enums;
 namespace Project_BusinessManagement.Controllers
 {
     [Authorize(Roles = EGlobalVariables.LRoleAdmin)]
-    public class InvoiceController : Controller
+    public class InvoiceController : BaseApiController
     {
         #region Variables and Constants
         public IInvoice LInvoice =

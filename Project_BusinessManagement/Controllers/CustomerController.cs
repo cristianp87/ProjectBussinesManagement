@@ -14,7 +14,7 @@ namespace Project_BusinessManagement.Controllers
 {
     [Authorize(Roles = EGlobalVariables.LRoleAdmin + EGlobalVariables.LQuote + EGlobalVariables.LRoleEmp1)]
     [ConfigurationApp(EGlobalVariables.LIsCustomer)]
-    public class CustomerController : Controller
+    public class CustomerController : BaseApiController
     {
         #region Variables and Constants
         public ICustomer LiCustomerFacade =

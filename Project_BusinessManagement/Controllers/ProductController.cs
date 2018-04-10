@@ -14,7 +14,7 @@ namespace Project_BusinessManagement.Controllers
 {
     [Authorize(Roles = EGlobalVariables.LRoleAdmin)]
     [ConfigurationApp(EGlobalVariables.LIsProduct)]
-    public class ProductController : Controller
+    public class ProductController : BaseApiController
     {
         #region Variables and Constants
         public static IProduct LiProduct =

@@ -9,7 +9,7 @@ using Project_BusinessManagement.Models.Enums;
 namespace Project_BusinessManagement.Controllers
 {
     [Authorize(Roles = EGlobalVariables.LRoleAdmin)]
-    public class TaxeController : Controller
+    public class TaxeController : BaseApiController
     {
         #region Variables and Constants
         public IProduct LiProduct =

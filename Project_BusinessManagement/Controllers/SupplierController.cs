@@ -14,7 +14,7 @@ namespace Project_BusinessManagement.Controllers
 {
     [Authorize(Roles = EGlobalVariables.LRoleAdmin)]
     [ConfigurationApp(EGlobalVariables.LIsSupplier)]
-    public class SupplierController : Controller
+    public class SupplierController : BaseApiController
     {
         #region Variables and Constants
         public ISupplier LiSupplier =

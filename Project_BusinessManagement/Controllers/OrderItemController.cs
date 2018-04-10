@@ -7,7 +7,7 @@ using Project_BusinessManagement.Models.Enums;
 namespace Project_BusinessManagement.Controllers
 {
     [Authorize(Roles = EGlobalVariables.LRoleAdmin + EGlobalVariables.LQuote + EGlobalVariables.LRoleEmp1)]
-    public class OrderItemController : Controller
+    public class OrderItemController : BaseApiController
     {
         public IOrderItem LOrderItem =
            FacadeProvider.Resolv<IOrderItem>();

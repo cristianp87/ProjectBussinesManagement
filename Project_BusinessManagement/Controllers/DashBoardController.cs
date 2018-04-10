@@ -11,7 +11,7 @@ namespace Project_BusinessManagement.Controllers
 {
     [Authorize(Roles = EGlobalVariables.LRoleAdmin)]
     [ConfigurationApp(EGlobalVariables.LIsDashBoard)]
-    public class DashBoardController : Controller
+    public class DashBoardController : BaseApiController
     {
         #region properties
 

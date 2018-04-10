@@ -226,6 +226,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\images\ui-icons_444444_256x240.png" />
+    <Content Include="Content\images\ui-icons_555555_256x240.png" />
+    <Content Include="Content\jquery-ui.css" />
     <Content Include="Content\StyleGeneral.css" />
     <Content Include="Content\StyleMaster2.css" />
     <Content Include="csJquery\JOrder\JOrderDash.js" />
@@ -234,6 +237,7 @@
     <Content Include="Images\Icons\ILast.png" />
     <Content Include="Images\Icons\INext.png" />
     <Content Include="Images\Icons\IPrev.png" />
+    <Content Include="Images\Publish\About.jpg" />
     <Content Include="Images\Publish\Home1.jpg" />
     <Content Include="Images\Publish\Publish1.jpg" />
     <Content Include="Images\Publish\publish2.jpg" />
@@ -241,9 +245,16 @@
       <SubType>Designer</SubType>
     </Content>
     <Content Include="Content\StyleMaster.css" />
+    <Content Include="Content\images\Thumbs.db" />
+    <None Include="Properties\PublishProfiles\PubInventory.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="Scripts\extras\jquery.quicksearch.js" />
+    <Content Include="Scripts\extras\semver-mod.js" />
+    <Content Include="Scripts\extras\semver.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
+    <Content Include="Scripts\jquery-ui-timepicker-addon.js" />
+    <Content Include="Scripts\jquery-ui.js" />
     <Content Include="Scripts\jquery.metadata.js" />
     <Content Include="Scripts\jquery.signalR-2.2.2.js" />
     <Content Include="Scripts\jquery.signalR-2.2.2.min.js" />
@@ -256,8 +267,40 @@
     <Content Include="Scripts\jquery.tablesorter.widgets.js" />
     <Content Include="Scripts\jquery.tablesorter.widgets.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\parsers\parser-date-extract.js" />
+    <Content Include="Scripts\parsers\parser-date-iso8601.js" />
+    <Content Include="Scripts\parsers\parser-date-month.js" />
+    <Content Include="Scripts\parsers\parser-date-two-digit-year.js" />
+    <Content Include="Scripts\parsers\parser-date-weekday.js" />
+    <Content Include="Scripts\parsers\parser-date.js" />
+    <Content Include="Scripts\parsers\parser-duration.js" />
+    <Content Include="Scripts\parsers\parser-feet-inch-fraction.js" />
+    <Content Include="Scripts\parsers\parser-file-type.js" />
+    <Content Include="Scripts\parsers\parser-ignore-articles.js" />
+    <Content Include="Scripts\parsers\parser-image.js" />
+    <Content Include="Scripts\parsers\parser-input-select.js" />
+    <Content Include="Scripts\parsers\parser-ipv6.js" />
+    <Content Include="Scripts\parsers\parser-metric.js" />
+    <Content Include="Scripts\parsers\parser-roman.js" />
+    <Content Include="Scripts\widgets\widget-alignChar.js" />
+    <Content Include="Scripts\widgets\widget-build-table.js" />
+    <Content Include="Scripts\widgets\widget-columnSelector.js" />
+    <Content Include="Scripts\widgets\widget-cssStickyHeaders.js" />
+    <Content Include="Scripts\widgets\widget-editable.js" />
+    <Content Include="Scripts\widgets\widget-grouping.js" />
+    <Content Include="Scripts\widgets\widget-headerTitles.js" />
+    <Content Include="Scripts\widgets\widget-math.js" />
+    <Content Include="Scripts\widgets\widget-output.js" />
+    <Content Include="Scripts\widgets\widget-pager.js" />
+    <Content Include="Scripts\widgets\widget-print.js" />
+    <Content Include="Scripts\widgets\widget-reflow.js" />
+    <Content Include="Scripts\widgets\widget-repeatheaders.js" />
+    <Content Include="Scripts\widgets\widget-scroller.js" />
+    <Content Include="Scripts\widgets\widget-staticRow.js" />
     <Content Include="Views\Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -330,6 +373,8 @@
     <Content Include="Views\Account\Login.cshtml" />
     <Content Include="Views\Account\Register.cshtml" />
     <Content Include="Views\Shared\_Pagination.cshtml" />
+    <Content Include="Views\Home\About.cshtml" />
+    <Content Include="Views\Home\Contact.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -343,6 +388,7 @@
     <Compile Include="App_Start\HttpParamActionAttribute.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\StartUp.Auth.cs" />
+    <Compile Include="Controllers\BaseApiController.cs" />
     <Compile Include="Controllers\CustomerController.cs" />
     <Compile Include="Controllers\DashBoardController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -405,6 +451,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Reports\" />
+    <Folder Include="Views\BaseApi\" />
     <Folder Include="Views\InvoiceItem\" />
   </ItemGroup>
   <ItemGroup>

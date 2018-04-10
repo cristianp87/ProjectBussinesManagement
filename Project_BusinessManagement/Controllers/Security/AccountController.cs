@@ -11,7 +11,7 @@ using System.Web.Mvc;
 namespace Project_BusinessManagement.Controllers.Security
 {
     [Authorize]
-    public class AccountController : Controller
+    public class AccountController : BaseApiController
     {
         #region Variables and Constants
 

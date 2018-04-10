@@ -1,0 +1,7 @@
+C:\Users\CristianPc\Documents\Projects\ProjectBussinesManagement\IDaoBusiness\bin\Release\IDaoBusiness.dll
+C:\Users\CristianPc\Documents\Projects\ProjectBussinesManagement\IDaoBusiness\bin\Release\IDaoBusiness.pdb
+C:\Users\CristianPc\Documents\Projects\ProjectBussinesManagement\IDaoBusiness\bin\Release\BO_BusinessManagement.dll
+C:\Users\CristianPc\Documents\Projects\ProjectBussinesManagement\IDaoBusiness\bin\Release\BO_BusinessManagement.pdb
+C:\Users\CristianPc\Documents\Projects\ProjectBussinesManagement\IDaoBusiness\obj\Release\IDaoBusiness.csprojResolveAssemblyReference.cache
+C:\Users\CristianPc\Documents\Projects\ProjectBussinesManagement\IDaoBusiness\obj\Release\IDaoBusiness.dll
+C:\Users\CristianPc\Documents\Projects\ProjectBussinesManagement\IDaoBusiness\obj\Release\IDaoBusiness.pdb

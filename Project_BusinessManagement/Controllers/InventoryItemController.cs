@@ -14,7 +14,7 @@ namespace Project_BusinessManagement.Controllers
 {
     [Authorize(Roles = EGlobalVariables.LRoleAdmin)]
     [ConfigurationApp(EGlobalVariables.LIsInventory)]
-    public class InventoryItemController : Controller
+    public class InventoryItemController : BaseApiController
     {
         #region Variables and Constants
         public IInventory LInventory =

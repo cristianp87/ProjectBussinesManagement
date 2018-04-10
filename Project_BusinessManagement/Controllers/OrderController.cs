@@ -14,7 +14,7 @@ namespace Project_BusinessManagement.Controllers
 {
     [Authorize(Roles = EGlobalVariables.LRoleAdmin + EGlobalVariables.LQuote + EGlobalVariables.LRoleEmp1)]
     [ConfigurationApp(EGlobalVariables.LIsRealizeOrder)]
-    public class OrderController : Controller
+    public class OrderController : BaseApiController
     {
         #region Variables and Constants
 
