@@ -247,6 +247,7 @@
     <Content Include="Content\StyleMaster.css" />
     <Content Include="Content\images\Thumbs.db" />
     <None Include="Properties\PublishProfiles\PubInventory.pubxml" />
+    <None Include="Properties\PublishProfiles\PubInventoryDebug.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\extras\jquery.quicksearch.js" />
     <Content Include="Scripts\extras\semver-mod.js" />

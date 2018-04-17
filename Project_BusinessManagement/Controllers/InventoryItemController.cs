@@ -54,7 +54,7 @@ namespace Project_BusinessManagement.Controllers
             return this.View(lOInventoryItem.MInventoryItemById());
         }
 
-        [ConfigurationApp(EGlobalVariables.LCreateInventory)]
+        //[ConfigurationApp(EGlobalVariables.LCreateInventory)]
         // GET: InventoryItem/Create
         public ActionResult Create(int idInventory)
         {         

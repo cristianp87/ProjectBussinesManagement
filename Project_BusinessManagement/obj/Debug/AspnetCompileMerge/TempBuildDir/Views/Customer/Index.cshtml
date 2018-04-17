@@ -1,0 +1,91 @@
+﻿@using Project_BusinessManagement.Extensibles
+@model IEnumerable<Project_BusinessManagement.Models.MCustomer>
+
+@{
+    ViewBag.Title = "Clientes";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Clientes</h2>
+@{
+    var htmlAttributes = ViewData["htmlAttributes"] ?? new { @class = "form-control" };
+}
+<p>
+    @Html.ActionLink("Crear Cliente", "Create").IfAllowedConfiguration("CreateCustomer")
+</p>
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+<div class="form-horizontal">
+    <div class="form-group">
+        <div class="col-md-2">
+            @Html.Label("", "Por Nombre")
+        </div>
+        <div class="col-md-10">
+            @Html.TextBox("pSearchhName", htmlAttributes)
+        </div>
+        </div>
+    <div class="form-group">
+        <div class="col-md-10">
+            <input type="submit" value="filtrar" class="btn btn-info" />
+        </div>
+    </div>
+</div>
+
+
+<div class="table-responsive">
+    <table class="tablesorter">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.LIdCustomer)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.LNameCustomer)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.LLastNameCustomer)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.LCreationDate)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.LNoIdentification)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        @foreach (var item in Model)
+        {
+            <tbody>
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.LIdCustomer)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.LNameCustomer)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.LLastNameCustomer)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.LCreationDate)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.LNoIdentification)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Editar", "Edit", new { id = item.LIdCustomer }).IfAllowedConfiguration("EditCustomer") |
+                        @Html.ActionLink("Detalle", "Details", new { id = item.LIdCustomer }).IfAllowedConfiguration("IsInvoice") |
+                        @Html.ActionLink("Eliminar", "Delete", new { id = item.LIdCustomer }).IfAllowedConfiguration("DeleteCustomer")
+                        @Html.ActionLink("Facturas", "Index", "Invoice", new { idCustomer = item.LIdCustomer }, null).IfAllowedConfiguration("IsInvoice") |
+                        @Html.ActionLink("Pedidos", "Index", "Order", new { pIdCustomer = item.LIdCustomer }, null).IfAllowedConfiguration("IsOrder")
+                    </td>
+                </tr>
+            </tbody>
+        }
+
+    </table>
+    @Html.Partial("~/Views/Shared/_Pagination.cshtml")
+</div>
+}

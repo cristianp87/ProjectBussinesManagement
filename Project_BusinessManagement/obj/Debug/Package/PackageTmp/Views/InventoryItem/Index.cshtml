@@ -1,0 +1,93 @@
+﻿@model IEnumerable<Project_BusinessManagement.Models.MInventoryItem>
+
+@{
+    ViewBag.Title = "Items De Inventario";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Items de Inventario</h2>
+
+<p>
+    @Html.ActionLink("Crear Registro", "Create", new {idInventory = ViewData["LIdInventory"]})
+</p>
+@using (Html.BeginForm())
+{
+
+    @Html.AntiForgeryToken()
+    <div class="form-horizontal">
+        <div class="form-group">
+            <div class="col-md-2">
+                @Html.Label("", "Por Nombre Inventario")
+            </div>
+            <div class="col-md-10">
+                @Html.TextBox("pSearchhName")
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-10">
+                <input type="submit" value="filtrar" class="btn btn-info" />
+            </div>
+        </div>
+    </div>
+<div class="table-responsive">
+
+
+    <table class="tablesorter">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.LIdInventoryItem)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.LInventory.LNameInventory)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.LProduct.LNameProduct)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.LQtySellable)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.LQtyNonSellable)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.LCreationDate)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        @foreach (var item in Model)
+        {
+            <tbody>
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.LIdInventoryItem)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.LInventory.LNameInventory)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.LProduct.LNameProduct)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.LQtySellable)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.LQtyNonSellable)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.LCreationDate)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Editar", "Edit", new { id = item.LIdInventoryItem }) |
+                        @Html.ActionLink("Detalle", "Details", new { id = item.LIdInventoryItem }) |
+                        @Html.ActionLink("Eliminar", "Delete", new { id = item.LIdInventoryItem })
+                    </td>
+                </tr>
+            </tbody>
+        }
+
+    </table>
+    @Html.Partial("~/Views/Shared/_Pagination.cshtml")
+</div>
+}

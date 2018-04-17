@@ -84,7 +84,7 @@ set @IdInven = @@IDENTITY
 	Insert Into ParameterConfiguration Values(	'create',	'Crear en el Inventario',	GETDATE(),	@IdInventory,	1,	1,	Getdate())
 	set @Ids = @@IDENTITY
 	Insert Into ParameterConfigurationValue
-	values(@Ids , 'True',getdate())
+	values(@Ids , 'False',getdate())
 	Insert Into ParameterConfiguration Values(	'Edit',	'Editar en el Inventario',	GETDATE(),	@IdInventory,	1,	1,	Getdate())
 	set @Ids = @@IDENTITY
 	Insert Into ParameterConfigurationValue

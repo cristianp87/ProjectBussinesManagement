@@ -13,10 +13,10 @@ editando este archivo MSBuild. Para conocer más acerca de esto, visite http://g
       <publishTime>09/10/2013 16:29:20</publishTime>
     </File>
     <File Include="bin/App_global.asax.compiled">
-      <publishTime>04/10/2018 10:51:47</publishTime>
+      <publishTime>04/14/2018 17:44:29</publishTime>
     </File>
     <File Include="bin/App_global.asax.dll">
-      <publishTime>04/10/2018 10:51:47</publishTime>
+      <publishTime>04/14/2018 17:44:28</publishTime>
     </File>
     <File Include="bin/Bll_Business.dll">
       <publishTime>04/07/2018 18:07:29</publishTime>
@@ -103,7 +103,7 @@ editando este archivo MSBuild. Para conocer más acerca de esto, visite http://g
       <publishTime>11/13/2012 12:19:34</publishTime>
     </File>
     <File Include="bin/Project_BusinessManagement.dll">
-      <publishTime>04/10/2018 10:51:28</publishTime>
+      <publishTime>04/14/2018 17:44:14</publishTime>
     </File>
     <File Include="bin/roslyn/csc.exe">
       <publishTime>05/13/2016 17:51:30</publishTime>
@@ -331,7 +331,7 @@ editando este archivo MSBuild. Para conocer más acerca de esto, visite http://g
       <publishTime>02/17/2018 21:40:37</publishTime>
     </File>
     <File Include="PrecompiledApp.config">
-      <publishTime>04/10/2018 10:51:34</publishTime>
+      <publishTime>04/14/2018 17:44:17</publishTime>
     </File>
     <File Include="Scripts/bootstrap.js">
       <publishTime>02/17/2018 21:03:40</publishTime>
@@ -532,7 +532,7 @@ editando este archivo MSBuild. Para conocer más acerca de esto, visite http://g
       <publishTime>01/05/2018 12:54:58</publishTime>
     </File>
     <File Include="Views/Home/About.cshtml">
-      <publishTime>04/10/2018 10:50:31</publishTime>
+      <publishTime>04/10/2018 10:52:14</publishTime>
     </File>
     <File Include="Views/Home/Contact.cshtml">
       <publishTime>04/10/2018 10:36:47</publishTime>
@@ -646,7 +646,7 @@ editando este archivo MSBuild. Para conocer más acerca de esto, visite http://g
       <publishTime>11/23/2017 12:19:46</publishTime>
     </File>
     <File Include="Web.config">
-      <publishTime>04/07/2018 18:37:29</publishTime>
+      <publishTime>04/14/2018 01:07:21</publishTime>
     </File>
   </ItemGroup>
 </Project>

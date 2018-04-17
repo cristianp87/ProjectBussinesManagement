@@ -2,6 +2,8 @@
 BEGIN TRY
 BEGIN TRAN
 declare @IdentityObject as int
+declare @IdentityUser as int
+declare @IdentityRole as int
 
 Insert into [Object] values(	'INVEN',	getdate(),	1	)
 set @IdentityObject = @@IDENTITY
@@ -61,6 +63,17 @@ Insert into [Object] values(	'USER',	getdate(),	1	)
 set @IdentityObject = @@IDENTITY
 Insert into [Status] values(	'APPRO',	@IdentityObject, 'APROBADO',	'Estado Aprobado para el objeto Usuario',	GETDATE(),	1,	GETDATE()	)
 Insert into [Status] values(	'VOID',	@IdentityObject,'ANULADO',	'ANULADO para objeto usuario',	GETDATE(),	1,	GETDATE()	)
+
+Insert Into [User]
+values(2, '516423',	'Admin', null, 'Negocio', null, 'admin@gestiondigital.net.co',	
+'1990-12-08 00:00:00.000',	'admin', 'AC+0STy9bRX7RsHtwpWli8BWzwgphBePDZoPr+jnebC5tu7SthbvQd/z4316EFHIWw==',
+'APPRO', @IdentityObject,GETDATE(), GETDATE())
+set @IdentityUser = @@IDENTITY
+Insert Into [Role](NameRole, flActive)
+Values('Administrador', 1)
+set @IdentityRole = @@Identity
+Insert Into [UserRole](IdUser, IdRole)
+Values(@IdentityUser, @IdentityRole)
 
 COMMIT  TRAN;
 END TRY
