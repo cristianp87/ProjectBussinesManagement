@@ -40,6 +40,7 @@ set @IdentityObject = @@IDENTITY
 Insert into [Status] values(	'APPRO',	@IdentityObject,'APROBADO',	'Estado Aprobado para el objeto pedido',	GETDATE(),	1,	GETDATE()	)
 Insert into [Status] values(	'CANC',	@IdentityObject,'CANCELADO',	'Cancelado para objeto pedido',	GETDATE(),	1,	GETDATE()	)
 Insert into [Status] values(	'VOID',	@IdentityObject,'ANULADO',	'ANULADO para objeto pedido',	GETDATE(),	1,	GETDATE()	)
+Insert into [Status] values(	'INPRO',	@IdentityObject,'EN PROGRESO',	'Pedido en progreso',	GETDATE(),	1,	GETDATE()	)
 
 Insert into [Object] values(	'ORDITEM',	getdate(),	1	)
 set @IdentityObject = @@IDENTITY
@@ -58,6 +59,11 @@ set @IdentityObject = @@IDENTITY
 Insert into [Status] values(	'APPRO',	@IdentityObject,'APROBADO',	'Estado Aprobado para el objeto factura item',	GETDATE(),	1,	GETDATE()	)
 Insert into [Status] values(	'CANC',	@IdentityObject,'CANCELADO',	'Cancelado para objeto item de factura',	GETDATE(),	1,	GETDATE()	)
 Insert into [Status] values(	'VOID',	@IdentityObject,'ANULADO',	'ANULADO para objeto item de factura',	GETDATE(),	1,	GETDATE()	)
+
+Insert into [Object] values(	'PAYMEN',	getdate(),	1	)
+set @IdentityObject = @@IDENTITY
+Insert into [Status] values(	'APPRO',	@IdentityObject,'APROBADO',	'Estado Aprobado para el objeto pagos.',	GETDATE(),	1,	GETDATE()	)
+Insert into [Status] values(	'CANC',	@IdentityObject,'CANCELADO',	'Cancelado para objeto pagos.',	GETDATE(),	1,	GETDATE()	)
 
 Insert into [Object] values(	'USER',	getdate(),	1	)
 set @IdentityObject = @@IDENTITY

@@ -29,6 +29,10 @@ namespace Project_BusinessManagement.Controllers
         public static IStatus LStatus =
         FacadeProvider.Resolv<IStatus>();
         #endregion
+
+        #region Methods
+        
+        #region Action
         // GET: InventoryItem
         public ActionResult Index(int id)
         {
@@ -57,7 +61,7 @@ namespace Project_BusinessManagement.Controllers
         //[ConfigurationApp(EGlobalVariables.LCreateInventory)]
         // GET: InventoryItem/Create
         public ActionResult Create(int idInventory)
-        {         
+        {
             return this.View(idInventory.MInventoryEmpty());
         }
 
@@ -74,7 +78,7 @@ namespace Project_BusinessManagement.Controllers
                     var lMessage = this.LInventoryItem.bll_InsertInventoryItem(idInventory, Convert.ToInt32(pMInventoryItem.LProduct.LIdProduct), Convert.ToInt32(this.Request.Form[EFields.LFieldListObject]), this.Request.Form[EFields.LFieldListStatus], Convert.ToDecimal(pMInventoryItem.LQtySellable), Convert.ToDecimal(pMInventoryItem.LQtyNonSellable));
                     if (lMessage == null)
                     {
-                        return this.RedirectToAction("Index", new { id = idInventory});
+                        return this.RedirectToAction("Index", new { id = idInventory });
                     }
                     EmptyInventoryItem(pMInventoryItem);
                     pMInventoryItem.LMessageException = lMessage;
@@ -118,12 +122,12 @@ namespace Project_BusinessManagement.Controllers
                     }
                     return this.View(this.CurrentInventoryItem(lInventoryItem, pMInventoryItem, lMessage, pMInventoryItem.LInventory.LIdInventory));
                 }
-                return this.View(this.CurrentInventoryItem(lInventoryItem, pMInventoryItem,  "Debe completar los campos obligatorios", pMInventoryItem.LInventory.LIdInventory));
+                return this.View(this.CurrentInventoryItem(lInventoryItem, pMInventoryItem, "Debe completar los campos obligatorios", pMInventoryItem.LInventory.LIdInventory));
             }
             catch (Exception e)
             {
-                MInventoryItem lInventoryItemExc = new MInventoryItem();              
-                return this.View(this.CurrentInventoryItem(lInventoryItemExc, pMInventoryItem,  e.Message, pMInventoryItem.LInventory.LIdInventory));
+                MInventoryItem lInventoryItemExc = new MInventoryItem();
+                return this.View(this.CurrentInventoryItem(lInventoryItemExc, pMInventoryItem, e.Message, pMInventoryItem.LInventory.LIdInventory));
             }
         }
 
@@ -142,20 +146,22 @@ namespace Project_BusinessManagement.Controllers
             try
             {
                 string lMessage = this.LInventoryItem.bll_DeleteInventoryItem(id);
-                if(lMessage == null)
+                if (lMessage == null)
                 {
                     return this.RedirectToAction("Index", new { id = pMInventoryItem.LInventory.LIdInventory });
                 }
                 pMInventoryItem.LMessageException = lMessage;
                 return this.View(pMInventoryItem);
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 pMInventoryItem.LMessageException = e.Message;
                 return this.View();
             }
         }
+        #endregion
 
+        #region Privates
         private static void EmptyInventoryItem(MInventoryItem pMInventoryItem)
         {
             pMInventoryItem.LListStatus = new List<SelectListItem>();
@@ -164,7 +170,7 @@ namespace Project_BusinessManagement.Controllers
             pMInventoryItem.LListProduct = LiProduct.bll_GetAllProduct().MListAllProduct(true);
         }
 
-        private  MInventoryItem CurrentInventoryItem(MInventoryItem pMInventoryItem, MInventoryItem pMInventoryOldItem, string pMessageException, int pIdInventory)
+        private MInventoryItem CurrentInventoryItem(MInventoryItem pMInventoryItem, MInventoryItem pMInventoryOldItem, string pMessageException, int pIdInventory)
         {
             if (pMInventoryItem == null)
             {
@@ -182,5 +188,9 @@ namespace Project_BusinessManagement.Controllers
             pMInventoryItem.LMessageException = pMessageException;
             return pMInventoryItem;
         }
+        #endregion
+
+        #endregion
+
     }
 }
