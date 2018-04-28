@@ -231,6 +231,7 @@
     <Content Include="Content\jquery-ui.css" />
     <Content Include="Content\StyleGeneral.css" />
     <Content Include="Content\StyleMaster2.css" />
+    <Content Include="csJquery\JOrder\JOrderIndirectDash.js" />
     <Content Include="csJquery\JOrder\JOrderDash.js" />
     <Content Include="csJquery\JSupplier\JListSupplier.js" />
     <Content Include="Images\Icons\IFirst.png" />
@@ -376,6 +377,7 @@
     <Content Include="Views\Shared\_Pagination.cshtml" />
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
+    <Content Include="Views\IndirectOrder\DashBoardIndirectOrder.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -393,6 +395,7 @@
     <Compile Include="Controllers\CustomerController.cs" />
     <Compile Include="Controllers\DashBoardController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\IndirectOrderController.cs" />
     <Compile Include="Controllers\InventoryController.cs" />
     <Compile Include="Controllers\InventoryItemController.cs" />
     <Compile Include="Controllers\InvoiceController.cs" />

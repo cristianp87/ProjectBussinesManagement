@@ -96,6 +96,10 @@ set @IdInven = @@IDENTITY
 
 	--module RealizeOrder
 	Insert Into ParameterConfiguration Values(	'moduleRealizeOrder',	'modulo realizar pedido',	GETDATE(),	@IdInven,	0,	1,	Getdate()	)
+	
+	--module order
+	Insert Into ParameterConfiguration Values(	'moduleOrder',	'modulo pedidos',	GETDATE(),	@IdInven,	0,	1,	Getdate()	)
+
 
 	--module Product
 	Insert Into ParameterConfiguration Values(	'moduleProduct',	'modulo de producto',	GETDATE(),	@IdInven,	0,	1,	Getdate()	)

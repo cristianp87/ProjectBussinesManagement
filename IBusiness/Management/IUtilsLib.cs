@@ -15,5 +15,7 @@ namespace IBusiness.Management
         string bll_GetValueParameter(string pNameParameter, string pNameParentParameter);
 
         string bll_GetValueParameter(string pNameParameter, bool pActive);
+
+        BoStatus bll_getStatusInProByObject(int pIdObject);
     }
 }

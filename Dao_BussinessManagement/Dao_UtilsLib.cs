@@ -214,6 +214,52 @@ namespace Dao_BussinessManagement
             }
         }
 
+        public static BoStatus DaoUtilsLib_getStatusInPro(int pIdObject)
+        {
+            using (SqlConnection lConex = Dao_SqlConnection(lConex))
+            {
+                var lStatus = new BoStatus();
+                try
+                {
+                    var lCommand = new SqlCommand
+                    {
+                        CommandText = "spr_GetStatusInProByIdObject",
+                        CommandTimeout = 30,
+                        CommandType = CommandType.StoredProcedure,
+                        Connection = lConex
+                    };
+                    lCommand.Parameters.Add(new SqlParameter("IdObject", pIdObject));
+                    var lReader = lCommand.ExecuteReader();
+
+                    if (lReader.HasRows)
+                    {
+                        while (lReader.Read())
+                        {
+                            lStatus.LIdStatus = lReader["IdStatus"].ToString();
+                            lStatus.LNameStatus = lReader["NameStatus"].ToString();
+                            lStatus.LDsEstado = lReader["DsEstado"].ToString();
+                            lStatus.LFlActive = Convert.ToBoolean(lReader["flActive"].ToString());
+                        }
+                    }
+                    Dao_CloseSqlconnection(lConex);
+                    return lStatus;
+                }
+                catch (Exception e)
+                {
+                    lStatus = new BoStatus
+                    {
+                        LException = e.Message,
+                        LMessageDao = BoErrors.MsgErrorGetSql
+                    };
+                    if (e.InnerException != null)
+                        lStatus.LInnerException = e.InnerException.ToString();
+                    Dao_CloseSqlconnection(lConex);
+                    return lStatus;
+                }
+
+            }
+        }
+
         public static List<BoUnit> DaoUtilsLib_getAllUnit()
         {
             using (SqlConnection lConex = Dao_SqlConnection(lConex))

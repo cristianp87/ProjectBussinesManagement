@@ -22,6 +22,11 @@ namespace Bll_Business
             return DaoUtilsLib.DaoUtilsLib_getStatusAppro(pIdObject);
         }
 
+        public BoStatus bll_getStatusInProByObject(int pIdObject)
+        {
+            return DaoUtilsLib.DaoUtilsLib_getStatusInPro(pIdObject);
+        }
+
         /// <summary>
         /// traer el parametro que tiene valores en la bd.
         /// </summary>
