@@ -401,6 +401,7 @@
     <Compile Include="Controllers\InvoiceController.cs" />
     <Compile Include="Controllers\OrderController.cs" />
     <Compile Include="Controllers\OrderItemController.cs" />
+    <Compile Include="Controllers\PaymentController.cs" />
     <Compile Include="Controllers\ProductController.cs" />
     <Compile Include="Controllers\Security\AccountController.cs" />
     <Compile Include="Controllers\TaxeController.cs" />
@@ -439,6 +440,7 @@
     <Compile Include="Models\MOrder.cs" />
     <Compile Include="Models\MOrderItem.cs" />
     <Compile Include="Models\MParameter.cs" />
+    <Compile Include="Models\MPayment.cs" />
     <Compile Include="Models\MProduct.cs" />
     <Compile Include="Models\MRole.cs" />
     <Compile Include="Models\MStatus.cs" />
@@ -457,6 +459,7 @@
     <Folder Include="Reports\" />
     <Folder Include="Views\BaseApi\" />
     <Folder Include="Views\InvoiceItem\" />
+    <Folder Include="Views\Payment\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\BO_BusinessManagement\BO_BusinessManagement.csproj">

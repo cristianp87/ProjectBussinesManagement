@@ -48,6 +48,7 @@
     <Compile Include="Business\IDaoInvoiceItem.cs" />
     <Compile Include="Business\IDaoOrder.cs" />
     <Compile Include="Business\IDaoOrderItem.cs" />
+    <Compile Include="Business\IDaoPayment.cs" />
     <Compile Include="Business\IDaoProduct.cs" />
     <Compile Include="Business\IDaoRole.cs" />
     <Compile Include="Business\IDaoStatus.cs" />
