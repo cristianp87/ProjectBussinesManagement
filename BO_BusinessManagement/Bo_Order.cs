@@ -18,5 +18,7 @@ namespace BO_BusinessManagement
         public BoCustomer LCustomer { get; set; }
 
         public List<BoOrderItem> LListOrderItem { get; set; }
+
+        public decimal LValueOrder { get; set; }
     }
 }

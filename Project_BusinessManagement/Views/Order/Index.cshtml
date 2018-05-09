@@ -50,7 +50,12 @@
                 <th>
                     @Html.DisplayNameFor(model => model.LInventory.LNameInventory)
                 </th>
-                <th></th>
+                <th>
+                    @Html.DisplayNameFor(model => model.LValueOrder)
+                </th>
+                <th>
+                    Acciones
+                </th>
             </tr>
         </thead>
         @foreach (var item in Model)
@@ -73,8 +78,11 @@
                         @Html.DisplayFor(modelItem => item.LInventory.LNameInventory)
                     </td>
                     <td>
+                        @Html.DisplayFor(modelItem => item.LValueOrder)
+                    </td>
+                    <td>
                         @Html.ActionLink("Items", "Index", "OrderItem", new { pIdOrder = item.LIdOrder }, null)
-                        @Html.ActionLink("Factura", "Details", "Invoice", new { pIdOrder = item.LIdOrder }, null)
+                        @Html.ActionLink("Pagos", "Index", "Payment", new { pIdOrder = item.LIdOrder, pValueOrder = item.LValueOrder }, null)
                     </td>
                 </tr>
             </tbody>

@@ -378,6 +378,9 @@
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\IndirectOrder\DashBoardIndirectOrder.cshtml" />
+    <Content Include="Views\Payment\Index.cshtml" />
+    <Content Include="Views\Payment\Create.cshtml" />
+    <Content Include="Views\Payment\Delete.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -423,6 +426,7 @@
     <Compile Include="Models\Mappers\MapperInvoiceItem.cs" />
     <Compile Include="Models\Mappers\MapperOrder.cs" />
     <Compile Include="Models\Mappers\MapperOrderItem.cs" />
+    <Compile Include="Models\Mappers\MapperPayment.cs" />
     <Compile Include="Models\Mappers\MapperProduct.cs" />
     <Compile Include="Models\Mappers\MapperStatus.cs" />
     <Compile Include="Models\Mappers\MapperSupplier.cs" />
@@ -459,7 +463,6 @@
     <Folder Include="Reports\" />
     <Folder Include="Views\BaseApi\" />
     <Folder Include="Views\InvoiceItem\" />
-    <Folder Include="Views\Payment\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\BO_BusinessManagement\BO_BusinessManagement.csproj">

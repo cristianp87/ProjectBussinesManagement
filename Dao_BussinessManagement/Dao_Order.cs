@@ -35,16 +35,17 @@ namespace Dao_BussinessManagement
                         {
                             var lOrder = new BoOrder
                             {
-                                LStatus = new BoStatus {LIdStatus = lReader["IdStatus"].ToString()},
-                                LObject = new BoObject {LIdObject = Convert.ToInt32(lReader["IdObject"].ToString())},
-                                LInventory = new BoInventory {LNameInventory = lReader["NameInventory"].ToString()},
+                                LStatus = new BoStatus { LIdStatus = lReader["IdStatus"].ToString() },
+                                LObject = new BoObject { LIdObject = Convert.ToInt32(lReader["IdObject"].ToString()) },
+                                LInventory = new BoInventory { LNameInventory = lReader["NameInventory"].ToString() },
                                 LCustomer = new BoCustomer
                                 {
                                     LNameCustomer = lReader["NameCustomer"].ToString(),
                                     LLastNameCustomer = lReader["LastNameCustomer"].ToString()
                                 },
                                 LIdOrder = Convert.ToInt32(lReader["IdOrder"].ToString()),
-                                LCreationDate = Convert.ToDateTime(lReader["CreationDate"].ToString())
+                                LCreationDate = Convert.ToDateTime(lReader["CreationDate"].ToString()),
+                                LValueOrder = Convert.ToDecimal(lReader["ValueTotalOrder"])
                             };
                             lListOrder.Add(lOrder);
                         }

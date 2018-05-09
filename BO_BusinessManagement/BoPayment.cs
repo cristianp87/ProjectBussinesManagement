@@ -1,6 +1,8 @@
-﻿namespace BO_BusinessManagement
+﻿using System;
+
+namespace BO_BusinessManagement
 {
-    public class BoPayment
+    public class BoPayment : BoException
     {
         public BoObject LObject { get; set; }
 
@@ -10,9 +12,9 @@
 
         public decimal LValuePayment { get; set; }
 
-        public decimal LCreationDate{ get; set; }
+        public DateTime LCreationDate { get; set; }
 
-        public decimal LModificationDate { get; set; }
+        public DateTime LModificationDate { get; set; }
         
         public BoOrder LOrder { get; set; }
     }

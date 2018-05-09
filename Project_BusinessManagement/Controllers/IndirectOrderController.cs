@@ -126,14 +126,7 @@ namespace Project_BusinessManagement.Controllers
             {
                 var lResult = this.LOrder.bll_InsertOrder(pOrder.LInventory.LIdInventory, pOrder.LCustomer.LIdCustomer, this.LiUtilsLib.bll_GetObjectByName(MGlobalVariables.LNameObjectOrder).LIdObject, this.LiUtilsLib.bll_getStatusInProByObject(this.LiUtilsLib.bll_GetObjectByName(MGlobalVariables.LNameObjectOrder).LIdObject).LIdStatus, pOrder.LListOrderItem, this.LParameter.LIsModuleInventory, this.LiUtilsLib.bll_GetObjectByName(MGlobalVariables.LNameObjectOrderItem).LIdObject, this.LiUtilsLib.bll_getStatusApproByObject(this.LiUtilsLib.bll_GetObjectByName(MGlobalVariables.LNameObjectOrderItem).LIdObject).LIdStatus);
                 int lIdOrder;
-                //if (int.TryParse(lResult, out lIdOrder))
-                //{
-                    //int lIdInvoice;
-                    //var lListInvoiceItem = this.LInvoiceItem.bll_ChangeOrderItemToInvoiceItem(pOrder.LListOrderItem, this.LiUtilsLib.bll_GetObjectByName(MGlobalVariables.LNameObjectInvoiceItem));
-                    //lResult = this.LInvoice.bll_InsertInvoiceAll(pOrder.LCustomer.LIdCustomer, lIdOrder, this.LiUtilsLib.bll_GetObjectByName(MGlobalVariables.LNameObjectInvoice).LIdObject, lListInvoiceItem);
-                    return int.TryParse(lResult, out lIdOrder) ? this.Json(new { Success = true, Content = lIdOrder }) : this.Json(new { Success = false, Content = lResult });
-                //}
-                //return this.Json(new { Success = false, Content = lResult });
+                return int.TryParse(lResult, out lIdOrder) ? this.Json(new { Success = true, Content = lIdOrder }) : this.Json(new { Success = false, Content = lResult });
             }
             catch (Exception e)
             {

@@ -13,5 +13,6 @@
         public const string LMsgError = " Error! ";
         public const string LMsgClientDontExists = "El Cliente no existe en la base de datos";
         public const string LMsgProductDontExists = "El Producto no existe en la base de datos";
+        public const string LMsgPaymentDenied = "El Pago no puede sobrepasar el valor del pedido.";
     }
 }

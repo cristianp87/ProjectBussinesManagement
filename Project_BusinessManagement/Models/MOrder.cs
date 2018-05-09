@@ -23,6 +23,8 @@ namespace Project_BusinessManagement.Models
 
         public List<MOrderItem> LListOrderItem { get; set; }
 
+        public decimal LValueOrder { get; set; }
+
         
     }
 }

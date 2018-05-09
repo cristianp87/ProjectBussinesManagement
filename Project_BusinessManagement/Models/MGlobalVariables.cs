@@ -13,6 +13,7 @@ namespace Project_BusinessManagement.Models
         private static string _lNameObjectOrderItem;
         private static string _lNameObjectInvoice;
         private static string _lNameObjectInvoiceItem;
+        private static string _lNameObjectPayment;
 
         public static string LNameObjectSupplier
         {
@@ -65,6 +66,15 @@ namespace Project_BusinessManagement.Models
             {
                 _lNameObjectOrder = ConfigurationManager.AppSettings["objectOrder"];
                 return _lNameObjectOrder;
+            }
+        }
+
+        public static string LNameObjectPayment
+        {
+            get
+            {
+                _lNameObjectPayment = ConfigurationManager.AppSettings["objectPayment"];
+                return _lNameObjectPayment;
             }
         }
 

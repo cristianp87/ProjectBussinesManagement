@@ -1,13 +1,17 @@
-﻿using System;
+﻿using BO_BusinessManagement;
+using IBusiness.Common;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace IBusiness.Management
 {
-    public interface IPayment
+    public interface IPayment : IFacade
     {
         string bll_InsertPayment(int pIdOrder, decimal pValuePayment, int pIdObject, string pIdStatus);
+
+        List<BoPayment> bll_GetPaymentByOrder(int pIdOrder);
+
+        string bll_DeletePayment(int pIdPayment);
+
+        BoPayment bll_GetPayment(int pIdPayment);
     }
 }

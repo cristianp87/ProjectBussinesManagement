@@ -18,7 +18,8 @@ namespace Project_BusinessManagement.Models.Mappers
                         LLastNameCustomer = x.LCustomer.LLastNameCustomer
                     },
                     LIdOrder = x.LIdOrder,
-                    LCreationDate = x.LCreationDate
+                    LCreationDate = x.LCreationDate,
+                    LValueOrder = x.LValueOrder
                 };
                 lListOrder.Add(lMOrder);
             });

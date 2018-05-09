@@ -19,6 +19,11 @@ namespace Bll_Business
             this.LiDaoPayment = new DaoPayment();
         }
 
+        public List<BoPayment> bll_GetPaymentByOrder(int pIdOrder)
+        {
+            return this.LiDaoPayment.Dao_getListPaymentByOrder(pIdOrder);
+        }
+
         public string bll_InsertPayment(int pIdOrder, decimal pValuePayment , int pIdObject, string pIdStatus)
         {
             var lPayment = new BoPayment
@@ -29,6 +34,20 @@ namespace Bll_Business
                 LValuePayment = pValuePayment
             };
             return this.LiDaoPayment.Dao_InsertPayment(lPayment);
+        }
+
+        public string bll_DeletePayment(int pIdPayment)
+        {
+            var lPayment = new BoPayment
+            {
+                LIdPayment = pIdPayment
+            };
+            return this.LiDaoPayment.Dao_DeletePayment(lPayment);
+        }
+
+        public BoPayment bll_GetPayment(int pIdPayment)
+        {
+            return this.LiDaoPayment.Dao_GetPayment(pIdPayment);
         }
     }
 }
