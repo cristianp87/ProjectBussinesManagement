@@ -73,6 +73,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BllPayment.cs" />
+    <Compile Include="BllReports.cs" />
     <Compile Include="Bll_Customer.cs" />
     <Compile Include="Bll_DashBoard.cs" />
     <Compile Include="Bll_InventoryItem.cs" />

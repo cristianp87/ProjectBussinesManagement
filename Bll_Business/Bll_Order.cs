@@ -19,6 +19,7 @@ namespace Bll_Business
             this.LOrderItem = new BllOrderItem();
             this.LiDaoOrder = new DaoOrder();
         }
+
         public string bll_InsertOrder(int pIdInventory, int pIdCustomer, int pIdObject, string pIdStatus, List<BoOrderItem> pListOrderItem, bool pIsInventory, int pIdObjectOi,string pIdStatusOi)
         {
             string lResul;

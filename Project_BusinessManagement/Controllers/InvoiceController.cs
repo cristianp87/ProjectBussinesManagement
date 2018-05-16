@@ -4,6 +4,10 @@ using IBusiness.Management;
 using Project_BusinessManagement.Models.Mappers;
 using System.Linq;
 using Project_BusinessManagement.Models.Enums;
+using Project_BusinessManagement.Models.Reports;
+using System.Collections.Generic;
+using Project_BusinessManagement.Models;
+using Neodynamic.SDK.Web;
 
 namespace Project_BusinessManagement.Controllers
 {
@@ -36,8 +40,17 @@ namespace Project_BusinessManagement.Controllers
         // GET: Invoice/Details/5
         public ActionResult Details(int id)
         {
-            var lBoInvoice = this.LInvoice.bll_GetInvoiceById(id);
-            return this.View(lBoInvoice.TrasferToMInvoice());
+            var lBoInvoice = this.LInvoice.bll_GetInvoiceById(id).TrasferToMInvoice();
+            ViewBag.WCPScript = WebClientPrint.CreateScript(Url.Action("ProcessRequest", "WebClientPrintAPI", null, HttpContext.Request.Url.Scheme), Url.Action("PrintCommands", "Invoice", new { pIdInvoice = id }, HttpContext.Request.Url.Scheme), HttpContext.Session.SessionID);
+            return this.View(lBoInvoice);
+        }
+
+        [AllowAnonymous]
+        public void PrintCommands(string useDefaultPrinter, string printerName, int pIdInvoice)
+        {
+            var lBoInvoice = this.LInvoice.bll_GetInvoiceById(pIdInvoice).TrasferToMInvoice();
+            var lPrint = new Printer.Printing();
+            lPrint.PrintInvoice("checked", null, lBoInvoice);
         }
     }
 }

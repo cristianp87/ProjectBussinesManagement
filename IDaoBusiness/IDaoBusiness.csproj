@@ -50,6 +50,7 @@
     <Compile Include="Business\IDaoOrderItem.cs" />
     <Compile Include="Business\IDaoPayment.cs" />
     <Compile Include="Business\IDaoProduct.cs" />
+    <Compile Include="Business\IDaoReports.cs" />
     <Compile Include="Business\IDaoRole.cs" />
     <Compile Include="Business\IDaoStatus.cs" />
     <Compile Include="Business\IDaoSupplier.cs" />

@@ -26,14 +26,20 @@ namespace Project_BusinessManagement.Models.Mappers
             return lMListInvoice;
         }
 
-        public static MInvoice TrasferToMInvoice(this BoInvoice oBInvoice)
+        public static MInvoice TrasferToMInvoice(this BoInvoice lBoInvoice)
         {
             var oMInvoice = new MInvoice
             {
-                LIdInvoice = oBInvoice.LIdInvoice,
-                LCdInvoice = oBInvoice.LCdInvoice,
-                LCreationDate = oBInvoice.LCreationDate,
-                LListMInvoiceItem = oBInvoice.LListInvoiceItem.MListInvoiceItem()
+                LIdInvoice = lBoInvoice.LIdInvoice,
+                LCdInvoice = lBoInvoice.LCdInvoice,
+                LCreationDate = lBoInvoice.LCreationDate,
+                LCustomer = new MCustomer
+                {
+                   LIdCustomer = lBoInvoice.LCustomer.LIdCustomer,
+                   LNameCustomer = lBoInvoice.LCustomer.LNameCustomer,
+                   LLastNameCustomer = lBoInvoice.LCustomer.LLastNameCustomer
+                },
+                LListMInvoiceItem = lBoInvoice.LListInvoiceItem.MListInvoiceItem()
             };
             return oMInvoice;
         }

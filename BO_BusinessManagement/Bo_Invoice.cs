@@ -22,5 +22,7 @@ namespace BO_BusinessManagement
         public List<BoInvoiceItem> LListInvoiceItem { get; set; }
 
         public BoOrder LOrder { get; set; }
+
+        public decimal LValueInvoice { get; set; }
     }
 }

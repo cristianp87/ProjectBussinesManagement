@@ -361,7 +361,7 @@ function hideException() {
 }
 
 function ConvertToDecimal(value){
-    return value.replace(".", ",")
+    return value.replace(",", ".")
 }
 
 

@@ -85,6 +85,7 @@
     <Compile Include="Management\IOrderItem.cs" />
     <Compile Include="Management\IPayment.cs" />
     <Compile Include="Management\IProduct.cs" />
+    <Compile Include="Management\IReports.cs" />
     <Compile Include="Management\IRole.cs" />
     <Compile Include="Management\IStatus.cs" />
     <Compile Include="Management\ISupplier.cs" />

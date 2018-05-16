@@ -105,6 +105,7 @@
                     <li class="@(ViewContext.RouteData.Values["Controller"].ToString() == "Inventory" ? "active" : "")">@Html.ActionLink("Inventario", "Index", "Inventory")</li>
                     <li class="@(ViewContext.RouteData.Values["Controller"].ToString() == "Order" ? "active" : "")">@Html.ActionLink("Ventas", "DashBoardOrder", "Order")</li>
                     <li class="@(ViewContext.RouteData.Values["Controller"].ToString() == "IndirectOrder" ? "active" : "")">@Html.ActionLink("Ventas Indirectas", "DashBoardIndirectOrder", "IndirectOrder")</li>
+                    <li class="@(ViewContext.RouteData.Values["Controller"].ToString() == "Reports" ? "active" : "")">@Html.ActionLink("Reportes", "Index", "Reports")</li>
                 }
                 @if (User.IsInRole("Cajero"))
                 {
