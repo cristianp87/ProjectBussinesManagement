@@ -42,7 +42,8 @@ namespace Dao_BussinessManagement
                                     new BoProduct
                                     {
                                         LIdProduct = Convert.ToInt32(lReader["IdProduct"].ToString()),
-                                        LNameProduct = lReader["NameProduct"].ToString()
+                                        LNameProduct = lReader["NameProduct"].ToString(),
+                                        LCdProduct = lReader["CdProduct"].ToString()
                                     },
                                 LInventory =
                                     new BoInventory

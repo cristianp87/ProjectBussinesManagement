@@ -97,11 +97,11 @@ namespace Project_BusinessManagement.Controllers
         }
 
         [HttpPost]
-        public JsonResult GetOrderItem(int idProduct)
+        public JsonResult GetOrderItem(string pCdProduct)
         {
             try
             {
-                var lProduct = this.LiProduct.bll_GetProductById(idProduct);
+                var lProduct = this.LiProduct.bll_GetProductByCode(pCdProduct);
                 if (!lProduct.LStatus.LIdStatus.ValidateStatus())
                     lProduct = new BoProduct();
                 if (lProduct.LException != null)

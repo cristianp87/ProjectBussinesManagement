@@ -16,5 +16,9 @@ namespace IBusiness.Management
             string pIdStatusOi);
 
         List<BoOrder> bll_GetListOrderByCustomer(int pIdCustomer);
+
+        BoOrder bll_GetOrder(int pIdOrder);
+
+        string bll_UpdateOrder(int pIdOrder, string pIdStatus);
     }
 }

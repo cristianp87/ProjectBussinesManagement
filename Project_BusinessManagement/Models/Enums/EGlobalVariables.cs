@@ -30,5 +30,6 @@
         public const string LDeleteProduct = "DeleteProduct";
 
         public const string LQuote = ",";
+        public const string LMoney = "$";
     }
 }

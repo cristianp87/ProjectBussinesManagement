@@ -199,4 +199,3 @@ C:\Users\CristianPc\Documents\Projects\ProjectBussinesManagement\Project_Busines
 C:\Users\CristianPc\Documents\Projects\ProjectBussinesManagement\Project_BusinessManagement\obj\Debug\Project_BusinessManagement.csprojResolveAssemblyReference.cache
 C:\Users\CristianPc\Documents\Projects\ProjectBussinesManagement\Project_BusinessManagement\obj\Debug\Project_BusinessManagement.dll
 C:\Users\CristianPc\Documents\Projects\ProjectBussinesManagement\Project_BusinessManagement\obj\Debug\Project_BusinessManagement.pdb
-C:\Users\CristianPc\Documents\Projects\ProjectBussinesManagement\Project_BusinessManagement\bin\Neodynamic.SDK.WebClientPrint.dll

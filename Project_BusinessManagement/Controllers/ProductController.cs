@@ -74,7 +74,7 @@ namespace Project_BusinessManagement.Controllers
                 this.ModelState.Remove(EFields.LFieldNoIdentificationSupplier);
                 if (this.ModelState.IsValid)
                 {
-                    var lMessage = LiProduct.bll_InsertProduct(pMProduct.LNameProduct, pMProduct.LCdProduct, Convert.ToDecimal(pMProduct.LValue), Convert.ToDecimal(pMProduct.LValueSupplier), Convert.ToInt32(pMProduct.LUnit.LIdUnit), Convert.ToInt32(pMProduct.LSupplier.LIdSupplier), Convert.ToInt32(this.Request.Form[EFields.LFieldListObject]), this.Request.Form[EFields.LFieldListStatus]);
+                    var lMessage = LiProduct.bll_InsertProduct(pMProduct.LNameProduct, pMProduct.LCdProduct, Convert.ToDecimal(pMProduct.LValue), Convert.ToDecimal(pMProduct.LValueSupplier), Convert.ToInt32(pMProduct.LUnit.LIdUnit), Convert.ToInt32(pMProduct.LSupplier.LIdSupplier), Convert.ToInt32(this.Request.Form[EFields.LFieldListObject]), this.LiUtilsLib.bll_getStatusApproByObject(this.LiUtilsLib.bll_GetObjectByName(MGlobalVariables.LNameObjectProduct).LIdObject).LIdStatus);
                     if (lMessage == null)
                     {
                         return this.RedirectToAction("Index");

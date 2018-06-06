@@ -3,11 +3,14 @@ Delete From InvoiceItem
 
 Delete from Invoice
 
+Delete From Payments
+
 Delete From OrderItem
 
 Delete From [Order]
 
 Delete From Customer
+
 
 Delete From InventoryItem
 
@@ -41,3 +44,9 @@ Delete From [User]
 Delete From [Status]
 
 Delete From [Object]
+
+Delete From CashInput
+
+Delete From CashOutPut
+
+Delete From CashRegister

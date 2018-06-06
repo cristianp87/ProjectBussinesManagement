@@ -25,6 +25,9 @@ namespace Project_BusinessManagement.Controllers
 
         public static IStatus LiStatus =
         FacadeProvider.Resolv<IStatus>();
+
+        public IUtilsLib LiUtilsLib =
+        FacadeProvider.Resolv<IUtilsLib>();
         #endregion
 
         // GET: Supplier
@@ -68,7 +71,7 @@ namespace Project_BusinessManagement.Controllers
                 this.ModelState.Remove(EFields.LFieldIdSupplier);
                 if (this.ModelState.IsValid)
                 {
-                    var lMessage = this.LiSupplier.bll_InsertSupplier(pMsupplier.LNameSupplier, pMsupplier.LNoIdentification, Convert.ToInt32(this.Request.Form[EFields.LFieldListTypeIdentification]), Convert.ToInt32(this.Request.Form[EFields.LFieldListObject]), this.Request.Form[EFields.LFieldListStatus]);
+                    var lMessage = this.LiSupplier.bll_InsertSupplier(pMsupplier.LNameSupplier, pMsupplier.LNoIdentification, Convert.ToInt32(this.Request.Form[EFields.LFieldListTypeIdentification]), Convert.ToInt32(this.Request.Form[EFields.LFieldListObject]), this.LiUtilsLib.bll_getStatusApproByObject(this.LiUtilsLib.bll_GetObjectByName(MGlobalVariables.LNameObjectSupplier).LIdObject).LIdStatus);
                     if (lMessage == null)
                     {
                         return this.RedirectToAction("Index");

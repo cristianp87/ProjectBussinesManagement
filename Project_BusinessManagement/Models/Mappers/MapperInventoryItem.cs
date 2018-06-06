@@ -31,7 +31,8 @@ namespace Project_BusinessManagement.Models.Mappers
                     LProduct = new MProduct
                     {
                         LNameProduct = x.LProduct.LNameProduct,
-                        LIdProduct = x.LProduct.LIdProduct
+                        LIdProduct = x.LProduct.LIdProduct,
+                        LCdProduct = x.LProduct.LCdProduct
                     },
                     LInventory = new MInventory
                     {

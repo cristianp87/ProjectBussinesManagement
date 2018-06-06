@@ -6,56 +6,77 @@ editando este archivo MSBuild. Para conocer más acerca de esto, visite http://g
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <TimeStampOfAssociatedLegacyPublishXmlFile />
-    <_PublishTargetUrl>C:\inetpub\wwwroot\Inventory</_PublishTargetUrl>
+    <_PublishTargetUrl>C:\inetpub\wwwroot\PublishAll</_PublishTargetUrl>
   </PropertyGroup>
   <ItemGroup>
     <File Include="bin/Antlr3.Runtime.dll">
       <publishTime>09/10/2013 16:29:20</publishTime>
     </File>
     <File Include="bin/App_global.asax.compiled">
-      <publishTime>04/14/2018 17:44:29</publishTime>
+      <publishTime>06/05/2018 08:27:50</publishTime>
     </File>
     <File Include="bin/App_global.asax.dll">
-      <publishTime>04/14/2018 17:44:28</publishTime>
+      <publishTime>06/05/2018 08:27:50</publishTime>
     </File>
     <File Include="bin/Bll_Business.dll">
-      <publishTime>04/07/2018 18:07:29</publishTime>
+      <publishTime>06/05/2018 08:26:22</publishTime>
     </File>
     <File Include="bin/BO_BusinessManagement.dll">
-      <publishTime>04/07/2018 18:07:26</publishTime>
+      <publishTime>05/23/2018 18:29:29</publishTime>
     </File>
     <File Include="bin/CommonServiceLocator.dll">
       <publishTime>02/17/2018 21:40:37</publishTime>
     </File>
+    <File Include="bin/CrystalDecisions.CrystalReports.TemplateEngine.dll">
+      <publishTime>04/27/2018 19:59:34</publishTime>
+    </File>
+    <File Include="bin/CrystalDecisions.Data.AdoDotNetInterop.dll">
+      <publishTime>04/27/2018 19:59:34</publishTime>
+    </File>
+    <File Include="bin/CrystalDecisions.Enterprise.Viewing.ReportSource.dll">
+      <publishTime>04/27/2018 19:59:34</publishTime>
+    </File>
+    <File Include="bin/CrystalDecisions.Web.dll">
+      <publishTime>04/27/2018 19:59:34</publishTime>
+    </File>
+    <File Include="bin/CrystalDecisions.Windows.Forms.dll">
+      <publishTime>04/27/2018 19:59:34</publishTime>
+    </File>
     <File Include="bin/Dao_BussinessManagement.dll">
-      <publishTime>04/07/2018 18:07:27</publishTime>
+      <publishTime>06/05/2018 08:26:20</publishTime>
     </File>
     <File Include="bin/DocumentFormat.OpenXml.dll">
-      <publishTime>02/23/2018 19:08:49</publishTime>
+      <publishTime>04/27/2018 19:59:34</publishTime>
     </File>
     <File Include="bin/FlashControlV71.dll">
-      <publishTime>02/23/2018 19:08:49</publishTime>
+      <publishTime>04/27/2018 19:59:34</publishTime>
     </File>
     <File Include="bin/IBusiness.dll">
-      <publishTime>04/07/2018 18:07:28</publishTime>
+      <publishTime>05/25/2018 09:02:26</publishTime>
     </File>
     <File Include="bin/IDaoBusiness.dll">
-      <publishTime>04/07/2018 18:07:26</publishTime>
+      <publishTime>05/25/2018 09:02:26</publishTime>
     </File>
     <File Include="bin/InstancesBll.dll">
-      <publishTime>04/07/2018 18:07:30</publishTime>
+      <publishTime>06/05/2018 08:26:22</publishTime>
     </File>
     <File Include="bin/itextsharp.dll">
-      <publishTime>02/23/2018 19:08:48</publishTime>
+      <publishTime>04/27/2018 19:59:35</publishTime>
     </File>
     <File Include="bin/log4net.dll">
-      <publishTime>02/23/2018 19:08:48</publishTime>
+      <publishTime>04/27/2018 19:59:35</publishTime>
     </File>
     <File Include="bin/Microsoft.AspNet.Identity.Core.dll">
       <publishTime>02/17/2018 21:40:37</publishTime>
     </File>
     <File Include="bin/Microsoft.AspNet.Identity.Owin.dll">
       <publishTime>02/17/2018 21:40:37</publishTime>
+    </File>
+    <File Include="bin/Microsoft.AspNet.SignalR.Core.dll">
+      <publishTime>04/27/2018 19:59:34</publishTime>
+    </File>
+    <File Include="bin/Microsoft.AspNet.SignalR.SystemWeb.dll">
+      <publishTime>04/27/2018 19:59:34</publishTime>
     </File>
     <File Include="bin/Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll">
       <publishTime>08/20/2015 08:08:40</publishTime>
@@ -76,25 +97,28 @@ editando este archivo MSBuild. Para conocer más acerca de esto, visite http://g
       <publishTime>02/17/2018 21:40:37</publishTime>
     </File>
     <File Include="bin/Microsoft.ReportViewer.Common.dll">
-      <publishTime>02/23/2018 19:08:49</publishTime>
+      <publishTime>04/27/2018 19:59:34</publishTime>
     </File>
     <File Include="bin/Microsoft.ReportViewer.ProcessingObjectModel.dll">
-      <publishTime>02/23/2018 19:08:49</publishTime>
+      <publishTime>04/27/2018 19:59:34</publishTime>
     </File>
     <File Include="bin/Microsoft.ReportViewer.WebForms.dll">
-      <publishTime>02/23/2018 19:08:49</publishTime>
+      <publishTime>04/27/2018 19:59:34</publishTime>
     </File>
     <File Include="bin/Microsoft.SharePoint.Client.dll">
-      <publishTime>02/23/2018 19:08:49</publishTime>
+      <publishTime>04/27/2018 19:59:34</publishTime>
     </File>
     <File Include="bin/Microsoft.SharePoint.Client.Runtime.dll">
-      <publishTime>02/23/2018 19:08:49</publishTime>
+      <publishTime>04/27/2018 19:59:34</publishTime>
     </File>
     <File Include="bin/Microsoft.Web.Infrastructure.dll">
       <publishTime>07/25/2012 11:48:56</publishTime>
     </File>
     <File Include="bin/MvcReportViewer.dll">
-      <publishTime>02/23/2018 19:08:49</publishTime>
+      <publishTime>04/27/2018 19:59:34</publishTime>
+    </File>
+    <File Include="bin/Neodynamic.SDK.WebClientPrint.dll">
+      <publishTime>01/11/2018 15:50:46</publishTime>
     </File>
     <File Include="bin/Newtonsoft.Json.dll">
       <publishTime>03/14/2016 21:30:06</publishTime>
@@ -103,7 +127,19 @@ editando este archivo MSBuild. Para conocer más acerca de esto, visite http://g
       <publishTime>11/13/2012 12:19:34</publishTime>
     </File>
     <File Include="bin/Project_BusinessManagement.dll">
-      <publishTime>04/14/2018 17:44:14</publishTime>
+      <publishTime>06/05/2018 08:26:38</publishTime>
+    </File>
+    <File Include="bin/Project_BusinessManagement.dll.config">
+      <publishTime>05/29/2018 18:23:51</publishTime>
+    </File>
+    <File Include="bin/Report.Base.dll">
+      <publishTime>04/27/2018 19:59:34</publishTime>
+    </File>
+    <File Include="bin/Report.dll">
+      <publishTime>04/27/2018 19:59:34</publishTime>
+    </File>
+    <File Include="bin/Reports.dll">
+      <publishTime>04/27/2018 19:59:34</publishTime>
     </File>
     <File Include="bin/roslyn/csc.exe">
       <publishTime>05/13/2016 17:51:30</publishTime>
@@ -184,10 +220,13 @@ editando este archivo MSBuild. Para conocer más acerca de esto, visite http://g
       <publishTime>05/13/2016 17:51:30</publishTime>
     </File>
     <File Include="bin/SAPBusinessObjects.WPF.Viewer.dll">
-      <publishTime>02/23/2018 19:08:49</publishTime>
+      <publishTime>04/27/2018 19:59:34</publishTime>
     </File>
     <File Include="bin/SAPBusinessObjects.WPF.ViewerShared.dll">
-      <publishTime>02/23/2018 19:08:49</publishTime>
+      <publishTime>04/27/2018 19:59:34</publishTime>
+    </File>
+    <File Include="bin/ShockwaveFlashObjects.dll">
+      <publishTime>04/27/2018 19:59:34</publishTime>
     </File>
     <File Include="bin/System.Web.Helpers.dll">
       <publishTime>01/28/2015 04:04:30</publishTime>
@@ -209,6 +248,15 @@ editando este archivo MSBuild. Para conocer más acerca de esto, visite http://g
     </File>
     <File Include="bin/System.Web.WebPages.Razor.dll">
       <publishTime>01/28/2015 04:04:30</publishTime>
+    </File>
+    <File Include="bin/Toolkit.CodeBase.dll">
+      <publishTime>04/27/2018 19:59:35</publishTime>
+    </File>
+    <File Include="bin/Toolkit.CommonResources.dll">
+      <publishTime>04/27/2018 19:59:35</publishTime>
+    </File>
+    <File Include="bin/Toolkit.Reporting.Web.dll">
+      <publishTime>04/27/2018 19:59:35</publishTime>
     </File>
     <File Include="bin/Unity.Abstractions.dll">
       <publishTime>02/17/2018 21:40:37</publishTime>
@@ -280,7 +328,10 @@ editando este archivo MSBuild. Para conocer más acerca de esto, visite http://g
       <publishTime>02/17/2018 21:03:40</publishTime>
     </File>
     <File Include="csJquery/JOrder/JOrderDash.js">
-      <publishTime>02/17/2018 21:03:49</publishTime>
+      <publishTime>05/18/2018 18:44:04</publishTime>
+    </File>
+    <File Include="csJquery/JOrder/JOrderIndirectDash.js">
+      <publishTime>05/23/2018 19:44:33</publishTime>
     </File>
     <File Include="csJquery/JSupplier/JListSupplier.js">
       <publishTime>02/17/2018 21:03:49</publishTime>
@@ -328,10 +379,13 @@ editando este archivo MSBuild. Para conocer más acerca de esto, visite http://g
       <publishTime>03/19/2018 14:06:39</publishTime>
     </File>
     <File Include="packages.config">
-      <publishTime>02/17/2018 21:40:37</publishTime>
+      <publishTime>05/14/2018 21:51:08</publishTime>
     </File>
     <File Include="PrecompiledApp.config">
-      <publishTime>04/14/2018 17:44:17</publishTime>
+      <publishTime>06/05/2018 08:26:59</publishTime>
+    </File>
+    <File Include="Printer/Printing.cs">
+      <publishTime>05/16/2018 09:21:56</publishTime>
     </File>
     <File Include="Scripts/bootstrap.js">
       <publishTime>02/17/2018 21:03:40</publishTime>
@@ -507,14 +561,29 @@ editando este archivo MSBuild. Para conocer más acerca de esto, visite http://g
     <File Include="Scripts/widgets/widget-staticRow.js">
       <publishTime>02/17/2018 20:56:41</publishTime>
     </File>
+    <File Include="Security/CustomUserManager.cs">
+      <publishTime>04/14/2018 00:15:19</publishTime>
+    </File>
+    <File Include="Security/CustomUserStore.cs">
+      <publishTime>03/12/2018 17:01:26</publishTime>
+    </File>
     <File Include="Views/Account/Login.cshtml">
       <publishTime>04/10/2018 09:41:37</publishTime>
     </File>
     <File Include="Views/Account/Register.cshtml">
       <publishTime>02/19/2018 10:50:00</publishTime>
     </File>
+    <File Include="Views/CashRegister/CreateInput.cshtml">
+      <publishTime>06/03/2018 20:43:40</publishTime>
+    </File>
+    <File Include="Views/CashRegister/CreateOutPut.cshtml">
+      <publishTime>06/03/2018 20:42:27</publishTime>
+    </File>
+    <File Include="Views/CashRegister/Index.cshtml">
+      <publishTime>06/03/2018 20:45:00</publishTime>
+    </File>
     <File Include="Views/Customer/Create.cshtml">
-      <publishTime>03/06/2018 11:36:08</publishTime>
+      <publishTime>05/18/2018 09:38:36</publishTime>
     </File>
     <File Include="Views/Customer/Delete.cshtml">
       <publishTime>02/19/2018 09:36:38</publishTime>
@@ -523,10 +592,10 @@ editando este archivo MSBuild. Para conocer más acerca de esto, visite http://g
       <publishTime>02/19/2018 09:36:38</publishTime>
     </File>
     <File Include="Views/Customer/Edit.cshtml">
-      <publishTime>02/19/2018 09:36:38</publishTime>
+      <publishTime>06/03/2018 19:18:18</publishTime>
     </File>
     <File Include="Views/Customer/Index.cshtml">
-      <publishTime>03/06/2018 14:13:52</publishTime>
+      <publishTime>05/18/2018 09:51:46</publishTime>
     </File>
     <File Include="Views/DashBoard/Index.cshtml">
       <publishTime>01/05/2018 12:54:58</publishTime>
@@ -542,6 +611,9 @@ editando este archivo MSBuild. Para conocer más acerca de esto, visite http://g
     </File>
     <File Include="Views/Home/Prueba.cshtml">
       <publishTime>11/23/2017 12:19:46</publishTime>
+    </File>
+    <File Include="Views/IndirectOrder/DashBoardIndirectOrder.cshtml">
+      <publishTime>04/27/2018 19:38:42</publishTime>
     </File>
     <File Include="Views/Inventory/Create.cshtml">
       <publishTime>11/23/2017 12:19:46</publishTime>
@@ -568,10 +640,10 @@ editando este archivo MSBuild. Para conocer más acerca de esto, visite http://g
       <publishTime>11/23/2017 12:19:46</publishTime>
     </File>
     <File Include="Views/InventoryItem/Index.cshtml">
-      <publishTime>03/07/2018 14:50:18</publishTime>
+      <publishTime>06/03/2018 19:37:44</publishTime>
     </File>
     <File Include="Views/Invoice/Details.cshtml">
-      <publishTime>02/27/2018 11:18:18</publishTime>
+      <publishTime>05/15/2018 19:38:17</publishTime>
     </File>
     <File Include="Views/Invoice/Index.cshtml">
       <publishTime>03/07/2018 14:50:30</publishTime>
@@ -580,16 +652,25 @@ editando este archivo MSBuild. Para conocer más acerca de esto, visite http://g
       <publishTime>01/03/2018 11:30:58</publishTime>
     </File>
     <File Include="Views/Order/Index.cshtml">
-      <publishTime>03/07/2018 15:00:36</publishTime>
+      <publishTime>06/03/2018 20:03:34</publishTime>
     </File>
     <File Include="Views/OrderItem/Index.cshtml">
       <publishTime>02/27/2018 11:22:10</publishTime>
+    </File>
+    <File Include="Views/Payment/Create.cshtml">
+      <publishTime>06/03/2018 20:37:06</publishTime>
+    </File>
+    <File Include="Views/Payment/Delete.cshtml">
+      <publishTime>05/09/2018 16:43:25</publishTime>
+    </File>
+    <File Include="Views/Payment/Index.cshtml">
+      <publishTime>06/03/2018 20:45:21</publishTime>
     </File>
     <File Include="Views/Product/AddTaxe.cshtml">
       <publishTime>12/07/2017 16:57:32</publishTime>
     </File>
     <File Include="Views/Product/Create.cshtml">
-      <publishTime>12/11/2017 11:17:06</publishTime>
+      <publishTime>05/18/2018 09:38:54</publishTime>
     </File>
     <File Include="Views/Product/Delete.cshtml">
       <publishTime>12/27/2017 11:28:36</publishTime>
@@ -603,17 +684,29 @@ editando este archivo MSBuild. Para conocer más acerca de esto, visite http://g
     <File Include="Views/Product/Index.cshtml">
       <publishTime>03/07/2018 15:06:42</publishTime>
     </File>
+    <File Include="Views/Reports/AccountReceivableReport.cshtml">
+      <publishTime>05/16/2018 19:21:56</publishTime>
+    </File>
+    <File Include="Views/Reports/Index.cshtml">
+      <publishTime>05/28/2018 10:29:19</publishTime>
+    </File>
+    <File Include="Views/Reports/InventoryReport.cshtml">
+      <publishTime>05/16/2018 19:21:56</publishTime>
+    </File>
+    <File Include="Views/Reports/SalesReport.cshtml">
+      <publishTime>05/29/2018 18:28:03</publishTime>
+    </File>
     <File Include="Views/Shared/Layout2.cshtml">
       <publishTime>02/27/2018 11:26:48</publishTime>
     </File>
     <File Include="Views/Shared/_Layout.cshtml">
-      <publishTime>03/19/2018 14:52:41</publishTime>
+      <publishTime>05/25/2018 13:18:40</publishTime>
     </File>
     <File Include="Views/Shared/_Pagination.cshtml">
       <publishTime>03/07/2018 15:22:32</publishTime>
     </File>
     <File Include="Views/Supplier/Create.cshtml">
-      <publishTime>02/19/2018 10:59:00</publishTime>
+      <publishTime>05/18/2018 09:39:01</publishTime>
     </File>
     <File Include="Views/Supplier/Delete.cshtml">
       <publishTime>02/19/2018 09:36:38</publishTime>
@@ -646,7 +739,7 @@ editando este archivo MSBuild. Para conocer más acerca de esto, visite http://g
       <publishTime>11/23/2017 12:19:46</publishTime>
     </File>
     <File Include="Web.config">
-      <publishTime>04/14/2018 01:07:21</publishTime>
+      <publishTime>05/29/2018 18:29:57</publishTime>
     </File>
   </ItemGroup>
 </Project>

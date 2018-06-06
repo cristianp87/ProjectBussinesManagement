@@ -8,5 +8,9 @@ namespace IBusiness.Management
     public interface IReports : IFacade
     {
         List<BoReportSales> bll_SalesReport(DateTime pStarDate, DateTime pFinDate);
+
+        List<BoInventoryItem> bll_InventoryReport();
+
+        List<BoReportAccountReceivable> bll_AccountReceivableReport();
     }
 }

@@ -52,7 +52,7 @@ $('#btnItem').click(function () {
                 type: 'POST',
                 url: yourApp.Urls.getItem,
                 dataType: 'json',
-                data: { idProduct: $("#txtProduct").val() },
+                data: { cdProduct: $("#txtProduct").val() },
                 success: function (product) {
                     if (product.Success) {
                         ajaxItem(product.Content)
@@ -93,6 +93,8 @@ $('#btnCreateOrder').click(function () {
                 if (product.Success){
                     showSuccess('Se ha generado el pedido.');
                     $('#linkInvoice').prop("href", yourApp.Urls.GoInvoiceDetails + "?id=" + product.Content).text("Ver Factura");
+                    clearVariables();
+                    clearfields();
                 }                   
                 else
                     showException('No se pudo Ingresar el pedido.' + product.Content);
@@ -341,6 +343,12 @@ $(document).on("click",".btnDeleterow",function(){
 function clearVariables() {
     arrayOrderItem = new Array();
     lTotalizador = 0;
+}
+
+function clearfields() {
+    $('#ddlInventory').val() = 0;
+    $('#txtCntProduct').val() = "";
+    $("#txtProduct").val() = "";
 }
 
 function showException(message) {

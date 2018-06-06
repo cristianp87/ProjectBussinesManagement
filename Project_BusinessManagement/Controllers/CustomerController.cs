@@ -22,7 +22,9 @@ namespace Project_BusinessManagement.Controllers
 
         public static ITypeIdentification LiTypeIdentification =
         FacadeProvider.Resolv<ITypeIdentification>();
-        
+
+        public IUtilsLib LiUtilsLib =
+        FacadeProvider.Resolv<IUtilsLib>();
         #endregion
         // GET: Customer
         public ActionResult Index()
@@ -64,12 +66,14 @@ namespace Project_BusinessManagement.Controllers
             {
                 if (this.ModelState.IsValid)
                 {
-                    var lMessage = this.LiCustomerFacade.bll_InsertCustomer(pMCustomer.LNameCustomer, pMCustomer.LLastNameCustomer, pMCustomer.LNoIdentification, Convert.ToInt32(this.Request.Form[EFields.LFieldListTypeIdentification]), Convert.ToInt32(this.Request.Form[EFields.LFieldListObject]), this.Request.Form[EFields.LFieldListStatus]);
+                    var lMessage = this.LiCustomerFacade.bll_InsertCustomer(pMCustomer.LNameCustomer, pMCustomer.LLastNameCustomer, pMCustomer.LNoIdentification, Convert.ToInt32(this.Request.Form[EFields.LFieldListTypeIdentification]), Convert.ToInt32(this.Request.Form[EFields.LFieldListObject]), this.LiUtilsLib.bll_getStatusApproByObject(this.LiUtilsLib.bll_GetObjectByName(MGlobalVariables.LNameObjectCustomer).LIdObject).LIdStatus);
                     if (lMessage == null)
                     {
                         return this.RedirectToAction("Index");
                     }
                     pMCustomer.LMessageException = lMessage;
+                    if (lMessage.Contains(CodesError.LConstraintCustomer))
+                        pMCustomer.LMessageException = CodesError.LMsgCustomerExists;       
                     ListEmptyCustomer(pMCustomer);
                     return this.View(pMCustomer);
                 }

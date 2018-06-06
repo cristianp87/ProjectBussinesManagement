@@ -1,0 +1,70 @@
+﻿@model Project_BusinessManagement.Models.MPayment
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@if (Model.LMessageException != null)
+{
+    <div class="alert alert-danger">
+        <strong>Error!</strong> @Model.LMessageException
+    </div>
+}
+
+<h2>Eliminar Pago</h2>
+
+<h3>Esta seguro de eliminar este pago?</h3>
+<div>
+    <h4>MPayment</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.LIdPayment)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LIdPayment)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LValuePayment)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LValuePayment)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LCreationDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LCreationDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LModificationDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LModificationDate)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-group">
+            <div class="col-md-10">
+                @Html.HiddenFor(model => model.LOrder.LIdOrder, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.HiddenFor(model => model.LOrder.LValueOrder, new { htmlAttributes = new { @class = "form-control" } })
+            </div>
+        </div>
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Ir a pagos", "Index", new { pIdOrder = Model.LOrder.LIdOrder})
+        </div>
+    }
+</div>

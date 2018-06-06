@@ -52,5 +52,22 @@ namespace Bll_Business
         {
             return this.LiDaoOrder.Dao_getListOrderByCustomer(pIdCustomer);
         }
+
+        public BoOrder bll_GetOrder(int pIdOrder)
+        {
+            return this.LiDaoOrder.Dao_getOrder(pIdOrder);
+        }
+
+        public string bll_UpdateOrder(int pIdOrder, string pIdStatus)
+        {
+            string lResul;
+            var lOrder = new BoOrder
+            {
+                LStatus = new BoStatus { LIdStatus = pIdStatus },
+                LIdOrder = pIdOrder
+            };
+            lResul = this.LiDaoOrder.Dao_UpdateOrder(lOrder);
+            return lResul;
+        }
     }
 }

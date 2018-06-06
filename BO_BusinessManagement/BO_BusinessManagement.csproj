@@ -41,7 +41,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BoCashRegister.cs" />
     <Compile Include="BoPayment.cs" />
+    <Compile Include="BoReportAccountReceivable.cs" />
     <Compile Include="Bo_Configuration.cs" />
     <Compile Include="Bo_Customer.cs" />
     <Compile Include="Bo_DashBoard.cs" />

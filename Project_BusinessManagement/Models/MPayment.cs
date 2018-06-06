@@ -11,18 +11,23 @@ namespace Project_BusinessManagement.Models
 
         public MStatus LStatus { get; set; }
 
+        [DisplayName("Id Del Pago")]
         public int LIdPayment { get; set; }
 
         [DisplayName("Valor Del Pago")]
         [Required(AllowEmptyStrings = true, ErrorMessage = CodesError.LMsgValidateName)]
         public decimal LValuePayment { get; set; }
 
+        [DisplayName("Fecha Creación")]
         public DateTime LCreationDate { get; set; }
 
+        [DisplayName("Fecha Modificación")]
         public DateTime LModificationDate { get; set; }
 
         public MOrder LOrder { get; set; }
 
         public string LMessageException { get; set; }
+
+        public bool LIsCompleted { get; set; }
     }
 }

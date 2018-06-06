@@ -41,6 +41,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DaoCashRegister.cs" />
     <Compile Include="DaoPayment.cs" />
     <Compile Include="DaoReports.cs" />
     <Compile Include="Dao_Customer.cs" />

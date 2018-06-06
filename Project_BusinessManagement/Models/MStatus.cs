@@ -7,6 +7,7 @@ namespace Project_BusinessManagement.Models
 {
     public class MStatus
     {
+        [DisplayName("Id Estado")]
         [RegularExpression("^([1-9A-Za-z]{1}[0-9A-Za-z]{0,11})$", ErrorMessage = CodesError.LMsgValidateDdl)]
         public string LIdStatus { get; set; }
 

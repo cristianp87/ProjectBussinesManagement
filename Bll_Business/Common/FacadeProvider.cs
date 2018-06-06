@@ -36,6 +36,7 @@ namespace Bll_Business.Common
             UnityContainer.RegisterType<IUtilsLib, BllUtilsLib>();
             UnityContainer.RegisterType<IPayment, BllPayment>();
             UnityContainer.RegisterType<IReports, BllReports>();
+            UnityContainer.RegisterType<ICashRegister, BllCashRegister>();
             this.myFacadesInstances = new ConcurrentDictionary<Type, IFacade>();
         }
 

@@ -47,7 +47,7 @@ namespace Project_BusinessManagement.Controllers
             var lListInventoryItem = this.LInventoryItem.bll_GetInventoryItemsByIdInventory(id);
             if (string.IsNullOrEmpty(pSearchhName))
                 return this.View(lListInventoryItem.MListInventoryItem());
-            lListInventoryItem = lListInventoryItem.Where(s => s.LInventory.LNameInventory.ToUpper().Contains(pSearchhName.ToUpper())).ToList();
+            lListInventoryItem = lListInventoryItem.Where(s => s.LProduct.LNameProduct.ToUpper().Contains(pSearchhName.ToUpper())).ToList();
             return this.View(lListInventoryItem.MListInventoryItem());
         }
 

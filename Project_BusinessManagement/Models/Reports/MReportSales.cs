@@ -18,5 +18,7 @@ namespace Project_BusinessManagement.Models.Reports
 
         [DisplayName("Valor Total")]
         public decimal LValuetotal { get; set; }
+
+        public string LMessage { get; set; }
     }
 }

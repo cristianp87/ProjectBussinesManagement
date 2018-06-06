@@ -75,6 +75,7 @@
     <Compile Include="Common\FacadeProvider.cs" />
     <Compile Include="Common\IFacade.cs" />
     <Compile Include="Common\IFacadeProvider.cs" />
+    <Compile Include="Management\ICashRegister.cs" />
     <Compile Include="Management\ICustomer.cs" />
     <Compile Include="Management\IDashBoard.cs" />
     <Compile Include="Management\IInventory.cs" />

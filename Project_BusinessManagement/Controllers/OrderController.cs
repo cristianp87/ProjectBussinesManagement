@@ -99,11 +99,11 @@ namespace Project_BusinessManagement.Controllers
         }
 
         [HttpPost]
-        public JsonResult GetOrderItem(int idProduct)
+        public JsonResult GetOrderItem(string cdProduct)
         {
             try
             {
-                var lProduct = this.LiProduct.bll_GetProductById(idProduct);
+                var lProduct = this.LiProduct.bll_GetProductByCode(cdProduct);
                 if (!lProduct.LStatus.LIdStatus.ValidateStatus())
                     lProduct = new BoProduct();
                 if(lProduct.LException != null)                  
@@ -112,9 +112,7 @@ namespace Project_BusinessManagement.Controllers
             }catch(Exception e)
             {
                 return this.Json(new { Success = false, Message = CodesError.LMsgError + e.Message });
-            }
-            
-            
+            }          
         }
         
 
@@ -131,8 +129,6 @@ namespace Project_BusinessManagement.Controllers
                     int lIdInvoice;
                     var lListInvoiceItem = this.LInvoiceItem.bll_ChangeOrderItemToInvoiceItem(pOrder.LListOrderItem, this.LiUtilsLib.bll_GetObjectByName(MGlobalVariables.LNameObjectInvoiceItem));
                     lResult = this.LInvoice.bll_InsertInvoiceAll(pOrder.LCustomer.LIdCustomer, lIdOrder, this.LiUtilsLib.bll_GetObjectByName(MGlobalVariables.LNameObjectInvoice).LIdObject, lListInvoiceItem);
-                    var lPrint = new Printer.Printing();
-                    lPrint.PrintingInvoice();
                     return int.TryParse(lResult, out lIdInvoice) ? this.Json(new { Success = true, Content = lIdInvoice }) : this.Json(new { Success = false, Content = lResult });
                 }
                 

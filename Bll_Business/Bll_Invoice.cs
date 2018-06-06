@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using BO_BusinessManagement.Enums;
 using IBusiness.Management;
 using IDaoBusiness.Business;
+using System.Linq;
 
 namespace Bll_Business
 {
@@ -12,7 +13,7 @@ namespace Bll_Business
         public IInvoiceItem LInvoiceItem;
         public IUtilsLib LUtilsLib;
         public IDaoInvoice LiDaoInvoice { get; set; }
-
+        public IDaoCashRegister LiCashRegister { get; set; }
         public IDaoInvoiceItem LiDaoInvoiceItem { get; set; }
 
         public BllInvoice()
@@ -21,6 +22,7 @@ namespace Bll_Business
             this.LUtilsLib = new BllUtilsLib();
             this.LiDaoInvoice = new DaoInvoice();
             this.LiDaoInvoiceItem = new DaoInvoiceItem();
+            this.LiCashRegister = new DaoCashRegister();
         }
         public BoInvoice bll_GetInvoiceById(int pIdInvoice)
         {
@@ -47,7 +49,15 @@ namespace Bll_Business
                    lResult += this.LInvoiceItem.bll_InsertInvoiceItem(lIdInvoice, x.LQuantity, x.LValueProd, x.LValueSupplier, x.LValueTaxes, x.LValueDesc, x.LProduct.LIdProduct, x.LObject.LIdObject, lStatusItem);
                });
                 if (string.IsNullOrEmpty(lResult))
-                    lResult = lIdInvoice.ToString();             
+                    lResult = lIdInvoice.ToString();
+                var lSumInvoice = lListInvoiceItem.Sum(x => x.LValueTotal);
+                var lIdCashRegister = this.LiCashRegister.Dao_getFirstIdCashRegister();
+                this.LiCashRegister.Dao_InsertCashRegisterInput(new BoCashRegister {
+                    LIdCashRegister = lIdCashRegister,
+                    LValue = lSumInvoice,
+                    LIsInput = true,
+                    LDescription = "Factura Id : " + lResult
+                });
             }
             else
             {

@@ -9,6 +9,19 @@ Insert into [Object] values(	'INVEN',	getdate(),	1	)
 set @IdentityObject = @@IDENTITY
 Insert into [Status] values(	'APPRO',	@IdentityObject,'APROBADO',	'Estado Aprobado para el objeto inventario',	GETDATE(),	1,	GETDATE()	)
 
+INSERT INTO [dbo].[Inventory]
+           ([NameInventory]
+           ,[CreationDate]
+           ,[IdStatus]
+           ,[IdObject]
+           ,[ModificationDate])
+     VALUES
+           ('Inventario 1'
+           ,GETDATE()
+           ,'APPRO'
+           ,@IdentityObject
+           ,GETDATE())
+
 Insert into [Object] values(	'SUPP',	getdate(),	1	)
 set @IdentityObject = @@IDENTITY
 Insert into [Status] values(	'APPRO',	@IdentityObject,'APROBADO',	'Estado Aprobado para el objeto Proveedor',	GETDATE(),	1,	GETDATE()	)
@@ -80,6 +93,19 @@ Values('Administrador', 1)
 set @IdentityRole = @@Identity
 Insert Into [UserRole](IdUser, IdRole)
 Values(@IdentityUser, @IdentityRole)
+
+INSERT INTO [dbo].[Unit]
+           ([CdUnit]
+           ,[NameUnit]
+           ,[CreationDate]
+           ,[flActive]
+           ,[ModificationDate])
+values('C/U', 'Unidad', GETDATE(), 1, GETDATE())
+
+
+insert into CashRegister
+Values('caja', GETDATE(), GETDATE())
+
 
 COMMIT  TRAN;
 END TRY

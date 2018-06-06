@@ -65,6 +65,64 @@ namespace Dao_BussinessManagement
                 }
             }
         }
+
+        public BoOrder Dao_getOrder(int pIdOrder)
+        {
+            using (SqlConnection lConex = DaoUtilsLib.Dao_SqlConnection(lConex))
+            {
+
+                try
+                {
+                    var lCommand = new SqlCommand
+                    {
+                        CommandText = "spr_GetOrder",
+                        CommandTimeout = 30,
+                        CommandType = CommandType.StoredProcedure,
+                        Connection = lConex
+                    };
+                    lCommand.Parameters.Add(new SqlParameter("IdOrder", pIdOrder));
+
+                    var lReader = lCommand.ExecuteReader();
+                    var lOrder = new BoOrder();
+                    if (lReader.HasRows)
+                    {
+                        while (lReader.Read())
+                        {
+                            lOrder.LStatus = new BoStatus();
+                            lOrder.LObject = new BoObject();
+                            lOrder.LCustomer = new BoCustomer
+                            {
+                                LIdCustomer = Convert.ToInt32(lReader["IdCustomer"].ToString()),
+                                LNameCustomer = lReader["NameCustomer"].ToString(),
+                                LLastNameCustomer = lReader["LastNameCustomer"].ToString()
+                            };
+                            lOrder.LIdOrder = Convert.ToInt32(lReader["IdOrder"].ToString());
+                            lOrder.LInventory = new BoInventory
+                            {
+                                LIdInventory = Convert.ToInt32(lReader["IdInventory"].ToString()),
+                                LNameInventory = lReader["NameInventory"].ToString()
+                            };
+                            lOrder.LCreationDate = Convert.ToDateTime(lReader["CreationDate"].ToString());
+                            lOrder.LStatus.LIdStatus = lReader["IdStatus"].ToString();
+                            lOrder.LObject.LIdObject = Convert.ToInt32(lReader["IdObject"].ToString());
+                        }
+                    }
+                    Dao_CloseSqlconnection(lConex);
+                    return lOrder;
+                }
+                catch (Exception e)
+                {
+                    var lOrder = new BoOrder { LException = e.Message };
+                    if (e.InnerException != null)
+                        lOrder.LInnerException = e.InnerException.ToString();
+                    lOrder.LMessageDao = BoErrors.MsgErrorGetSql;
+                    Dao_CloseSqlconnection(lConex);
+                    return lOrder;
+                }
+
+            }
+        }
+
         public string Dao_InsertOrder(BoOrder pOrder)
         {
             this.LListParam = new List<SqlParameter>();
@@ -73,6 +131,14 @@ namespace Dao_BussinessManagement
             dao_Addparameters(this.LListParam, SqlDbType.VarChar, "@IdStatus", pOrder.LStatus.LIdStatus);
             dao_Addparameters(this.LListParam, SqlDbType.Int, "@IdObject", pOrder.LObject.LIdObject.ToString());
             return Dao_executeSqlScalarWithProcedement(this.LListParam, "LTranInsertOrder", "spr_CreateOrder");
+        }
+
+        public string Dao_UpdateOrder(BoOrder pOrder)
+        {
+            this.LListParam = new List<SqlParameter>();
+            dao_Addparameters(this.LListParam, SqlDbType.Int, "@IdOrder", pOrder.LIdOrder.ToString());
+            dao_Addparameters(this.LListParam, SqlDbType.VarChar, "@IdStatus", pOrder.LStatus.LIdStatus);
+            return Dao_executeSqlTransactionWithProcedement(this.LListParam, "LTranUpdateOrder", "spr_UpdateOrder");
         }
     }
 }

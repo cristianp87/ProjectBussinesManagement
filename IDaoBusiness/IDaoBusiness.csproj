@@ -40,6 +40,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Business\IDaoCashRegister.cs" />
     <Compile Include="Business\IDaoCustomer.cs" />
     <Compile Include="Business\IDaoDashBoard.cs" />
     <Compile Include="Business\IDaoInventory.cs" />

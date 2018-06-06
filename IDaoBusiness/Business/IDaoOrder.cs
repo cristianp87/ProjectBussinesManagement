@@ -8,5 +8,9 @@ namespace IDaoBusiness.Business
         List<BoOrder> Dao_getListOrderByCustomer(int pIdCustomer);
 
         string Dao_InsertOrder(BoOrder pOrder);
+
+        BoOrder Dao_getOrder(int pIdOrder);
+
+        string Dao_UpdateOrder(BoOrder pOrder);
     }
 }

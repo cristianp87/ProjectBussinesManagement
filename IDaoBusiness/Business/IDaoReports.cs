@@ -6,6 +6,10 @@ namespace IDaoBusiness.Business
 {
     public interface IDaoReports
     {
-        List<BoReportSales> Dao_getSupplierListAll(DateTime pStartDate, DateTime pFinishDate);
+        List<BoReportSales> Dao_getSalesReport(DateTime pStartDate, DateTime pFinishDate);
+
+        List<BoInventoryItem> Dao_getInventoryReport();
+
+        List<BoReportAccountReceivable> Dao_getAccountReceivable();
     }
 }

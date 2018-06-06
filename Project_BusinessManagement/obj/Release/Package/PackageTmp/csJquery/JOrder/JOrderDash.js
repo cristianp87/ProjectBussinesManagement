@@ -52,7 +52,7 @@ $('#btnItem').click(function () {
                 type: 'POST',
                 url: yourApp.Urls.getItem,
                 dataType: 'json',
-                data: { idProduct: $("#txtProduct").val() },
+                data: { cdProduct: $("#txtProduct").val() },
                 success: function (product) {
                     if (product.Success) {
                         ajaxItem(product.Content)
@@ -93,6 +93,8 @@ $('#btnCreateOrder').click(function () {
                 if (product.Success){
                     showSuccess('Se ha generado el pedido.');
                     $('#linkInvoice').prop("href", yourApp.Urls.GoInvoiceDetails + "?id=" + product.Content).text("Ver Factura");
+                    clearVariables();
+                    clearfields();
                 }                   
                 else
                     showException('No se pudo Ingresar el pedido.' + product.Content);
@@ -343,6 +345,12 @@ function clearVariables() {
     lTotalizador = 0;
 }
 
+function clearfields() {
+    $('#ddlInventory').val() = 0;
+    $('#txtCntProduct').val() = "";
+    $("#txtProduct").val() = "";
+}
+
 function showException(message) {
     $('#dvException').removeClass("hide");
     $('#lblException').removeClass("alert-success").removeClass("alert-danger").addClass("alert-danger");
@@ -361,7 +369,7 @@ function hideException() {
 }
 
 function ConvertToDecimal(value){
-    return value.replace(".", ",")
+    return value.replace(",", ".")
 }
 
 
