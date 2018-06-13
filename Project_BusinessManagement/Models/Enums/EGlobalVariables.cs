@@ -13,7 +13,7 @@
         public const string LIsSupplier = "IsSupplier";
         public const string LEditSupplier = "EditSupplier";
         public const string LCreateSupplier = "CreateSupplier";
-        public const string LDeleteSupplier = "Deletesupplier";
+        public const string LDeleteSupplier = "DeleteSupplier";
               
         public const string LIsDashBoard = "IsDashBoard";
 

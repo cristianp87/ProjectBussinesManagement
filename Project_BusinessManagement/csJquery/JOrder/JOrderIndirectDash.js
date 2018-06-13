@@ -108,6 +108,11 @@ $('#btnCreateOrder').click(function () {
     }
 
 });
+
+$('#btnNewOrder').click(function () {
+    location.href = location.href;
+});
+
 function LoadInventory(){
     $.ajax({  
         type: 'POST',  
@@ -367,9 +372,11 @@ function ConvertToDecimal(value){
 }
 
 function clearfields() {
-    $('#ddlInventory').val() = 0;
-    $('#txtCntProduct').val() = "";
-    $("#txtProduct").val() = "";
+    $('#ddlInventory').val(0);
+    $('#txtCntProduct').val("");
+    $("#txtProduct").val("");
+    $("#btnCreateOrder").addClass("hide");
+    $("#btnNewOrder").removeClass("hide");
 }
 
 

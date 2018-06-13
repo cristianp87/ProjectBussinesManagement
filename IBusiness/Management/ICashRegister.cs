@@ -17,5 +17,9 @@ namespace IBusiness.Management
         string bll_CreateCashInput(int pIdCashRegister, decimal pValue, string pDescription);
 
         int bll_GetFirstIdCashRegister();
+
+        string bll_DeleteCash(int pIdCash, bool pIsInput);
+
+        BoCashRegister bll_GetCash(int pIdCash, bool pIsInput);
     }
 }

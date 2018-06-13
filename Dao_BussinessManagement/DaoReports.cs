@@ -40,8 +40,10 @@ namespace Dao_BussinessManagement
                             {
                                 LIdProduct = Convert.ToInt32(lReader["IdProduct"].ToString()),
                                 LNameProduct = lReader["NameProduct"].ToString(),
-                                LCdProduct = lReader["CdProduct"].ToString()
+                                LCdProduct = lReader["CdProduct"].ToString(),
+                                LValueSupplier = Convert.ToDecimal(lReader["PriceSupplier"].ToString())
                             };
+                            lReport.LQty = Convert.ToDecimal(lReader["Qty"].ToString());
                             lReport.LValuetotal = Convert.ToDecimal(lReader["valuetotal"].ToString());
                             lListReport.Add(lReport);
                         }

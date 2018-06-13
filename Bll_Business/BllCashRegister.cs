@@ -34,6 +34,11 @@ namespace Bll_Business
             return this.LiCashRegister.Dao_getListCashOutputs();
         }
 
+        public BoCashRegister bll_GetCash(int pIdCash, bool pIsInput)
+        {
+            return pIsInput ? this.LiCashRegister.Dao_getCashInput(pIdCash) : this.LiCashRegister.Dao_getCashOutPut(pIdCash);
+        }
+
         public string bll_CreateCashOutput(int pIdCashRegister, decimal pValue, string pDescription)
         {
             var lCashOutPut = new BoCashRegister
@@ -59,6 +64,16 @@ namespace Bll_Business
         public int bll_GetFirstIdCashRegister()
         {
             return this.LiCashRegister.Dao_getFirstIdCashRegister();
+        }
+
+        public string bll_DeleteCash(int pIdCash, bool pIsInput)
+        {
+            var lCash = new BoCashRegister
+            {
+               LIdCash = pIdCash
+            };
+            return pIsInput ? this.LiCashRegister.Dao_DeleteCashRegisterInput(lCash) : this.LiCashRegister.Dao_DeleteCashRegisterOutPut(lCash);
+
         }
     }
 }

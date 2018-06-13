@@ -6,6 +6,7 @@ using Project_BusinessManagement.Models.Reports;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
+using System.Linq;
 using System.Web.Mvc;
 
 namespace Project_BusinessManagement.Controllers
@@ -17,9 +18,13 @@ namespace Project_BusinessManagement.Controllers
         public IReports LiReportFacade =
         FacadeProvider.Resolv<IReports>();
 
+        public ICashRegister LiCashRegister =
+        FacadeProvider.Resolv<ICashRegister>();
+
         private static string _lRouteSales = ConfigurationManager.AppSettings["RoutePdfSales"];
         private static string _lRoutePdfAccountReceivable = ConfigurationManager.AppSettings["RoutePdfAccountReceivable"];
         private static string _lRouteInventory = ConfigurationManager.AppSettings["RoutePdfInventory"];
+        private static string _lRouteCashRegister = ConfigurationManager.AppSettings["RoutePdfCashRegister"];
         #endregion
 
         // GET: Reports
@@ -33,6 +38,7 @@ namespace Project_BusinessManagement.Controllers
             try {
                 var lResult = this.LiReportFacade.bll_SalesReport(DateTime.Now, DateTime.Now).ToListMSales();
                 Pdfs.PdfReports.GeneratePdfSales(lResult);
+                ViewData["TotalSales"] = Convert.ToInt32(lResult.Sum(x => x.LValuetotal));
                 return View(lResult);
             }catch(Exception e)
             {
@@ -51,6 +57,7 @@ namespace Project_BusinessManagement.Controllers
         {
             var lResult = this.LiReportFacade.bll_AccountReceivableReport().ToListMReportAccountReceivable();
             Pdfs.PdfReports.GeneratePdfAccountReceivable(lResult);
+            ViewData["TotalAccount"] = Convert.ToInt32(lResult.Sum(x => x.LValueDebt));
             return View(lResult);
         }
 
@@ -58,6 +65,15 @@ namespace Project_BusinessManagement.Controllers
         {      
             var lResult = this.LiReportFacade.bll_InventoryReport().ToListMInventoryItem();
             Pdfs.PdfReports.GeneratePdfInventory(lResult);
+            ViewData["TotalInventory"] = Convert.ToInt32(lResult.Sum(x => x.LQtySellable));
+            return View(lResult);
+        }
+
+        public ActionResult CashRegisterReport()
+        {
+            var lResult = this.LiCashRegister.bll_GetListLastCashRegister().MListCashhRegister();
+            Pdfs.PdfReports.GeneratePdfCashRegister(lResult);
+            ViewData["TotalCaja"] = Convert.ToInt32(lResult.Where(y => y.LIsInput == true).Sum(x => x.LValue) - lResult.Where(y => y.LIsInput == false).Sum(x => x.LValue));
             return View(lResult);
         }
 
@@ -77,6 +93,9 @@ namespace Project_BusinessManagement.Controllers
                     break;
                 case EDownloadReport.inventory:
                     Response.TransmitFile(Server.MapPath(_lRouteInventory));
+                    break;
+                case EDownloadReport.CashRegister:
+                    Response.TransmitFile(Server.MapPath(_lRouteCashRegister));
                     break;
                 default:
                     break;

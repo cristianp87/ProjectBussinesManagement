@@ -12,62 +12,71 @@
     &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
     @Html.ActionLink("Agregar Una Salida", "CreateOutPut", new { pIdCashRegister = Model.First().LIdCashRegister })
 </p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.LIdCash)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.LDescription)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.LValue)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.LCreationDate)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.LIsInput)
-        </th>
-        <th></th>
-    </tr>
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.LIdCashRegister)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.LIdCash)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.LDescription)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.LValue)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.LCreationDate)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.LModificationDate)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.LIsInput)
-        </td>
-        <td>
-            @Html.ActionLink("Delete", "Delete", new {  id= item.LIdCash  })
-        </td>
-    </tr>
-}
+<div class="table-responsive">
+    <table class="tablesorter">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.LIdCashRegister)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.LIdCash)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.LDescription)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.LValue)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.LCreationDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.LModificationDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.LIsInput)
+            </th>
+            <th></th>
+        </tr>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.LIdCashRegister)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.LIdCash)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.LDescription)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.LValue)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.LCreationDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.LModificationDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.LIsInput)
+                </td>
+                <td>
+                    @Html.ActionLink("Delete", "Delete", new { pIdCash = item.LIdCash, pIsInput = item.LIsInput })
+                </td>
+            </tr>
+        }
 
-</table>
-@Html.Partial("~/Views/Shared/_Pagination.cshtml")
+    </table>
+ </div>
+    @Html.Partial("~/Views/Shared/_Pagination.cshtml")
 
-<br />
+    <br />
 
-<h2>
-    <label class="label-info">Saldo: </label>
-    @Html.Label(ViewData["Total"].ToString(), htmlAttributes: new { @class = "label-success control-label", id = "lblTotalizador" })
-</h2>
+    <h2>
+        <label class="label-info">Saldo: </label>
+        @Html.Label(ViewData["Total"].ToString(), htmlAttributes: new { @class = "label-success control-label", id = "lblTotalizador" })
+    </h2>
 
 

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 using System.Web.Mvc;
 
 namespace Project_BusinessManagement.Models
@@ -21,9 +22,11 @@ namespace Project_BusinessManagement.Models
         public MObject LObject { get; set; }
 
         [DisplayName("Cantidad Vendible")]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:0}")]
         public decimal LQtySellable { get; set; }
 
         [DisplayName("Cantidad No Vendible")]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:0}")]
         public decimal LQtyNonSellable { get; set; }
 
         public List<SelectListItem> LListStatus { get; set; }

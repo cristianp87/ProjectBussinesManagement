@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 
 namespace Project_BusinessManagement.Models
 {
@@ -23,6 +24,7 @@ namespace Project_BusinessManagement.Models
 
         public List<MOrderItem> LListOrderItem { get; set; }
 
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:0}")]
         public decimal LValueOrder { get; set; }
 
         

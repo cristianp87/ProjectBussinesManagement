@@ -1,5 +1,6 @@
 ﻿using System;
 using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 
 namespace Project_BusinessManagement.Models
 {
@@ -12,6 +13,7 @@ namespace Project_BusinessManagement.Models
         public string LNameTaxe { get; set; }
 
         [DisplayName("Valor")]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:0}")]
         public decimal LValueTaxe { get; set; }
 
         [DisplayName("Porcentaje")]

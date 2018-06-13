@@ -78,5 +78,23 @@ namespace Project_BusinessManagement.Controllers
             pCashRegister.LMessageException = lResult;
             return this.View(pCashRegister);
         }
+
+        public ActionResult Delete(int pIdCash, bool pIsInput)
+        {
+            var lResult = this.LiCashRegister.bll_GetCash(pIdCash, pIsInput);
+            return this.View(lResult.ToMCashRegister());
+        }
+
+        [HttpPost]
+        public ActionResult Delete(MCashRegister pCashRegister, int pIdCash, bool pIsInput)
+        {
+            var lResult = this.LiCashRegister.bll_DeleteCash(pIdCash, pIsInput);
+            if (string.IsNullOrEmpty(lResult))
+            {
+                return RedirectToAction("Index");
+            }
+            pCashRegister.LMessageException = lResult;
+            return this.View(pCashRegister);
+        }
     }
 }

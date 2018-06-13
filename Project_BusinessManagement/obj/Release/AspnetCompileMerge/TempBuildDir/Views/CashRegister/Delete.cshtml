@@ -1,0 +1,74 @@
+﻿@model Project_BusinessManagement.Models.MCashRegister
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@if (Model.LMessageException != null)
+{
+    <div class="alert alert-danger">
+        <strong>Error!</strong> @Model.LMessageException
+    </div>
+}
+
+<h2>Eliminar Registro De caja</h2>
+
+<h3>Esta Seguro De Elimiar Este Registro?</h3>
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LIdCash)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LIdCash)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LDescription)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LDescription)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LValue)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LValue)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LCreationDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LCreationDate)
+        </dd>
+
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LIsInput)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LIsInput)
+        </dd>
+
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Ir a caja", "Index")
+        </div>
+    }
+</div>

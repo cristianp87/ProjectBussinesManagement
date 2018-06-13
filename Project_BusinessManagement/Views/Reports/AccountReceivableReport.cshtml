@@ -8,7 +8,7 @@
 <h2>AccountReceivableReport</h2>
 
 @Html.ActionLink("Descargar Pdf", "DownloadFile", new { lReport = 1 })
-<table class="table">
+<table class="tablesorter">
     <tr>
         <th>
             @Html.DisplayNameFor(model => model.LId)
@@ -43,3 +43,10 @@
 }
 
 </table>
+
+@Html.Partial("~/Views/Shared/_Pagination.cshtml")
+
+<h2>
+    <label class="label-info">Total: </label>
+    @Html.Label(ViewData["TotalAccount"].ToString(), htmlAttributes: new { @class = "label-success control-label", id = "lblTotalizador" })
+</h2>

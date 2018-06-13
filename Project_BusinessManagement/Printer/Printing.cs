@@ -56,14 +56,12 @@ namespace Project_BusinessManagement.Printer
             string cmds = ESC + "@"; //Initializes the printer (ESC @)
             cmds += ESC + "!" + "0x38"; //Emphasized + Double-height + Double-width mode selected (ESC ! (8 + 16 + 32)) 56 dec => 38 hex
             
-            cmds += "VideoJuegos RM"; //text to print
+            cmds += "VideoJuegos RT"; //text to print
             cmds += ESC + "!" + "0x16";
             cmds += NewLine;
-            cmds += "Nit: " + "54514745";
+            cmds += "Dirección: " + "Calle 38 No 7-73 C.C. BACAL Local 27-28 y 47";
             cmds += NewLine;
-            cmds += "Dirección: " + "Calle 2d No 85-87";
-            cmds += NewLine;
-            cmds += "Telefono: " + "3185487459";
+            cmds += "Telefono: " + "3124121752";
             cmds += NewLine + NewLine;
             cmds += "Factura De Venta: " + lInvoice.LCdInvoice;
             cmds += NewLine;

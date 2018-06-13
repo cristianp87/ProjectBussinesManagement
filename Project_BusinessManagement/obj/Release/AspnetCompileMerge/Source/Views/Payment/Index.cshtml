@@ -23,8 +23,8 @@
         </div>
     </div>
 </div>
-
-    <table class="table">
+<div class="table-responsive">
+    <table class="tablesorter">
         <tr>
             <th>
                 @Html.DisplayNameFor(model => model.LIdPayment)
@@ -62,8 +62,9 @@
             </tr>
         }
     </table>
-@Html.Partial("~/Views/Shared/_Pagination.cshtml")
-<h2>
-    <label class="label-info">Saldo: </label>
-    @Html.Label(ViewData["Total"].ToString(), htmlAttributes: new { @class = "label-success control-label", id = "lblTotalizador" })
-</h2>
+ </div>
+    @Html.Partial("~/Views/Shared/_Pagination.cshtml")
+    <h2>
+        <label class="label-info">Saldo: </label>
+        @Html.Label(ViewData["Total"].ToString(), htmlAttributes: new { @class = "label-success control-label", id = "lblTotalizador" })
+    </h2>

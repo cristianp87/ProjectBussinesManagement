@@ -16,6 +16,7 @@ namespace Project_BusinessManagement.Models
 
         [DisplayName("Valor Del Pago")]
         [Required(AllowEmptyStrings = true, ErrorMessage = CodesError.LMsgValidateName)]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:0}")]
         public decimal LValuePayment { get; set; }
 
         [DisplayName("Fecha Creación")]

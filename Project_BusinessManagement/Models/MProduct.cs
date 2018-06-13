@@ -26,6 +26,7 @@ namespace Project_BusinessManagement.Models
 
         [Required(ErrorMessage = "El valor de producto es requerido.")]
         [DisplayName("Valor Producto")]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:0}")]
         public decimal LValue { get; set; }
 
 
@@ -33,6 +34,7 @@ namespace Project_BusinessManagement.Models
 
         [Required(ErrorMessage = CodesError.LMsgValidateValueSupplier)]
         [DisplayName("Valor del Proveedor")]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:0}")]
         public decimal LValueSupplier { get; set; }
 
 

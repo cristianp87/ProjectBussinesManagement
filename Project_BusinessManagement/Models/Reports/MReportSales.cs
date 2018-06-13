@@ -16,6 +16,9 @@ namespace Project_BusinessManagement.Models.Reports
         [DisplayName("Fecha De Creación")]
         public DateTime LCreationDate { get; set; }
 
+        [DisplayName("Cantidad")]
+        public decimal LQty { get; set; }
+
         [DisplayName("Valor Total")]
         public decimal LValuetotal { get; set; }
 

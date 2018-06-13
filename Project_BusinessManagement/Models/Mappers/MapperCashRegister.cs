@@ -26,5 +26,21 @@ namespace Project_BusinessManagement.Models.Mappers
             });
             return lMListCashRegister;
         }
+
+        public static MCashRegister ToMCashRegister(this BoCashRegister pCashRegister)
+        {
+
+            var lMCashRegister = new MCashRegister
+            {
+                LDescription = pCashRegister.LDescription,
+                LIdCash = pCashRegister.LIdCash,
+                LIdCashRegister = pCashRegister.LIdCashRegister,
+                LIsInput = pCashRegister.LIsInput,
+                LValue = pCashRegister.LValue,
+                LCreationDate = pCashRegister.LCreationDate,
+                LModificationDate = pCashRegister.LModificationDate
+            };
+            return lMCashRegister;
+        }
     }
 }

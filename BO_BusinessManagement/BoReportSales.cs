@@ -12,6 +12,8 @@ namespace BO_BusinessManagement
 
         public DateTime LCreationDate { get; set; }
 
+        public decimal LQty { get; set; } 
+
         public decimal LValuetotal { get; set; }
     }
 }

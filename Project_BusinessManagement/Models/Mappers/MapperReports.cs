@@ -34,9 +34,11 @@ namespace Project_BusinessManagement.Models.Mappers
                     LProduct = new MProduct() {
                         LCdProduct = x.LProduct.LCdProduct,
                         LNameProduct = x.LProduct.LNameProduct,
-                        LIdProduct = x.LProduct.LIdProduct
+                        LIdProduct = x.LProduct.LIdProduct,
+                        LValueSupplier = x.LProduct.LValueSupplier
                     },
-                    LValuetotal = x.LValuetotal                  
+                    LValuetotal = x.LValuetotal,
+                    LQty = x.LQty                  
                 };
                 lListReport.Add(lReport);
             });

@@ -9,6 +9,7 @@ namespace Project_BusinessManagement.Models.Enums
     {
         sales = 0,
         accountReceivable = 1,
-        inventory = 2 
+        inventory = 2,
+        CashRegister = 3 
     }
 }
