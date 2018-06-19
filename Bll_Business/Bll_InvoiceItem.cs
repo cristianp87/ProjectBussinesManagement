@@ -17,19 +17,19 @@ namespace Bll_Business
             this.LiProduct = new BllProduct();
             this.LiDaoInvoiceItem = new DaoInvoiceItem();
         }
-        public List<Bo_InvoiceItem> bll_GetInvoiceItemsByIdInvoice(int pIdInvoice)
+        public List<BoInvoiceItem> bll_GetInvoiceItemsByIdInvoice(int pIdInvoice)
         {
             return this.LiDaoInvoiceItem.Dao_getInvoiceItemByIdInvoice(pIdInvoice);
         }
 
-        public List<Bo_InvoiceItem> bll_ChangeOrderItemToInvoiceItem(List<Bo_OrderItem> lListOrderItem, Bo_Object lObjectInvoice)
+        public List<BoInvoiceItem> bll_ChangeOrderItemToInvoiceItem(List<BoOrderItem> lListOrderItem, BoObject lObjectInvoice)
         {
-            var lListInvoiceItem = new List<Bo_InvoiceItem>();
+            var lListInvoiceItem = new List<BoInvoiceItem>();
             lListOrderItem?.ForEach(x =>
             {
-                var lInvoiceItem = new Bo_InvoiceItem
+                var lInvoiceItem = new BoInvoiceItem
                 {
-                    LProduct = new Bo_Product(),
+                    LProduct = new BoProduct(),
                     LQuantity = x.LQty,
                     LValueProd = x.LValueProduct,
                     LValueDesc = x.LValueDesc,
@@ -46,11 +46,11 @@ namespace Bll_Business
 
         public string bll_InsertInvoiceItem(int pIdInvoice, decimal pQuantity, decimal pValueProduct, decimal pValueSupplier, decimal pValueTaxes, decimal pValueDesc, int pIdProduct, int pIdObject, string pIdStatus)
         {
-            var lInvoiceItem = new Bo_InvoiceItem
+            var lInvoiceItem = new BoInvoiceItem
             {
-                LObject = new Bo_Object {LIdObject = pIdObject},
-                LStatus = new Bo_Status {LIdStatus = pIdStatus},
-                LProduct = new Bo_Product {LIdProduct = pIdProduct},
+                LObject = new BoObject {LIdObject = pIdObject},
+                LStatus = new BoStatus {LIdStatus = pIdStatus},
+                LProduct = new BoProduct {LIdProduct = pIdProduct},
                 LIdInvoice = pIdInvoice,
                 LQuantity = pQuantity,
                 LValueDesc = pValueDesc,
@@ -63,11 +63,11 @@ namespace Bll_Business
 
         public string bll_UpdateInvoiceTem(int pIdInvoice, int pQuantity, int pIdProduct, int pIdObject, string pIdStatus)
         {
-            var lInvoiceItem = new Bo_InvoiceItem
+            var lInvoiceItem = new BoInvoiceItem
             {
-                LObject = new Bo_Object {LIdObject = pIdObject},
-                LStatus = new Bo_Status {LIdStatus = pIdStatus},
-                LProduct = new Bo_Product {LIdProduct = pIdProduct},
+                LObject = new BoObject {LIdObject = pIdObject},
+                LStatus = new BoStatus {LIdStatus = pIdStatus},
+                LProduct = new BoProduct {LIdProduct = pIdProduct},
                 LIdInvoice = pIdInvoice,
                 LQuantity = pQuantity
             };
@@ -76,7 +76,7 @@ namespace Bll_Business
 
         public string bll_DeleteInvoiceItem(int pIdInvoiceItem)
         {
-            var lInvoiceItem = new Bo_InvoiceItem {LIdInvoiceItem = pIdInvoiceItem};
+            var lInvoiceItem = new BoInvoiceItem {LIdInvoiceItem = pIdInvoiceItem};
             return this.LiDaoInvoiceItem.Dao_DeleteInvoiceItem(lInvoiceItem);
         }
     }

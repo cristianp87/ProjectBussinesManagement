@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using BO_BusinessManagement;
 using IBusiness.Common;
 
@@ -12,10 +8,10 @@ namespace IBusiness.Management
     {
         string bll_InsertListOrderItem(int pIdOrder,
             int pIdInventory,
-            List<Bo_OrderItem> pListOrderItem,
+            List<BoOrderItem> pListOrderItem,
             bool pIsInventory);
 
-        List<Bo_OrderItem> bll_GetOrderItem(int pIdOrder);
+        List<BoOrderItem> bll_GetOrderItem(int pIdOrder);
         
     }
 }

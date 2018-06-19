@@ -3,19 +3,20 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
+using BO_BusinessManagement.Enums;
 using IDaoBusiness.Business;
-using static Dao_BussinessManagement.Dao_UtilsLib;
+using static Dao_BussinessManagement.DaoUtilsLib;
 
 namespace Dao_BussinessManagement
 {
     public class DaoTypeIdentification : IDaoTypeIdentification
     {
 
-        public Bo_Customer Dao_getTypeIdentification(int pIdTypeIdentification)
+        public BoCustomer Dao_getTypeIdentification(int pIdTypeIdentification)
         {           
             using (SqlConnection lConex = Dao_SqlConnection(lConex))
             {
-                var lCustomer = new Bo_Customer();
+                var lCustomer = new BoCustomer();
                 try
                 {
                     var lCommand = new SqlCommand
@@ -33,14 +34,14 @@ namespace Dao_BussinessManagement
                     {
                         while (lReader.Read())
                         {                           
-                            lCustomer.LTypeIdentification = new Bo_TypeIdentification();
+                            lCustomer.LTypeIdentification = new BoTypeIdentification();
                             lCustomer.LIdCustomer = Convert.ToInt32(lReader["IdCustomer"].ToString());
                             lCustomer.LTypeIdentification.LIdTypeIdentification = Convert.ToInt32(lReader["IdTypeIdentification"].ToString());
                             lCustomer.LNoIdentification = lReader["NoIdentification"].ToString();
                             lCustomer.LNameCustomer = lReader["NameCustomer"].ToString();
                             lCustomer.LLastNameCustomer = lReader["LastNameCustomer"].ToString();
-                            lCustomer.LStatus = new Bo_Status {LIdStatus = lReader["IdStatus"].ToString()};
-                            lCustomer.LObject = new Bo_Object
+                            lCustomer.LStatus = new BoStatus {LIdStatus = lReader["IdStatus"].ToString()};
+                            lCustomer.LObject = new BoObject
                             {
                                 LIdObject = Convert.ToInt32(lReader["IdObject"].ToString())
                             };
@@ -54,11 +55,11 @@ namespace Dao_BussinessManagement
                 }
                 catch (Exception e)
                 {
-                    lCustomer = new Bo_Customer
+                    lCustomer = new BoCustomer
                     {
                         LException = e.Message,
-                        LMessageDao = "Hubo un problema en la consulta, contacte al administrador."
-                    };
+                        LMessageDao = BoErrors.MsgErrorGetSql
+                };
                     if (e.InnerException != null)
                         lCustomer.LInnerException = e.InnerException.ToString();                    
                     Dao_CloseSqlconnection(lConex);
@@ -68,11 +69,11 @@ namespace Dao_BussinessManagement
             }
         }
 
-        public List<Bo_TypeIdentification> Dao_getListAllTypeIdentification()
+        public List<BoTypeIdentification> Dao_getListAllTypeIdentification()
         {
             using (SqlConnection lConex = Dao_SqlConnection(lConex))
             {
-                var lListTypeIdentification = new List<Bo_TypeIdentification>();
+                var lListTypeIdentification = new List<BoTypeIdentification>();
                 try
                 {
                     var lCommand = new SqlCommand
@@ -88,7 +89,7 @@ namespace Dao_BussinessManagement
                     {
                         while (lReader.Read())
                         {
-                            var lTypeIdentification = new Bo_TypeIdentification
+                            var lTypeIdentification = new BoTypeIdentification
                             {
                                 LIdTypeIdentification = Convert.ToInt32(lReader["IdTypeIdentification"].ToString()),
                                 LTypeIdentification = lReader["TypeIdentification"].ToString(),
@@ -104,12 +105,12 @@ namespace Dao_BussinessManagement
                 }
                 catch (Exception e)
                 {
-                    lListTypeIdentification = new List<Bo_TypeIdentification>();
-                    var lTypeIdentification = new Bo_TypeIdentification
+                    lListTypeIdentification = new List<BoTypeIdentification>();
+                    var lTypeIdentification = new BoTypeIdentification
                     {
                         LException = e.Message,
-                        LMessageDao = "Hubo un problema en la consulta, contacte al administrador."
-                    };
+                        LMessageDao = BoErrors.MsgErrorGetSql
+                };
                     if (e.InnerException != null)
                         lTypeIdentification.LInnerException = e.InnerException.ToString();                    
                     lListTypeIdentification.Add(lTypeIdentification);

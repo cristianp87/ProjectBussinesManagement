@@ -41,6 +41,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BoCashRegister.cs" />
+    <Compile Include="BoPayment.cs" />
+    <Compile Include="BoReportAccountReceivable.cs" />
     <Compile Include="Bo_Configuration.cs" />
     <Compile Include="Bo_Customer.cs" />
     <Compile Include="Bo_DashBoard.cs" />
@@ -53,12 +56,16 @@
     <Compile Include="Bo_Order.cs" />
     <Compile Include="Bo_OrderItem.cs" />
     <Compile Include="Bo_Product.cs" />
+    <Compile Include="BoReportSales.cs" />
     <Compile Include="Bo_Role.cs" />
     <Compile Include="Bo_Status.cs" />
     <Compile Include="Bo_Supplier.cs" />
     <Compile Include="Bo_Taxe.cs" />
     <Compile Include="Bo_Unit.cs" />
     <Compile Include="Bo_User.cs" />
+    <Compile Include="Enums\Bo_Errors.cs" />
+    <Compile Include="Enums\EBooleans.cs" />
+    <Compile Include="Enums\EObjects.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Bo_TypeIdentification.cs" />
   </ItemGroup>

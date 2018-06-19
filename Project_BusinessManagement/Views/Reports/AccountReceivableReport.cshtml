@@ -1,0 +1,52 @@
+﻿@model IEnumerable<Project_BusinessManagement.Models.Reports.MReportAccountReceivable>
+
+@{
+    ViewBag.Title = "AccountReceivableReport";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>AccountReceivableReport</h2>
+
+@Html.ActionLink("Descargar Pdf", "DownloadFile", new { lReport = 1 })
+<table class="tablesorter">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.LId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.LCustomer.LNameCustomer)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.LCustomer.LLastNameCustomer)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.LValueDebt)
+        </th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.LId)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.LCustomer.LNameCustomer)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.LCustomer.LLastNameCustomer)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.LValueDebt)
+        </td>
+
+    </tr>
+}
+
+</table>
+
+@Html.Partial("~/Views/Shared/_Pagination.cshtml")
+
+<h2>
+    <label class="label-info">Total: </label>
+    @Html.Label(ViewData["TotalAccount"].ToString(), htmlAttributes: new { @class = "label-success control-label", id = "lblTotalizador" })
+</h2>

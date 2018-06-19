@@ -1,0 +1,59 @@
+﻿@model IEnumerable<Project_BusinessManagement.Models.MCashRegister>
+
+@{
+    ViewBag.Title = "CashRegisterReport";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Reporte Caja</h2>
+@Html.ActionLink("Descargar Pdf", "DownloadFile", new { lReport = 3 })
+<div class="table-responsive">
+    <table class="tablesorter">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.LIdCash)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.LDescription)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.LValue)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.LCreationDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.LIsInput)
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.LIdCash)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.LDescription)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.LValue)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.LCreationDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.LIsInput)
+                </td>
+            </tr>
+        }
+
+    </table>
+</div>
+    @Html.Partial("~/Views/Shared/_Pagination.cshtml")
+
+    <h2>
+        <label class="label-info">Total: </label>
+        @Html.Label(ViewData["TotalCaja"].ToString(), htmlAttributes: new { @class = "label-success control-label", id = "lblTotalizador" })
+    </h2>

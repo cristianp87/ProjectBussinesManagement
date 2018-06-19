@@ -75,6 +75,7 @@
     <Compile Include="Common\FacadeProvider.cs" />
     <Compile Include="Common\IFacade.cs" />
     <Compile Include="Common\IFacadeProvider.cs" />
+    <Compile Include="Management\ICashRegister.cs" />
     <Compile Include="Management\ICustomer.cs" />
     <Compile Include="Management\IDashBoard.cs" />
     <Compile Include="Management\IInventory.cs" />
@@ -83,7 +84,9 @@
     <Compile Include="Management\IInvoiceItem.cs" />
     <Compile Include="Management\IOrder.cs" />
     <Compile Include="Management\IOrderItem.cs" />
+    <Compile Include="Management\IPayment.cs" />
     <Compile Include="Management\IProduct.cs" />
+    <Compile Include="Management\IReports.cs" />
     <Compile Include="Management\IRole.cs" />
     <Compile Include="Management\IStatus.cs" />
     <Compile Include="Management\ISupplier.cs" />

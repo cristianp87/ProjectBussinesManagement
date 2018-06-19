@@ -14,17 +14,17 @@ namespace Bll_Business
         {
             this.LiDaoTaxe = new DaoTaxe();
         }
-        public List<Bo_Taxe>  bll_GetListallTaxesXProduct(int pIdProduct)
+        public List<BoTaxe>  bll_GetListallTaxesXProduct(int pIdProduct)
         {
             return this.LiDaoTaxe.Dao_getLisAllTaxesXProduct(pIdProduct);
         }
 
-        public List<Bo_Taxe> bll_GetListTaxes()
+        public List<BoTaxe> bll_GetListTaxes()
         {
             return this.LiDaoTaxe.Dao_getLisTaxes();
         }
 
-        public List<Bo_Taxe> bll_GetListTaxesWithOutProduct(int pIdProduct)
+        public List<BoTaxe> bll_GetListTaxesWithOutProduct(int pIdProduct)
         {
             return this.LiDaoTaxe.Dao_getLisAllTaxesWithOutProduct(pIdProduct);
         }
@@ -34,7 +34,7 @@ namespace Bll_Business
             return this.LiDaoTaxe.Dao_InsertTaxeXProduct(pIdProduct, pIdTaxe);
         }
 
-        public Bo_Taxe bll_GetTaxe(int pIdTaxe)
+        public BoTaxe bll_GetTaxe(int pIdTaxe)
         {
             return this.LiDaoTaxe.Dao_getTaxeById(pIdTaxe);
         }

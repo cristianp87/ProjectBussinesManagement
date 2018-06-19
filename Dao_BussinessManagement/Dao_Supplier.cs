@@ -3,8 +3,9 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
+using BO_BusinessManagement.Enums;
 using IDaoBusiness.Business;
-using static Dao_BussinessManagement.Dao_UtilsLib;
+using static Dao_BussinessManagement.DaoUtilsLib;
 
 namespace Dao_BussinessManagement
 {
@@ -12,11 +13,11 @@ namespace Dao_BussinessManagement
     {
         private List<SqlParameter> LListParam { get; set; }
 
-        public Bo_Supplier Dao_getSupplierById(int pIdSupplier)
+        public BoSupplier Dao_getSupplierById(int pIdSupplier)
         {
             using (SqlConnection lConex = Dao_SqlConnection(lConex))
             {
-                var lSupplier = new Bo_Supplier();
+                var lSupplier = new BoSupplier();
                 try
                 {
                     var lCommand = new SqlCommand
@@ -34,19 +35,19 @@ namespace Dao_BussinessManagement
                     {
                         while (lReader.Read())
                         {                           
-                            lSupplier.LTypeIdentification = new Bo_TypeIdentification();
+                            lSupplier.LTypeIdentification = new BoTypeIdentification();
                             lSupplier.LIdSupplier = Convert.ToInt32(lReader["IdSupplier"].ToString());
                             lSupplier.LNameSupplier = lReader["NameSupplier"].ToString();
                             lSupplier.LTypeIdentification.LIdTypeIdentification = Convert.ToInt32(lReader["IdTypeIdentification"].ToString());
                             lSupplier.LTypeIdentification.LTypeIdentification = lReader["TypeIdentification"].ToString();
                             lSupplier.LNoIdentification = lReader["NoIdentification"].ToString();
                             lSupplier.LCreationDate = Convert.ToDateTime(lReader["CreationDate"].ToString());
-                            lSupplier.LStatus = new Bo_Status
+                            lSupplier.LStatus = new BoStatus
                             {
                                 LIdStatus = lReader["IdStatus"].ToString(),
                                 LDsEstado = lReader["DsEstado"].ToString()
                             };
-                            lSupplier.LObject = new Bo_Object
+                            lSupplier.LObject = new BoObject
                             {
                                 LIdObject = Convert.ToInt32(lReader["IdObject"].ToString()),
                                 LNameObject = lReader["NameObject"].ToString()
@@ -59,11 +60,11 @@ namespace Dao_BussinessManagement
                 }
                 catch (Exception e)
                 {
-                    lSupplier = new Bo_Supplier
+                    lSupplier = new BoSupplier
                     {
                         LException = e.Message,
-                        LMessageDao = "Hubo un problema en la consulta, contacte al administrador."
-                    };
+                        LMessageDao = BoErrors.MsgErrorGetSql
+                };
                     if (e.InnerException != null)
                         lSupplier.LInnerException = e.InnerException.ToString();                  
                     Dao_CloseSqlconnection(lConex);
@@ -72,11 +73,11 @@ namespace Dao_BussinessManagement
             }
         }
 
-        public List<Bo_Supplier> Dao_getSupplierListAll()
+        public List<BoSupplier> Dao_getSupplierListAll()
         {
             using (SqlConnection lConex = Dao_SqlConnection(lConex))
             {
-                var lListSupplier = new List<Bo_Supplier>();
+                var lListSupplier = new List<BoSupplier>();
                 try
                 {
                     var lCommand = new SqlCommand
@@ -92,10 +93,10 @@ namespace Dao_BussinessManagement
                     {
                         while (lReader.Read())
                         {
-                            var oSupplier = new Bo_Supplier
+                            var oSupplier = new BoSupplier
                             {
                                 LTypeIdentification =
-                                    new Bo_TypeIdentification
+                                    new BoTypeIdentification
                                     {
                                         LIdTypeIdentification =
                                             Convert.ToInt32(lReader["IdTypeIdentification"].ToString()),
@@ -105,12 +106,12 @@ namespace Dao_BussinessManagement
                                 LNameSupplier = lReader["NameSupplier"].ToString(),
                                 LNoIdentification = lReader["NoIdentification"].ToString(),
                                 LCreationDate = Convert.ToDateTime(lReader["CreationDate"].ToString()),
-                                LStatus = new Bo_Status
+                                LStatus = new BoStatus
                                 {
                                     LIdStatus = lReader["IdStatus"].ToString(),
                                     LDsEstado = lReader["DsEstado"].ToString()
                                 },
-                                LObject = new Bo_Object
+                                LObject = new BoObject
                                 {
                                     LIdObject = Convert.ToInt32(lReader["IdObject"].ToString()),
                                     LNameObject = lReader["NameObject"].ToString()
@@ -125,12 +126,12 @@ namespace Dao_BussinessManagement
                 }
                 catch (Exception e)
                 {
-                    lListSupplier = new List<Bo_Supplier>();
-                    var oSupplier = new Bo_Supplier
+                    lListSupplier = new List<BoSupplier>();
+                    var oSupplier = new BoSupplier
                     {
                         LException = e.Message,
-                        LMessageDao = "Hubo un problema en la consulta, contacte al administrador."
-                    };
+                        LMessageDao = BoErrors.MsgErrorGetSql
+                };
                     if (e.InnerException != null)
                         oSupplier.LInnerException = e.InnerException.ToString();                   
                     Dao_CloseSqlconnection(lConex);
@@ -140,7 +141,7 @@ namespace Dao_BussinessManagement
             }
         }
 
-        public string Dao_InsertSupplier(Bo_Supplier pSupplier)
+        public string Dao_InsertSupplier(BoSupplier pSupplier)
         {
             this.LListParam = new List<SqlParameter>();
             dao_Addparameters(this.LListParam, SqlDbType.VarChar, "@NameSupplier", pSupplier.LNameSupplier);
@@ -151,7 +152,7 @@ namespace Dao_BussinessManagement
             return Dao_executeSqlTransactionWithProcedement(this.LListParam, "LTranInsertSupplier", "spr_CreateSupplier");
         }
 
-        public string Dao_UpdateSupplier(Bo_Supplier pSupplier)
+        public string Dao_UpdateSupplier(BoSupplier pSupplier)
         {
             this.LListParam = new List<SqlParameter>();
             dao_Addparameters(this.LListParam, SqlDbType.Int, "@IdSupplier", pSupplier.LIdSupplier.ToString());
@@ -163,7 +164,7 @@ namespace Dao_BussinessManagement
             return Dao_executeSqlTransactionWithProcedement(this.LListParam, "LTranUpdateSupplier", "spr_UpdateSupplier");
         }
 
-        public string Dao_DeleteSupplier(Bo_Supplier pSupplier)
+        public string Dao_DeleteSupplier(BoSupplier pSupplier)
         {
             this.LListParam = new List<SqlParameter>();
             dao_Addparameters(this.LListParam, SqlDbType.Int, "@IdSupplier", pSupplier.LIdSupplier.ToString());

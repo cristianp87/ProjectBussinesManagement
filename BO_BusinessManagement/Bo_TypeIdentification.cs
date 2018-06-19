@@ -1,48 +1,11 @@
 ﻿namespace BO_BusinessManagement
 {
-    public class Bo_TypeIdentification : Bo_Exception
+    public class BoTypeIdentification : BoException
     {
-        private int lIdTypeIdentification;
-        private string lTypeIdentification;
-        private bool lActive;
+        public int LIdTypeIdentification { get; set; }
 
-        public int LIdTypeIdentification
-        {
-            get
-            {
-                return lIdTypeIdentification;
-            }
+        public string LTypeIdentification { get; set; }
 
-            set
-            {
-                lIdTypeIdentification = value;
-            }
-        }
-
-        public string LTypeIdentification
-        {
-            get
-            {
-                return lTypeIdentification;
-            }
-
-            set
-            {
-                lTypeIdentification = value;
-            }
-        }
-
-        public bool LActive
-        {
-            get
-            {
-                return lActive;
-            }
-
-            set
-            {
-                lActive = value;
-            }
-        }
+        public bool LActive { get; set; }
     }
 }

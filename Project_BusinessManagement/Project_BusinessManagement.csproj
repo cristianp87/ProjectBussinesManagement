@@ -59,8 +59,9 @@
       <HintPath>..\packages\CrystalReports.VisualStudio2015.x64.2.0.0\lib\FlashControlV71.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="itextsharp, Version=5.4.5.0, Culture=neutral, PublicKeyToken=8354ae6d2174ddca, processorArchitecture=MSIL">
-      <HintPath>..\packages\iTextSharp.5.4.5\lib\itextsharp.dll</HintPath>
+    <Reference Include="itextsharp, Version=5.5.13.0, Culture=neutral, PublicKeyToken=8354ae6d2174ddca, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\iTextSharp.5.5.13\lib\itextsharp.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="log4net, Version=1.2.10.0, Culture=neutral, PublicKeyToken=1b44e1d426115821, processorArchitecture=MSIL">
@@ -126,6 +127,10 @@
     </Reference>
     <Reference Include="MvcReportViewer, Version=0.8.5816.27247, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\MvcReportViewer.0.8.3\lib\net45\MvcReportViewer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Neodynamic.SDK.WebClientPrint, Version=4.0.2000.0, Culture=neutral, PublicKeyToken=93565f9c313b0a45, processorArchitecture=MSIL">
+      <HintPath>..\packages\Neodynamic.SDK.WebClientPrint.4.0.2018.109\lib\Neodynamic.SDK.WebClientPrint.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Newtonsoft.Json, Version=8.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
@@ -226,20 +231,37 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\images\ui-icons_444444_256x240.png" />
+    <Content Include="Content\images\ui-icons_555555_256x240.png" />
+    <Content Include="Content\jquery-ui.css" />
+    <Content Include="Content\StyleGeneral.css" />
     <Content Include="Content\StyleMaster2.css" />
+    <Content Include="csJquery\JOrder\JOrderIndirectDash.js" />
     <Content Include="csJquery\JOrder\JOrderDash.js" />
     <Content Include="csJquery\JSupplier\JListSupplier.js" />
     <Content Include="Images\Icons\IFirst.png" />
     <Content Include="Images\Icons\ILast.png" />
     <Content Include="Images\Icons\INext.png" />
     <Content Include="Images\Icons\IPrev.png" />
+    <Content Include="Images\Publish\About.jpg" />
+    <Content Include="Images\Publish\Home1.jpg" />
+    <Content Include="Images\Publish\Publish1.jpg" />
+    <Content Include="Images\Publish\publish2.jpg" />
     <Content Include="packages.config">
       <SubType>Designer</SubType>
     </Content>
     <Content Include="Content\StyleMaster.css" />
+    <Content Include="Content\images\Thumbs.db" />
+    <None Include="Properties\PublishProfiles\PubInventory.pubxml" />
+    <None Include="Properties\PublishProfiles\PubInventoryDebug.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="Scripts\extras\jquery.quicksearch.js" />
+    <Content Include="Scripts\extras\semver-mod.js" />
+    <Content Include="Scripts\extras\semver.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
+    <Content Include="Scripts\jquery-ui-timepicker-addon.js" />
+    <Content Include="Scripts\jquery-ui.js" />
     <Content Include="Scripts\jquery.metadata.js" />
     <Content Include="Scripts\jquery.signalR-2.2.2.js" />
     <Content Include="Scripts\jquery.signalR-2.2.2.min.js" />
@@ -252,8 +274,40 @@
     <Content Include="Scripts\jquery.tablesorter.widgets.js" />
     <Content Include="Scripts\jquery.tablesorter.widgets.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\parsers\parser-date-extract.js" />
+    <Content Include="Scripts\parsers\parser-date-iso8601.js" />
+    <Content Include="Scripts\parsers\parser-date-month.js" />
+    <Content Include="Scripts\parsers\parser-date-two-digit-year.js" />
+    <Content Include="Scripts\parsers\parser-date-weekday.js" />
+    <Content Include="Scripts\parsers\parser-date.js" />
+    <Content Include="Scripts\parsers\parser-duration.js" />
+    <Content Include="Scripts\parsers\parser-feet-inch-fraction.js" />
+    <Content Include="Scripts\parsers\parser-file-type.js" />
+    <Content Include="Scripts\parsers\parser-ignore-articles.js" />
+    <Content Include="Scripts\parsers\parser-image.js" />
+    <Content Include="Scripts\parsers\parser-input-select.js" />
+    <Content Include="Scripts\parsers\parser-ipv6.js" />
+    <Content Include="Scripts\parsers\parser-metric.js" />
+    <Content Include="Scripts\parsers\parser-roman.js" />
+    <Content Include="Scripts\widgets\widget-alignChar.js" />
+    <Content Include="Scripts\widgets\widget-build-table.js" />
+    <Content Include="Scripts\widgets\widget-columnSelector.js" />
+    <Content Include="Scripts\widgets\widget-cssStickyHeaders.js" />
+    <Content Include="Scripts\widgets\widget-editable.js" />
+    <Content Include="Scripts\widgets\widget-grouping.js" />
+    <Content Include="Scripts\widgets\widget-headerTitles.js" />
+    <Content Include="Scripts\widgets\widget-math.js" />
+    <Content Include="Scripts\widgets\widget-output.js" />
+    <Content Include="Scripts\widgets\widget-pager.js" />
+    <Content Include="Scripts\widgets\widget-print.js" />
+    <Content Include="Scripts\widgets\widget-reflow.js" />
+    <Content Include="Scripts\widgets\widget-repeatheaders.js" />
+    <Content Include="Scripts\widgets\widget-scroller.js" />
+    <Content Include="Scripts\widgets\widget-staticRow.js" />
     <Content Include="Views\Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -325,6 +379,22 @@
     <Content Include="Views\Shared\Layout2.cshtml" />
     <Content Include="Views\Account\Login.cshtml" />
     <Content Include="Views\Account\Register.cshtml" />
+    <Content Include="Views\Shared\_Pagination.cshtml" />
+    <Content Include="Views\Home\About.cshtml" />
+    <Content Include="Views\Home\Contact.cshtml" />
+    <Content Include="Views\IndirectOrder\DashBoardIndirectOrder.cshtml" />
+    <Content Include="Views\Payment\Index.cshtml" />
+    <Content Include="Views\Payment\Create.cshtml" />
+    <Content Include="Views\Payment\Delete.cshtml" />
+    <Content Include="Views\Reports\Index.cshtml" />
+    <Content Include="Views\Reports\SalesReport.cshtml" />
+    <Content Include="Views\Reports\AccountReceivableReport.cshtml" />
+    <Content Include="Views\Reports\InventoryReport.cshtml" />
+    <Content Include="Views\CashRegister\Index.cshtml" />
+    <Content Include="Views\CashRegister\CreateInput.cshtml" />
+    <Content Include="Views\CashRegister\CreateOutPut.cshtml" />
+    <Content Include="Views\Reports\CashRegisterReport.cshtml" />
+    <Content Include="Views\CashRegister\Delete.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -338,23 +408,53 @@
     <Compile Include="App_Start\HttpParamActionAttribute.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\StartUp.Auth.cs" />
+    <Compile Include="Controllers\BaseApiController.cs" />
+    <Compile Include="Controllers\CashRegisterController.cs" />
     <Compile Include="Controllers\CustomerController.cs" />
     <Compile Include="Controllers\DashBoardController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\IndirectOrderController.cs" />
     <Compile Include="Controllers\InventoryController.cs" />
     <Compile Include="Controllers\InventoryItemController.cs" />
     <Compile Include="Controllers\InvoiceController.cs" />
     <Compile Include="Controllers\OrderController.cs" />
     <Compile Include="Controllers\OrderItemController.cs" />
+    <Compile Include="Controllers\PaymentController.cs" />
+    <Compile Include="Controllers\PrintESCPOSController.cs" />
     <Compile Include="Controllers\ProductController.cs" />
+    <Compile Include="Controllers\ReportsController.cs" />
     <Compile Include="Controllers\Security\AccountController.cs" />
     <Compile Include="Controllers\TaxeController.cs" />
+    <Compile Include="Controllers\WebClientPrintAPIController.cs" />
+    <Compile Include="Extensibles\MGlobalConfiguration.cs" />
+    <Compile Include="Extensibles\MvcViews.cs" />
     <Compile Include="Filters\ConfigurationAppAttribute.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Infrastructure\HandleErrorAttribute.cs" />
-    <Compile Include="Models\ECodesError.cs" />
+    <Compile Include="Models\Enums\ECodesError.cs" />
+    <Compile Include="Models\Enums\EDownloadReport.cs" />
+    <Compile Include="Models\Enums\EFields.cs" />
+    <Compile Include="Models\Enums\EGlobalVariables.cs" />
+    <Compile Include="Models\Enums\EMessages.cs" />
+    <Compile Include="Models\Mappers\MapperCashRegister.cs" />
+    <Compile Include="Models\Mappers\MapperCustomer.cs" />
+    <Compile Include="Models\Mappers\MapperInventory.cs" />
+    <Compile Include="Models\Mappers\MapperInventoryItem.cs" />
+    <Compile Include="Models\Mappers\MapperInvoice.cs" />
+    <Compile Include="Models\Mappers\MapperInvoiceItem.cs" />
+    <Compile Include="Models\Mappers\MapperOrder.cs" />
+    <Compile Include="Models\Mappers\MapperOrderItem.cs" />
+    <Compile Include="Models\Mappers\MapperPayment.cs" />
+    <Compile Include="Models\Mappers\MapperProduct.cs" />
+    <Compile Include="Models\Mappers\MapperReports.cs" />
+    <Compile Include="Models\Mappers\MapperStatus.cs" />
+    <Compile Include="Models\Mappers\MapperSupplier.cs" />
+    <Compile Include="Models\Mappers\MapperTaxes.cs" />
+    <Compile Include="Models\Mappers\MapperTypeIdentifications.cs" />
+    <Compile Include="Models\Mappers\MapperUnits.cs" />
+    <Compile Include="Models\MCashRegister.cs" />
     <Compile Include="Models\MCustomer.cs" />
     <Compile Include="Models\MGlobalVariables.cs" />
     <Compile Include="Models\MInventory.cs" />
@@ -366,6 +466,7 @@
     <Compile Include="Models\MOrder.cs" />
     <Compile Include="Models\MOrderItem.cs" />
     <Compile Include="Models\MParameter.cs" />
+    <Compile Include="Models\MPayment.cs" />
     <Compile Include="Models\MProduct.cs" />
     <Compile Include="Models\MRole.cs" />
     <Compile Include="Models\MStatus.cs" />
@@ -374,6 +475,11 @@
     <Compile Include="Models\MTypeIdentification.cs" />
     <Compile Include="Models\MUnit.cs" />
     <Compile Include="Models\MUser.cs" />
+    <Compile Include="Models\Reports\MReportAccountReceivable.cs" />
+    <Compile Include="Models\Reports\MReports.cs" />
+    <Compile Include="Models\Reports\MReportSales.cs" />
+    <Compile Include="Pdfs\PdfReports.cs" />
+    <Compile Include="Printer\Printing.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Controllers\SupplierController.cs" />
     <Compile Include="Security\CustomUserManager.cs" />
@@ -381,8 +487,11 @@
     <Compile Include="StartUp.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Reports\" />
+    <Folder Include="Pdfs\files\" />
+    <Folder Include="Views\BaseApi\" />
     <Folder Include="Views\InvoiceItem\" />
+    <Folder Include="Views\PrintESCPOS\" />
+    <Folder Include="Views\WebClientPrintAPI\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\BO_BusinessManagement\BO_BusinessManagement.csproj">

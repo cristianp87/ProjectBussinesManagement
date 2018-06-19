@@ -1,6 +1,6 @@
-﻿using Microsoft.AspNet.Identity;
+﻿using System.Threading.Tasks;
+using Microsoft.AspNet.Identity;
 using Project_BusinessManagement.Models;
-using System.Threading.Tasks;
 
 namespace Project_BusinessManagement.Security
 {
@@ -15,18 +15,17 @@ namespace Project_BusinessManagement.Security
 
         public async Task<MUser> FindUserAsync(string pUserName, string pPassword)
         {
-            MUser lUser = new MUser();
-            lUser = await FindByNameAsync(pUserName);
-            if (lUser != null)
+            var lUser = await this.FindByNameAsync(pUserName);
+            if (lUser == null)
             {
-                PasswordVerificationResult result = PasswordHasher.VerifyHashedPassword(lUser.LPasswordHash, pPassword);
-                if (result == PasswordVerificationResult.Success)
-                {
-                    return lUser;
-                }
                 return null;
             }
-            return lUser;
+            var result = this.PasswordHasher.VerifyHashedPassword(lUser.LPasswordHash, pPassword);
+            if (result == PasswordVerificationResult.Success)
+            {
+                return lUser;
+            }
+            return null;
         }
     }
 
@@ -35,10 +34,5 @@ namespace Project_BusinessManagement.Security
     /// </summary> 
     public class OldSystemPasswordHasher : PasswordHasher
     {
-        public override string HashPassword(string password)
-        {
-            return base.HashPassword(password);
-        }
-
     }
 }

@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using BO_BusinessManagement;
 using IBusiness.Common;
 
@@ -11,9 +7,9 @@ namespace IBusiness.Management
     public interface ISupplier : IFacade
     {
         #region Methods
-        Bo_Supplier bll_GetSupplierById(int pIdSupplier);
+        BoSupplier bll_GetSupplierById(int pIdSupplier);
 
-        List<Bo_Supplier> bll_GetAllSupplier();
+        List<BoSupplier> bll_GetAllSupplier();
 
         string bll_InsertSupplier(string pNameSupplier,
             string pNoIdentification,

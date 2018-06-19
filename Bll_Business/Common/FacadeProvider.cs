@@ -1,13 +1,8 @@
 ﻿using System;
 using System.Collections.Concurrent;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using IBusiness.Common;
 using IBusiness.Management;
 using Unity;
-using Microsoft.Practices.Unity;
 
 namespace Bll_Business.Common
 {
@@ -38,12 +33,15 @@ namespace Bll_Business.Common
             UnityContainer.RegisterType<ITaxe, BllTaxe>();
             UnityContainer.RegisterType<ITypeIdentification, BllTypeIdentification>();
             UnityContainer.RegisterType<IBusinessUser, BllUser>();
-            UnityContainer.RegisterType<IUtilsLib, BllUtilsLib>();           
+            UnityContainer.RegisterType<IUtilsLib, BllUtilsLib>();
+            UnityContainer.RegisterType<IPayment, BllPayment>();
+            UnityContainer.RegisterType<IReports, BllReports>();
+            UnityContainer.RegisterType<ICashRegister, BllCashRegister>();
             this.myFacadesInstances = new ConcurrentDictionary<Type, IFacade>();
         }
 
         #endregion
-        public T Resolver<T>() where T : IFacade
+        public T Resolv<T>() where T : IFacade
         {
             if (this.myFacadesInstances.ContainsKey(typeof (T)))
             {

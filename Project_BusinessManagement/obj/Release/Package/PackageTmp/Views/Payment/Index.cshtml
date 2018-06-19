@@ -1,0 +1,70 @@
+﻿@model IEnumerable<Project_BusinessManagement.Models.MPayment>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Abonos</h2>
+@if (!string.IsNullOrEmpty(ViewData["MsgCompleted"].ToString()))
+{
+    <div class="alert alert-success">
+        <strong></strong> @ViewData["MsgCompleted"]
+    </div>
+}
+<p>
+    @Html.ActionLink("Nuevo Pago", "Create", new { pIdOrder = ViewData["LIdOrder"], pValueOrder = ViewData["ValueOrder"] })
+</p>
+<div class="form-horizontal">
+    <div class="form-group">
+        @Html.Label("Valor Total", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.Label(ViewData["ValueOrder"].ToString(), htmlAttributes: new { @class = "control-label col-md-2" })
+        </div>
+    </div>
+</div>
+<div class="table-responsive">
+    <table class="tablesorter">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.LIdPayment)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.LValuePayment)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.LCreationDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.LModificationDate)
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.LIdPayment)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.LValuePayment)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.LCreationDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.LModificationDate)
+                </td>
+                <td>
+                    @Html.ActionLink("Delete", "Delete", new { id = item.LIdPayment, pValueOrder = ViewData["ValueOrder"] })
+                </td>
+            </tr>
+        }
+    </table>
+ </div>
+    @Html.Partial("~/Views/Shared/_Pagination.cshtml")
+    <h2>
+        <label class="label-info">Saldo: </label>
+        @Html.Label(ViewData["Total"].ToString(), htmlAttributes: new { @class = "label-success control-label", id = "lblTotalizador" })
+    </h2>

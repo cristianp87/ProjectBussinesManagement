@@ -2,7 +2,6 @@
 using Dao_BussinessManagement;
 using IBusiness.Management;
 using System.Collections.Generic;
-using System.Data.SqlClient;
 using IDaoBusiness.Business;
 
 namespace Bll_Business
@@ -15,28 +14,28 @@ namespace Bll_Business
         {
             this.LiCustomer = new DaoCustomer();
         }
-        public Bo_Customer bll_GetCustomerById(int pIdCustomer)
+        public BoCustomer bll_GetCustomerById(int pIdCustomer)
         {
             return this.LiCustomer.Dao_getCustomerById(pIdCustomer);
         }
 
-        public Bo_Customer bll_GetCustomerByIdentification(string pNoIdentification, int pIdTypeIdentification)
+        public BoCustomer bll_GetCustomerByIdentification(string pNoIdentification, int pIdTypeIdentification)
         {
             return this.LiCustomer.Dao_getCustomerByDocument(pNoIdentification, pIdTypeIdentification);
         }
 
-        public List<Bo_Customer> bll_GetAllCustomer()
+        public List<BoCustomer> bll_GetAllCustomer()
         {
             return this.LiCustomer.Dao_getListAllCustomer();
         }
 
         public string bll_InsertCustomer(string pNameCustomer, string pLastNameCustomer, string pNoIdentification, int pIdTypeIdentification, int pIdObject, string pIdStatus)
         {
-            var oCustomer = new Bo_Customer
+            var oCustomer = new BoCustomer
             {
-                LObject = new Bo_Object {LIdObject = pIdObject},
-                LStatus = new Bo_Status {LIdStatus = pIdStatus},
-                LTypeIdentification = new Bo_TypeIdentification {LIdTypeIdentification = pIdTypeIdentification},
+                LObject = new BoObject {LIdObject = pIdObject},
+                LStatus = new BoStatus {LIdStatus = pIdStatus},
+                LTypeIdentification = new BoTypeIdentification {LIdTypeIdentification = pIdTypeIdentification},
                 LNameCustomer = pNameCustomer,
                 LLastNameCustomer = pLastNameCustomer,
                 LNoIdentification = pNoIdentification
@@ -46,11 +45,11 @@ namespace Bll_Business
 
         public string bll_UpdateCustomer(int pIdCustomer, string pNameCustomer, string pLastNameCustomer, string pNoIdentification, int pIdTypeIdentification, int pIdObject, string pIdStatus)
         {
-            var oCustomer = new Bo_Customer
+            var oCustomer = new BoCustomer
             {
-                LObject = new Bo_Object {LIdObject = pIdObject},
-                LStatus = new Bo_Status {LIdStatus = pIdStatus},
-                LTypeIdentification = new Bo_TypeIdentification {LIdTypeIdentification = pIdTypeIdentification},
+                LObject = new BoObject {LIdObject = pIdObject},
+                LStatus = new BoStatus {LIdStatus = pIdStatus},
+                LTypeIdentification = new BoTypeIdentification {LIdTypeIdentification = pIdTypeIdentification},
                 LIdCustomer = pIdCustomer,
                 LNameCustomer = pNameCustomer,
                 LLastNameCustomer = pLastNameCustomer,
@@ -61,7 +60,7 @@ namespace Bll_Business
 
         public string bll_DeleteCustomer(int pIdCustomer)
         {
-            var oCustomer = new Bo_Customer {LIdCustomer = pIdCustomer};
+            var oCustomer = new BoCustomer {LIdCustomer = pIdCustomer};
             return this.LiCustomer.Dao_DeleteCustomer(oCustomer);
         }      
     }

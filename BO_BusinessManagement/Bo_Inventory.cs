@@ -3,91 +3,18 @@ using System.Collections.Generic;
 
 namespace BO_BusinessManagement
 {
-    public class Bo_Inventory: Bo_Exception
+    public class BoInventory: BoException
     {
-        private int lIdInventory;
-        private string lNameInventory;
-        private DateTime lCreationDate;
-        private Bo_Status lStatus;
-        private Bo_Object lObject;
-        private List<Bo_InventoryItem> lListInventoryItem = null;
+        public int LIdInventory { get; set; }
 
-        public int LIdInventory
-        {
-            get
-            {
-                return lIdInventory;
-            }
+        public string LNameInventory { get; set; }
 
-            set
-            {
-                lIdInventory = value;
-            }
-        }
+        public DateTime LCreationDate { get; set; }
 
-        public string LNameInventory
-        {
-            get
-            {
-                return lNameInventory;
-            }
+        public BoStatus LStatus { get; set; }
 
-            set
-            {
-                lNameInventory = value;
-            }
-        }
+        public BoObject LObject { get; set; }
 
-        public DateTime LCreationDate
-        {
-            get
-            {
-                return lCreationDate;
-            }
-
-            set
-            {
-                lCreationDate = value;
-            }
-        }
-
-        public Bo_Status LStatus
-        {
-            get
-            {
-                return lStatus;
-            }
-
-            set
-            {
-                lStatus = value;
-            }
-        }
-
-        public Bo_Object LObject
-        {
-            get
-            {
-                return lObject;
-            }
-
-            set
-            {
-                lObject = value;
-            }
-        }
-
-        public List<Bo_InventoryItem> LListInventoryItem
-        {
-            get
-            {
-                return lListInventoryItem;
-            }
-
-            set
-            {
-                lListInventoryItem = value;
-            }
-        }
+        public List<BoInventoryItem> LListInventoryItem { get; set; } = null;
     }
 }

@@ -7,19 +7,24 @@ namespace Bll_Business
 {
     public class BllUtilsLib : IUtilsLib
     {
-        public Bo_Object bll_GetObjectByName(string pNameObject)
+        public BoObject bll_GetObjectByName(string pNameObject)
         {
-            return Dao_UtilsLib.DaoUtilsLib_getObject(pNameObject);
+            return DaoUtilsLib.DaoUtilsLib_getObject(pNameObject);
         }
 
-        public List<Bo_Unit> bll_GetAllUnit()
+        public List<BoUnit> bll_GetAllUnit()
         {
-            return Dao_UtilsLib.DaoUtilsLib_getAllUnit();
+            return DaoUtilsLib.DaoUtilsLib_getAllUnit();
         }
 
-        public Bo_Status bll_getStatusApproByObject(int pIdObject)
+        public BoStatus bll_getStatusApproByObject(int pIdObject)
         {
-            return Dao_UtilsLib.DaoUtilsLib_getStatusAppro(pIdObject);
+            return DaoUtilsLib.DaoUtilsLib_getStatusAppro(pIdObject);
+        }
+
+        public BoStatus bll_getStatusInProByObject(int pIdObject)
+        {
+            return DaoUtilsLib.DaoUtilsLib_getStatusInPro(pIdObject);
         }
 
         /// <summary>
@@ -30,7 +35,7 @@ namespace Bll_Business
         /// <returns></returns>
         public string bll_GetValueParameter(string pNameParameter, string pNameParentParameter)
         {
-            return Dao_UtilsLib.DaoUtilsLib_getParameterValueConfiguration(pNameParameter, pNameParentParameter);
+            return DaoUtilsLib.DaoUtilsLib_getParameterValueConfiguration(pNameParameter, pNameParentParameter);
         }
 
         /// <summary>
@@ -41,7 +46,7 @@ namespace Bll_Business
         /// <returns></returns>
         public string bll_GetValueParameter(string pNameParameter, bool pActive)
         {
-            return Dao_UtilsLib.DaoUtilsLib_getParameterConfigurationActive(pNameParameter, pActive);
+            return DaoUtilsLib.DaoUtilsLib_getParameterConfigurationActive(pNameParameter, pActive);
         }
     }
 }

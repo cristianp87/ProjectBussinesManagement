@@ -1,62 +1,13 @@
 ﻿namespace BO_BusinessManagement
 {
-    public class Bo_Unit : Bo_Exception
+    public class BoUnit : BoException
     {
-        private int lIdUnit;
-        private string lNameUnit;
-        private string lCdUnit;
-        private bool lFlActive;
+        public int LIdUnit { get; set; }
 
-        public int LIdUnit
-        {
-            get
-            {
-                return lIdUnit;
-            }
+        public string LNameUnit { get; set; }
 
-            set
-            {
-                lIdUnit = value;
-            }
-        }
+        public string LCdUnit { get; set; }
 
-        public string LNameUnit
-        {
-            get
-            {
-                return lNameUnit;
-            }
-
-            set
-            {
-                lNameUnit = value;
-            }
-        }
-
-        public string LCdUnit
-        {
-            get
-            {
-                return lCdUnit;
-            }
-
-            set
-            {
-                lCdUnit = value;
-            }
-        }
-
-        public bool LFlActive
-        {
-            get
-            {
-                return lFlActive;
-            }
-
-            set
-            {
-                lFlActive = value;
-            }
-        }
+        public bool LFlActive { get; set; }
     }
 }

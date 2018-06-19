@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using BO_BusinessManagement;
 using IBusiness.Common;
 
@@ -10,9 +6,9 @@ namespace IBusiness.Management
 {
     public interface IInventoryItem : IFacade
     {
-        List<Bo_InventoryItem> bll_GetInventoryItemsByIdInventory(int pIdInventory);
+        List<BoInventoryItem> bll_GetInventoryItemsByIdInventory(int pIdInventory);
 
-        Bo_InventoryItem bll_GetInventoryItemById(int pIdInventoryItem);
+        BoInventoryItem bll_GetInventoryItemById(int pIdInventoryItem);
 
         string bll_InsertInventoryItem(int pIdInventory,
             int pIdProduct,
@@ -27,10 +23,10 @@ namespace IBusiness.Management
             decimal pQtySellable,
             decimal pQtyNonSellable,
             int pIdObject,
-            string pIdStatus);
+            string pIdStatus);  
 
         string bll_DeleteInventoryItem(int pIdInventoryItem);
 
-        string bll_SubstractInventoryItem(Bo_OrderItem pOrderItem, int lIdInventory);
+        string bll_SubstractInventoryItem(BoOrderItem pOrderItem, int lIdInventory);
     }
 }

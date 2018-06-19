@@ -4,8 +4,9 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.Globalization;
+using BO_BusinessManagement.Enums;
 using IDaoBusiness.Business;
-using static Dao_BussinessManagement.Dao_UtilsLib;
+using static Dao_BussinessManagement.DaoUtilsLib;
 
 namespace Dao_BussinessManagement
 {
@@ -13,11 +14,11 @@ namespace Dao_BussinessManagement
     {
         List<SqlParameter> LListParam { get; set; }
 
-        public List<Bo_InvoiceItem> Dao_getInvoiceItemByIdInvoice(int pIdInvoice)
+        public List<BoInvoiceItem> Dao_getInvoiceItemByIdInvoice(int pIdInvoice)
         {
             using (SqlConnection lConex = Dao_SqlConnection(lConex))
             {
-                var lListInvoiceItem = new List<Bo_InvoiceItem>();
+                var lListInvoiceItem = new List<BoInvoiceItem>();
                 try
                 {
                     var lCommand = new SqlCommand
@@ -34,15 +35,16 @@ namespace Dao_BussinessManagement
                     {
                         while (lReader.Read())
                         {
-                            var lInvoiceItem = new Bo_InvoiceItem
+                            var lInvoiceItem = new BoInvoiceItem
                             {
-                                LStatus = new Bo_Status {LIdStatus = lReader["IdStatus"].ToString()},
-                                LObject = new Bo_Object {LIdObject = Convert.ToInt32(lReader["IdObject"].ToString())},
+                                LStatus = new BoStatus {LIdStatus = lReader["IdStatus"].ToString()},
+                                LObject = new BoObject {LIdObject = Convert.ToInt32(lReader["IdObject"].ToString())},
                                 LProduct =
-                                    new Bo_Product
+                                    new BoProduct
                                     {
                                         LIdProduct = Convert.ToInt32(lReader["IdProduct"].ToString()),
-                                        LNameProduct = lReader["NameProduct"].ToString()
+                                        LNameProduct = lReader["NameProduct"].ToString(),
+                                        LCdProduct = lReader["CdProduct"].ToString()
                                     },
                                 LIdInvoiceItem = Convert.ToInt32(lReader["IdInvoiceItem"].ToString()),
                                 LIdInvoice = Convert.ToInt32(lReader["IdInvoice"].ToString()),
@@ -60,8 +62,8 @@ namespace Dao_BussinessManagement
                 }
                 catch (Exception e)
                 {
-                    lListInvoiceItem = new List<Bo_InvoiceItem>();
-                    var lInvoiceItem = new Bo_InvoiceItem {LException = e.Message, LMessageDao = "Hubo un problema en la consulta, contacte al administrador."
+                    lListInvoiceItem = new List<BoInvoiceItem>();
+                    var lInvoiceItem = new BoInvoiceItem {LException = e.Message, LMessageDao = BoErrors.MsgErrorGetSql
                 };
                     if (e.InnerException != null)
                         lInvoiceItem.LInnerException = e.InnerException.ToString();
@@ -72,7 +74,7 @@ namespace Dao_BussinessManagement
             }
         }
 
-        public string Dao_InsertInvoiceItem(Bo_InvoiceItem pInvoiceItem)
+        public string Dao_InsertInvoiceItem(BoInvoiceItem pInvoiceItem)
         {
             this.LListParam = new List<SqlParameter>();
             dao_Addparameters(this.LListParam, SqlDbType.Int, "@IdInvoice", pInvoiceItem.LIdInvoice.ToString());
@@ -88,7 +90,7 @@ namespace Dao_BussinessManagement
             return Dao_executeSqlTransactionWithProcedement(this.LListParam, "LTranInsertInvoiceItem", "spr_CreateInvoiceItem");
         }
 
-        public string Dao_UpdateInvoiceIem(Bo_InvoiceItem pInvoiceItem)
+        public string Dao_UpdateInvoiceIem(BoInvoiceItem pInvoiceItem)
         {
             this.LListParam = new List<SqlParameter>();
             dao_Addparameters(this.LListParam, SqlDbType.Int, "@IdInvoiceItem", pInvoiceItem.LIdInvoiceItem.ToString());
@@ -97,7 +99,7 @@ namespace Dao_BussinessManagement
             return Dao_executeSqlTransactionWithProcedement(this.LListParam, "LTranUpdateInvoiceItem", "spr_UpdateInvoiceItem");
         }
 
-        public string Dao_DeleteInvoiceItem(Bo_InvoiceItem pInvoiceItem)
+        public string Dao_DeleteInvoiceItem(BoInvoiceItem pInvoiceItem)
         {
             this.LListParam = new List<SqlParameter>();
             dao_Addparameters(this.LListParam, SqlDbType.Int, "@IdInvoiceItem", pInvoiceItem.LIdInvoiceItem.ToString());

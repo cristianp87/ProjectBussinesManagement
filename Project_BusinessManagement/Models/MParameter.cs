@@ -8,7 +8,7 @@ namespace Project_BusinessManagement.Models
         #region Variables and constants
 
         public static IUtilsLib LiUtilsLib =
-        FacadeProvider.Resolver<IUtilsLib>();
+        FacadeProvider.Resolv<IUtilsLib>();
         #endregion
         string myLResult;
         bool myLBool;
@@ -209,6 +209,15 @@ namespace Project_BusinessManagement.Models
             get
             {
                 this.myLResult = LiUtilsLib.bll_GetValueParameter("moduleInvoice", true);
+                return bool.TryParse(this.myLResult, out this.myLBool) ? this.myLBool : this.myLBool;
+            }
+        }
+
+        public bool LIsModuleOrder
+        {
+            get
+            {
+                this.myLResult = LiUtilsLib.bll_GetValueParameter("moduleOrder", true);
                 return bool.TryParse(this.myLResult, out this.myLBool) ? this.myLBool : this.myLBool;
             }
         }

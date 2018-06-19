@@ -1,51 +1,65 @@
-﻿using BO_BusinessManagement;
-using Project_BusinessManagement.Filters;
-using Project_BusinessManagement.Models;
-using System;
+﻿using System;
 using System.Web.Mvc;
+using BO_BusinessManagement;
 using IBusiness.Common;
 using IBusiness.Management;
+using Project_BusinessManagement.Filters;
+using Project_BusinessManagement.Models;
+using Project_BusinessManagement.Models.Mappers;
+using Project_BusinessManagement.Models.Enums;
+using System.Linq;
+using Project_BusinessManagement.Extensibles;
 
 namespace Project_BusinessManagement.Controllers
 {
-    [Authorize(Roles = "Administrador, Cajero")]
-    [ConfigurationApp(pParameter: "IsRealizeOrder")]
-    public class OrderController : Controller
+    [Authorize(Roles = EGlobalVariables.LRoleAdmin + EGlobalVariables.LQuote + EGlobalVariables.LRoleEmp1)]
+    [ConfigurationApp(EGlobalVariables.LIsRealizeOrder)]
+    public class OrderController : BaseApiController
     {
         #region Variables and Constants
 
         public ICustomer LCustomerFacade =
-        FacadeProvider.Resolver<ICustomer>();
+        FacadeProvider.Resolv<ICustomer>();
 
         public IInventory LInventory =
-        FacadeProvider.Resolver<IInventory>();
+        FacadeProvider.Resolv<IInventory>();
 
         public readonly MParameter LParameter = new MParameter();
 
         public IOrder LOrder =
-        FacadeProvider.Resolver<IOrder>();
+        FacadeProvider.Resolv<IOrder>();
 
         public IInvoiceItem LInvoiceItem =
-        FacadeProvider.Resolver<IInvoiceItem>();
+        FacadeProvider.Resolv<IInvoiceItem>();
 
         public IInvoice LInvoice =
-        FacadeProvider.Resolver<IInvoice>();
+        FacadeProvider.Resolv<IInvoice>();
 
         public IProduct LiProduct =
-        FacadeProvider.Resolver<IProduct>();
+        FacadeProvider.Resolv<IProduct>();
 
         public ITypeIdentification LiTypeIdentification=
-        FacadeProvider.Resolver<ITypeIdentification>();
+        FacadeProvider.Resolv<ITypeIdentification>();
 
         public IUtilsLib LiUtilsLib =
-        FacadeProvider.Resolver<IUtilsLib>();
+        FacadeProvider.Resolv<IUtilsLib>();
         #endregion
 
         // GET: Order
         public ActionResult Index(int pIdCustomer)
         {
             var lListOrder = this.LOrder.bll_GetListOrderByCustomer(pIdCustomer);
-            return this.View(MOrder.MListOrder(lListOrder));
+            return this.View(lListOrder.MListOrder());
+        }
+
+        [HttpPost]
+        public ActionResult Index(int pIdCustomer, string pSearchName)
+        {
+            var lListOrder = this.LOrder.bll_GetListOrderByCustomer(pIdCustomer);
+            if (string.IsNullOrEmpty(pSearchName))
+                return this.View(lListOrder.MListOrder());
+            lListOrder = lListOrder.Where(s => s.LInventory.LNameInventory.ToUpper().Contains(pSearchName.ToUpper())).ToList();
+            return this.View(lListOrder.MListOrder());
         }
 
         // GET: Order
@@ -61,83 +75,71 @@ namespace Project_BusinessManagement.Controllers
             if (lCustomer.LException != null)
             {
 
-                return this.Json(new { Success = false, Message = "ErrorDao! " + lCustomer.LMessageDao + " " + lCustomer.LException });
-            }else if (lCustomer.LNameCustomer != null)
+                return this.Json(new { Success = false, Message = CodesError.LMsgErroDao + lCustomer.LMessageDao + EMessages.LSpace + lCustomer.LException });
+            }
+            if (lCustomer.LNameCustomer != null && lCustomer.LStatus.LIdStatus.ValidateStatus())
             {
                 return this.Json(new { Success = true, Content = lCustomer });
             }
-            else
-            {
-                return this.Json(new { Success = false, Message = "El cliente no existe en la base de datos." });
-            }
+            return this.Json(new { Success = false, Message = CodesError.LMsgClientDontExists });
         }
 
         [HttpPost]
         public JsonResult GetInventory()
         {
-            var lListBoInventory = this.LInventory.bll_GetAllInventory();
-            return this.Json(MInventory.MListInventory(lListBoInventory));
+            var lListInventory = this.LInventory.bll_GetAllInventory().Where(x => x.LStatus.LIdStatus.ValidateStatus()).ToList();
+            return this.Json(lListInventory.MListInventory());
         }
 
         [HttpPost]
         public JsonResult GetTypeIdentification()
         {
             var lListTypeIdentification = this.LiTypeIdentification.bll_getListTypeIdentification();
-            return this.Json(MTypeIdentification.MListAllTypeIdentification(lListTypeIdentification));
+            return this.Json(lListTypeIdentification.MListAllTypeIdentification());
         }
 
         [HttpPost]
-        public JsonResult GetOrderItem(int idProduct)
+        public JsonResult GetOrderItem(string cdProduct)
         {
             try
             {
-                var lProduct = this.LiProduct.bll_GetProductById(idProduct);
-                if(lProduct.LException != null)
-                {                   
-                    return this.Json(new { Success = false, Message = "ErrorDao! " + lProduct.LMessageDao + " " + lProduct.LException});
-                }
-                return lProduct.LCdProduct != null ? this.Json(new { Success = true, Content = MProduct.MProductById(lProduct) }) : this.Json(new { Success = false, Message = "El Producto no existe en la base de datos." });
+                var lProduct = this.LiProduct.bll_GetProductByCode(cdProduct);
+                if (!lProduct.LStatus.LIdStatus.ValidateStatus())
+                    lProduct = new BoProduct();
+                if(lProduct.LException != null)                  
+                    return this.Json(new { Success = false, Message = CodesError.LMsgErroDao + lProduct.LMessageDao + EMessages.LSpace + lProduct.LException});
+                return lProduct.LCdProduct != null ? this.Json(new { Success = true, Content = lProduct.MProductById() }) : this.Json(new { Success = false, Message = CodesError.LMsgProductDontExists });
             }catch(Exception e)
             {
-                return this.Json(new { Success = false, Message = "Error! " + e.Message });
-            }
-            
-            
+                return this.Json(new { Success = false, Message = CodesError.LMsgError + e.Message });
+            }          
         }
-
         
-
-        [ConfigurationApp(pParameter: "CreateOrder")]
-        // GET: Order/Create
-        public ActionResult Create()
-        {
-            return this.View();
-        }
 
         // POST: Order/Create
         [HttpPost]
-        public JsonResult Create(Bo_Order pOrder)
+        public JsonResult Create(BoOrder pOrder)
         {
             try
             {                      
                 var lResult = this.LOrder.bll_InsertOrder(pOrder.LInventory.LIdInventory, pOrder.LCustomer.LIdCustomer, this.LiUtilsLib.bll_GetObjectByName(MGlobalVariables.LNameObjectOrder).LIdObject, this.LiUtilsLib.bll_getStatusApproByObject(this.LiUtilsLib.bll_GetObjectByName(MGlobalVariables.LNameObjectOrder).LIdObject).LIdStatus, pOrder.LListOrderItem, this.LParameter.LIsModuleInventory, this.LiUtilsLib.bll_GetObjectByName(MGlobalVariables.LNameObjectOrderItem).LIdObject, this.LiUtilsLib.bll_getStatusApproByObject(this.LiUtilsLib.bll_GetObjectByName(MGlobalVariables.LNameObjectOrderItem).LIdObject).LIdStatus);
-                var lIdOrder = 0;
+                int lIdOrder;
                 if(int.TryParse(lResult, out lIdOrder))
                 {
-                    var lIdInvoice = 0;
+                    int lIdInvoice;
                     var lListInvoiceItem = this.LInvoiceItem.bll_ChangeOrderItemToInvoiceItem(pOrder.LListOrderItem, this.LiUtilsLib.bll_GetObjectByName(MGlobalVariables.LNameObjectInvoiceItem));
                     lResult = this.LInvoice.bll_InsertInvoiceAll(pOrder.LCustomer.LIdCustomer, lIdOrder, this.LiUtilsLib.bll_GetObjectByName(MGlobalVariables.LNameObjectInvoice).LIdObject, lListInvoiceItem);
                     return int.TryParse(lResult, out lIdInvoice) ? this.Json(new { Success = true, Content = lIdInvoice }) : this.Json(new { Success = false, Content = lResult });
                 }
-                else
-                {
-                    return this.Json(new { Success = false, Content = lResult });
-                }                
+                
+                return this.Json(new { Success = false, Content = lResult });
             }
             catch (Exception e)
             {
-                return this.Json(new { Success = false, Message = "Error! " + e.Message });
+                return this.Json(new { Success = false, Message = CodesError.LMsgError + e.Message });
             }
-        }      
+        }
+
+
     }
 }

@@ -2,3 +2,6 @@
 BO_BusinessManagement/obj/Debug/BO_BusinessManagement.csprojResolveAssemblyReference.cache
 Project_BusinessManagement/bin/Project_BusinessManagement.pdb
 Project_BusinessManagement/obj/Debug/Project_BusinessManagement.pdb
+*.dll
+Project_BusinessManagement/bin/Bll_Business.pdb
+Project_BusinessManagement/Bin/Project_BusinessManagement.dll

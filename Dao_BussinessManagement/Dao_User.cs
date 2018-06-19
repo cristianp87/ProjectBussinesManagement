@@ -4,8 +4,9 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.Globalization;
+using BO_BusinessManagement.Enums;
 using IDaoBusiness.Business;
-using static Dao_BussinessManagement.Dao_UtilsLib;
+using static Dao_BussinessManagement.DaoUtilsLib;
 
 
 namespace Dao_BussinessManagement
@@ -14,11 +15,11 @@ namespace Dao_BussinessManagement
     {
         private List<SqlParameter> LListParam { get; set; }
 
-        public Bo_User Dao_getUserByUser(string pUser)
+        public BoUser Dao_getUserByUser(string pUser)
         {
             using (SqlConnection lConex = Dao_SqlConnection(lConex))
             {
-                var lUser = new Bo_User();
+                var lUser = new BoUser();
                 try
                 {
                     var lCommand = new SqlCommand
@@ -38,13 +39,13 @@ namespace Dao_BussinessManagement
                         {                            
                             lUser.LIdUser = Convert.ToInt32(lReader["IdUser"].ToString());
                             lUser.LUser = lReader["Usuario"].ToString();
-                            lUser.LFNameUser = lReader["FName"].ToString();
-                            lUser.LSNameUser = lReader["SName"].ToString();
+                            lUser.LfNameUser = lReader["FName"].ToString();
+                            lUser.LsNameUser = lReader["SName"].ToString();
                             lUser.LPassword = lReader["PasswordHash"].ToString();
-                            lUser.LStatus = new Bo_Status {LIdStatus = lReader["IdStatus"].ToString()};
-                            lUser.LFLastName = lReader["FLastName"].ToString();
+                            lUser.LStatus = new BoStatus {LIdStatus = lReader["IdStatus"].ToString()};
+                            lUser.LfLastName = lReader["FLastName"].ToString();
                             lUser.LEmail = lReader["Email"].ToString();
-                            lUser.LObject = new Bo_Object {LIdObject = Convert.ToInt32(lReader["IdObject"].ToString())};
+                            lUser.LObject = new BoObject {LIdObject = Convert.ToInt32(lReader["IdObject"].ToString())};
                         }
                     }
                     Dao_CloseSqlconnection(lConex);
@@ -52,11 +53,11 @@ namespace Dao_BussinessManagement
                 }
                 catch (Exception e)
                 {
-                    lUser = new Bo_User
+                    lUser = new BoUser
                     {
                         LException = e.Message,
-                        LMessageDao = "Hubo un problema en la consulta, contacte al administrador."
-                    };
+                        LMessageDao = BoErrors.MsgErrorGetSql
+                };
                     if (e.InnerException != null)
                         lUser.LInnerException = e.InnerException.ToString();                   
                     Dao_CloseSqlconnection(lConex);
@@ -65,11 +66,11 @@ namespace Dao_BussinessManagement
             }
         }
 
-        public Bo_User Dao_getUserById(int pIdUser)
+        public BoUser Dao_getUserById(int pIdUser)
         {
             using (SqlConnection lConex = Dao_SqlConnection(lConex))
             {
-                var lUser = new Bo_User();
+                var lUser = new BoUser();
                 try
                 {
                     var lCommand = new SqlCommand
@@ -91,13 +92,13 @@ namespace Dao_BussinessManagement
                             
                             lUser.LIdUser = Convert.ToInt32(lReader["IdUser"].ToString());
                             lUser.LUser = lReader["Usuario"].ToString();
-                            lUser.LFNameUser = lReader["FName"].ToString();
-                            lUser.LSNameUser = lReader["SName"].ToString();
+                            lUser.LfNameUser = lReader["FName"].ToString();
+                            lUser.LsNameUser = lReader["SName"].ToString();
                             lUser.LPassword = lReader["PasswordHash"].ToString();
-                            lUser.LStatus = new Bo_Status {LIdStatus = lReader["IdStatus"].ToString()};
-                            lUser.LFLastName = lReader["FLastName"].ToString();
+                            lUser.LStatus = new BoStatus {LIdStatus = lReader["IdStatus"].ToString()};
+                            lUser.LfLastName = lReader["FLastName"].ToString();
                             lUser.LEmail = lReader["Email"].ToString();
-                            lUser.LObject = new Bo_Object {LIdObject = Convert.ToInt32(lReader["IdObject"].ToString())};
+                            lUser.LObject = new BoObject {LIdObject = Convert.ToInt32(lReader["IdObject"].ToString())};
                         }
                     }
                     Dao_CloseSqlconnection(lConex);
@@ -105,11 +106,11 @@ namespace Dao_BussinessManagement
                 }
                 catch (Exception e)
                 {
-                    lUser = new Bo_User
+                    lUser = new BoUser
                     {
                         LException = e.Message,
-                        LMessageDao = "Hubo un problema en la consulta, contacte al administrador."
-                    };
+                        LMessageDao = BoErrors.MsgErrorGetSql
+                };
                     if (e.InnerException != null)
                         lUser.LInnerException = e.InnerException.ToString();                   
                     Dao_CloseSqlconnection(lConex);
@@ -120,15 +121,15 @@ namespace Dao_BussinessManagement
 
 
 
-        public string Dao_InsertUser(Bo_User pUser)
+        public string Dao_InsertUser(BoUser pUser)
         {
             this.LListParam = new List<SqlParameter>();
             dao_Addparameters(this.LListParam, SqlDbType.Int, "@IdTypeIdentification", pUser.LTypeIdentification.LIdTypeIdentification.ToString());
             dao_Addparameters(this.LListParam, SqlDbType.VarChar, "@NoIdentification", pUser.LNoIdentification);
-            dao_Addparameters(this.LListParam, SqlDbType.VarChar, "@FName", pUser.LFNameUser);
-            dao_Addparameters(this.LListParam, SqlDbType.VarChar, "@SName", pUser.LSNameUser);
-            dao_Addparameters(this.LListParam, SqlDbType.VarChar, "@FLastName", pUser.LFLastName);
-            dao_Addparameters(this.LListParam, SqlDbType.VarChar, "@SLastName", pUser.LSLastName);
+            dao_Addparameters(this.LListParam, SqlDbType.VarChar, "@FName", pUser.LfNameUser);
+            dao_Addparameters(this.LListParam, SqlDbType.VarChar, "@SName", pUser.LsNameUser);
+            dao_Addparameters(this.LListParam, SqlDbType.VarChar, "@FLastName", pUser.LfLastName);
+            dao_Addparameters(this.LListParam, SqlDbType.VarChar, "@SLastName", pUser.LsLastName);
             dao_Addparameters(this.LListParam, SqlDbType.Int, "@IdObject", pUser.LObject.LIdObject.ToString());
             dao_Addparameters(this.LListParam, SqlDbType.DateTime, "@BirthDate", pUser.LBirthDate.ToString(CultureInfo.CurrentCulture));
             dao_Addparameters(this.LListParam, SqlDbType.VarChar, "@User", pUser.LUser);

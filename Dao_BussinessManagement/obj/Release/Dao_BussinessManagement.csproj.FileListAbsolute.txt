@@ -6,3 +6,5 @@ C:\Users\CristianPc\Documents\Projects\ProjectBussinesManagement\Dao_BussinessMa
 C:\Users\CristianPc\Documents\Projects\ProjectBussinesManagement\Dao_BussinessManagement\obj\Release\Dao_BussinessManagement.csprojResolveAssemblyReference.cache
 C:\Users\CristianPc\Documents\Projects\ProjectBussinesManagement\Dao_BussinessManagement\obj\Release\Dao_BussinessManagement.dll
 C:\Users\CristianPc\Documents\Projects\ProjectBussinesManagement\Dao_BussinessManagement\obj\Release\Dao_BussinessManagement.pdb
+C:\Users\CristianPc\Documents\Projects\ProjectBussinesManagement\Dao_BussinessManagement\bin\Release\IDaoBusiness.dll
+C:\Users\CristianPc\Documents\Projects\ProjectBussinesManagement\Dao_BussinessManagement\bin\Release\IDaoBusiness.pdb

@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using BO_BusinessManagement;
 using IBusiness.Common;
 
@@ -10,10 +6,10 @@ namespace IBusiness.Management
 {
     public interface IInvoiceItem : IFacade
     {
-        List<Bo_InvoiceItem> bll_GetInvoiceItemsByIdInvoice(int pIdInvoice);
+        List<BoInvoiceItem> bll_GetInvoiceItemsByIdInvoice(int pIdInvoice);
 
-        List<Bo_InvoiceItem> bll_ChangeOrderItemToInvoiceItem(List<Bo_OrderItem> lListOrderItem,
-            Bo_Object lObjectInvoice);
+        List<BoInvoiceItem> bll_ChangeOrderItemToInvoiceItem(List<BoOrderItem> lListOrderItem,
+            BoObject lObjectInvoice);
 
         string bll_InsertInvoiceItem(int pIdInvoice,
             decimal pQuantity,

@@ -1,6 +1,7 @@
 ﻿using BO_BusinessManagement;
 using Dao_BussinessManagement;
 using System.Collections.Generic;
+using BO_BusinessManagement.Enums;
 using IBusiness.Management;
 using IDaoBusiness.Business;
 
@@ -14,24 +15,24 @@ namespace Bll_Business
         {
             this.LiDaoInventoryItem = new DaoInventoryItem();
         }
-        public List<Bo_InventoryItem> bll_GetInventoryItemsByIdInventory(int pIdInventory)
+        public List<BoInventoryItem> bll_GetInventoryItemsByIdInventory(int pIdInventory)
         {
             return this.LiDaoInventoryItem.Dao_getListInventoryItemByIdInventory(pIdInventory);
         }
 
-        public Bo_InventoryItem bll_GetInventoryItemById(int pIdInventoryItem)
+        public BoInventoryItem bll_GetInventoryItemById(int pIdInventoryItem)
         {
             return this.LiDaoInventoryItem.Dao_getInventoryItemById(pIdInventoryItem);
         }
 
         public string bll_InsertInventoryItem(int pIdInventory, int pIdProduct, int pIdObject, string pIdStatus, decimal pQtySellable, decimal pQtyNonSellable)
         {
-            var oInventoryItem = new Bo_InventoryItem
+            var oInventoryItem = new BoInventoryItem
             {
-                LObject = new Bo_Object {LIdObject = pIdObject},
-                LStatus = new Bo_Status {LIdStatus = pIdStatus},
-                LProduct = new Bo_Product {LIdProduct = pIdProduct},
-                LInventory = new Bo_Inventory {LIdInventory = pIdInventory},
+                LObject = new BoObject {LIdObject = pIdObject},
+                LStatus = new BoStatus {LIdStatus = pIdStatus},
+                LProduct = new BoProduct {LIdProduct = pIdProduct},
+                LInventory = new BoInventory {LIdInventory = pIdInventory},
                 LQtyNonSellable = pQtyNonSellable,
                 LQtySellable = pQtySellable
             };
@@ -40,12 +41,12 @@ namespace Bll_Business
 
         public string bll_UpdateInventoryITem(int pIdInventoryItem, int pIdInventory, int pIdProduct, decimal pQtySellable, decimal pQtyNonSellable, int pIdObject, string pIdStatus)
         {
-            var oInventoryItem = new Bo_InventoryItem
+            var oInventoryItem = new BoInventoryItem
             {
-                LObject = new Bo_Object {LIdObject = pIdObject},
-                LStatus = new Bo_Status {LIdStatus = pIdStatus},
-                LProduct = new Bo_Product {LIdProduct = pIdProduct},
-                LInventory = new Bo_Inventory {LIdInventory = pIdInventory},
+                LObject = new BoObject {LIdObject = pIdObject},
+                LStatus = new BoStatus {LIdStatus = pIdStatus},
+                LProduct = new BoProduct {LIdProduct = pIdProduct},
+                LInventory = new BoInventory {LIdInventory = pIdInventory},
                 LIdInventoryItem = pIdInventoryItem,
                 LQtySellable = pQtySellable,
                 LQtyNonSellable = pQtyNonSellable
@@ -56,27 +57,21 @@ namespace Bll_Business
 
         public string bll_DeleteInventoryItem(int pIdInventoryItem)
         {
-            var oInventoryItem = new Bo_InventoryItem {LIdInventoryItem = pIdInventoryItem};
+            var oInventoryItem = new BoInventoryItem {LIdInventoryItem = pIdInventoryItem};
             return this.LiDaoInventoryItem.Dao_DeleteInventoryItem(oInventoryItem);
         }
 
 
-        public string bll_SubstractInventoryItem(Bo_OrderItem pOrderItem, int lIdInventory)
+        public string bll_SubstractInventoryItem(BoOrderItem pOrderItem, int lIdInventory)
         {
-            var lInventoryItem = new Bo_InventoryItem
+            var lInventoryItem = new BoInventoryItem
             {
-                LProduct = new Bo_Product {LCdProduct = pOrderItem.LProduct.LCdProduct},
-                LInventory = new Bo_Inventory {LIdInventory = lIdInventory},
+                LProduct = new BoProduct {LCdProduct = pOrderItem.LProduct.LCdProduct},
+                LInventory = new BoInventory {LIdInventory = lIdInventory},
                 LQtySellable = pOrderItem.LQty
             };
-            if(this.LiDaoInventoryItem.Dao_SubstractInventoryItem(lInventoryItem) == "1")
-            {
-                return "";
-            }
-            else
-            {
-                return "No hay mas del producto con el codigo" + pOrderItem.LProduct.LCdProduct + " en el inventario";
-            }
+            var lResult = this.LiDaoInventoryItem.Dao_SubstractInventoryItem(lInventoryItem);
+            return lResult == EBooleans.Trues.GetHashCode().ToString() ? null : BoErrors.MsgEmptyProductWithcode.Replace(BoErrors.ReplaceInString1, pOrderItem.LProduct.LCdProduct);
         }
     }
 }

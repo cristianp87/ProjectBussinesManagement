@@ -2,169 +2,37 @@
 
 namespace BO_BusinessManagement
 {
-    public class Bo_OrderItem : Bo_Exception
+    public class BoOrderItem : BoException
     {
-        private int lIdOrderItem;
-        private Bo_Product lProduct = null;
-        private DateTime lCreationDate;
-        private Bo_Status lStatus;
-        private Bo_Object lObject;
-        private Bo_Order lOrder;
-        private decimal lValueProduct;
-        private decimal lValueSupplier;
-        private decimal lValueTaxes;
-        private decimal lValueDesc;
-        private decimal lValueTotal;
-        private decimal lQty;
+        private decimal myLValueTotal;
 
-        public int LIdOrderItem
-        {
-            get
-            {
-                return lIdOrderItem;
-            }
+        public int LIdOrderItem { get; set; }
 
-            set
-            {
-                lIdOrderItem = value;
-            }
-        }
+        public BoProduct LProduct { get; set; } = null;
 
-        public Bo_Product LProduct
-        {
-            get
-            {
-                return lProduct;
-            }
+        public DateTime LCreationDate { get; set; }
 
-            set
-            {
-                lProduct = value;
-            }
-        }
+        public BoStatus LStatus { get; set; }
 
-        public DateTime LCreationDate
-        {
-            get
-            {
-                return lCreationDate;
-            }
+        public BoObject LObject { get; set; }
 
-            set
-            {
-                lCreationDate = value;
-            }
-        }
+        public BoOrder LOrder { get; set; }
 
-        public Bo_Status LStatus
-        {
-            get
-            {
-                return lStatus;
-            }
+        public decimal LValueProduct { get; set; }
 
-            set
-            {
-                lStatus = value;
-            }
-        }
+        public decimal LValueSupplier { get; set; }
 
-        public Bo_Object LObject
-        {
-            get
-            {
-                return lObject;
-            }
+        public decimal LValueTaxes { get; set; }
 
-            set
-            {
-                lObject = value;
-            }
-        }
-
-        public Bo_Order LOrder
-        {
-            get
-            {
-                return lOrder;
-            }
-
-            set
-            {
-                lOrder = value;
-            }
-        }
-
-        public decimal LValueProduct
-        {
-            get
-            {
-                return lValueProduct;
-            }
-
-            set
-            {
-                lValueProduct = value;
-            }
-        }
-
-        public decimal LValueSupplier
-        {
-            get
-            {
-                return lValueSupplier;
-            }
-
-            set
-            {
-                lValueSupplier = value;
-            }
-        }
-
-        public decimal LValueTaxes
-        {
-            get
-            {
-                return lValueTaxes;
-            }
-
-            set
-            {
-                lValueTaxes = value;
-            }
-        }
-
-        public decimal LValueDesc
-        {
-            get
-            {
-                return lValueDesc;
-            }
-
-            set
-            {
-                lValueDesc = value;
-            }
-        }
+        public decimal LValueDesc { get; set; }
 
         public decimal LValueTotal
         {
             get {
-                lValueTotal = (((LValueProduct - LValueDesc) * LQty) + (LValueTaxes * LQty));
-                return lValueTotal; }
+                this.myLValueTotal = (((this.LValueProduct - this.LValueDesc) *this.LQty) + (this.LValueTaxes *this.LQty));
+                return this.myLValueTotal; }
         }
 
-        public decimal LQty
-        {
-            get
-            {
-                return lQty;
-            }
-
-            set
-            {
-                lQty = value;
-            }
-        }
+        public decimal LQty { get; set; }
     }
 }

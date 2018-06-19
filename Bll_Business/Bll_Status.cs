@@ -16,7 +16,7 @@ namespace Bll_Business
             this.LiStatus = new DaoStatus();
         }
 
-        public List<Bo_Status>  Bll_getListStatusByIdObject(int pIdObject)
+        public List<BoStatus>  Bll_getListStatusByIdObject(int pIdObject)
         {
             return this.LiStatus.Dao_getListStatusByIdObject(pIdObject);
         }

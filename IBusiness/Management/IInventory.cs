@@ -6,9 +6,9 @@ namespace IBusiness.Management
 {
     public interface IInventory : IFacade
     {
-        List<Bo_Inventory> bll_GetAllInventory();
+        List<BoInventory> bll_GetAllInventory();
 
-        Bo_Inventory bll_GetInventoryById(int pIdInventory);
+        BoInventory bll_GetInventoryById(int pIdInventory);
 
         string bll_InsertInventory(string pNameInventory, int pIdObject, string pIdStatus);
 

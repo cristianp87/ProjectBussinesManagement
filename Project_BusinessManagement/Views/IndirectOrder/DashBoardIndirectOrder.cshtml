@@ -1,0 +1,123 @@
+﻿@model Project_BusinessManagement.Models.MOrder
+
+@{
+    ViewBag.Title = "DashBoardOrder";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@section Scripts
+{
+    <script type="text/javascript">
+
+         var yourApp = yourApp || {};
+         yourApp.Urls = yourApp.Urls || {};
+         yourApp.Urls.baseUrl = '@Url.Content("~")';
+         yourApp.Urls.getAllInventory = '@Url.Action("GetInventory")';
+         yourApp.Urls.getItem = '@Url.Action("GetOrderItem")';
+         yourApp.Urls.CreateOrderItem = '@Url.Action("Create")';
+         yourApp.Urls.GetListTypeIdentification = '@Url.Action("GetTypeIdentification")';
+         yourApp.Urls.GetCustomer = '@Url.Action("GetCustomer")';
+         yourApp.Urls.GoOrderDetails = '@Url.Action("Index","OrderItem")';
+         yourApp.Urls.GoCustomer = '@Url.Action("Create","Customer")';
+
+    </script>
+    <script src="~/csJquery/JOrder/JOrderIndirectDash.js"></script>
+}
+
+<h2>Pedidos Indirectos</h2>
+
+<div id="dvException" class="hide" >
+    <label id="lblException" class="alert alert-danger">
+    </label>
+    <a id="linkInvoice" href="#" class="btn btn-info"></a>
+</div>
+
+<div class="form-horizontal">
+    <div class="form-group">
+        <label id="lblTypeIdentification" name="lblTypeIdentification" class="control-label col-md-3">Tipo Identificacion</label>
+        <div class="col-md-9">
+            <select id="ddlTypeIdentification" class="form-control" name="ddlTypeIdentification">
+                <option value="0">Seleccione...</option>
+            </select>
+        </div>
+        <label id="lblDocument" name="lblDocument" class="control-label col-md-3"> Cliente</label>
+        <div class="col-md-7">
+            <input type="text" id="txtDocCustomer" class="form-control" name="txtDocCustomer" />
+        </div>
+        <div class="col-md-2">
+            <a id="linkCustomer" href="#"> <span id="changeIcon"></span></a>
+        </div>
+        <div class="col-md-12">
+            <input type="button" id="btnConfirmCustomer" name="btnConfirmCustomer" class="btn btn-block col-md-4" value="Confirmar Cliente" />
+        </div>
+    </div>
+    <div id="OrderDash" class="hide">
+        <div class="form-group">
+            <label id="lblInventory" name="lblInventory" class="control-label col-md-2"> Inventario</label>
+            <div class="col-md-10">
+                <select id="ddlInventory" class="form-control" name="ddlInventory">
+                    <option value="0">Seleccione...</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label id="lblProduct" name="lblProduct" class="control-label col-md-2">Producto</label>
+            <div class="col-md-10">
+                <input type="text" id="txtProduct" class="form-control" name="txtProduct" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label id="lblCntProduct" name="lblCntProduct" class="control-label col-md-2">Cantidad</label>
+            <div class="col-md-10">
+                <input type="text" id="txtCntProduct" class="form-control" name="txtCntProduct" />
+            </div>
+        </div>
+        <input type="button" id="btnItem" name="btnItem" class="btn btn-block col-md-4" value="Agregar Producto" />
+    </div>
+    
+</div>
+<br />
+<br />
+    <div >
+        <h1>
+            <label id="lblTotalizador" class="label-success control-label">
+                0$
+            </label>
+        </h1>
+</div>
+    <table class="table" id="tableOrder" name ="tableOrder">
+       <thead>
+           <tr>
+               <th>
+                   Nombre Inventario
+               </th>
+               <th>
+                   Codigo Producto
+               </th>
+               <th>
+                   Nombre Producto
+               </th>
+               <th>
+                   Valor Producto
+               </th>
+               <th>
+                   Cantidad Producto
+               </th>
+               <th>
+                   Valor Impuesto
+               </th>
+               <th>
+                   Total Producto
+               </th>
+               <th>
+                   Acciones
+               </th>
+           </tr>
+        </thead> 
+    </table>
+
+<input type="button" id="btnCreateOrder" name="btnCreateOrder" class="btn btn-success" value="Agregar Pedido" />
+<input type="button" id="btnNewOrder" name="btnNewOrder" class="btn btn-success hide" value="Nuevo Pedido" />
+
+<input type="hidden" id="hdnIdcustomer" name="hdnIdcustomer" value="0" />
+<input type="hidden" id="hdnIdProduct" name="hdnIdProduct" value="0" />

@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using BO_BusinessManagement;
 using IBusiness.Common;
 
@@ -10,11 +6,11 @@ namespace IBusiness.Management
 {
     public interface IProduct : IFacade
     {
-        Bo_Product bll_GetProductByCode(string pCdProduct);
+        BoProduct bll_GetProductByCode(string pCdProduct);
 
-        Bo_Product bll_GetProductById(int pIdProduct);
+        BoProduct bll_GetProductById(int pIdProduct);
 
-        List<Bo_Product> bll_GetAllProduct();
+        List<BoProduct> bll_GetAllProduct();
 
         string bll_InsertProduct(string pNameProduct,
             string pCdProduct,

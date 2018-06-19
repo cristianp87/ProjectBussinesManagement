@@ -1,17 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using BO_BusinessManagement;
 
 namespace IDaoBusiness.Business
 {
     public interface IDaoTypeIdentification
     {
-        Bo_Customer Dao_getTypeIdentification(int pIdTypeIdentification);
+        BoCustomer Dao_getTypeIdentification(int pIdTypeIdentification);
 
-        List<Bo_TypeIdentification> Dao_getListAllTypeIdentification();
+        List<BoTypeIdentification> Dao_getListAllTypeIdentification();
 
     }
 }

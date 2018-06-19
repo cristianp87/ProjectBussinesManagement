@@ -1,0 +1,18 @@
+﻿@model Project_BusinessManagement.Models.Reports.MReports
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Reportes</h2>
+
+@Html.ActionLink("Reporte De ventas", "SalesReport")
+<br />
+@Html.ActionLink("Reporte De Inventario", "InventoryReport")
+<br />
+@Html.ActionLink("Reporte cuentas Por cobras", "AccountReceivableReport")
+<br />
+@Html.ActionLink("Reporte Caja", "CashRegisterReport")
+
+

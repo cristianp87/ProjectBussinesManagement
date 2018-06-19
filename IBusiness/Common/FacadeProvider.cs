@@ -1,8 +1,4 @@
-﻿using IBusiness.Management;
-using Microsoft.Practices.Unity;
-using Unity;
-
-namespace IBusiness.Common
+﻿namespace IBusiness.Common
 {
     public static class FacadeProvider
     {
@@ -19,9 +15,9 @@ namespace IBusiness.Common
         /// </summary>
         /// <typeparam name="T">Facade type.</typeparam>
         /// <returns>Returns the instance of facade.</returns>
-        public static T Resolver<T>() where T : IFacade
+        public static T Resolv<T>() where T : IFacade
         {
-            return FacadeProviderInstance.Resolver<T>();
+            return FacadeProviderInstance.Resolv<T>();
         }
 
         public static void RegisterFacadeProvider()

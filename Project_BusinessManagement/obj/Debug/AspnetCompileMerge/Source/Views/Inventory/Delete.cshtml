@@ -1,0 +1,49 @@
+﻿@model Project_BusinessManagement.Models.MInventory
+
+@{
+    ViewBag.Title = "Eliminar";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Eliminar Registro</h2>
+
+<h3>Esta Seguro de Eliminar Este Inventario?</h3>
+<div>
+    <h4>Inventario</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.LIdInventory)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LIdInventory)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LNameInventory)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LNameInventory)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LCreationDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LCreationDate)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Eliminar" class="btn btn-danger" /> |
+            @Html.ActionLink("Ir a Lista de Inventarios", "Index")
+        </div>
+    }
+</div>

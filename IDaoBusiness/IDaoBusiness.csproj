@@ -40,6 +40,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Business\IDaoCashRegister.cs" />
     <Compile Include="Business\IDaoCustomer.cs" />
     <Compile Include="Business\IDaoDashBoard.cs" />
     <Compile Include="Business\IDaoInventory.cs" />
@@ -48,7 +49,9 @@
     <Compile Include="Business\IDaoInvoiceItem.cs" />
     <Compile Include="Business\IDaoOrder.cs" />
     <Compile Include="Business\IDaoOrderItem.cs" />
+    <Compile Include="Business\IDaoPayment.cs" />
     <Compile Include="Business\IDaoProduct.cs" />
+    <Compile Include="Business\IDaoReports.cs" />
     <Compile Include="Business\IDaoRole.cs" />
     <Compile Include="Business\IDaoStatus.cs" />
     <Compile Include="Business\IDaoSupplier.cs" />

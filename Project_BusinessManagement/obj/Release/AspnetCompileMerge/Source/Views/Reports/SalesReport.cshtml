@@ -1,0 +1,74 @@
+﻿@model IEnumerable<Project_BusinessManagement.Models.Reports.MReportSales>
+
+@{
+    ViewBag.Title = "SalesReport";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@if (Model.Any())
+{
+    if (Model.First().LMessage != null)
+    {
+        <div class="alert alert-danger">
+            <strong>Error!</strong> @Model.First().LMessage
+        </div>
+    }
+}
+
+<h2>Reporte De Ventas</h2>
+
+@Html.ActionLink("Descargar Pdf", "DownloadFile", new { lReport = 0})
+<div class="table-responsive">
+    <table class="tablesorter">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.LId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.LCode)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.LCreationDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.LProduct.LCdProduct)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.LProduct.LNameProduct)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.LValuetotal)
+            </th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.LId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.LCode)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.LCreationDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.LProduct.LCdProduct)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.LProduct.LNameProduct)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.LValuetotal)
+                </td>
+            </tr>
+        }
+
+    </table>
+</div>
+    @Html.Partial("~/Views/Shared/_Pagination.cshtml")
+
+    <h2>
+        <label class="label-info">Total: </label>
+        @Html.Label(ViewData["TotalSales"].ToString(), htmlAttributes: new { @class = "label-success control-label", id = "lblTotalizador" })
+    </h2>

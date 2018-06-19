@@ -1,0 +1,86 @@
+﻿@model IEnumerable<Project_BusinessManagement.Models.MOrder>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Pedidos</h2>
+
+<p>
+    @Html.ActionLink("Realizar Pedidos", "DashBoardOrder")
+</p>
+@using (Html.BeginForm())
+{
+
+    @Html.AntiForgeryToken()
+    <div class="form-horizontal">
+        <div class="form-group">
+            <div class="col-md-2">
+                @Html.Label("", "Por Nombre De Inventario")
+            </div>
+            <div class="col-md-10">
+                @Html.TextBox("pSearchName")
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-10">
+                <input type="submit" value="filtrar" class="btn btn-info" />
+            </div>
+        </div>
+    </div>
+<div class="table-responsive">
+
+
+    <table class="tablesorter">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.LIdOrder)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.LCreationDate)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.LCustomer.LNameCustomer)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.LCustomer.LLastNameCustomer)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.LInventory.LNameInventory)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        @foreach (var item in Model)
+        {
+            <tbody>
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.LIdOrder)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.LCreationDate)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.LCustomer.LNameCustomer)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.LCustomer.LLastNameCustomer)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.LInventory.LNameInventory)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Items", "Index", "OrderItem", new { pIdOrder = item.LIdOrder }, null)
+                        @Html.ActionLink("Factura", "Details", "Invoice", new { pIdOrder = item.LIdOrder }, null)
+                    </td>
+                </tr>
+            </tbody>
+        }
+
+    </table>
+    @Html.Partial("~/Views/Shared/_Pagination.cshtml")
+</div>
+}
