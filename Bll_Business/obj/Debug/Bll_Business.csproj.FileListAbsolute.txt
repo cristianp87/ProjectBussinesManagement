@@ -36,7 +36,6 @@ C:\Users\cripac\Documents\GitHub\ProjectBussinesManagement\Bll_Business\obj\Debu
 C:\Users\cripac\Documents\GitHub\ProjectBussinesManagement\Bll_Business\obj\Debug\Bll_Business.pdb
 C:\Users\cripac\Documents\GitHub\ProjectBussinesManagement\Bll_Business\bin\Debug\IDaoBusiness.dll
 C:\Users\cripac\Documents\GitHub\ProjectBussinesManagement\Bll_Business\bin\Debug\IDaoBusiness.pdb
-C:\Users\CristianPc\Documents\Projects\ProjectBussinesManagement\Bll_Business\obj\Debug\Bll_Business.csprojResolveAssemblyReference.cache
 C:\Users\CristianPc\Documents\Projects\ProjectBussinesManagement\Bll_Business\bin\Debug\Bll_Business.dll
 C:\Users\CristianPc\Documents\Projects\ProjectBussinesManagement\Bll_Business\bin\Debug\Bll_Business.pdb
 C:\Users\CristianPc\Documents\Projects\ProjectBussinesManagement\Bll_Business\bin\Debug\BO_BusinessManagement.dll
@@ -63,5 +62,6 @@ C:\Users\CristianPc\Documents\Projects\ProjectBussinesManagement\Bll_Business\bi
 C:\Users\CristianPc\Documents\Projects\ProjectBussinesManagement\Bll_Business\bin\Debug\Unity.Interception.Configuration.pdb
 C:\Users\CristianPc\Documents\Projects\ProjectBussinesManagement\Bll_Business\bin\Debug\Unity.RegistrationByConvention.pdb
 C:\Users\CristianPc\Documents\Projects\ProjectBussinesManagement\Bll_Business\bin\Debug\Unity.ServiceLocation.pdb
+C:\Users\CristianPc\Documents\Projects\ProjectBussinesManagement\Bll_Business\obj\Debug\Bll_Business.csprojResolveAssemblyReference.cache
 C:\Users\CristianPc\Documents\Projects\ProjectBussinesManagement\Bll_Business\obj\Debug\Bll_Business.dll
 C:\Users\CristianPc\Documents\Projects\ProjectBussinesManagement\Bll_Business\obj\Debug\Bll_Business.pdb
