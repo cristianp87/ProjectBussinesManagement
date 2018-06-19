@@ -155,6 +155,7 @@ C:\Users\cripac\Documents\GitHub\ProjectBussinesManagement\Project_BusinessManag
 C:\Users\cripac\Documents\GitHub\ProjectBussinesManagement\Project_BusinessManagement\bin\Dao_BussinessManagement.pdb
 C:\Users\cripac\Documents\GitHub\ProjectBussinesManagement\Project_BusinessManagement\bin\InstancesBll.dll
 C:\Users\cripac\Documents\GitHub\ProjectBussinesManagement\Project_BusinessManagement\bin\InstancesBll.pdb
+C:\Users\CristianPc\Documents\Projects\ProjectBussinesManagement\Project_BusinessManagement\obj\Debug\Project_BusinessManagement.csprojResolveAssemblyReference.cache
 C:\Users\CristianPc\Documents\Projects\ProjectBussinesManagement\Project_BusinessManagement\bin\roslyn\csc.exe
 C:\Users\CristianPc\Documents\Projects\ProjectBussinesManagement\Project_BusinessManagement\bin\roslyn\csc.exe.config
 C:\Users\CristianPc\Documents\Projects\ProjectBussinesManagement\Project_BusinessManagement\bin\roslyn\csc.rsp
@@ -252,6 +253,5 @@ C:\Users\CristianPc\Documents\Projects\ProjectBussinesManagement\Project_Busines
 C:\Users\CristianPc\Documents\Projects\ProjectBussinesManagement\Project_BusinessManagement\bin\Bll_Business.pdb
 C:\Users\CristianPc\Documents\Projects\ProjectBussinesManagement\Project_BusinessManagement\bin\IDaoBusiness.pdb
 C:\Users\CristianPc\Documents\Projects\ProjectBussinesManagement\Project_BusinessManagement\bin\Dao_BussinessManagement.pdb
-C:\Users\CristianPc\Documents\Projects\ProjectBussinesManagement\Project_BusinessManagement\obj\Debug\Project_BusinessManagement.csprojResolveAssemblyReference.cache
 C:\Users\CristianPc\Documents\Projects\ProjectBussinesManagement\Project_BusinessManagement\obj\Debug\Project_BusinessManagement.dll
 C:\Users\CristianPc\Documents\Projects\ProjectBussinesManagement\Project_BusinessManagement\obj\Debug\Project_BusinessManagement.pdb

@@ -8,7 +8,6 @@
 
         IFacadeProvider RegisterFacadeProvider();
 
-        IFacadeProvider RegisterFacadeProvider();
 
         #endregion
     }
