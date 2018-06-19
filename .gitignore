@@ -5,8 +5,8 @@ Project_BusinessManagement/obj/Debug/Project_BusinessManagement.pdb
 *.dll
 Project_BusinessManagement/bin/Bll_Business.pdb
 Project_BusinessManagement/Bin/Project_BusinessManagement.dll
-Project_BusinessManagement/bin/
-Project_BusinessManagement/obj/
+Project_BusinessManagement/bin/.
+Project_BusinessManagement/obj/.
 BO_BusinessManagement/obj/
 BO_BusinessManagement/bin/
 BO_BusinessManagement/bin/Debug/
@@ -21,5 +21,5 @@ IDaoBusiness/bin/Debug/
 IDaoBusiness/obj/Debug/
 InstancesBll/bin/Debug/
 InstancesBll/obj/Debug/
-Project_BusinessManagement/Bin/
-Project_BusinessManagement/obj/Debug/P
+Project_BusinessManagement/Bin/.
+Project_BusinessManagement/obj/Debug/.
