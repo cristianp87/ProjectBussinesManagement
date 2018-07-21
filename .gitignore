@@ -1,6 +1,6 @@
 
-BO_BusinessManagement/obj/Debug/*
-BO_BusinessManagement/bin/Debug/*
+BO_BusinessManagement/obj/Debug/
+BO_BusinessManagement/bin/Debug/
 Bll_Business/bin/Debug/
 Bll_Business/obj/Debug/
 Dao_BussinessManagement/bin/Debug/
@@ -11,5 +11,5 @@ IDaoBusiness/bin/Debug/
 IDaoBusiness/obj/Debug/
 InstancesBll/bin/Debug/
 InstancesBll/obj/Debug/
-Project_BusinessManagement/bin/.
-Project_BusinessManagement/obj/Debug/.
+Project_BusinessManagement/bin/
+Project_BusinessManagement/obj/Debug/
