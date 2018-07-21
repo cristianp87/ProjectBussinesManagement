@@ -9,8 +9,8 @@ Project_BusinessManagement/bin/.
 Project_BusinessManagement/obj/.
 BO_BusinessManagement/obj/
 BO_BusinessManagement/bin/
-BO_BusinessManagement/bin/Debug/
-BO_BusinessManagement/obj/Debug/
+BO_BusinessManagement/bin/Debug/.
+BO_BusinessManagement/obj/Debug/.
 Bll_Business/bin/Debug/
 Bll_Business/obj/Debug/
 Dao_BussinessManagement/bin/Debug/
