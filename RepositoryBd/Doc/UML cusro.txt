@@ -1,0 +1,110 @@
+
+radicado claro: 682482218
+
+Modelar:
+
+-Procesos
+-Sistemas
+-Software
+
+Por Que Modelar:
+
+- Nos ayuda a comunicar diseños
+- Clarifica problemas complejos
+- Ayuda a que los diseños sean cercanos a las implementaciones en realidad.
+- Ahorra tiempo y dinero al trabajar mas eficientemente.
+- Ayuda a definir y a entender los objetivos.
+- Comprendemos el negocio y sus procesos.
+
+
+Tipo De Diagramas:
+
+- Estructura : Muestra la estructura estatica de los elementos del sistema.  como Clases, componentes, objetos, implementacion, paquetes, etc.
+- Comportamiento : Muestra Comportamiento dinamico del sistema. Actividad, Casos de uso, Estado, Colaboracion, Secuencia, etc.
+
+en donde:
+- Procesos de negocio, describir arquitectura, comportamiento de un sistema, estructura de una aplicacion, estructura de los datos, especificaciones de un sistema.
+Facilitar la creacion de un codigo.
+
+- Clase: plano donde los objetos son construidos, categoris donde los objetos pueden ser organizados. tienen: atributos, propiedades, operaciones, funcionalidades.
+- Objeto: Instancia de una clase. algo que existe en el contexto de un sistema. Trabjan con otros objetos, se relacionan entre si.
+
+Tipos Clases:
+
+-Herencias : Se trabaja con clase padre e hija y se heredan las caracteristicas del padre.
+
+- Generalizacion y Especializacion: Mas cerca a la clase padre es generalizada, mas lejana es especializada, esto es para herencia.
+
+- Asociacion: Indica que dos clases esta relacionadas de algun modo.
+
+- Linked: La informacion de una clase esta ligada a datos en otra clase.
+
+- Colaboracion: Una clase trabaja junto a otra para llevar acabo un trabajo.
+
+- Acts: Una clase actua sobre otra: ejemplo: el cerillo PRENDE la vela.
+
+- Agregacion: Indica una relacion del todo con sus partes. El objeto agregado tiene existencia independiente del objeto contenedor.
+
+- Composicion: Todas las parte pertenecen a una unidad completa. Las partes no tienen existencia independiente del objeto contenedor. Si desaparece el contenedor desaparecen las partes.
+
+- Multiplicidad: Indica la cantidad de objetos que participan en una relacion. 1-1, 1-n, n-n.
+
+- Polimorfismo: Habilidad de poder actuar de formas diferentes. objetos y operaciones, La operacion se lleva acabo de diferentes maneras dependiendo de la clase en la que sucede.
+
+
+
+Modelos UML: 
+
+4+1
+Estatico
+Dinamico
+Implementacion
+
+_______________________________________________________
+Modelo 4+1:
+
+- 5 Secciones:
+Vistas: Logicas, Procesos, Fisica, Desarrollo, Casos De Uso
+
+Logica: Muestra las partes del sistema y sus interacciones, enfatiza la clase y los objetos, representa abstracciones, 
+sus diagramas son : Clases, Estado, Objetos, Secuencia, Comunicacion.
+
+Procesos: Muestra la comunicacion entre los procesos, muestra lo que necesita pasar en el sistema, muy util si se tienen procesos simultaneos(Hilos).
+sus Diagramas son: Actividad
+
+Fisica: Modelo en ambiente de ejecucion, Mapea el software en el hardware que lo ejecutara.
+sus diagramas son: Implementacion
+
+Desarrollo: Muestra los modulos o componentes, Nos muestra los elementos que lo construyen.
+sus Diagramas son: Componente, Paquetes
+
+Casos De Uso: Muestra la funcionalidad del sistema, nos permite conocer los objetivos, da una perspectiva del sistema desde el exterior, 
+la informacion que nos da ayuda a definir las funcionalidades de las otras vistas, muestra lo que el sistema se supone que debe hacer.
+sus Diagramas son: Casos De Uso.
+
+___________________________________________________________________________________________________________________________________
+
+
+___________________________________________
+Otra Forma De Ver el sistema:
+	Modelo Estatico: muestra las caracteristicas estructurales del sistema. Diagramas: clases, objeto, casos de uso.
+	
+	
+	Modelo Dinamico: Muestra las caracteristicas del comportamiento eventos externos, nos permite diseñar la logica y comportamiento del sistema. 
+	Diagramas: Secuencia, Comunicacion, Actividad.
+	
+	Modelo de implementacion: Muestra los elementos necesarios para la implementacion del sistema.
+	Diagramas: componenetes e implementacion.
+
+
+
+
+
+
+
+
+
+
+ 
+
+
