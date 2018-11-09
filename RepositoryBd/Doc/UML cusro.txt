@@ -96,6 +96,44 @@ Otra Forma De Ver el sistema:
 	Modelo de implementacion: Muestra los elementos necesarios para la implementacion del sistema.
 	Diagramas: componenetes e implementacion.
 
+___________________________________________
+_______________________________________________________
+
+Casos De Uso:
+
+Actor: sistema o persona.
+Cuadro detras de los casos de uso: representa el sistema interno.
+
+Dependencia Include: 
+-El caso de uso invocador depende del caso de uso incluido para poder completar su objetivo.
+-El caso de uso incluido siemrpe se coloca a la derecha del convocador
+-El caso de uso no se puede completar hasta que este hecho el incluido.
+
+Dependencia Extend:
+-Indica una dependencia opcional entre dos casos de uso.
+- Extiende el comportamiento de la base, adiciona pasos extra.
+- La extension se coloca abajo de la base.
+- El punto de extension indica en que parte de la base la extension empieza a trabajar.
+- Puede haber varios puntos en los cuales llevar acabo la extension.
+
+Generalizacion:
+-similar a la herencia en clases, solo que con casos de uso, El hijo tiene cosas en comun con el padre, pero adiciona su propia forma de hacer el trabajo.
+- la generalizacion puede ser por actores, ejemplo un gerente hereda los features de empleado y ademas tiene el rol de gerente como su propio caso.
+ 
+Tomar en cuenta:
+-No usar dependencias sin motivo.
+-verificar que lo que colocamos realmente es una dependenciao un caso de uso por si mismo.
+-No exagerar los extends para cada posible camino alterno del caso de uso.
+-No usar los extends para repreentar algun algoritmo
+-Nos interesa que es lo que sucede y no el como.
+
+Test Wave:
+
+- W El caso de uso describe que hacer y no como hacerlo?
+- A El caso de uso esta descrito desde la perspectiva del actor?
+- V El caso de uso incluye valor para el actor?
+- E Es el flujo de eventos un escenario completo?
+
 
 
 
