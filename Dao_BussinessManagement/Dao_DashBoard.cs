@@ -13,7 +13,8 @@ namespace Dao_BussinessManagement
     {
         public List<BoDashBoard> Dao_getProductSellToday()
         {
-            using (SqlConnection lConex = DaoUtilsLib.Dao_SqlConnection(lConex))
+            SqlConnection lConex = new SqlConnection();
+            using (lConex = DaoUtilsLib.Dao_SqlConnection(lConex))
             {
 
                 try

@@ -15,7 +15,8 @@ namespace Dao_BussinessManagement
 
         public BoSupplier Dao_getSupplierById(int pIdSupplier)
         {
-            using (SqlConnection lConex = Dao_SqlConnection(lConex))
+            SqlConnection lConex = new SqlConnection();
+            using (lConex = Dao_SqlConnection(lConex))
             {
                 var lSupplier = new BoSupplier();
                 try
@@ -75,7 +76,8 @@ namespace Dao_BussinessManagement
 
         public List<BoSupplier> Dao_getSupplierListAll()
         {
-            using (SqlConnection lConex = Dao_SqlConnection(lConex))
+            SqlConnection lConex = new SqlConnection();
+            using (lConex = Dao_SqlConnection(lConex))
             {
                 var lListSupplier = new List<BoSupplier>();
                 try

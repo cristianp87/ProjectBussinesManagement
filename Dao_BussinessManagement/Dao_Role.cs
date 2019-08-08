@@ -13,7 +13,8 @@ namespace Dao_BussinessManagement
     {
         public List<BoRole> Dao_getRolesByUser(int pUserId)
         {
-            using (SqlConnection lConex = Dao_SqlConnection(lConex))
+            SqlConnection lConex = new SqlConnection();
+            using (lConex = Dao_SqlConnection(lConex))
             {
                 var lRoles = new List<BoRole>();
                 try

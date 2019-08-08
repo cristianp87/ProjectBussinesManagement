@@ -13,7 +13,8 @@ namespace Dao_BussinessManagement
     {
         public List<BoReportSales> Dao_getSalesReport(DateTime pStartDate, DateTime pFinishDate)
         {
-            using (SqlConnection lConex = Dao_SqlConnection(lConex))
+            SqlConnection lConex = new SqlConnection();
+            using (lConex = Dao_SqlConnection(lConex))
             {
                 var lListReport = new List<BoReportSales>();
                 try
@@ -71,7 +72,8 @@ namespace Dao_BussinessManagement
 
         public List<BoInventoryItem> Dao_getInventoryReport()
         {
-            using (SqlConnection lConex = Dao_SqlConnection(lConex))
+            SqlConnection lConex = new SqlConnection();
+            using (lConex = Dao_SqlConnection(lConex))
             {
                 var lListReport = new List<BoInventoryItem>();
                 try
@@ -130,7 +132,8 @@ namespace Dao_BussinessManagement
 
         public List<BoReportAccountReceivable> Dao_getAccountReceivable()
         {
-            using (SqlConnection lConex = Dao_SqlConnection(lConex))
+            SqlConnection lConex = new SqlConnection();
+            using (lConex = Dao_SqlConnection(lConex))
             {
                 var lListReport = new List<BoReportAccountReceivable>();
                 try

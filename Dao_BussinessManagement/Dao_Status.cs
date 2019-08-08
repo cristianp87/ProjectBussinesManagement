@@ -13,7 +13,8 @@ namespace Dao_BussinessManagement
     {
         public List<BoStatus> Dao_getListStatusByIdObject(int pIdObject)
         {
-            using (SqlConnection lConex = Dao_SqlConnection(lConex))
+            SqlConnection lConex = new SqlConnection();
+            using (lConex = Dao_SqlConnection(lConex))
             {
                 var lListStatus = new List<BoStatus>();
                 try

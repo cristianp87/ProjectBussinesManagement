@@ -13,8 +13,9 @@ namespace Dao_BussinessManagement
     {
 
         public BoCustomer Dao_getTypeIdentification(int pIdTypeIdentification)
-        {           
-            using (SqlConnection lConex = Dao_SqlConnection(lConex))
+        {
+            SqlConnection lConex = new SqlConnection();
+            using (lConex = Dao_SqlConnection(lConex))
             {
                 var lCustomer = new BoCustomer();
                 try
@@ -71,7 +72,8 @@ namespace Dao_BussinessManagement
 
         public List<BoTypeIdentification> Dao_getListAllTypeIdentification()
         {
-            using (SqlConnection lConex = Dao_SqlConnection(lConex))
+            SqlConnection lConex = new SqlConnection();
+            using (lConex = Dao_SqlConnection(lConex))
             {
                 var lListTypeIdentification = new List<BoTypeIdentification>();
                 try

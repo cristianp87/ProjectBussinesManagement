@@ -26,3 +26,15 @@ C:\Users\CristianPc\Documents\Projects\ProjectBussinesManagement\Dao_BussinessMa
 C:\Users\CristianPc\Documents\Projects\ProjectBussinesManagement\Dao_BussinessManagement\obj\Debug\Dao_BussinessManagement.csprojResolveAssemblyReference.cache
 C:\Users\CristianPc\Documents\Projects\ProjectBussinesManagement\Dao_BussinessManagement\obj\Debug\Dao_BussinessManagement.dll
 C:\Users\CristianPc\Documents\Projects\ProjectBussinesManagement\Dao_BussinessManagement\obj\Debug\Dao_BussinessManagement.pdb
+F:\Proyectos\ProjectBussinesManagement\Dao_BussinessManagement\obj\Debug\Dao_BussinessManagement.csprojAssemblyReference.cache
+F:\Proyectos\ProjectBussinesManagement\Dao_BussinessManagement\obj\Debug\Dao_BussinessManagement.csproj.CoreCompileInputs.cache
+F:\Proyectos\ProjectBussinesManagement\Dao_BussinessManagement\obj\Debug\Dao_BussinessManagement.dll
+F:\Proyectos\ProjectBussinesManagement\Dao_BussinessManagement\obj\Debug\Dao_BussinessManagement.pdb
+F:\Proyectos\ProjectBussinesManagement\Dao_BussinessManagement\bin\Debug\Dao_BussinessManagement.dll.config
+F:\Proyectos\ProjectBussinesManagement\Dao_BussinessManagement\bin\Debug\Dao_BussinessManagement.dll
+F:\Proyectos\ProjectBussinesManagement\Dao_BussinessManagement\bin\Debug\Dao_BussinessManagement.pdb
+F:\Proyectos\ProjectBussinesManagement\Dao_BussinessManagement\bin\Debug\BO_BusinessManagement.dll
+F:\Proyectos\ProjectBussinesManagement\Dao_BussinessManagement\bin\Debug\IDaoBusiness.dll
+F:\Proyectos\ProjectBussinesManagement\Dao_BussinessManagement\bin\Debug\BO_BusinessManagement.pdb
+F:\Proyectos\ProjectBussinesManagement\Dao_BussinessManagement\bin\Debug\IDaoBusiness.pdb
+F:\Proyectos\ProjectBussinesManagement\Dao_BussinessManagement\obj\Debug\Dao_BussinessManagement.csproj.CopyComplete

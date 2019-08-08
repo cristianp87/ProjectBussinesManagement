@@ -14,7 +14,8 @@ namespace Dao_BussinessManagement
         private List<SqlParameter> LListParam { get; set; }
         public List<BoTaxe> Dao_getLisAllTaxesXProduct(int idProduct)
         {
-            using (SqlConnection lConex = Dao_SqlConnection(lConex))
+            SqlConnection lConex = new SqlConnection();
+            using (lConex = Dao_SqlConnection(lConex))
             {
                 var lListTaxe = new List<BoTaxe>();
                 try
@@ -75,7 +76,8 @@ namespace Dao_BussinessManagement
 
         public List<BoTaxe> Dao_getLisTaxes()
         {
-            using (SqlConnection lConex = Dao_SqlConnection(lConex))
+            SqlConnection lConex = new SqlConnection();
+            using (lConex = Dao_SqlConnection(lConex))
             {
                 var lListTaxe = new List<BoTaxe>();
                 try
@@ -136,7 +138,8 @@ namespace Dao_BussinessManagement
 
         public List<BoTaxe> Dao_getLisAllTaxesWithOutProduct(int pIdProduct)
         {
-            using (SqlConnection lConex = Dao_SqlConnection(lConex))
+            SqlConnection lConex = new SqlConnection();
+            using (lConex = Dao_SqlConnection(lConex))
             {
                 var lListTaxe = new List<BoTaxe>();
                 try
@@ -197,7 +200,8 @@ namespace Dao_BussinessManagement
 
         public BoTaxe Dao_getTaxeById(int pIdTaxe)
         {
-            using (SqlConnection lConex = Dao_SqlConnection(lConex))
+            SqlConnection lConex = new SqlConnection();
+            using (lConex = Dao_SqlConnection(lConex))
             {
                 var lTaxe = new BoTaxe();
                 try

@@ -15,7 +15,8 @@ namespace Dao_BussinessManagement
 
         public List<BoPayment> Dao_getListPaymentByOrder(int lIdOrder)
         {
-            using (SqlConnection lConex = Dao_SqlConnection(lConex))
+            SqlConnection lConex = new SqlConnection();
+            using (lConex = Dao_SqlConnection(lConex))
             {
                 var lListPayment = new List<BoPayment>();
                 try
@@ -79,7 +80,8 @@ namespace Dao_BussinessManagement
 
         public BoPayment Dao_GetPayment(int pIdPayment)
         {
-            using (SqlConnection lConex = Dao_SqlConnection(lConex))
+            SqlConnection lConex = new SqlConnection();
+            using (lConex = Dao_SqlConnection(lConex))
             {
                 var lPayment = new BoPayment();
                 try

@@ -14,7 +14,8 @@ namespace Dao_BussinessManagement
 
         public BoInvoice Dao_getInvoiceById(int pIdInvoice)
         {
-            using (SqlConnection lConex = DaoUtilsLib.Dao_SqlConnection(lConex))
+            SqlConnection lConex = new SqlConnection();
+            using (lConex = DaoUtilsLib.Dao_SqlConnection(lConex))
             {
                 var lInvoice = new BoInvoice();
                 try
@@ -64,7 +65,8 @@ namespace Dao_BussinessManagement
 
         public List<BoInvoice> Dao_getInvoiceListAll(int pIdCustomer)
         {
-            using (SqlConnection lConex = DaoUtilsLib.Dao_SqlConnection(lConex))
+            SqlConnection lConex = new SqlConnection();
+            using (lConex = DaoUtilsLib.Dao_SqlConnection(lConex))
             {
                 var lListInvoice = new List<BoInvoice>();
                 try
@@ -119,7 +121,8 @@ namespace Dao_BussinessManagement
 
         public string Dao_getCdInvoice()
         {
-            using (SqlConnection lConex = DaoUtilsLib.Dao_SqlConnection(lConex))
+            SqlConnection lConex = new SqlConnection();
+            using (lConex = DaoUtilsLib.Dao_SqlConnection(lConex))
             {
                 try
                 {

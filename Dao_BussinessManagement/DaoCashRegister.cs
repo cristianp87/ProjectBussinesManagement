@@ -15,7 +15,8 @@ namespace Dao_BussinessManagement
 
         public List<BoCashRegister> Dao_getListLastCashRegister()
         {
-            using (SqlConnection lConex = DaoUtilsLib.Dao_SqlConnection(lConex))
+            SqlConnection lConex = new SqlConnection();
+            using (lConex = DaoUtilsLib.Dao_SqlConnection(lConex))
             {
                 var lListCashRegister = new List<BoCashRegister>();
                 try
@@ -63,7 +64,8 @@ namespace Dao_BussinessManagement
 
         public int Dao_getFirstIdCashRegister()
         {
-            using (SqlConnection lConex = Dao_SqlConnection(lConex))
+            SqlConnection lConex = new SqlConnection();
+            using (lConex = Dao_SqlConnection(lConex))
             {
                 var lIdCashRegister = 0; 
                 try
@@ -97,7 +99,8 @@ namespace Dao_BussinessManagement
 
         public List<BoCashRegister> Dao_getListCashInput()
         {
-            using (SqlConnection lConex = DaoUtilsLib.Dao_SqlConnection(lConex))
+            SqlConnection lConex = new SqlConnection();
+            using (lConex = DaoUtilsLib.Dao_SqlConnection(lConex))
             {
                 var lListCashRegister = new List<BoCashRegister>();
                 try
@@ -144,7 +147,8 @@ namespace Dao_BussinessManagement
 
         public BoCashRegister Dao_getCashInput(int pIdCash)
         {
-            using (SqlConnection lConex = DaoUtilsLib.Dao_SqlConnection(lConex))
+            SqlConnection lConex = new SqlConnection();
+            using (lConex = DaoUtilsLib.Dao_SqlConnection(lConex))
             {
                 var lCashInput = new BoCashRegister();
                 try
@@ -186,7 +190,8 @@ namespace Dao_BussinessManagement
 
         public BoCashRegister Dao_getCashOutPut(int pIdCash)
         {
-            using (SqlConnection lConex = DaoUtilsLib.Dao_SqlConnection(lConex))
+            SqlConnection lConex = new SqlConnection();
+            using (lConex = DaoUtilsLib.Dao_SqlConnection(lConex))
             {
                 var lCashOutPut = new BoCashRegister();
                 try
@@ -228,7 +233,8 @@ namespace Dao_BussinessManagement
 
         public List<BoCashRegister> Dao_getListCashOutputs()
         {
-            using (SqlConnection lConex = DaoUtilsLib.Dao_SqlConnection(lConex))
+            SqlConnection lConex = new SqlConnection();
+            using (lConex = DaoUtilsLib.Dao_SqlConnection(lConex))
             {
                 var lListCashRegister = new List<BoCashRegister>();
                 try

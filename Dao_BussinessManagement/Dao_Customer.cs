@@ -15,7 +15,8 @@ namespace Dao_BussinessManagement
 
         public BoCustomer Dao_getCustomerById(int pIdCustomer)
         {
-            using (SqlConnection lConex = DaoUtilsLib.Dao_SqlConnection(lConex))
+            SqlConnection lConex = new SqlConnection();
+            using (lConex = DaoUtilsLib.Dao_SqlConnection(lConex))
             {
 
                 try
@@ -70,7 +71,8 @@ namespace Dao_BussinessManagement
 
         public BoCustomer Dao_getCustomerByDocument(string pNoIdentification, int pIdTypeIdentification)
         {
-            using (SqlConnection lConex = DaoUtilsLib.Dao_SqlConnection(lConex))
+            SqlConnection lConex = new SqlConnection();
+            using (lConex = DaoUtilsLib.Dao_SqlConnection(lConex))
             {
                 try
                 {
@@ -124,7 +126,8 @@ namespace Dao_BussinessManagement
 
         public List<BoCustomer> Dao_getListAllCustomer()
         {
-            using (SqlConnection lConex = DaoUtilsLib.Dao_SqlConnection(lConex))
+            SqlConnection lConex = new SqlConnection();
+            using (lConex = DaoUtilsLib.Dao_SqlConnection(lConex))
             {
 
                 try

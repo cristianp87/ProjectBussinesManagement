@@ -17,7 +17,8 @@ namespace Dao_BussinessManagement
 
         public BoUser Dao_getUserByUser(string pUser)
         {
-            using (SqlConnection lConex = Dao_SqlConnection(lConex))
+            SqlConnection lConex = new SqlConnection();
+            using (lConex = Dao_SqlConnection(lConex))
             {
                 var lUser = new BoUser();
                 try
@@ -68,7 +69,8 @@ namespace Dao_BussinessManagement
 
         public BoUser Dao_getUserById(int pIdUser)
         {
-            using (SqlConnection lConex = Dao_SqlConnection(lConex))
+            SqlConnection lConex = new SqlConnection();
+            using (lConex = Dao_SqlConnection(lConex))
             {
                 var lUser = new BoUser();
                 try

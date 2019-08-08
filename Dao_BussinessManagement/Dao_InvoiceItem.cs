@@ -16,7 +16,8 @@ namespace Dao_BussinessManagement
 
         public List<BoInvoiceItem> Dao_getInvoiceItemByIdInvoice(int pIdInvoice)
         {
-            using (SqlConnection lConex = Dao_SqlConnection(lConex))
+            SqlConnection lConex = new SqlConnection();
+            using (lConex = Dao_SqlConnection(lConex))
             {
                 var lListInvoiceItem = new List<BoInvoiceItem>();
                 try

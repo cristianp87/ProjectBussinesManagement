@@ -12,3 +12,8 @@ C:\Users\CristianPc\Documents\Projects\ProjectBussinesManagement\BO_BusinessMana
 C:\Users\CristianPc\Documents\Projects\ProjectBussinesManagement\BO_BusinessManagement\bin\Debug\BO_BusinessManagement.pdb
 C:\Users\CristianPc\Documents\Projects\ProjectBussinesManagement\BO_BusinessManagement\obj\Debug\BO_BusinessManagement.dll
 C:\Users\CristianPc\Documents\Projects\ProjectBussinesManagement\BO_BusinessManagement\obj\Debug\BO_BusinessManagement.pdb
+F:\Proyectos\ProjectBussinesManagement\BO_BusinessManagement\bin\Debug\BO_BusinessManagement.dll
+F:\Proyectos\ProjectBussinesManagement\BO_BusinessManagement\bin\Debug\BO_BusinessManagement.pdb
+F:\Proyectos\ProjectBussinesManagement\BO_BusinessManagement\obj\Debug\BO_BusinessManagement.csproj.CoreCompileInputs.cache
+F:\Proyectos\ProjectBussinesManagement\BO_BusinessManagement\obj\Debug\BO_BusinessManagement.dll
+F:\Proyectos\ProjectBussinesManagement\BO_BusinessManagement\obj\Debug\BO_BusinessManagement.pdb

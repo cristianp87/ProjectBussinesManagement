@@ -15,7 +15,8 @@ namespace Dao_BussinessManagement
 
         public List<BoOrder> Dao_getListOrderByCustomer(int pIdCustomer)
         {
-            using (SqlConnection lConex = Dao_SqlConnection(lConex))
+            SqlConnection lConex = new SqlConnection();
+            using (lConex = Dao_SqlConnection(lConex))
             {
                 var lListOrder = new List<BoOrder>();
                 try
@@ -68,7 +69,8 @@ namespace Dao_BussinessManagement
 
         public BoOrder Dao_getOrder(int pIdOrder)
         {
-            using (SqlConnection lConex = DaoUtilsLib.Dao_SqlConnection(lConex))
+            SqlConnection lConex = new SqlConnection();
+            using (lConex = DaoUtilsLib.Dao_SqlConnection(lConex))
             {
 
                 try

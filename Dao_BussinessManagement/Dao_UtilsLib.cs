@@ -40,7 +40,8 @@ namespace Dao_BussinessManagement
         {
             
             string lResult = null;
-            using (SqlConnection lConex = Dao_SqlConnection(lConex))
+            SqlConnection lConex = new SqlConnection();
+            using (lConex = Dao_SqlConnection(lConex))
             {
                 using (SqlTransaction lTran = lConex.BeginTransaction(pNameTransaction))
                 {
@@ -84,7 +85,8 @@ namespace Dao_BussinessManagement
         {
 
             string lResult = null;
-            using (SqlConnection lConex = Dao_SqlConnection(lConex))
+            SqlConnection lConex = new SqlConnection();
+            using (lConex = Dao_SqlConnection(lConex))
             {
                 using (var lTran = lConex.BeginTransaction(pNameTransaction))
                 {
@@ -125,7 +127,8 @@ namespace Dao_BussinessManagement
         }
 
         public static BoObject DaoUtilsLib_getObject(string lNameObject){
-            using (SqlConnection lConex = Dao_SqlConnection(lConex))
+            SqlConnection lConex = new SqlConnection();
+            using (lConex = Dao_SqlConnection(lConex))
             {
                 var lObject = new BoObject();
                 try
@@ -170,7 +173,8 @@ namespace Dao_BussinessManagement
 
         public static BoStatus DaoUtilsLib_getStatusAppro(int pIdObject)
         {
-            using (SqlConnection lConex = Dao_SqlConnection(lConex))
+            SqlConnection lConex = new SqlConnection();
+            using (lConex = Dao_SqlConnection(lConex))
             {
                 var lStatus = new BoStatus();
                 try
@@ -216,7 +220,8 @@ namespace Dao_BussinessManagement
 
         public static BoStatus DaoUtilsLib_getStatusInPro(int pIdObject)
         {
-            using (SqlConnection lConex = Dao_SqlConnection(lConex))
+            SqlConnection lConex = new SqlConnection();
+            using (lConex = Dao_SqlConnection(lConex))
             {
                 var lStatus = new BoStatus();
                 try
@@ -262,7 +267,8 @@ namespace Dao_BussinessManagement
 
         public static List<BoUnit> DaoUtilsLib_getAllUnit()
         {
-            using (SqlConnection lConex = Dao_SqlConnection(lConex))
+            SqlConnection lConex = new SqlConnection();
+            using (lConex = Dao_SqlConnection(lConex))
             {
                 var lListUnit = new List<BoUnit>();
                 try
@@ -313,7 +319,8 @@ namespace Dao_BussinessManagement
 
         public static string DaoUtilsLib_getParameterValueConfiguration(string pNameParameter, string pNameParameterParent)
         {
-            using (SqlConnection lConex = Dao_SqlConnection(lConex))
+            SqlConnection lConex = new SqlConnection();
+            using (lConex = Dao_SqlConnection(lConex))
             {
                 var lConfigurationValue = new BoConfigurationValue();
                 try
@@ -358,7 +365,8 @@ namespace Dao_BussinessManagement
 
         public static string DaoUtilsLib_getParameterConfigurationActive(string pNameParameter, bool pActive)
         {
-            using (SqlConnection lConex = Dao_SqlConnection(lConex))
+            SqlConnection lConex = new SqlConnection();
+            using (lConex = Dao_SqlConnection(lConex))
             {
                 var lConfigurationValue = new BoConfigurationValue();
                 try

@@ -15,7 +15,8 @@ namespace Dao_BussinessManagement
 
         public BoProduct Dao_getProductById(int pIdProduct)
         {
-            using (SqlConnection lConex = DaoUtilsLib.Dao_SqlConnection(lConex))
+            SqlConnection lConex = new SqlConnection();
+            using (lConex = DaoUtilsLib.Dao_SqlConnection(lConex))
             {
                 var lProduct = new BoProduct();
                 try
@@ -76,7 +77,8 @@ namespace Dao_BussinessManagement
 
         public BoProduct Dao_getProductByCode(string pCdProduct)
         {
-            using (SqlConnection lConex = DaoUtilsLib.Dao_SqlConnection(lConex))
+            SqlConnection lConex = new SqlConnection();
+            using (lConex = DaoUtilsLib.Dao_SqlConnection(lConex))
             {
                 var lProduct = new BoProduct();
                 try
@@ -134,7 +136,8 @@ namespace Dao_BussinessManagement
 
         public List<BoProduct> Dao_getProductListAll()
         {
-            using (SqlConnection lConex = DaoUtilsLib.Dao_SqlConnection(lConex))
+            SqlConnection lConex = new SqlConnection();
+            using (lConex = DaoUtilsLib.Dao_SqlConnection(lConex))
             {
                 var lListProduct = new List<BoProduct>();
                 try

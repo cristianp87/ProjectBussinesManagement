@@ -21,7 +21,8 @@ namespace Dao_BussinessManagement
         /// <returns></returns>
         public List<BoOrderItem> Dao_getListOrderItem(int pIdOrder)
         {
-            using (SqlConnection lConex = Dao_SqlConnection(lConex))
+            SqlConnection lConex = new SqlConnection();
+            using (lConex = Dao_SqlConnection(lConex))
             {
                 var lListOrderItem = new List<BoOrderItem>();
                 try

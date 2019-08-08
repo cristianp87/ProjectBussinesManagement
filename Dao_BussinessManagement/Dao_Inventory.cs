@@ -16,7 +16,8 @@ namespace Dao_BussinessManagement
 
         public List<BoInventory> Dao_getAllInventory()
         {
-            using (SqlConnection lConex = Dao_SqlConnection(lConex))
+            SqlConnection lConex = new SqlConnection();
+            using (lConex = Dao_SqlConnection(lConex))
             {
                 var lListInventory = new List<BoInventory>();
                 try
@@ -65,7 +66,8 @@ namespace Dao_BussinessManagement
 
         public BoInventory Dao_getInventoryById(int pIdInventory)
         {
-            using (SqlConnection lConex = Dao_SqlConnection(lConex))
+            SqlConnection lConex = new SqlConnection();
+            using (lConex = Dao_SqlConnection(lConex))
             {
                 var lInventory = new BoInventory();
                 try
